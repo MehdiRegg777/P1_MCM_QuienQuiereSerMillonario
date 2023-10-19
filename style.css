@@ -1,0 +1,62 @@
+/* .fondo {
+    background: url(fondo.jpeg) no-repeat center center;
+    background-size: cover;
+} */
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: url(fondo.jpeg) no-repeat center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+.instructions {
+    font-size: 18px;
+    color: #666;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.play-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+.play-button:hover {
+    background-color: #2980b9;
+}
