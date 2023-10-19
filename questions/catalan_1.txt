@@ -3,14 +3,11 @@
 + Pau
 - Revolució
 - El racisme
-
 * D'on és Gandhi?
 - El Marroc
 - Anglaterra
 + Índia
 - Perú
-
-
 * Ghandi va morir per un...
 - Accident
 - Atac de cor
@@ -21,7 +18,6 @@
 - Segle XX
 - Segle I
 - Ara
-
 * On del món es va crear el futbol?
 - Xina
 - Mèxic
@@ -33,8 +29,6 @@
 - Amb caixes
 - Amb roba
 * Qui van ser els que van utilitzar la paraula "alborigen"?
-
-
 - Àrabs
 - Asiàtics
 - Castellà
@@ -44,7 +38,6 @@
 - Barcelona
 - Singapur
 - Argentina
-
 * Quants anys van viure els aborígens?
 - 12.000 anys
 + 40.000 anys
