@@ -15,7 +15,7 @@
 }
 
 header {
-    background: url(fondo.jpeg) no-repeat center center;
+    background: url(imag/fondo.jpeg) no-repeat center center;
     background-size: cover;
     filter: blur(7px); /* Agregar desenfoque a la imagen de fondo */
     color: #fff; /* Texto en blanco */
