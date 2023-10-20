@@ -10,7 +10,7 @@
     </header>
     <div class="container">
         
-        <h2>Felicidades!!</h2>
+        <h2>Lo sentimos mucho!!</h2>
     
         <a class="play-button" href="index.php">¡Volver al inicio!</a>
     </div>
