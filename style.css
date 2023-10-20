@@ -25,11 +25,7 @@ body{
 }
 
 header {
-<<<<<<< HEAD
-    background: url(imag/fondo.jpeg) no-repeat center center;
-=======
     background: url(imgs/qqsm.jpg) no-repeat center center;
->>>>>>> origin/CMoyano
     background-size: cover;
     text-align: center;
     padding: 100px;
