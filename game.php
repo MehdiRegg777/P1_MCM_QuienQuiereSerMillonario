@@ -25,13 +25,13 @@
 <?php
 session_start();
 
-// Función para obtener una pregunta aleatoria
-function obtenerPreguntaAleatoria($preguntas) {
-    return $preguntas[array_rand($preguntas)];
-}
 
-if (!isset($_SESSION['preguntas'])) {
-    // Leer el contenido del archivo y dividirlo en preguntas
+
+
+// Resto del código para cargar y mostrar las preguntas, similar a tu código anterior.
+
+if (!isset($_SESSION['preguntas']) || isset($_GET['nuevo_juego'])) {
+    // Si no hay preguntas en la sesión o se inicia un nuevo juego, carga y baraja las preguntas.
     $contenido = file_get_contents('questions/spanish_1.txt');
     $lineas = explode("\n", $contenido);
 
@@ -69,7 +69,13 @@ if ($_SESSION['pregunta_actual'] === 3) {
     exit;
 }
 
+
 foreach ($preguntas as $key => $pregunta) {
+    // Detener el bucle después de imprimir las tres primeras preguntas
+    if ($key >= 3) {
+        break;
+    }
+
     echo '<div class="question-box';
     if ($key > $_SESSION['pregunta_actual']) {
         echo ' hidden'; // Ocultar preguntas no disponibles
@@ -84,6 +90,7 @@ foreach ($preguntas as $key => $pregunta) {
     echo "</div>";
     echo "</div>";
 }
+
 ?>
 <script>
     const respuestas = document.querySelectorAll('.respuesta');
@@ -99,26 +106,25 @@ foreach ($preguntas as $key => $pregunta) {
     });
 
     responderBtns.forEach((responderBtn) => {
-        responderBtn.addEventListener('click', () => {
-            const preguntaIndex = responderBtn.getAttribute('data-pregunta');
-            const respuestaSeleccionada = document.querySelector('.respuesta.seleccionada[data-pregunta="' + preguntaIndex + '"]');
-            if (respuestaSeleccionada) {
-                const respuestaCorrecta = '<?php echo $preguntas['preguntaIndex']['respuesta_correcta']; ?>';
-                console.log(respuestaSeleccionada.getAttribute('data-respuesta') );
-                console.log(respuestaCorrecta);
+    responderBtn.addEventListener('click', () => {
+        const preguntaIndex = responderBtn.getAttribute('data-pregunta');
+        const respuestaSeleccionada = document.querySelector('.respuesta.seleccionada[data-pregunta="' + preguntaIndex + '"]');
+        if (respuestaSeleccionada) {
+            const respuestaCorrecta = '<?php echo $preguntas[' + preguntaIndex + "']['respuesta_correcta']; ?>';
 
-                if (respuestaSeleccionada.getAttribute('data-respuesta') === respuestaCorrecta.toString()) {
+            if (respuestaSeleccionada.getAttribute('data-respuesta') === respuestaCorrecta.toString()) {
                 alert('¡Felicidades! Respuesta correcta.');
                 mostrarSiguientePregunta();
             } else {
-                window.location.href = 'lose.php'; // Redirigir al usuario a la página de pérdida
-}
-
-            } else {
-                alert('Por favor, selecciona una respuesta.');
+                console.log(respuestaSeleccionada.getAttribute('data-respuesta'));
+                console.log(respuestaCorrecta.toString());
             }
-        });
+        } else {
+            alert('Por favor, selecciona una respuesta.');
+        }
     });
+});
+
 
     function mostrarSiguientePregunta() {
         // Ocultar la pregunta actual

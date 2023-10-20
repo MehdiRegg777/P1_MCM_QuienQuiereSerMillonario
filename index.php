@@ -20,7 +20,7 @@
             </ul>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. In hac habitasse platea dictumst vestibulum rhoncus est. Id donec ultrices tincidunt arcu non. Elementum pulvinar etiam non quam lacus suspendisse faucibus. Pharetra vel turpis nunc eget lorem dolor sed. Aliquet nibh praesent tristique magna sit amet. In cursus turpis massa tincidunt dui ut ornare lectus sit. Quis hendrerit dolor magna eget est lorem ipsum. Facilisis gravida neque convallis a cras semper auctor neque. Fermentum dui faucibus in ornare quam viverra. Vitae elementum curabitur vitae nunc sed. Aliquet nibh praesent tristique magna sit amet purus. Id leo in vitae turpis massa sed elementum. Aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices. Amet venenatis urna cursus eget nunc scelerisque viverra mauris. A diam maecenas sed enim ut sem viverra aliquet. Pellentesque id nibh tortor id. Mattis rhoncus urna neque viverra justo. Auctor urna nunc id cursus metus aliquam. Rhoncus mattis rhoncus urna neque. Et odio pellentesque diam volutpat. Nec ultrices dui sapien eget mi proin sed libero enim. Eget nunc scelerisque viverra mauris in aliquam sem fringilla. Non consectetur a erat nam at lectus urna. Eu augue ut lectus arcu bibendum at varius vel pharetra.</p>
         
-            <a class="play-button" href="game.php">Jugar</a>
+            <a class="play-button" href="game.php?nuevo_juego=true">Jugar</a>
             <a class="halloffame-button" href="game.php">Hall of fame</a>
         </div>
 
