@@ -1,26 +1,27 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
+    <title>¿Quiere ser millonario?</title>
     <style>
         .question-box {
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px;
         }
-        .question-box.disabled {
-            pointer-events: none;
-            opacity: 0.6;
+        .question-box.hidden {
+            display: none;
+        }
+        .respuesta {
+            cursor: pointer;
+        }
+        .respuesta.seleccionada {
+            background-color: #FFFF00; /* Cambia el color de fondo para indicar selección */
         }
     </style>
 </head>
 <body>
-<div class="question-box">
-    
 <?php
 session_start();
 
@@ -47,67 +48,94 @@ if (!isset($_SESSION['preguntas'])) {
         $pregunta = trim(substr($lineas[$i], 2)); // Extraer la pregunta
         $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4)); // Extraer las respuestas
 
-        // Eliminar símbolos * - +
-        $respuestas = array_map(function($respuesta) {
-            return str_replace(['*', '-', '+'], '', $respuesta);
-        }, $respuestas);
+        // Modificar la lógica para obtener la respuesta correcta
+        $respuestaCorrecta = array_search("+", $respuestas);
+        $respuestas[$respuestaCorrecta] = str_replace('+', '', $respuestas[$respuestaCorrecta]);
+
+        // Barajar las respuestas para mostrarlas en un orden aleatorio
+        shuffle($respuestas);
 
         // Agregar la pregunta y respuestas al arreglo
         $preguntas[] = array(
             "pregunta" => $pregunta,
-            "respuestas" => $respuestas
+            "respuestas" => $respuestas,
+            "respuesta_correcta" => $respuestaCorrecta,
         );
     }
 
+    shuffle($preguntas); // Barajar las preguntas
+
     $_SESSION['preguntas'] = $preguntas;
+    $_SESSION['pregunta_actual'] = 0; // Iniciar con la primera pregunta
 }
 
-// Obtén la pregunta actual de la sesión
-if (isset($_SESSION['pregunta_actual'])) {
-    $preguntaAleatoria = $_SESSION['pregunta_actual'];
-} else {
-    $preguntaAleatoria = obtenerPreguntaAleatoria($_SESSION['preguntas']);
-    $_SESSION['pregunta_actual'] = $preguntaAleatoria;
+$preguntas = $_SESSION['preguntas'];
+
+if ($_SESSION['pregunta_actual'] === 3) {
+    header("Location: win.php"); // Redirigir al usuario a la página de victoria
+    exit;
 }
-function printarPregunta($preguntaAleatoria) {
-    // Mostrar la pregunta y respuestas
-    echo "<div class='question-box'>";
-    echo "<h2>{$preguntaAleatoria['pregunta']}</h2>";
-    foreach ($preguntaAleatoria['respuestas'] as $key => $respuesta) {
-        echo "<input type='radio' name='respuesta' value='$respuesta' id='respuesta$key'> <label for='respuesta$key'>$respuesta</label><br>";
+
+foreach ($preguntas as $key => $pregunta) {
+    echo '<div class="question-box';
+    if ($key > $_SESSION['pregunta_actual']) {
+        echo ' hidden'; // Ocultar preguntas no disponibles
     }
-    echo "<input type='hidden' name='pregunta' value='" . $preguntaAleatoria['pregunta'] . "'>";
-    echo "<button onclick='comprobarRespuesta()'>Seleccionar Respuesta</button>";
+    echo '">';
+    echo "<h2>{$pregunta['pregunta']}</h2>";
+    echo "<div id='respuesta-container'>";
+    foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
+        echo "<div class='respuesta' data-pregunta='$key' data-respuesta='$answerKey'>$respuesta</div>";
+    }
+    echo "<button class='responder-btn' data-pregunta='$key' disabled>Responder</button>";
+    echo "</div>";
     echo "</div>";
 }
-
-printarPregunta($preguntaAleatoria);
-
 ?>
 <script>
-    function comprobarRespuesta() {
-        const respuestaCorrecta = '<?php echo $preguntaAleatoria['respuestas'][0]; ?>';
-        console.log(respuestaCorrecta);
-        const respuestaSeleccionada = document.querySelector('input[name="respuesta"]:checked');
-        if (respuestaSeleccionada) {
-            if (respuestaSeleccionada.value === respuestaCorrecta) {
+    const respuestas = document.querySelectorAll('.respuesta');
+    const responderBtns = document.querySelectorAll('.responder-btn');
+
+    respuestas.forEach((respuesta) => {
+        respuesta.addEventListener('click', () => {
+            const preguntaIndex = respuesta.getAttribute('data-pregunta');
+            respuestas.forEach((r) => r.classList.remove('seleccionada'));
+            respuesta.classList.add('seleccionada');
+            responderBtns[preguntaIndex].removeAttribute('disabled');
+        });
+    });
+
+    responderBtns.forEach((responderBtn) => {
+        responderBtn.addEventListener('click', () => {
+            const preguntaIndex = responderBtn.getAttribute('data-pregunta');
+            const respuestaSeleccionada = document.querySelector('.respuesta.seleccionada[data-pregunta="' + preguntaIndex + '"]');
+            if (respuestaSeleccionada) {
+                const respuestaCorrecta = '<?php echo $preguntas['preguntaIndex']['respuesta_correcta']; ?>';
+                console.log(respuestaSeleccionada.getAttribute('data-respuesta') );
+                console.log(respuestaCorrecta);
+
+                if (respuestaSeleccionada.getAttribute('data-respuesta') === respuestaCorrecta.toString()) {
                 alert('¡Felicidades! Respuesta correcta.');
-
-                // Deshabilitar la pregunta actual
-                const preguntaActual = document.querySelector('.question-box');
-                preguntaActual.classList.add('disabled');
-
-                // Limpiar la pregunta actual de la sesión
-                <?php unset($_SESSION['pregunta_actual']); ?>
-
-                // Redirigir al usuario al inicio
+                mostrarSiguientePregunta();
             } else {
-                alert('Respuesta incorrecta. La respuesta correcta era: ' + respuestaCorrecta);
-                // Redirigir al usuario al inicio
-                window.location.href = 'index.php';
+                window.location.href = 'lose.php'; // Redirigir al usuario a la página de pérdida
+}
+
+            } else {
+                alert('Por favor, selecciona una respuesta.');
             }
-        } else {
-            alert('Por favor, selecciona una respuesta.');
+        });
+    });
+
+    function mostrarSiguientePregunta() {
+        // Ocultar la pregunta actual
+        const preguntaActual = document.querySelector('.question-box:not(.hidden)');
+        preguntaActual.classList.add('hidden');
+
+        // Mostrar la siguiente pregunta
+        const siguientePregunta = document.querySelector('.question-box.hidden');
+        if (siguientePregunta) {
+            siguientePregunta.classList.remove('hidden');
         }
     }
 </script>
