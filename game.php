@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¿Quiere ser millonario?</title>
+    <!-- Agregamos el CSS -->
     <style>
         .question-box {
             border: 1px solid #ccc;
             padding: 10px;
             margin: 10px;
         }
-        .question-box.hidden {
-            display: none;
-        }
         .respuesta {
             cursor: pointer;
         }
+        .respuesta.bloqueada {
+            background-color: #ccc;
+            filter: blur(2px); /* Aplicamos el efecto de desenfoque */
+            cursor: not-allowed; /* Cambiamos el cursor a "no permitido" */
+        }
         .respuesta.seleccionada {
-            background-color: #FFFF00; /* Cambia el color de fondo para indicar selección */
+            background-color: #FFFF00;
+        }
+        .pregunta.bloqueada {
+            background-color: #ccc;
+            filter: blur(4px);
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -25,30 +30,21 @@
 <?php
 session_start();
 
-
-
-
-// Resto del código para cargar y mostrar las preguntas, similar a tu código anterior.
-
 if (!isset($_SESSION['preguntas']) || isset($_GET['nuevo_juego'])) {
-    // Si no hay preguntas en la sesión o se inicia un nuevo juego, carga y baraja las preguntas.
     $contenido = file_get_contents('questions/spanish_1.txt');
     $lineas = explode("\n", $contenido);
 
     $preguntas = array();
 
     for ($i = 0; $i < count($lineas); $i += 5) {
-        $pregunta = trim(substr($lineas[$i], 2)); // Extraer la pregunta
-        $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4)); // Extraer las respuestas
+        $pregunta = trim(substr($lineas[$i], 1));
+        $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4));
 
-        // Modificar la lógica para obtener la respuesta correcta
         $respuestaCorrecta = array_search("+", $respuestas);
-        $respuestas[$respuestaCorrecta] = str_replace('+', '', $respuestas[$respuestaCorrecta]);
+        $respuestas[$respuestaCorrecta] = str_replace(['+', '-', '*'], '', $respuestas[$respuestaCorrecta]);
 
-        // Barajar las respuestas para mostrarlas en un orden aleatorio
         shuffle($respuestas);
 
-        // Agregar la pregunta y respuestas al arreglo
         $preguntas[] = array(
             "pregunta" => $pregunta,
             "respuestas" => $respuestas,
@@ -56,85 +52,90 @@ if (!isset($_SESSION['preguntas']) || isset($_GET['nuevo_juego'])) {
         );
     }
 
-    shuffle($preguntas); // Barajar las preguntas
+    shuffle($preguntas);
 
     $_SESSION['preguntas'] = $preguntas;
-    $_SESSION['pregunta_actual'] = 0; // Iniciar con la primera pregunta
+    $_SESSION['pregunta_actual'] = 0;
 }
-
 $preguntas = $_SESSION['preguntas'];
 
-if ($_SESSION['pregunta_actual'] === 3) {
-    header("Location: win.php"); // Redirigir al usuario a la página de victoria
-    exit;
-}
-
-
 foreach ($preguntas as $key => $pregunta) {
-    // Detener el bucle después de imprimir las tres primeras preguntas
     if ($key >= 3) {
         break;
     }
 
-    echo '<div class="question-box';
-    if ($key > $_SESSION['pregunta_actual']) {
-        echo ' hidden'; // Ocultar preguntas no disponibles
-    }
-    echo '">';
+    $clasePregunta = $key <= $_SESSION['pregunta_actual'] ? '' : 'bloqueada';
+
+    echo '<div class="question-box ' . $clasePregunta . '" id="pregunta' . $key . '">';
     echo "<h2>{$pregunta['pregunta']}</h2>";
     echo "<div id='respuesta-container'>";
     foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
-        echo "<div class='respuesta' data-pregunta='$key' data-respuesta='$answerKey'>$respuesta</div>";
+        $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
+        $claseRespuesta = $key <= $_SESSION['pregunta_actual'] ? '' : 'bloqueada';
+        echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
     }
-    echo "<button class='responder-btn' data-pregunta='$key' disabled>Responder</button>";
+    echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key')\">Responder</button>";
     echo "</div>";
     echo "</div>";
 }
-
 ?>
 <script>
-    const respuestas = document.querySelectorAll('.respuesta');
-    const responderBtns = document.querySelectorAll('.responder-btn');
+    const preguntas = <?php echo count($preguntas); ?>;
+    let preguntaActual = 0;
 
-    respuestas.forEach((respuesta) => {
-        respuesta.addEventListener('click', () => {
-            const preguntaIndex = respuesta.getAttribute('data-pregunta');
+    // Función para iniciar el juego
+    function empezarJuego() {
+        document.getElementById('jugar-btn').style.display = 'none';
+        document.getElementById('pregunta0').style.display = 'block';
+        document.getElementById('responder-btn-0').removeAttribute('disabled');
+    }
+
+    function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
+        
+     
+        const respuesta = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
+        console.log(respuesta);
+        if (respuesta && !respuesta.classList.contains('bloqueada')) {
+            const respuestas = document.querySelectorAll('#pregunta' + preguntaIndex + ' .respuesta');
             respuestas.forEach((r) => r.classList.remove('seleccionada'));
             respuesta.classList.add('seleccionada');
-            responderBtns[preguntaIndex].removeAttribute('disabled');
-        });
-    });
-
-    responderBtns.forEach((responderBtn) => {
-    responderBtn.addEventListener('click', () => {
-        const preguntaIndex = responderBtn.getAttribute('data-pregunta');
-        const respuestaSeleccionada = document.querySelector('.respuesta.seleccionada[data-pregunta="' + preguntaIndex + '"]');
-        if (respuestaSeleccionada) {
-            const respuestaCorrecta = '<?php echo $preguntas[' + preguntaIndex + "']['respuesta_correcta']; ?>';
-
-            if (respuestaSeleccionada.getAttribute('data-respuesta') === respuestaCorrecta.toString()) {
-                alert('¡Felicidades! Respuesta correcta.');
-                mostrarSiguientePregunta();
-            } else {
-                console.log(respuestaSeleccionada.getAttribute('data-respuesta'));
-                console.log(respuestaCorrecta.toString());
-            }
-        } else {
-            alert('Por favor, selecciona una respuesta.');
+            document.getElementById('responder-btn-' + preguntaIndex).removeAttribute('disabled');
         }
-    });
-});
+    }
+
+    function responderPregunta(preguntaIndex) {
+    const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
+
+    if (respuestaSeleccionada) {
+        const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
+        const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
+        
+        if (respuestaElegida === respuestaCorrecta) {
+            alert('¡Felicidades! Respuesta correcta.');
+            mostrarSiguientePregunta();
+        } else {
+            alert('Respuesta incorrecta. Fin del juego.');
+            console.log(respuestaElegida);
+                console.log(respuestaCorrecta);
+        }
+    } else {
+        alert('Por favor, selecciona una respuesta.');
+    }
+}
+
 
 
     function mostrarSiguientePregunta() {
-        // Ocultar la pregunta actual
-        const preguntaActual = document.querySelector('.question-box:not(.hidden)');
-        preguntaActual.classList.add('hidden');
+        const preguntaActualElement = document.getElementById('pregunta' + preguntaActual);
+        preguntaActualElement.style.display = 'none';
 
-        // Mostrar la siguiente pregunta
-        const siguientePregunta = document.querySelector('.question-box.hidden');
-        if (siguientePregunta) {
-            siguientePregunta.classList.remove('hidden');
+        preguntaActual++;
+        if (preguntaActual < preguntas) {
+            const siguientePregunta = document.getElementById('pregunta' + preguntaActual);
+            siguientePregunta.style.display = 'block';
+            document.getElementById('responder-btn-' + preguntaActual).removeAttribute('disabled');
+        } else {
+            alert('¡Has respondido todas las preguntas! Juego terminado.');
         }
     }
 </script>
