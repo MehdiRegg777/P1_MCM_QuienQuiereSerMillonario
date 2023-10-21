@@ -39,18 +39,22 @@ if (!isset($_SESSION['preguntas']) || isset($_GET['nuevo_juego'])) {
     for ($i = 0; $i < count($lineas); $i += 5) {
         $pregunta = trim(substr($lineas[$i], 1));
         $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4));
+    
+    
 
-        $respuestaCorrecta = array_search("+", $respuestas);
-        $respuestas[$respuestaCorrecta] = str_replace(['+', '-', '*'], '', $respuestas[$respuestaCorrecta]);
-
-        shuffle($respuestas);
-
+        foreach ($respuestas as $posicion => $respuesta) {
+            if (strpos($respuesta, '+') !== false) {
+                $respuestaCorrecta = $posicion;
+            }
+        }
+        
         $preguntas[] = array(
             "pregunta" => $pregunta,
             "respuestas" => $respuestas,
             "respuesta_correcta" => $respuestaCorrecta,
         );
     }
+    
 
     shuffle($preguntas);
 
@@ -64,25 +68,26 @@ foreach ($preguntas as $key => $pregunta) {
         break;
     }
 
-    $clasePregunta = $key <= $_SESSION['pregunta_actual'] ? '' : 'bloqueada';
+    $claseRespuesta = $key <= $_SESSION['pregunta_actual'] ? '' : 'bloqueada';
 
-    echo '<div class="question-box ' . $clasePregunta . '" id="pregunta' . $key . '">';
+    echo "<div class='respuesta $claseRespuesta'  id='pregunta". $key ."' >";
     echo "<h2>{$pregunta['pregunta']}</h2>";
+    
     echo "<div id='respuesta-container'>";
     foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
         $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
-        $claseRespuesta = $key <= $_SESSION['pregunta_actual'] ? '' : 'bloqueada';
-        echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
+        echo "<div class='respuesta ' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
     }
     echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key')\">Responder</button>";
     echo "</div>";
     echo "</div>";
 }
+
 ?>
 <script>
     const preguntas = <?php echo count($preguntas); ?>;
     let preguntaActual = 0;
-
+    let preguntaActual2 = 0;
     // Función para iniciar el juego
     function empezarJuego() {
         document.getElementById('jugar-btn').style.display = 'none';
@@ -91,53 +96,79 @@ foreach ($preguntas as $key => $pregunta) {
     }
 
     function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
-        
-     
-        const respuesta = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
-        console.log(respuesta);
-        if (respuesta && !respuesta.classList.contains('bloqueada')) {
+        const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
+
+        if (respuestaElement && !respuestaElement.classList.contains('bloqueada')) {
+            // Quita la clase "bloqueada" del elemento
+            respuestaElement.classList.remove('bloqueada');
+
+            // Resto del código para la selección de respuesta y habilitar el botón de responder
             const respuestas = document.querySelectorAll('#pregunta' + preguntaIndex + ' .respuesta');
             respuestas.forEach((r) => r.classList.remove('seleccionada'));
-            respuesta.classList.add('seleccionada');
+            respuestaElement.classList.add('seleccionada');
             document.getElementById('responder-btn-' + preguntaIndex).removeAttribute('disabled');
         }
-    }
+}
+
 
     function responderPregunta(preguntaIndex) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
-
+    
     if (respuestaSeleccionada) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
-        
+
         if (respuestaElegida === respuestaCorrecta) {
             alert('¡Felicidades! Respuesta correcta.');
+            respuestaSeleccionada.classList.remove('seleccionada'); // Desenfocar respuesta correcta
             mostrarSiguientePregunta();
         } else {
             alert('Respuesta incorrecta. Fin del juego.');
             console.log(respuestaElegida);
-                console.log(respuestaCorrecta);
+            console.log(respuestaCorrecta);
+            // Habilita el botón de respuesta de la siguiente pregunta
+            const desenfoqueResponder = document.getElementById('pregunta' + (preguntaActual ));
+            desenfoqueResponder.classList.add('bloqueada');
+            document.body.innerHTML += "<button id='inicio-btn' onclick='regresarAlInicio()'>Volver al inicio</button>";
+
+
         }
     } else {
         alert('Por favor, selecciona una respuesta.');
     }
 }
+function regresarAlInicio() {
+    window.location.href = 'index.php'; // Redirige al inicio
+}
 
 
+function mostrarSiguientePregunta() {
+    preguntaActual2++;  
 
-    function mostrarSiguientePregunta() {
-        const preguntaActualElement = document.getElementById('pregunta' + preguntaActual);
-        preguntaActualElement.style.display = 'none';
+    if (preguntaActual2 >= 3) {
+        alert('¡Has respondido todas las preguntas! Juego terminado.');
+        window.location.href = 'index.php'; // Redirigir a la página index.php
+    } 
+    const preguntaActualElement = document.getElementById('pregunta' + preguntaActual);
+    preguntaActualElement.style.display = ''; // Oculta la pregunta actual
 
-        preguntaActual++;
-        if (preguntaActual < preguntas) {
-            const siguientePregunta = document.getElementById('pregunta' + preguntaActual);
-            siguientePregunta.style.display = 'block';
-            document.getElementById('responder-btn-' + preguntaActual).removeAttribute('disabled');
-        } else {
-            alert('¡Has respondido todas las preguntas! Juego terminado.');
-        }
-    }
+
+    // Habilita el botón de respuesta de la siguiente pregunta
+    const desenfoqueResponder = document.getElementById('pregunta' + (preguntaActual ));
+    desenfoqueResponder.classList.add('bloqueada');
+//desenfocar la siguiete pregunta    
+    const desenfoqueResponderSiguiente = document.getElementById('pregunta' + (preguntaActual + 1));
+    desenfoqueResponderSiguiente.classList.remove('bloqueada');
+// Habilita el botón de respuesta de la siguiente pregunta
+    const btnResponderSiguiente = document.getElementById('responder-btn-' + (preguntaActual + 1));
+    btnResponderSiguiente.removeAttribute('disabled'); // Habilita el botón de respuesta
+    preguntaActual++;  
+
+      
+    
+}
+
+
 </script>
 </body>
 </html>
