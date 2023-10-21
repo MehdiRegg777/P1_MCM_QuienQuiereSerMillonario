@@ -144,6 +144,13 @@ foreach ($preguntas as $key => $pregunta) {
             // Habilita el botón de respuesta de la siguiente pregunta
             const desenfoqueResponder = document.getElementById('pregunta' + (preguntaActual ));
             desenfoqueResponder.classList.add('bloqueada');
+            const bloquearboton = document.getElementById('responder-btn-' + preguntaActual);
+            bloquearboton.setAttribute('disabled', '');
+            for (let bucle = 0; bucle <= 3; bucle++) {
+
+                const desenfoqueResponder = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
+                desenfoqueResponder.classList.add('bloqueada');
+            }
             document.body.innerHTML += "<button id='inicio-btn' onclick='regresarAlInicio()'>Volver al inicio</button>";
 
 
