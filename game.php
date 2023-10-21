@@ -83,15 +83,15 @@ foreach ($preguntas as $key => $pregunta) {
 
     $claseRespuesta = $key <= $_SESSION['pregunta_actual'] ? '' : 'bloqueada';
 
-    echo "<div class='respuesta $claseRespuesta'  id='pregunta". $key ."' >";
+    echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
     echo "<h2>{$pregunta['pregunta']}</h2>";
     
-    echo "<div id='respuesta-container'>";
+    echo "<div id='respuesta $claseRespuesta'>";
     foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
         $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
-        echo "<div class='respuesta ' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
+        echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
     }
-    echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key')\">Responder</button>";
+    echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$answerKey')\">Responder</button>";
     echo "</div>";
     echo "</div>";
 }
@@ -126,7 +126,7 @@ foreach ($preguntas as $key => $pregunta) {
 }
 
 
-    function responderPregunta(preguntaIndex) {
+    function responderPregunta(preguntaIndex,respuestaIndex) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
     
     if (respuestaSeleccionada) {
@@ -136,7 +136,7 @@ foreach ($preguntas as $key => $pregunta) {
         if (respuestaElegida === respuestaCorrecta) {
             alert('¡Felicidades! Respuesta correcta.');
             respuestaSeleccionada.classList.remove('seleccionada'); // Desenfocar respuesta correcta
-            mostrarSiguientePregunta();
+            mostrarSiguientePregunta(preguntaIndex,respuestaIndex);
         } else {
             alert('Respuesta incorrecta. Fin del juego.');
             console.log(respuestaElegida);
@@ -157,7 +157,7 @@ function regresarAlInicio() {
 }
 
 
-function mostrarSiguientePregunta() {
+function mostrarSiguientePregunta(preguntaIndex,respuestaIndex) {
     preguntaActual2++;  
 
     if (preguntaActual2 >= 3) {
@@ -169,7 +169,7 @@ function mostrarSiguientePregunta() {
 
            if (nivel <= 6) {
             // Recargar la página actual para cargar las preguntas del nuevo nivel
-            alert('¡¡Ahora pasas al nive: '+ nivel+'!!');
+            alert('¡¡Ahora pasas al nivel: '+ nivel+'!!');
             window.location.href = 'game.php?niveles=' + nivel; 
             }else {
                 // El usuario ha completado todos los niveles
@@ -182,19 +182,39 @@ function mostrarSiguientePregunta() {
     const preguntaActualElement = document.getElementById('pregunta' + preguntaActual);
     preguntaActualElement.style.display = ''; // Oculta la pregunta actual
 
+    const bloquearboton = document.getElementById('responder-btn-' + preguntaActual);
+    bloquearboton.setAttribute('disabled', '');
 
     // Habilita el botón de respuesta de la siguiente pregunta
     const desenfoqueResponder = document.getElementById('pregunta' + (preguntaActual ));
     desenfoqueResponder.classList.add('bloqueada');
+
+    for (let bucle = 0; bucle <= 3; bucle++) {
+
+        const desenfoqueResponder = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
+        desenfoqueResponder.classList.add('bloqueada');
+    }
+
 //desenfocar la siguiete pregunta    
     const desenfoqueResponderSiguiente = document.getElementById('pregunta' + (preguntaActual + 1));
     desenfoqueResponderSiguiente.classList.remove('bloqueada');
+    
 // Habilita el botón de respuesta de la siguiente pregunta
     const btnResponderSiguiente = document.getElementById('responder-btn-' + (preguntaActual + 1));
     btnResponderSiguiente.removeAttribute('disabled'); // Habilita el botón de respuesta
+    
+    
+    
     preguntaActual++;  
+    preguntaIndex++;
+    for (let bucle = 0; bucle <= 3; bucle++) {
 
-      
+    const desenfoqueResponder2 = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
+    console.log(desenfoqueResponder2);
+    desenfoqueResponder2.classList.remove('bloqueada');
+    }
+
+    
     
 }
 
