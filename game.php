@@ -95,9 +95,9 @@ foreach ($preguntas as $key => $pregunta) {
     echo "</div>";
     echo "</div>";
 }
-echo "<pre>";
-print_r($_SESSION);
-echo "</pre>";
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
 ?>
 <script>
     const preguntas = <?php echo count($preguntas); ?>;
@@ -168,14 +168,15 @@ function mostrarSiguientePregunta() {
            console.log(nivel);
 
            if (nivel <= 6) {
-        // Recargar la página actual para cargar las preguntas del nuevo nivel
-        window.location.href = 'game.php?niveles=' + nivel; 
-        }else {
-            // El usuario ha completado todos los niveles
-            // Puedes mostrar un mensaje de finalización del juego o redirigir a la página principal.
-            alert('¡Has respondido todas las preguntas! Juego terminado.');
-            window.location.href = 'index.php'; // Redirigir a la página index.php
-        }
+            // Recargar la página actual para cargar las preguntas del nuevo nivel
+            alert('¡¡Ahora pasas al nive: '+ nivel+'!!');
+            window.location.href = 'game.php?niveles=' + nivel; 
+            }else {
+                // El usuario ha completado todos los niveles
+                // Puedes mostrar un mensaje de finalización del juego o redirigir a la página principal.
+                alert('¡Has respondido todas las preguntas! Juego terminado.');
+                window.location.href = 'index.php'; // Redirigir a la página index.php
+            }
 }
     } 
     const preguntaActualElement = document.getElementById('pregunta' + preguntaActual);
