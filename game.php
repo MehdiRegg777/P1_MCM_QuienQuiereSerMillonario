@@ -28,10 +28,23 @@
 </head>
 <body>
 <?php
-session_start();
+// Verificar si es un nuevo juego o cargar el nivel actual desde la sesión
+if (isset($_GET['niveles'])) {
+    // Si se proporciona el parámetro 'nivel' en la URL, establecerlo en la variable de sesión
+    $_SESSION['nivel'] = intval($_GET['niveles']);
+} else {
+    // Si no se proporciona el parámetro 'nivel' en la URL, establecer un valor predeterminado
+    $_SESSION['nivel'] = 1;
+}
+
+
+$nivel_actual = $_SESSION['nivel'];
 
 if (!isset($_SESSION['preguntas']) || isset($_GET['nuevo_juego'])) {
-    $contenido = file_get_contents('questions/spanish_1.txt');
+    // Cargar preguntas del nivel actual
+    $contenido = file_get_contents("questions/spanish_$nivel_actual.txt");
+
+
     $lineas = explode("\n", $contenido);
 
     $preguntas = array();
@@ -82,7 +95,9 @@ foreach ($preguntas as $key => $pregunta) {
     echo "</div>";
     echo "</div>";
 }
-
+echo "<pre>";
+print_r($_SESSION);
+echo "</pre>";
 ?>
 <script>
     const preguntas = <?php echo count($preguntas); ?>;
@@ -146,8 +161,22 @@ function mostrarSiguientePregunta() {
     preguntaActual2++;  
 
     if (preguntaActual2 >= 3) {
-        alert('¡Has respondido todas las preguntas! Juego terminado.');
-        window.location.href = 'index.php'; // Redirigir a la página index.php
+        let nivel = <?php echo $_SESSION['nivel']; ?>; // Obtener el valor de nivel de PHP en JavaScript
+        if (nivel <= 6) {
+            // Si el usuario ha respondido correctamente a 3 preguntas, aumentar el nivel
+            nivel++;
+           console.log(nivel);
+
+           if (nivel <= 6) {
+        // Recargar la página actual para cargar las preguntas del nuevo nivel
+        window.location.href = 'game.php?niveles=' + nivel; 
+        }else {
+            // El usuario ha completado todos los niveles
+            // Puedes mostrar un mensaje de finalización del juego o redirigir a la página principal.
+            alert('¡Has respondido todas las preguntas! Juego terminado.');
+            window.location.href = 'index.php'; // Redirigir a la página index.php
+        }
+}
     } 
     const preguntaActualElement = document.getElementById('pregunta' + preguntaActual);
     preguntaActualElement.style.display = ''; // Oculta la pregunta actual
