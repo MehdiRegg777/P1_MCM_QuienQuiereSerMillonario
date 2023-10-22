@@ -109,6 +109,8 @@
         echo "</div>";
         echo "</div>";
     }
+    echo "<button id='inicio-btn' onclick='regresarAlInicio()' style='display: none;' >Volver al inicio</button>";
+
     // echo "<pre>";
     // print_r($_SESSION);
     // echo "</pre>";
@@ -186,10 +188,12 @@
                         const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                         bloquearRespuestas.classList.add('bloqueada');
                     }
-
+                    
                     //Insertar el boton para volver al inicio despues de perder
-                    document.body.innerHTML += "<button id='inicio-btn' onclick='regresarAlInicio()'>Volver al inicio</button>";
-
+                    const next = document.getElementById("inicio-btn");
+                    next.style.display = "";
+                    //document.body.innerHTML += "";
+                    /////
 
                 }
             } else {
@@ -199,6 +203,10 @@
 
         function regresarAlInicio() {
             window.location.href = 'index.php'; // Redirige al inicio
+        }
+
+        function nextQuestion(nivel){
+            window.location.href = 'game.php?niveles=' + nivel;
         }
 
 
@@ -213,9 +221,21 @@
                     console.log(nivel);
 
                     if (nivel <= 6) {
+
+                        //Bloquear la pregunta
+                        const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
+                        bloquearPregunta.classList.add('bloqueada');
+
+                        //Bloquear respuestas
+                        for (let bucle = 0; bucle <= 3; bucle++) {
+
+                            const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
+                            bloquearRespuestas.classList.add('bloqueada');
+                        }
+
                         // Recargar la página actual para cargar las preguntas del nuevo nivel
                         alert('¡¡Ahora pasas al nivel: ' + nivel + '!!');
-                        window.location.href = 'game.php?niveles=' + nivel;
+                        document.body.innerHTML += "<button id='next-question' onclick='nextQuestion("+nivel+")' ' >Siguiente pregunta</button>";
                     } else {
                         // El usuario ha completado todos los niveles
                         // Puedes mostrar un mensaje de finalización del juego o redirigir a la página principal.
