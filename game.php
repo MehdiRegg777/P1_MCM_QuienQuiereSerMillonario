@@ -109,8 +109,10 @@
         echo "</div>";
         echo "</div>";
     }
+    $nivels = $_SESSION['nivel'];
+    $nivels++;
     echo "<button id='inicio-btn' onclick='regresarAlInicio()' style='display: none;' >Volver al inicio</button>";
-
+    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
     // echo "<pre>";
     // print_r($_SESSION);
     // echo "</pre>";
@@ -190,8 +192,8 @@
                     }
                     
                     //Insertar el boton para volver al inicio despues de perder
-                    const next = document.getElementById("inicio-btn");
-                    next.style.display = "";
+                    const backIndex = document.getElementById("inicio-btn");
+                    backIndex.style.display = "";
                     //document.body.innerHTML += "";
                     /////
 
@@ -235,7 +237,9 @@
 
                         // Recargar la página actual para cargar las preguntas del nuevo nivel
                         alert('¡¡Ahora pasas al nivel: ' + nivel + '!!');
-                        document.body.innerHTML += "<button id='next-question' onclick='nextQuestion("+nivel+")' ' >Siguiente pregunta</button>";
+                        const next = document.getElementById("next-question");
+                        next.style.display = "";
+                        //document.body.innerHTML += "<button id='next-question' onclick='nextQuestion("+nivel+")' ' >Siguiente pregunta</button>";
                     } else {
                         // El usuario ha completado todos los niveles
                         // Puedes mostrar un mensaje de finalización del juego o redirigir a la página principal.
