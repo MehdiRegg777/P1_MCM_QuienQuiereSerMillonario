@@ -22,6 +22,14 @@ function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     }
 }
 
+function scrollSiguientePregunta(preguntaIndex) {
+    const preguntaId = 'pregunta' + preguntaIndex;
+    const preguntaElement = document.getElementById(preguntaId);
+    
+    if (preguntaElement) {
+        preguntaElement.scrollIntoView({ behavior: 'smooth' });
+    }
+}
 
 function responderPregunta(preguntaIndex, nivel) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
@@ -37,7 +45,7 @@ function responderPregunta(preguntaIndex, nivel) {
             alert('¡Felicidades! Respuesta correcta.');
             respuestaSeleccionada.classList.remove('seleccionada'); // Quitar la seleccion amarilla al acertar
             respuestaSeleccionada.classList.add('acertada'); // Y poner la seleccion en verde
-
+            scrollSiguientePregunta(preguntaIndex);
             mostrarSiguientePregunta(preguntaIndex, nivel);
         } else {
             // console.log(respuestaElegida);

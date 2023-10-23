@@ -77,8 +77,10 @@
         
         $nivels = $_SESSION['nivel'];
         $nivels++;
+        echo "<div class='ghof-buttons'>";
         echo "<button id='inicio-btn' onclick='regresarAlInicio()' style='display: none;' ><em><strong>Volver al inicio</em></strong></button>";
         echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
+        echo "</div>"
         ?>
         
         <audio id="correctSound" src="mp3/correct.mp3"></audio>

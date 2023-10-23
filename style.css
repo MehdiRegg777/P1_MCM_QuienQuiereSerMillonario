@@ -183,6 +183,20 @@ p, ul, li{
     border: 1px solid #FFC15E;
 }
 
+#next-question{
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    width: 300px;
+    height: 50px;
+    font-family: 'Lora', sans-serif;
+    line-height: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
 #inicio-btn {
     background-color: #FF9F1C;
     border: 1px solid #FF9F1C;
