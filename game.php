@@ -25,8 +25,15 @@
     $nivel_actual = $_SESSION['nivel'];
 
     if (!isset($_SESSION['preguntas']) || isset($_GET['nuevo_juego'])) {
+        if (isset($_POST['language'])) {
+            $language = $_POST['language']; // Obtener el idioma seleccionado
+        } else {
+            // Redirigir al usuario de vuelta a la página de inicio si no se proporcionó un idioma.
+            header('Location: index.php');
+            exit;
+        }
         // Cargar preguntas del nivel actual
-        $contenido = file_get_contents("questions/spanish_$nivel_actual.txt");
+        $contenido = file_get_contents("questions/{$language}_{$nivel_actual}.txt");
 
 
         $lineas = explode("\n", $contenido);
