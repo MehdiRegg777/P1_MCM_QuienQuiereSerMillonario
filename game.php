@@ -27,7 +27,7 @@
 
         $_SESSION['preguntas'] = $preguntas;
         $_SESSION['pregunta_actual'] = 0;
-    }
+    
     $preguntas = $_SESSION['preguntas'];
 
     foreach ($preguntas as $key => $pregunta) {
@@ -63,61 +63,4 @@
     <script src="funciomGame.js"></script>
 
 </body>
-
-                            const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
-                            bloquearPregunta.classList.add('bloqueada');
-
-                            for (let bucle = 0; bucle <= 3; bucle++) {
-
-                                const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
-                                bloquearRespuestas.classList.add('bloqueada');
-                            }
-
-                            alert('Ahora pasas al nivel: ' + nivel + '.');
-                            const next = document.getElementById("next-question");
-                            next.style.display = "";
-                        } else {
-                            alert('¡Has respondido todas las preguntas! Juego terminado.');
-                            window.location.href = 'index.php';
-                        }
-                    }
-                }
-
-                const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
-                btnResponder.setAttribute('disabled', '');
-
-                const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
-                bloquearPregunta.classList.add('bloqueada');
-
-                for (let bucle = 0; bucle <= 3; bucle++) {
-
-                    const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
-                    bloquearRespuestas.classList.add('bloqueada');
-                }
-
-                const desenfoqueSiguientePregunta = document.getElementById('pregunta' + (preguntaActual + 1));
-                desenfoqueSiguientePregunta.classList.remove('bloqueada');
-
-                preguntaActual++;
-                preguntaIndex++;
-
-                for (let bucle = 0; bucle <= 3; bucle++) {
-                    const desenfoqueSeguientesRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
-                    console.log(desenfoqueSeguientesRespuestas);
-                    desenfoqueSeguientesRespuestas.classList.remove('bloqueada');
-                }
-            }
-
-    // SONIDO.
-            function playCorrectSound() {
-                var correctSound = document.getElementById("correctSound");
-                correctSound.play();
-    }
-
-            function playIncorrectSound() {
-                var incorrectSound = document.getElementById("incorrectSound");
-                incorrectSound.play();
-    }
-        </script>
-    </body>
 </html>
