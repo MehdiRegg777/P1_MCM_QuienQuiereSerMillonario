@@ -2,42 +2,12 @@
 <html lang="en">
 
 <head>
-    <!-- Agregamos el CSS -->
-    <style>
-        .question-box {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px;
-        }
-
-        .respuesta {
-            cursor: pointer;
-        }
-
-        .respuesta.bloqueada {
-            background-color: #ccc;
-            filter: blur(2px);
-            /* Aplicamos el efecto de desenfoque */
-            cursor: not-allowed;
-            /* Cambiamos el cursor a "no permitido" */
-        }
-
-        .respuesta.seleccionada {
-            background-color: #FFFF00;
-        }
-
-        .respuesta.acertada {
-            background-color: #018749;
-        }
-        .respuesta.fallada {
-            background-color: #D2122E;
-        }
-        .pregunta.bloqueada {
-            background-color: #ccc;
-            filter: blur(4px);
-            cursor: not-allowed;
-        }
-    </style>
+        <title>¿Quién quiere ser millonario?</title>
+        <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="style.css" rel="stylesheet">
+        <link rel="shortcut icon" href="imgs/logo.png" />
 </head>
 
 <body>
@@ -119,6 +89,7 @@
     ?>
     <audio id="correctSound" src="mp3/correct.mp3"></audio>
     <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
+    <!-- <script src="funciomGame.js"></script> -->
     <script>
         const preguntas = <?php echo count($preguntas); ?>;
         let preguntaActual = 0;

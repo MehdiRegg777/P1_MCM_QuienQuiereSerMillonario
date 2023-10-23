@@ -138,3 +138,37 @@ footer {
     padding: 20px;
     bottom: 0;
 }
+
+.question-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+}
+
+.respuesta {
+    cursor: pointer;
+}
+
+.respuesta.bloqueada {
+    background-color: #ccc;
+    filter: blur(2px);
+    /* Aplicamos el efecto de desenfoque */
+    cursor: not-allowed;
+    /* Cambiamos el cursor a "no permitido" */
+}
+
+.respuesta.seleccionada {
+    background-color: #FFFF00;
+}
+
+.respuesta.acertada {
+    background-color: #018749;
+}
+.respuesta.fallada {
+    background-color: #D2122E;
+}
+.pregunta.bloqueada {
+    background-color: #ccc;
+    filter: blur(4px);
+    cursor: not-allowed;
+}
