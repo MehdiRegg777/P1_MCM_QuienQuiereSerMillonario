@@ -14,9 +14,9 @@
         </header>
         <div class="container">
             
-            <h2>Felicidades!!</h2>
+            <h2>¡Felicidades!</h2>
         
-            <a class="play-button" href="index.php">¡Volver al inicio!</a>
+            <a class="play-button" href="index.php">Volver al inicio</a>
         </div>
         <footer>
         <p>© 2023 Tu Nombre</p>
