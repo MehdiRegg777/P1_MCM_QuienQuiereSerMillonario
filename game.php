@@ -13,8 +13,9 @@
         <header>
             <h1>¿Quién quiere ser millonario?</h1>
         </header>
-
+        
         <?php
+        
         if (isset($_GET['niveles'])) {
             $_SESSION['nivel'] = intval($_GET['niveles']);
         } else {
@@ -23,44 +24,74 @@
 
         $nivel_actual = $_SESSION['nivel'];
 
-        shuffle($preguntas);
+        if (!isset($_SESSION['preguntas']) || isset($_GET['nuevo_juego'])) {
+            $contenido = file_get_contents("questions/spanish_$nivel_actual.txt");
+            $lineas = explode("\n", $contenido);
+            $preguntas = array();
 
-        $_SESSION['preguntas'] = $preguntas;
-        $_SESSION['pregunta_actual'] = 0;
-    
-    $preguntas = $_SESSION['preguntas'];
+            for ($i = 0; $i < count($lineas); $i += 5) {
+                $pregunta = trim(substr($lineas[$i], 1));
+                $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4));
 
-    foreach ($preguntas as $key => $pregunta) {
-        if ($key >= 3) {
-            break;
+                foreach ($respuestas as $posicion => $respuesta) {
+                    if (strpos($respuesta, '+') !== false) {
+                        $respuestaCorrecta = $posicion;
+                    }
+                }
+
+                $preguntas[] = array(
+                    "pregunta" => $pregunta,
+                    "respuestas" => $respuestas,
+                    "respuesta_correcta" => $respuestaCorrecta,
+                );
+            }
+
+            shuffle($preguntas);
+            $_SESSION['preguntas'] = $preguntas;
+            $_SESSION['pregunta_actual'] = 0;
         }
 
-        $claseRespuesta = $key <= $_SESSION['pregunta_actual'] ? '' : 'bloqueada';
+        $preguntas = $_SESSION['preguntas'];
+        
+        foreach ($preguntas as $key => $pregunta) {
+            if ($key >= 3) {
+                break;
+            }
 
-        echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
-        echo "<h2>{$pregunta['pregunta']}</h2>";
-
-        echo "<div id='respuesta $claseRespuesta'>";
-        foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
-            $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
-            echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
+            $claseRespuesta = $key <= $_SESSION['pregunta_actual'] ? '' : 'bloqueada';
+            echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
+            
+            // AQUÍ LA PREGUNTA.
+            echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
+            echo "<div id='respuesta $claseRespuesta'>";
+            
+            foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
+                $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
+                echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
+            }
+            
+            echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual')\">Responder</button>";
+            echo "</div>";
+            echo "</div>";
         }
-        echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual')\">Responder</button>";
-        echo "</div>";
-        echo "</div>";
-    }
-    $nivels = $_SESSION['nivel'];
-    $nivels++;
-    echo "<button id='inicio-btn' onclick='regresarAlInicio()' style='display: none;' >Volver al inicio</button>";
-    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
-    // echo "<pre>";
-    // print_r($_SESSION);
-    // echo "</pre>";
+        
+        $nivels = $_SESSION['nivel'];
+        $nivels++;
+        echo "<button id='inicio-btn' onclick='regresarAlInicio()' style='display: none;' ><em><strong>Volver al inicio</em></strong></button>";
+        echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
+        ?>
+        
+        <audio id="correctSound" src="mp3/correct.mp3"></audio>
+        <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
+        <script src="funciomGame.js"></script>
 
-    ?>
-    <audio id="correctSound" src="mp3/correct.mp3"></audio>
-    <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
-    <script src="funciomGame.js"></script>
+        <footer class="footerinfo">
+            <p>© MCM S.A.</p>
+            <p>Contact us</p>
+            <p>Follow us</p>
+            <p>empresa@domini.cat</p>
+            <p>twt ig p</p>
+        </footer>
 
-</body>
+    </body>
 </html>

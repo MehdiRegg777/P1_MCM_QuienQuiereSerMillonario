@@ -112,7 +112,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel) {
                 }
 
                 // Recargar la página actual para cargar las preguntas del nuevo nivel
-                alert('¡¡Ahora pasas al nivel: ' + nivel + '!!');
+                alert('Ahora subirá el nivel de dificultad a ' + nivel + '.');
                 const next = document.getElementById("next-question");
                 next.style.display = "";
                 //document.body.innerHTML += "<button id='next-question' onclick='nextQuestion("+nivel+")' ' >Siguiente pregunta</button>";
