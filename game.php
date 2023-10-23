@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
         <title>¿Quién quiere ser millonario?</title>
@@ -12,6 +12,7 @@
 
 <body>
     <?php
+    session_start();
     // Verificar si es un nuevo juego o cargar el nivel actual desde la sesión
     if (isset($_GET['niveles'])) {
         // Si se proporciona el parámetro 'nivel' en la URL, establecerlo en la variable de sesión
@@ -20,20 +21,19 @@
         // Si no se proporciona el parámetro 'nivel' en la URL, establecer un valor predeterminado
         $_SESSION['nivel'] = 1;
     }
-
-
+    $selectedLanguage = isset($_SESSION['selectedLanguage']) ? $_SESSION['selectedLanguage'] : 'defaultLanguage';
+    echo "<h2>{$selectedLanguage}</h2>";
     $nivel_actual = $_SESSION['nivel'];
 
     if (!isset($_SESSION['preguntas']) || isset($_GET['nuevo_juego'])) {
-        if (isset($_POST['language'])) {
+        /* if (isset($_POST['language'])) {
             $language = $_POST['language']; // Obtener el idioma seleccionado
-        } else {
-            // Redirigir al usuario de vuelta a la página de inicio si no se proporcionó un idioma.
-            header('Location: index.php');
-            exit;
-        }
+            $_SESSION['language'] = $language;
+        } */
+        //$selectedLanguage = isset($_SESSION['selectedLanguage']) ? $_SESSION['selectedLanguage'] : 'defaultLanguage';
+        //echo "<h2>{$selectedLanguage}</h2>";
         // Cargar preguntas del nivel actual
-        $contenido = file_get_contents("questions/{$language}_{$nivel_actual}.txt");
+        $contenido = file_get_contents("questions/{$selectedLanguage}_{$nivel_actual}.txt");
 
 
         $lineas = explode("\n", $contenido);
@@ -98,6 +98,7 @@
     <audio id="correctSound" src="mp3/correct.mp3"></audio>
     <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
     <script src="funciomGame.js"></script>
+    <script src="funcionLanguage.js"></script>
 
 </body>
 

@@ -1,6 +1,5 @@
 <?php
-        session_start();
-        session_unset();
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,17 +11,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="style.css" rel="stylesheet">
         <link rel="shortcut icon" href="imgs/logo.png" />
-        <script>
-            function changeLanguage(language) {
-                // Ocultar todos los idiomas
-                document.getElementById('spanish').style.display = 'none';
-                document.getElementById('catalan').style.display = 'none';
-                document.getElementById('english').style.display = 'none';
-
-                // Mostrar el idioma seleccionado
-                document.getElementById(language).style.display = 'block';
-            }
-        </script>
     </head>
     <body>
         <div id="spanish">
@@ -62,8 +50,11 @@
                     y puntuación). Jamás publicaremos tus datos sin consentimiento.</p>
                 
                     <div class="ghof-buttons">
-                        <a class="play-button" href="game.php"><em>Jugar</em></a>
-                        <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
+                        <form action="game.php" method="post">
+                            <input type="hidden" name="language" value="spanish">
+                            <button class="play-button" type="submit">Jugar</button>
+                            <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
+                        </form>
                     </div>
                 <div class="languagesimages">
                     <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
@@ -117,6 +108,7 @@
                     <form action="game.php" method="post">
                         <input type="hidden" name="language" value="catalan">
                         <button class="play-button" type="submit">Jugar</button>
+                        <a class="halloffame-button" href="game.php">Hall of fame</a>
                     </form>
                 </div>
                 <div class="languagesimages">
@@ -192,6 +184,6 @@
             <p>empresa@domini.cat</p>
             <p>twt ig p</p>
         </footer>
-
+        <script src="funcionLanguage.js"></script>
     </body>
 </html>
