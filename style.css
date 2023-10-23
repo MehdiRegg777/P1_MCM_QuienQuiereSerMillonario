@@ -57,6 +57,8 @@ p, ul, li{
     font-family: 'Lora', sans-serif;
 }
 
+
+/* INDEX.PHP */
 .container {
     background-color: white;
     border-radius: 10px;
@@ -64,14 +66,10 @@ p, ul, li{
     max-width: 100%;
 }
 
-/* BOTONS */
-.ghof-buttons {
-    text-align: center;
-}
+/* BOTONS DE L' INICI.PHP */
+.ghof-buttons { text-align: center; }
 
-.play-button{
-    margin-right: 30px;
-}
+.play-button { margin-right: 30px; }
 
 .play-button, .halloffame-button {
     display: inline-block;
@@ -93,12 +91,10 @@ p, ul, li{
     color: white;
 }
 
-/* IMATGES */
-.languagesimages{
-    text-align: center;
-}
+/* IMATGES DE L'INICI */
+.languagesimages{ text-align: center; }
 
-.languagesimages img{
+.languagesimages img {
     margin-top: 50px;
     margin-right: 20px;
     width: 120px;
@@ -119,6 +115,40 @@ p, ul, li{
     height: 680px;
 }
 
+/* GAME.PHP */
+.question-box {
+    background-color: #F5FF90;
+    border: 1px solid #F5FF90;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.respuesta { cursor: pointer; }
+
+.respuesta.bloqueada {
+    background-color: #F5FF90;
+    border: 1px solid #F5FF90;
+    border-radius: 5px;
+    filter: blur(2px);
+    cursor: not-allowed;
+}
+
+/* .respuesta.seleccionada { background-color: #FFFF00; } */
+/* .respuesta.acertada { background-color: #018749; } */
+/* .respuesta.fallada { background-color: #D2122E; } */
+
+.pregunta.bloqueada {
+    width: 90%;
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    border-radius: 5px;
+    filter: blur(4px);
+    cursor: not-allowed;
+}
+
+
+/* ESTO SIEMPRE LO ÚLTIMO, PARA ORDENAR*/
 /* FOOTER */
 .footerinfo{
     display: flex;
@@ -137,38 +167,4 @@ footer {
     text-align: center;
     padding: 20px;
     bottom: 0;
-}
-
-.question-box {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin: 10px;
-}
-
-.respuesta {
-    cursor: pointer;
-}
-
-.respuesta.bloqueada {
-    background-color: #ccc;
-    filter: blur(2px);
-    /* Aplicamos el efecto de desenfoque */
-    cursor: not-allowed;
-    /* Cambiamos el cursor a "no permitido" */
-}
-
-.respuesta.seleccionada {
-    background-color: #FFFF00;
-}
-
-.respuesta.acertada {
-    background-color: #018749;
-}
-.respuesta.fallada {
-    background-color: #D2122E;
-}
-.pregunta.bloqueada {
-    background-color: #ccc;
-    filter: blur(4px);
-    cursor: not-allowed;
 }
