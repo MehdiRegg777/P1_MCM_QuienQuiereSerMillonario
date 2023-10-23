@@ -16,7 +16,10 @@
         <div class="container">
             
             <div class="arribapregunta">
-                <h2>¡Has fallado!</h2>
+                <h2>¡Has Perdido!</h2>
+                <h4>Quieres guardar tu partida??</h4>
+                <a class="play-button" onclick='publishGame()'>PUBLISH</a><br>
+                <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
                 <a class="play-button" href="index.php">Volver al inicio</a>
             </div>
         
@@ -29,6 +32,6 @@
             <p>empresa@domini.cat</p>
             <p>twt ig p</p>
         </footer>
-
+        <script src="funcionPublish.js"></script>
     </body>
 </html>
