@@ -35,7 +35,7 @@ session_start();
                       }
                 ?>
 
-                <h5>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</h5>
+                <p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>
                 <a class="play-button" onclick='publishGame()'><em>Publicar</em></a>
                 <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
                 <a class="play-button" href="index.php"><em>Volver al inicio</em></a>
@@ -49,10 +49,10 @@ session_start();
                 if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     $puntos = $_GET["puntage"];
                     echo '<form id="guardarpartida" method="post" style="display: none;">
-                        <label for="nombre">Nombre del Jugador:</label>
+                        <label for="nombre">Nombre del jugador:</label>
                         <input type="text" name="datos[nombre]" id="nombre" required><br>
                         <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>
-                        <input type="hidden" name="datos[id]" id="id" value="' . $sessionID . '"><br>        
+                        <input type="hidden" name="datos[id]" id="id" value="' . $sessionID . '"><br>
                         <input type="submit" value="Guardar puntuación" id ="savepunt-button">
                     </form>';
                 }

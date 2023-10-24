@@ -237,7 +237,12 @@ p, ul, li{
 }
 
 #correctqueststable th{
-    background-color: #;
+    background-color: #a2ca83;
+}
+
+
+#correctqueststable td{
+    background-color: #D6FFB7;
 }
 
 #correctqueststable th, td{
