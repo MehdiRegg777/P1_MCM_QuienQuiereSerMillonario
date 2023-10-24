@@ -14,7 +14,7 @@
             <h1>¿Quién quiere ser millonario?</h1>
         </header>
         <h3>Clasificaciones</h3><br>
-    <table border="1">
+    <table border="1" id="correctqueststable">
     <tr>
         <th>Nombre</th>
         <th>Puntos</th>
