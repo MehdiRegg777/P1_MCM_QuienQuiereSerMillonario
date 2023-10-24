@@ -16,7 +16,8 @@ session_start();
         <header>
             <h1>¿Quién quiere ser millonario?</h1>
         </header>
-        
+        <audio id="gameOver" src="gameover.mp3" preload="auto" style="display:none"></audio>
+
         <div class="container">
             
             <div class="arribapregunta">
@@ -91,6 +92,9 @@ session_start();
             <p>empresa@domini.cat</p>
             <p>twt ig p</p>
         </footer>
+        <audio id="gameOver" autoplay>
+            <source src="mp3/gameover.mp3" type="audio/mpeg">
+        </audio>
         <script src="funcionPublish.js"></script>
     </body>
 </html>

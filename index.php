@@ -60,7 +60,9 @@
             </div>
 
         </div>
-        
+        <audio id="start" autoplay>
+            <source src="mp3/inicio.mp3" type="audio/mpeg">
+        </audio>
         <footer class="footerinfo">
             <p>© MCM S.A.</p>
             <p>Contact us</p>
@@ -68,6 +70,6 @@
             <p>empresa@domini.cat</p>
             <p>twt ig p</p>
         </footer>
-
+        <script src="funcionPublish.js"></script>
     </body>
 </html>

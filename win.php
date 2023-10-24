@@ -12,31 +12,37 @@ session_start();
         <link href="style.css" rel="stylesheet">
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
-    <body class="fondo">
+    <body>
         <header>
             <h1>¿Quién quiere ser millonario?</h1>
         </header>
+        <audio id="gameOver" src="gameover.mp3" preload="auto" style="display:none"></audio>
+
         <div class="container">
+            
             <div class="arribapregunta">
                 <h2>¡Enhorabuena!!</h2>
                 <h3>Clasificaciones</h3>
+
                 <?php
-                        if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                            $puntos = $_GET["puntage"];
-                            echo '<table border="1">';
-                            echo '<tr>';
-                            echo '<th>Preguntas Acertadas</th>';
-                            echo '<th>' . $puntos . '</th>';
-                            echo '</tr>';
-                            echo '</table>';
-                        }
-                    ?>
-                    <h5>Si quieres guardar tu partida dale al boton PUBLISH</h5>
-                    <a class="play-button" onclick='publishGame()'>PUBLISH</a>
-                    <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
-                    <a class="play-button" href="index.php">Volver al inicio</a>        </div>
+                      if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                        $puntos = $_GET["puntage"];
+                        echo '<table border="1">';
+                        echo '<tr>';
+                        echo '<th>Preguntas Acertadas</th>';
+                        echo '<th>' . $puntos . '</th>';
+                        echo '</tr>';
+                        echo '</table>';
+                      }
+                ?>
+
+
+                <h5>Si quieres guardar tu partida dale al boton PUBLISH</h5>
+                <a class="play-button" onclick='publishGame()'>PUBLISH</a>
+                <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
+                <a class="play-button" href="index.php">Volver al inicio</a>
             </div>
-            
+
             <div class="formularioPunage">
 
             <?php
@@ -76,9 +82,19 @@ session_start();
 
         </div>
         </div>
-        <footer>
-        <p>© 2023 Tu Nombre</p>
+
+        
+        
+        <footer class="footerinfo">
+            <p>© MCM S.A.</p>
+            <p>Contact us</p>
+            <p>Follow us</p>
+            <p>empresa@domini.cat</p>
+            <p>twt ig p</p>
         </footer>
+        <audio id="wineer" autoplay>
+            <source src="mp3/wineer.mp3" type="audio/mpeg">
+        </audio>
         <script src="funcionPublish.js"></script>
     </body>
 </html>
