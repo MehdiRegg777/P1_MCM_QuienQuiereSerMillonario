@@ -92,12 +92,14 @@ function responderPregunta(preguntaIndex, nivel) {
 function calculoderespuesta(preguntaActual,nivel){
     let calculo;
     if (nivel == 1){
-        return preguntaActual+1
-    }if ((preguntaActual+1)== 3){
+
+        return preguntaActual
+        
+    }if ((preguntaActual)== 3){
         return nivel*3
     }else {
         calculo = (nivel-1)*3
-        calculo+=preguntaActual+1
+        calculo+=preguntaActual
         return calculo
     }
     
