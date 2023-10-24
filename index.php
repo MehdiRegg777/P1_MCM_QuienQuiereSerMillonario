@@ -55,7 +55,7 @@ session_start();
                     <div class="ghof-buttons">
                         
                             
-                            <a class="play-button" type="submit" id="boton1" value="Click">Jugar</button>
+                            <a class="play-button" href="game.php"><em>Jugar</em></button>
                             <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
                         
                     </div>
