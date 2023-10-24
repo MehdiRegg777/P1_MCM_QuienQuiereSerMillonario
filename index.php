@@ -1,7 +1,7 @@
 <?php
 session_start();
-$_SESSION['language'] = $_GET['lang'] ?? 'spanish';
-$selected_language = $_SESSION['language'];
+//$_SESSION['language'] = $_GET['lang'] ?? 'spanish';
+//$selected_language = $_SESSION['language'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,16 +53,16 @@ $selected_language = $_SESSION['language'];
                     y puntuación). Jamás publicaremos tus datos sin consentimiento.</p>
                 
                     <div class="ghof-buttons">
-                        <form action="game.php" method="post">
-                            <input type="hidden" name="language" value="spanish">
-                            <button class="play-button" type="submit">Jugar</button>
+                        
+                            
+                            <a class="play-button" type="submit" id="boton1" value="Click">Jugar</button>
                             <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
-                        </form>
+                        
                     </div>
                 <div class="languagesimages">
                     <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
-                    <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" <?php $_SESSION['language'] = 'catalan'; ?> onclick="changeLanguage('catalan')"><?php $_SESSION['language'] = 'catalan'; ?>
-                    <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido" <?php $_SESSION['language'] = 'english'; ?> onclick="changeLanguage('english')">
+                    <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" onclick="changeLanguage('catalan')">
+                    <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido"  onclick="changeLanguage('english')">
                 </div>
 
                 <div class="presentationimage">

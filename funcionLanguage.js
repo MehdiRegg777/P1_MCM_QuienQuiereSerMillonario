@@ -16,3 +16,18 @@ function changeLanguage(language) {
     document.getElementById(language).style.display = 'block';
     sessionStorage.setItem('selectedLanguage', language);
 }
+$('boton1').click(function(){
+    $.post('game.php',{
+       spanish:'spanish'
+    })
+})
+$('boton2').click(function(){
+    $.post('game.php',{
+       catalan:'catalan'
+    })
+})
+$('boton3').click(function(){
+    $.post('game.php',{
+       english:'english'
+    })
+})

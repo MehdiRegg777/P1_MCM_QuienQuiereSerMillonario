@@ -27,7 +27,13 @@ session_start();
         }
 
         $nivel_actual = $_GET['nivel'];
-
+        echo "<h2>{$_SESSION['language']}</h2>";
+        $lan = $_SESSION['language'];
+        if (isset($_POST['language'])) {
+            $language = $_POST['language']; // Obtener el idioma seleccionado
+            $_SESSION['language'] = $language;
+        }
+        echo "<h2>{$_SESSION['language']}</h2>";
         /* if ($nivel_actual === 1) {
             if (isset($_POST['language'])) {
                 $language = $_POST['language']; // Obtener el idioma seleccionado
@@ -39,7 +45,7 @@ session_start();
         echo "<h2>{$nivel_actual}</h2>";
         echo "<h2>{$_SESSION['language']}</h2>"; */
         if (!isset($_GET['preguntas']) || isset($_GET['nuevo_juego'])) {
-            $contenido = file_get_contents("questions/spanish_$nivel_actual.txt");
+            $contenido = file_get_contents("questions/{$_SESSION['language']}_$nivel_actual.txt");
             $lineas = explode("\n", $contenido);
             $preguntas = array();
 
