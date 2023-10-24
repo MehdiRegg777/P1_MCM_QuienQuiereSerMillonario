@@ -22,6 +22,14 @@ function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     }
 }
 
+function scrollSiguientePregunta(preguntaIndex) {
+    const preguntaId = 'pregunta' + preguntaIndex;
+    const preguntaElement = document.getElementById(preguntaId);
+    
+    if (preguntaElement) {
+        preguntaElement.scrollIntoView({ behavior: 'smooth' });
+    }
+}
 
 function responderPregunta(preguntaIndex, nivel) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
@@ -37,7 +45,7 @@ function responderPregunta(preguntaIndex, nivel) {
             alert('¡Felicidades! Respuesta correcta.');
             respuestaSeleccionada.classList.remove('seleccionada'); // Quitar la seleccion amarilla al acertar
             respuestaSeleccionada.classList.add('acertada'); // Y poner la seleccion en verde
-
+            scrollSiguientePregunta(preguntaIndex);
             mostrarSiguientePregunta(preguntaIndex, nivel);
         } else {
             // console.log(respuestaElegida);
@@ -112,7 +120,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel) {
                 }
 
                 // Recargar la página actual para cargar las preguntas del nuevo nivel
-                alert('¡¡Ahora pasas al nivel: ' + nivel + '!!');
+                alert('Ahora subirá el nivel de dificultad a ' + nivel + '.');
                 const next = document.getElementById("next-question");
                 next.style.display = "";
                 //document.body.innerHTML += "<button id='next-question' onclick='nextQuestion("+nivel+")' ' >Siguiente pregunta</button>";
