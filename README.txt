@@ -1,1 +1,6 @@
+# ¿Quién quiere ser millonario?
+  ¿Quién quiere ser millonario? (en inglés, "Who Wants to Be a Millionaire?") es un concurso de televisión basado en el formato de preguntas y respuestas, que ofrece grandes premios monetarios por responder correctamente a una serie de preguntas de opción múltiple con dificultad creciente. El formato del programa es licenciado por Sony Pictures Television International. El premio mayor en la versión original para Reino Unido es un millón de libras esterlinas. La mayoría de versiones internacionales ofrecen un premio mayor de un millón de unidades de la moneda local. El valor real del premio varía ampliamente, dependiendo del valor de la moneda.
 
+  En la versión estadounidense, esta ronda se llama Fastest Finger First, y fue eliminado cuando el programa se trasladó a la distribución sindicado en 2002, debido a los límites de longitud episodio, sin embargo, devuelve cada vez que el programa vuelve a la hora de máxima audiencia. Concursantes de Estados Unidos estaban obligados a pasar más adelante un programa de juegos más convencional de calificación de pruebas en las audiciones concursante.
+
+# ¿Cómo instalar el juego en línea de ¿Quién quiere ser millonario?
