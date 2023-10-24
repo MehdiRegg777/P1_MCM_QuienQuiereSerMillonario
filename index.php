@@ -47,7 +47,7 @@
             
                 <div class="ghof-buttons">
                     <a class="play-button" href="game.php"><em>Jugar</em></a>
-                    <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
+                    <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
                 </div>
             <div class="languagesimages">
                 <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España">

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,14 +17,68 @@
             <h1>¿Quién quiere ser millonario?</h1>
         </header>
         <div class="container">
+            <div class="arribapregunta">
+                <h2>¡Enhorabuena!!</h2>
+                <h3>Clasificaciones</h3>
+                <?php
+                        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                            $puntos = $_GET["puntage"];
+                            echo '<table border="1">';
+                            echo '<tr>';
+                            echo '<th>Preguntas Acertadas</th>';
+                            echo '<th>' . $puntos . '</th>';
+                            echo '</tr>';
+                            echo '</table>';
+                        }
+                    ?>
+                    <h5>Si quieres guardar tu partida dale al boton PUBLISH</h5>
+                    <a class="play-button" onclick='publishGame()'>PUBLISH</a>
+                    <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
+                    <a class="play-button" href="index.php">Volver al inicio</a>        </div>
+            </div>
             
-            <h2>¡Felicidades!</h2>
+            <div class="formularioPunage">
+
+            <?php
+            // Obtener la ID de sesión
+            $sessionID = session_id();
+            if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                $puntos = $_GET["puntage"];
+                echo '<form id="guardarpartida" method="post" style="display: none;">
+                    <label for="nombre">Nombre del Jugador:</label>
+                    <input type="text" name="datos[nombre]" id="nombre" required><br>
+                    <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>
+                    <input type="hidden" name="datos[id]" id="id" value="' . $sessionID . '"><br>        
+                    <input type="submit" value="Guardar Puntuación">
+                </form>';
+            } 
         
-            <a class="play-button" href="index.php">Volver al inicio</a>
+            
+        
+
+            ?>
+
+            <?php
+            if (isset($_POST["datos"])){
+                $file = fopen("records.txt", "a");
+
+                $nombre = $_POST["datos"]["nombre"];
+                $puntuacion = $_POST["datos"]["puntuacion"];
+                $id = $_POST["datos"]["id"];
+
+                $comanda = $nombre . "," . $puntuacion . "," . $id;
+
+                fwrite($file, $comanda . "\n");
+                fclose($file);
+            }
+            ?>
+
+
+        </div>
         </div>
         <footer>
         <p>© 2023 Tu Nombre</p>
         </footer>
-
+        <script src="funcionPublish.js"></script>
     </body>
 </html>
