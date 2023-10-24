@@ -1,11 +1,4 @@
 Marcelo,16,11ee7aede86242813705fba1fadf336e
 mehdi,18,11ee7aede86242813705fba1fadf336e
-<<<<<<< HEAD
 Claudia,4,81na6qqmemjk1g05nots9mfjks
 mehdi,7,81na6qqmemjk1g05nots9mfjks
-=======
-a,1,fe3pk88j1jh0hv77osmqn4nse2
-a,0,fe3pk88j1jh0hv77osmqn4nse2
-A,0,fe3pk88j1jh0hv77osmqn4nse2
-<,0,fe3pk88j1jh0hv77osmqn4nse2
->>>>>>> origin/CMoyano
