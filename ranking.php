@@ -1,8 +1,5 @@
-<?php
-session_start();
-?>
-
 <!DOCTYPE html>
+<html lang="en">
 <html>
     <head>
         <title>¿Quién quiere ser millonario?</title>
@@ -16,14 +13,7 @@ session_start();
         <header>
             <h1>¿Quién quiere ser millonario?</h1>
         </header>
-        
-        <div class="container">
-            
-            <div class="arribapregunta">
-                <h2>Ranking</h2>
-                <h3>Clasificaciones</h3>
 
-            </div>
-        </div>   
+    
     </body>
 </html>
