@@ -47,7 +47,7 @@
             
                 <div class="ghof-buttons">
                     <a class="play-button" href="game.php"><em>Jugar</em></a>
-                    <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
+                    <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
                 </div>
             <div class="languagesimages">
                 <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España">
@@ -60,7 +60,9 @@
             </div>
 
         </div>
-        
+        <audio id="start" autoplay>
+            <source src="mp3/inicio.mp3" type="audio/mpeg">
+        </audio>
         <footer class="footerinfo">
             <p>© MCM S.A.</p>
             <p>Contact us</p>
@@ -68,6 +70,6 @@
             <p>empresa@domini.cat</p>
             <p>twt ig p</p>
         </footer>
-
+        <script src="funcionPublish.js"></script>
     </body>
 </html>
