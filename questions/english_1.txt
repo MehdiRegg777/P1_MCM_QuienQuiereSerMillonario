@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 
 * What Did Gandhi Do For The World? 
 - Nothing
+=======
+* What Did Gandhi Do For The World?
+-Nothing
+>>>>>>> origin/Mehdi
 + Peace
 - Revolution
 - Racism
