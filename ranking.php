@@ -79,5 +79,12 @@
 
         <a class="play-button" href="index.php">Volver al inicio</a>
     </div>
+    <footer class="footerinfo">
+            <p>© MCM S.A.</p>
+            <p>Contact us</p>
+            <p>Follow us</p>
+            <p>empresa@domini.cat</p>
+            <p>twt ig p</p>
+        </footer>
     </body>
 </html>
