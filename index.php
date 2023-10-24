@@ -1,7 +1,7 @@
 <?php
 session_start();
 $_SESSION['language'] = $_GET['lang'] ?? 'spanish';
-$selected_language = $_SESSION['selected_language'];
+$selected_language = $_SESSION['language'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +15,7 @@ $selected_language = $_SESSION['selected_language'];
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
     <body>
+        <?php echo "<h2>{$_SESSION['language']}</h2>";?>
         <div id="spanish">
             <header>
                 <h1>¿Quién quiere ser millonario?</h1>
@@ -60,8 +61,8 @@ $selected_language = $_SESSION['selected_language'];
                     </div>
                 <div class="languagesimages">
                     <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
-                    <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" onclick="changeLanguage('catalan')">
-                    <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido"  onclick="changeLanguage('english')">
+                    <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" <?php $_SESSION['language'] = 'catalan'; ?> onclick="changeLanguage('catalan')"><?php $_SESSION['language'] = 'catalan'; ?>
+                    <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido" <?php $_SESSION['language'] = 'english'; ?> onclick="changeLanguage('english')">
                 </div>
 
                 <div class="presentationimage">
