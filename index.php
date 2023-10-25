@@ -1,5 +1,7 @@
 <?php
 session_start();
+//$_SESSION['language'] = $_GET['lang'] ?? 'spanish';
+//$selected_language = $_SESSION['language'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +15,7 @@ session_start();
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
     <body>
+        <?php echo "<h2>{$_SESSION['language']}</h2>";?>
         <div id="spanish">
             <header>
                 <h1>¿Quién quiere ser millonario?</h1>
@@ -50,16 +53,16 @@ session_start();
                     y puntuación). Jamás publicaremos tus datos sin consentimiento.</p>
                 
                     <div class="ghof-buttons">
-                        <form action="game.php" method="post">
-                            <input type="hidden" name="language" value="spanish">
-                            <button class="play-button" type="submit">Jugar</button>
+                        
+                            
+                            <a class="play-button" href="game.php"><em>Jugar</em></button>
                             <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
-                        </form>
+                        
                     </div>
                 <div class="languagesimages">
                     <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
                     <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" onclick="changeLanguage('catalan')">
-                    <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido" onclick="changeLanguage('english')">
+                    <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido"  onclick="changeLanguage('english')">
                 </div>
 
                 <div class="presentationimage">
@@ -67,7 +70,6 @@ session_start();
                 </div>
             </div>
         </div>
-
         <div id="catalan" style="display: none;">
             <header>
                 <h1>Qui vol ser milionari?</h1>
@@ -108,7 +110,7 @@ session_start();
                     <form action="game.php" method="post">
                         <input type="hidden" name="language" value="catalan">
                         <button class="play-button" type="submit">Jugar</button>
-                        <a class="halloffame-button" href="game.php">Hall of fame</a>
+                        <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
                     </form>
                 </div>
                 <div class="languagesimages">
@@ -122,10 +124,9 @@ session_start();
                 </div>
             </div>
         </div>
-
         <div id="english" style="display: none;">
             <header>
-                <h1>Who Wants to Be a Millionaire?</h1>
+                <h1>Who wants to be a millionaire?</h1>
             </header>
 
             <div class="container">
@@ -161,8 +162,8 @@ session_start();
                 <div class="ghof-buttons">
                     <form action="game.php" method="post">
                         <input type="hidden" name="language" value="english">
-                        <button class="play-button" type="submit">Play</button>
-                        <a class="halloffame-button" href="game.php"><em>Hall of Fame</em></a>
+                        <button class="play-button" type="submit">Jugar</button>
+                        <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
                     </form>
                 </div>
                 <div class="languagesimages">
@@ -176,7 +177,9 @@ session_start();
                 </div>
             </div>
         </div>
-        
+        <audio id="start" autoplay>
+            <source src="mp3/inicio.mp3" type="audio/mpeg">
+        </audio>
         <footer class="footerinfo">
             <p>© MCM S.A.</p>
             <p>Contact us</p>
@@ -184,6 +187,7 @@ session_start();
             <p>empresa@domini.cat</p>
             <p>twt ig p</p>
         </footer>
+        <script src="funcionPublish.js"></script>
         <script src="funcionLanguage.js"></script>
     </body>
 </html>

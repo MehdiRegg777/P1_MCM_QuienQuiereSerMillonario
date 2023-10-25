@@ -14,5 +14,20 @@ function changeLanguage(language) {
 
     // Mostrar el idioma seleccionado
     document.getElementById(language).style.display = 'block';
-    sessionStorage.setItem('selectedLanguage', language);
+    sessionStorage.setItem('language', language);
 }
+$('boton1').click(function(){
+    $.post('game.php',{
+       spanish:'spanish'
+    })
+})
+$('boton2').click(function(){
+    $.post('game.php',{
+       catalan:'catalan'
+    })
+})
+$('boton3').click(function(){
+    $.post('game.php',{
+       english:'english'
+    })
+})

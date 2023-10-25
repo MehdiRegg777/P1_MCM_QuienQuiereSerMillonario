@@ -50,7 +50,7 @@ function responderPregunta(preguntaIndex, nivel) {
         } else {
             // console.log(respuestaElegida);
             // console.log(respuestaCorrecta);
-
+            let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
 
             respuestaSeleccionada.classList.remove('seleccionada'); // Quitar la seleccion amarilla al acertar
@@ -75,10 +75,11 @@ function responderPregunta(preguntaIndex, nivel) {
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
+
+            //ir a la pagin lose
+            window.location.href = 'lose.php?puntage=' + puntos; 
             
-            //Insertar el boton para volver al inicio despues de perder
-            const backIndex = document.getElementById("inicio-btn");
-            backIndex.style.display = "";
+            
             //document.body.innerHTML += "";
             /////
 
@@ -86,6 +87,23 @@ function responderPregunta(preguntaIndex, nivel) {
     } else {
         alert('Por favor, selecciona una respuesta.');
     }
+}
+
+function calculoderespuesta(preguntaActual,nivel){
+    let calculo;
+    if (nivel == 1){
+
+        return preguntaActual
+        
+    }if ((preguntaActual)== 3){
+        return nivel*3
+    }else {
+        calculo = (nivel-1)*3
+        calculo+=preguntaActual
+        return calculo
+    }
+    
+
 }
 
 function regresarAlInicio() {
@@ -121,6 +139,12 @@ function mostrarSiguientePregunta(preguntaIndex, nivel) {
 
                 // Recargar la página actual para cargar las preguntas del nuevo nivel
                 alert('Ahora subirá el nivel de dificultad a ' + nivel + '.');
+
+                //Insertar el boton para volver al inicio despues de perder
+                const backIndex = document.getElementById("inicio-btn");
+                backIndex.style.display = "";
+
+                //Insertar el boton para ir a la pagina siguintes preguntas
                 const next = document.getElementById("next-question");
                 next.style.display = "";
                 //document.body.innerHTML += "<button id='next-question' onclick='nextQuestion("+nivel+")' ' >Siguiente pregunta</button>";
@@ -128,7 +152,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel) {
                 // El usuario ha completado todos los niveles
                 // Puedes mostrar un mensaje de finalización del juego o redirigir a la página principal.
                 alert('¡Has respondido todas las preguntas! Juego terminado.');
-                window.location.href = 'index.php'; // Redirigir a la página index.php
+                window.location.href = 'win.php?puntage=18'; // Redirigir a la página win.php
             }
         }
     }
