@@ -31,7 +31,7 @@
 * ¿Quién era Ada Lovelace?
 - Política
 - Científica
-+ Matemática 
++ Matemática
 - Química
 * ¿Dónde se encuentra el palacio de Buckingham?
 - Francia

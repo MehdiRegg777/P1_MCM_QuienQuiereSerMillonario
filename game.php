@@ -24,7 +24,39 @@ session_start();
             }
             ?>
         </header>
-        
+        <?php
+        // Recorremos los archivos catalan_1.txt hasta catalan_6, english_1 hasta english_6 y spanish_1 hasta spanish_6
+        for ($i = 1; $i <= 6; $i++) {
+        $languages = array("catalan", "english", "spanish");
+        foreach ($languages as $language) {
+            $filename = "questions/".$language . "_" . $i . ".txt";
+            
+            // Leer el contenido del archivo
+            $lines = file($filename);
+
+            // Inicializar una variable para almacenar el contenido modificado
+            $modifiedContent = "";
+
+            foreach ($lines as $line) {
+                // Eliminar espacios sobrantes, tabulaciones, etc. con la función trim
+                $cleanLine = trim($line);
+
+                // Solo agregar líneas no vacías al contenido modificado
+                if (!empty($cleanLine)) {
+                    $modifiedContent .= $cleanLine . "\n";
+                }
+            }
+
+            // Eliminar líneas en blanco al final del archivo
+            $modifiedContent = rtrim($modifiedContent);
+
+            // Guardar el contenido modificado en el archivo
+            file_put_contents($filename, $modifiedContent);
+
+        }
+        }
+
+        ?>
         <?php
         if (isset($_GET['niveles'])) {
             $_GET['nivel'] = intval($_GET['niveles']);
