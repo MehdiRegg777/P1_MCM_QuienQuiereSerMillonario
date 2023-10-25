@@ -93,7 +93,7 @@ session_start();
         $nivels = $_GET['nivel'];
         $nivels++;
         echo "<div class='ghof-buttons'>";
-        echo "<button id='inicio-btn' onclick='regresarAlInicio()' style='display: none;' ><em><strong>Volver al inicio</em></strong></button>";
+        // echo "<button id='inicio-btn' onclick='regresarAlInicio()' style='display: none;' ><em><strong>Volver al inicio</em></strong></button>";
         if ($_SESSION['language'] === 'spanish') {
             echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
         } elseif ($_SESSION['language'] === 'catalan') {
