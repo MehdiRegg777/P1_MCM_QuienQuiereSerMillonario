@@ -6,7 +6,7 @@
 ### ¿Cómo instalar el juego en línea de ¿Quién quiere ser millonario?
 
 ## Requisitos Previos
-Asegúrate de tener instalados los siguientes componentes en tu entorno antes de ejecutar el juego:
+- Asegúrate de tener instalados los siguientes componentes en tu entorno antes de ejecutar el juego:
 
 PHP: Asegúrate de tener PHP instalado en tu sistema. Puedes verificar si PHP está instalado ejecutando el comando php -v en tu terminal. Si no está instalado, sigue las instrucciones para instalar PHP en php.net.
 
