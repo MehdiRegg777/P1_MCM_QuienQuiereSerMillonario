@@ -70,6 +70,8 @@ p, ul, li{
 
 .play-button { margin-right: 30px; }
 
+.halloffame-button { margin-right: 30px; }
+
 .play-button, .halloffame-button, #savepunt-button {
     display: inline-block;
     padding: 20px 40px;
@@ -226,16 +228,16 @@ p, ul, li{
 }
 
 /* Parte cuando seleccionamos la pregunta */
-/* .respuesta.seleccionada {
-    background-color: #ffff00b0;
+.respuesta.seleccionada {
+    background-color: #FF9F1C;
 }
 
 .respuesta.acertada {
-    background-color: #018749;
+    background-color: #a2ca83;
 }
 .respuesta.fallada {
-    background-color: #D2122E;
-} */
+    background-color: #ca8383;
+}
 
 /* LOSE.PHP */
 #guardarpartida{
