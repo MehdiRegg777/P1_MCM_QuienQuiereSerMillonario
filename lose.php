@@ -28,25 +28,54 @@ session_start();
 
         <div class="container">
             <div class="arribapregunta">
-                <h2>Has perdido.</h2>
-                <h3><em>Clasificaciones</em></h3>
+                <?php
+                if ($_SESSION['language'] === 'spanish') {
+                    echo "<h2>¡Has perdido!</h2>";
+                    echo "<h3><em>Clasificaciones</em></h3>";
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<h2>Has perdut!</h2>";
+                    echo "<h3><em>Classificacions</em></h3>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<h2>You lost!</h2>";
+                    echo "<h3><em>Leaderboard</em></h3>";                    
+                }
+                ?>
 
                 <?php
                       if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         $puntos = $_GET["puntage"];
                         echo '<table border="1" id="correctqueststable">';
                         echo '<tr>';
-                        echo '<th>Preguntas acertadas</th>';
+                        if ($_SESSION['language'] === 'spanish') {
+                            echo '<th>Preguntas acertadas</th>';
+                        } elseif ($_SESSION['language'] === 'catalan') {
+                            echo '<th>Preguntas encertades</th>';
+                        } elseif ($_SESSION['language'] === 'english') {
+                            echo '<th>Correct Answers</th>';                   
+                        }
                         echo '<td>' . $puntos . '</td>';
                         echo '</tr>';
                         echo '</table>';
                       }
                 ?>
-
-                <p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>
-                <a class="play-button" onclick='publishGame()'><em>Publicar</em></a>
-                <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
-                <a class="play-button" href="index.php"><em>Volver al inicio</em></a>
+                <?php
+                if ($_SESSION['language'] === 'spanish') {
+                    echo '<p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>';
+                    echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
+                    echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
+                    echo '<a class="play-button" href="index.php"><em>Volver al inicio</em></a>';
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo '<p>Si vols desar la teva partida, fes clic al botó "<em>Publicar</em>".</p>';
+                    echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
+                    echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
+                    echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo '<p>If you want to save your game, click on the "<em>Publish</em>" button.</p>';
+                    echo '<a class="play-button" onclick="publishGame()"><em>Publish</em></a>';
+                    echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
+                    echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';             
+                }
+                ?>
             </div>
 
             <div class="formularioPunage">
@@ -56,13 +85,31 @@ session_start();
                 $sessionID = session_id();
                 if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     $puntos = $_GET["puntage"];
-                    echo '<form id="guardarpartida" method="post" style="display: none;">
+                    if ($_SESSION['language'] === 'spanish') {
+                        echo '<form id="guardarpartida" method="post" style="display: none;">
                         <label for="nombre">Nombre del jugador:</label>
                         <input type="text" name="datos[nombre]" id="nombre" required><br>
                         <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>
                         <input type="hidden" name="datos[id]" id="id" value="' . $sessionID . '"><br>
                         <input type="submit" value="Guardar puntuación" id ="savepunt-button">
-                    </form>';
+                        </form>';
+                    } elseif ($_SESSION['language'] === 'catalan') {
+                        echo '<form id="guardarpartida" method="post" style="display: none;">
+                        <label for="nombre">Nom del jugador:</label>
+                        <input type="text" name="datos[nombre]" id="nombre" required><br>
+                        <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>
+                        <input type="hidden" name="datos[id]" id="id" value="' . $sessionID . '"><br>
+                        <input type="submit" value="Desa la puntuació" id ="savepunt-button">
+                        </form>';
+                    } elseif ($_SESSION['language'] === 'english') {
+                        echo '<form id="guardarpartida" method="post" style="display: none;">
+                        <label for="nombre">Player Name:</label>
+                        <input type="text" name="datos[nombre]" id="nombre" required><br>
+                        <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>
+                        <input type="hidden" name="datos[id]" id="id" value="' . $sessionID . '"><br>
+                        <input type="submit" value="Save Score" id ="savepunt-button">
+                        </form>';                   
+                    }
                 }
                 ?>
 

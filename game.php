@@ -24,8 +24,6 @@ session_start();
             }
             ?>
         </header>
-        
-
         <?php
         // Recorremos los archivos catalan_1.txt hasta catalan_6, english_1 hasta english_6 y spanish_1 hasta spanish_6
         for ($i = 1; $i <= 6; $i++) {
@@ -59,7 +57,10 @@ session_start();
         }
 
         ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/Marcelo
         <?php
         if (isset($_GET['niveles'])) {
             $_GET['nivel'] = intval($_GET['niveles']);
