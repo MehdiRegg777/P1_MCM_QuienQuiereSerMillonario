@@ -13,12 +13,10 @@ PHP: Asegúrate de tener PHP instalado en tu sistema. Puedes verificar si PHP es
 
 ## Puedes descargar el juego de la siguiente manera:
 
-git clone https://github.com/MehdiRegg777/P1_MCM_QuienQuiereSerMillonario
+- git clone https://github.com/MehdiRegg777/P1_MCM_QuienQuiereSerMillonario
 
-Navega al directorio del juego donde aparezca el index.php
+- Despues navega al directorio del juego donde aparezca el index.php
 
-Habre la terminal y ejecuta la sihuiente comanda:
+- Habre la terminal y ejecuta la sihuiente comanda: php -S 0:8080
 
-php -S 0:8080
-
-Ahora abre tu navegador web y accede a http://localhost:8080 para jugar al juego.
+- Ahora abre tu navegador web y accede a http://localhost:8080 para jugar al juego.
