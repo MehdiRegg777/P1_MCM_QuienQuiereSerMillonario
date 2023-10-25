@@ -70,6 +70,8 @@ p, ul, li{
 
 .play-button { margin-right: 30px; }
 
+.halloffame-button { margin-right: 30px; }
+
 .play-button, .halloffame-button, #savepunt-button {
     display: inline-block;
     padding: 20px 40px;
