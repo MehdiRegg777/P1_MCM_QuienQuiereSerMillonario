@@ -1,5 +1,28 @@
 let preguntaActual = 0;
 let preguntaActual2 = 0;
+const mensajes = {
+    'spanish': {
+        'respuestaCorrecta': '¡Felicidades! Respuesta correcta.',
+        'respuestaIncorrecta': 'Respuesta incorrecta. Fin del juego.',
+        'seleccionaRespuesta': 'Por favor, selecciona una respuesta.',
+        'subirNivel': 'Ahora subirá el nivel de dificultad a ',
+        'juegoTerminado': '¡Has respondido todas las preguntas! Juego terminado.'
+    },
+    'catalan': {
+        'respuestaCorrecta': '¡Felicitats! Resposta correcta.',
+        'respuestaIncorrecta': 'Resposta incorrecta. Fi del joc.',
+        'seleccionaRespuesta': 'Si us plau, seleccioneu una resposta.',
+        'subirNivel': 'Ara pujarà el nivell de dificultat a ',
+        'juegoTerminado': 'Has respost totes les preguntes! Joc acabat.'
+    },
+    'english': {
+        'respuestaCorrecta': 'Congratulations! Correct answer.',
+        'respuestaIncorrecta': 'Incorrect answer. End of the game.',
+        'seleccionaRespuesta': 'Please select an answer.',
+        'subirNivel': 'Now it will increase the difficulty level to ',
+        'juegoTerminado': 'You have answered all the questions! Game over.'
+    }
+};
 // Función para iniciar el juego
 function empezarJuego() {
     document.getElementById('jugar-btn').style.display = 'none';
@@ -31,7 +54,7 @@ function scrollSiguientePregunta(preguntaIndex) {
     }
 }
 
-function responderPregunta(preguntaIndex, nivel) {
+function responderPregunta(preguntaIndex, nivel, language) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
 
     if (respuestaSeleccionada) {
@@ -39,14 +62,14 @@ function responderPregunta(preguntaIndex, nivel) {
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
 
         if (respuestaElegida === respuestaCorrecta) {
-
+            //console.log(idioma);
             playCorrectSound();
 
-            alert('¡Felicidades! Respuesta correcta.');
+            alert(mensajes[language]['respuestaCorrecta']);
             respuestaSeleccionada.classList.remove('seleccionada'); // Quitar la seleccion amarilla al acertar
             respuestaSeleccionada.classList.add('acertada'); // Y poner la seleccion en verde
             scrollSiguientePregunta(preguntaIndex);
-            mostrarSiguientePregunta(preguntaIndex, nivel);
+            mostrarSiguientePregunta(preguntaIndex, nivel, language);
         } else {
             // console.log(respuestaElegida);
             // console.log(respuestaCorrecta);
@@ -57,7 +80,7 @@ function responderPregunta(preguntaIndex, nivel) {
             respuestaSeleccionada.classList.add('fallada'); // Y poner la seleccion en rojo
 
             //Alerte de que la respuesta es incorecta
-            alert('Respuesta incorrecta. Fin del juego.');
+            alert(mensajes[language]['respuestaIncorrecta']);
 
             // Habilita el botón de respuesta de la siguiente pregunta
             const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
@@ -85,7 +108,7 @@ function responderPregunta(preguntaIndex, nivel) {
 
         }
     } else {
-        alert('Por favor, selecciona una respuesta.');
+        alert(mensajes[language]['seleccionaRespuesta']);
     }
 }
 
@@ -115,7 +138,7 @@ function nextQuestion(nivel){
 }
 
 
-function mostrarSiguientePregunta(preguntaIndex, nivel) {
+function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     preguntaActual2++;
 
     if (preguntaActual2 >= 3) {
@@ -138,7 +161,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel) {
                 }
 
                 // Recargar la página actual para cargar las preguntas del nuevo nivel
-                alert('Ahora subirá el nivel de dificultad a ' + nivel + '.');
+                alert(mensajes[language]['subirNivel'] + nivel + '.');
 
                 //Insertar el boton para volver al inicio despues de perder
                 const backIndex = document.getElementById("inicio-btn");
@@ -151,7 +174,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel) {
             } else {
                 // El usuario ha completado todos los niveles
                 // Puedes mostrar un mensaje de finalización del juego o redirigir a la página principal.
-                alert('¡Has respondido todas las preguntas! Juego terminado.');
+                alert(mensajes[language]['juegoTerminado']);
                 window.location.href = 'win.php?puntage=18'; // Redirigir a la página win.php
             }
         }

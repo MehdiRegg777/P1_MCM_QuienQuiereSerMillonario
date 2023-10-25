@@ -1,10 +1,9 @@
 <?php
 session_start();
-//$_SESSION['language'] = $_GET['lang'] ?? 'spanish';
-//$selected_language = $_SESSION['language'];
+$_SESSION['language'] = $_POST['language'] ?? 'spanish';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <html>
     <head>
         <title>¿Quién quiere ser millonario?</title>
@@ -15,7 +14,6 @@ session_start();
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
     <body>
-        <?php echo "<h2>{$_SESSION['language']}</h2>";?>
         <div id="spanish">
             <header>
                 <h1>¿Quién quiere ser millonario?</h1>
@@ -53,11 +51,8 @@ session_start();
                     y puntuación). Jamás publicaremos tus datos sin consentimiento.</p>
                 
                     <div class="ghof-buttons">
-                        
-                            
-                            <a class="play-button" href="game.php"><em>Jugar</em></button>
-                            <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
-                        
+                        <a class="play-button" href="game.php"><em>Jugar</em></button>
+                        <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
                     </div>
                 <div class="languagesimages">
                     <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
@@ -107,11 +102,8 @@ session_start();
                     i puntuació). Mai no publicarem les teves dades sense el teu consentiment.</p>
                 
                 <div class="ghof-buttons">
-                    <form action="game.php" method="post">
-                        <input type="hidden" name="language" value="catalan">
-                        <button class="play-button" type="submit">Jugar</button>
-                        <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
-                    </form>
+                    <a class="play-button" href="game.php"><em>Jugar</em></button>
+                    <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
                 </div>
                 <div class="languagesimages">
                     <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
@@ -160,11 +152,8 @@ session_start();
                 and score). We will never publish your data without consent.</p>
 
                 <div class="ghof-buttons">
-                    <form action="game.php" method="post">
-                        <input type="hidden" name="language" value="english">
-                        <button class="play-button" type="submit">Jugar</button>
-                        <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
-                    </form>
+                    <a class="play-button" href="game.php"><em>Play</em></button>
+                    <a class="halloffame-button" href="game.php"><em>Hall of fame</em></a>
                 </div>
                 <div class="languagesimages">
                     <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">

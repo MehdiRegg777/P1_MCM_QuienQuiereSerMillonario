@@ -14,7 +14,15 @@ session_start();
     </head>
     <body>
         <header>
-            <h1>¿Quién quiere ser millonario?</h1>
+            <?php
+            if ($_SESSION['language'] === 'spanish') {
+                echo "<h1>¿Quién quiere ser millonario?</h1>";
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo "<h1>Qui vol ser milionari?</h1>";
+            } elseif ($_SESSION['language'] === 'english') {
+                echo "<h1>Who wants to be a millionaire?</h1>";
+            }
+            ?>
         </header>
         <audio id="gameOver" src="gameover.mp3" preload="auto" style="display:none"></audio>
 

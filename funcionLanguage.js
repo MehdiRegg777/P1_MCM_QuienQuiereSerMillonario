@@ -1,10 +1,3 @@
-// Función para jugar con el idioma seleccionado
-function selectLanguage(lan) {
-    if (isset(lan)) {
-        language = lan; // Obtener el idioma seleccionado
-        //return $_SESSION['language'] = language;
-    }
-}
 //Funcion ocultar todos los idiomas y mostrar el seleccionado
 function changeLanguage(language) {
     // Ocultar todos los idiomas
@@ -14,20 +7,17 @@ function changeLanguage(language) {
 
     // Mostrar el idioma seleccionado
     document.getElementById(language).style.display = 'block';
-    sessionStorage.setItem('language', language);
+
+    // Enviar el idioma seleccionado al servidor mediante una solicitud AJAX
+    fetch('index.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'language=' + encodeURIComponent(language),
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data); // Imprime la respuesta del servidor
+    });
 }
-$('boton1').click(function(){
-    $.post('game.php',{
-       spanish:'spanish'
-    })
-})
-$('boton2').click(function(){
-    $.post('game.php',{
-       catalan:'catalan'
-    })
-})
-$('boton3').click(function(){
-    $.post('game.php',{
-       english:'english'
-    })
-})

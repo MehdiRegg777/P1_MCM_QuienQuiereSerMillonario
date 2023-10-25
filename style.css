@@ -225,6 +225,18 @@ p, ul, li{
     font-size: 14px;
 }
 
+/* Parte cuando seleccionamos la pregunta */
+/* .respuesta.seleccionada {
+    background-color: #ffff00b0;
+}
+
+.respuesta.acertada {
+    background-color: #018749;
+}
+.respuesta.fallada {
+    background-color: #D2122E;
+} */
+
 /* LOSE.PHP */
 #guardarpartida{
     margin-top: 30px;
