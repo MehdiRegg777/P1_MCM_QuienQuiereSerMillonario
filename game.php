@@ -57,10 +57,6 @@ session_start();
         }
 
         ?>
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/Marcelo
         <?php
         if (isset($_GET['niveles'])) {
             $_GET['nivel'] = intval($_GET['niveles']);
