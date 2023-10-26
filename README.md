@@ -3,20 +3,21 @@
 
   En la versión estadounidense, esta ronda se llama Fastest Finger First, y fue eliminado cuando el programa se trasladó a la distribución sindicado en 2002, debido a los límites de longitud episodio, sin embargo, devuelve cada vez que el programa vuelve a la hora de máxima audiencia. Concursantes de Estados Unidos estaban obligados a pasar más adelante un programa de juegos más convencional de calificación de pruebas en las audiciones concursante.
 
-### ¿Cómo instalar el juego en línea de ¿Quién quiere ser millonario?
+### ¿Cómo instalar el juego en línea de "_¿Quién quiere ser millonario?_"
 
 ## Requisitos Previos
 - Asegúrate de tener instalados los siguientes componentes en tu entorno antes de ejecutar el juego:
 
-PHP: Asegúrate de tener PHP instalado en tu sistema. Puedes verificar si PHP está instalado ejecutando el comando php -v en tu terminal. Si no está instalado, sigue las instrucciones para instalar PHP en https://php.net
+PHP: Asegúrate de tener _PHP_ instalado en tu sistema. Puedes verificar si _PHP_ está instalado ejecutando el comando php -v en tu terminal. Si no está instalado, sigue las instrucciones para instalar _PHP_ en [https://php.net](url).
 
 
 ## Puedes descargar el juego de la siguiente manera:
+- Abre la terminal y pega este comando:
+> git clone https://github.com/MehdiRegg777/P1_MCM_QuienQuiereSerMillonario
 
-- git clone https://github.com/MehdiRegg777/P1_MCM_QuienQuiereSerMillonario
+- Después, navega al directorio del juego donde aparezca el "_index.php_".
 
-- Despues navega al directorio del juego donde aparezca el index.php
+- En la misma terminal ejecuta el siguiente y último comando:
+> php -S 0:8080.
 
-- Habre la terminal y ejecuta la sihuiente comanda: php -S 0:8080
-
-- Ahora abre tu navegador web y accede a http://localhost:8080 para jugar al juego.
+- Ahora, ¡abre tu navegador web y accede a [http://localhost:8080](url) para jugar!
