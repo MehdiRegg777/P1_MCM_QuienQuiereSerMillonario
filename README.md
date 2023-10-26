@@ -6,19 +6,17 @@
 ### ¿Cómo instalar el juego en línea de ¿Quién quiere ser millonario?
 
 ## Requisitos Previos
-Asegúrate de tener instalados los siguientes componentes en tu entorno antes de ejecutar el juego:
+- Asegúrate de tener instalados los siguientes componentes en tu entorno antes de ejecutar el juego:
 
-PHP: Asegúrate de tener PHP instalado en tu sistema. Puedes verificar si PHP está instalado ejecutando el comando php -v en tu terminal. Si no está instalado, sigue las instrucciones para instalar PHP en php.net.
+PHP: Asegúrate de tener PHP instalado en tu sistema. Puedes verificar si PHP está instalado ejecutando el comando php -v en tu terminal. Si no está instalado, sigue las instrucciones para instalar PHP en https://php.net
 
 
 ## Puedes descargar el juego de la siguiente manera:
 
-git clone https://github.com/MehdiRegg777/P1_MCM_QuienQuiereSerMillonario
+- git clone https://github.com/MehdiRegg777/P1_MCM_QuienQuiereSerMillonario
 
-Navega al directorio del juego donde aparezca el index.php
+- Despues navega al directorio del juego donde aparezca el index.php
 
-Habre la terminal y ejecuta la sihuiente comanda:
+- Habre la terminal y ejecuta la sihuiente comanda: php -S 0:8080
 
-php -S 0:8080
-
-Ahora abre tu navegador web y accede a http://localhost:8080 para jugar al juego.
+- Ahora abre tu navegador web y accede a http://localhost:8080 para jugar al juego.
