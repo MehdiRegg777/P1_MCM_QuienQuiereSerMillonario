@@ -9,7 +9,7 @@
 - Como todos
 - Al reves
 * Que país de la commonwealth crees que tiene la mejor situacion economica?
-+ India 
++ India
 - Canada
 - Pakistan
 - Reino Unido
@@ -24,7 +24,7 @@
 - 5 P.M
 + 4 P.M
 * Cual fue el primer club de futbol oficial en el Reino Unido?
-- Notts County Football Club 
+- Notts County Football Club
 + Sheffield
 - Hallam FC
 + Munich

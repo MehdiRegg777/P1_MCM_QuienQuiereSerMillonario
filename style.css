@@ -70,6 +70,8 @@ p, ul, li{
 
 .play-button { margin-right: 30px; }
 
+.halloffame-button { margin-right: 30px; }
+
 .play-button, .halloffame-button, #savepunt-button {
     display: inline-block;
     padding: 20px 40px;
@@ -94,7 +96,13 @@ p, ul, li{
 }
 
 /* IMATGES DE L'INICI */
+a.no-underline {
+    text-decoration: none;
+}
+
 .languagesimages{ text-align: center; }
+
+.presentationimage { text-align: center; }
 
 .languagesimages img {
     margin-top: 50px;
@@ -113,8 +121,9 @@ p, ul, li{
 
 .presentationimage img{
     margin-top: 50px;
-    width: 1650px;
-    height: 680px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 /* GAME.PHP */
@@ -226,16 +235,16 @@ p, ul, li{
 }
 
 /* Parte cuando seleccionamos la pregunta */
-/* .respuesta.seleccionada {
-    background-color: #ffff00b0;
+.respuesta.seleccionada {
+    background-color: #FF9F1C;
 }
 
 .respuesta.acertada {
-    background-color: #018749;
+    background-color: #a2ca83;
 }
 .respuesta.fallada {
-    background-color: #D2122E;
-} */
+    background-color: #ca8383;
+}
 
 /* LOSE.PHP */
 #guardarpartida{

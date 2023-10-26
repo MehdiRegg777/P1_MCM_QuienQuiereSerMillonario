@@ -23,12 +23,6 @@ const mensajes = {
         'juegoTerminado': 'You have answered all the questions! Game over.'
     }
 };
-// Función para iniciar el juego
-function empezarJuego() {
-    document.getElementById('jugar-btn').style.display = 'none';
-    document.getElementById('pregunta0').style.display = 'block';
-    document.getElementById('responder-btn-0').removeAttribute('disabled');
-}
 
 function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
@@ -164,8 +158,8 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 alert(mensajes[language]['subirNivel'] + nivel + '.');
 
                 //Insertar el boton para volver al inicio despues de perder
-                const backIndex = document.getElementById("inicio-btn");
-                backIndex.style.display = "";
+                // const backIndex = document.getElementById("inicio-btn");
+                // backIndex.style.display = "";
 
                 //Insertar el boton para ir a la pagina siguintes preguntas
                 const next = document.getElementById("next-question");

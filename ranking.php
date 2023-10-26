@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <html>
@@ -11,16 +14,44 @@
     </head>
     <body>
         <header>
-            <h1>¿Quién quiere ser millonario?</h1>
+            <?php
+            if ($_SESSION['language'] === 'spanish') {
+                echo "<h1>¿Quién quiere ser millonario?</h1>";
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo "<h1>Qui vol ser milionari?</h1>";
+            } elseif ($_SESSION['language'] === 'english') {
+                echo "<h1>Who wants to be a millionaire?</h1>";
+            }
+            ?>
         </header>
     <div class="container">    
-        <h3>Clasificaciones</h3><br>
-            <table border="1" id="correctqueststable">
-            <tr>
-                <th>Nombre</th>
-                <th>Puntos</th>
-                <th>ID</th>
-            </tr>
+        <?php
+        if ($_SESSION['language'] === 'spanish') {
+            echo '<h3>Clasificaciones</h3><br>';
+            echo '<table border="1" id="correctqueststable">';
+            echo '<tr>';
+            echo '<th>Nombre</th>';
+            echo '<th>Puntos</th>';
+            echo '<th>ID</th>';
+            echo '</tr>';  
+        } elseif ($_SESSION['language'] === 'catalan') {
+            echo '<h3>Classificacions</h3><br>';
+            echo '<table border="1" id="correctqueststable">';
+            echo '<tr>';
+            echo '<th>Nom</th>';
+            echo '<th>Punts</th>';
+            echo '<th>ID</th>';
+            echo '</tr>';
+        } elseif ($_SESSION['language'] === 'english') {
+            echo '<h3>Leaderboard</h3><br>';
+            echo '<table border="1" id="correctqueststable">';
+            echo '<tr>';
+                echo '<th>Name</th>';
+                echo '<th>Points</th>';
+                echo '<th>ID</th>';
+            echo '</tr>';
+        }      
+        ?>
 
             <?php
                 // Ruta del archivo de registros
@@ -76,8 +107,15 @@
 
 
         </table>
-
-        <a class="play-button" href="index.php">Volver al inicio</a>
+        <?php
+        if ($_SESSION['language'] === 'spanish') {
+            echo '<a class="play-button" href="index.php">Volver al inicio</a>';
+        } elseif ($_SESSION['language'] === 'catalan') {
+            echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
+        } elseif ($_SESSION['language'] === 'english') {
+            echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';
+        }
+        ?>
     </div>
     <footer class="footerinfo">
             <p>© MCM S.A.</p>
