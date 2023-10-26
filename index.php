@@ -1,6 +1,10 @@
 <?php
 session_start();
-$_SESSION['language'] = $_POST['language'] ?? 'spanish';
+$_SESSION['language'] = isset($_SESSION['language']) ? $_SESSION['language'] : 'spanish';
+isset($_POST['language']) ? $_SESSION['language'] = $_POST['language'] : null;
+$selectedLanguage = $_SESSION['language'];
+$hideStyle = 'style="display: none;"';
+$showStyle = 'style="display: block;"';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,7 +18,7 @@ $_SESSION['language'] = $_POST['language'] ?? 'spanish';
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
     <body>
-        <div id="spanish">
+        <div id="spanish" <?php echo ($selectedLanguage != 'spanish') ? $hideStyle : $showStyle; ?>>
             <header>
                 <h1>¿Quién quiere ser millonario?</h1>
             </header>
@@ -55,9 +59,15 @@ $_SESSION['language'] = $_POST['language'] ?? 'spanish';
                         <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
                     </div>
                 <div class="languagesimages">
-                    <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
-                    <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" onclick="changeLanguage('catalan')">
-                    <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido"  onclick="changeLanguage('english')">
+                    <a class="no-underline" href="#">
+                        <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
+                    </a>
+                    <a class="no-underline" href="#">
+                        <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" onclick="changeLanguage('catalan')">
+                    </a>
+                    <a class="no-underline" href="#">
+                        <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido" onclick="changeLanguage('english')">
+                    </a>
                 </div>
 
                 <div class="presentationimage">
@@ -65,7 +75,7 @@ $_SESSION['language'] = $_POST['language'] ?? 'spanish';
                 </div>
             </div>
         </div>
-        <div id="catalan" style="display: none;">
+        <div id="catalan" <?php echo ($selectedLanguage != 'catalan') ? $hideStyle : $showStyle; ?>>
             <header>
                 <h1>Qui vol ser milionari?</h1>
             </header>
@@ -82,7 +92,7 @@ $_SESSION['language'] = $_POST['language'] ?? 'spanish';
                 així fins a la tercera. Si superes la primera ronda, la dificultat augmentarà. El joc SEMPRE canvia la dificultat automàticament després de
                 que l'usuari respongui a la tercera pregunta del conjunt.<br/><br /></p>
                 
-                <h3><em>Començar a jugar</em></hr>
+                <h3><em>Com començar a jugar?</em></hr>
                 
                 <p>Primer, tens l'opció de triar l'idioma en què vols que es mostri tota la pàgina sota aquesta explicació. Quan hagis triat,
                 has de fer clic al botó <em>Jugar</em> – es situa sota aquesta explicació – per iniciar la teva partida. No es crearà un usuari llevat que
@@ -106,9 +116,15 @@ $_SESSION['language'] = $_POST['language'] ?? 'spanish';
                     <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
                 </div>
                 <div class="languagesimages">
-                    <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
-                    <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" onclick="changeLanguage('catalan')">
-                    <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido" onclick="changeLanguage('english')">
+                    <a class="no-underline" href="#">
+                        <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
+                    </a>
+                    <a class="no-underline" href="#">
+                        <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" onclick="changeLanguage('catalan')">
+                    </a>
+                    <a class="no-underline" href="#">
+                        <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido" onclick="changeLanguage('english')">
+                    </a>
                 </div>
 
                 <div class="presentationimage">
@@ -116,7 +132,7 @@ $_SESSION['language'] = $_POST['language'] ?? 'spanish';
                 </div>
             </div>
         </div>
-        <div id="english" style="display: none;">
+        <div id="english" <?php echo ($selectedLanguage != 'english') ? $hideStyle : $showStyle; ?>>
             <header>
                 <h1>Who wants to be a millionaire?</h1>
             </header>
@@ -133,7 +149,7 @@ $_SESSION['language'] = $_POST['language'] ?? 'spanish';
                 so on until the third question. If you pass the first round, the difficulty will increase. The game ALWAYS changes the difficulty automatically after
                 the user answers the third question in the set.<br/><br /></p>
 
-                <h3><em>How to Start Playing</em></hr>
+                <h3><em>How to Start Playing?</em></hr>
 
                 <p>First, you have the option to choose the language in which you want the entire page to be displayed below this explanation. Once you have chosen,
                 you should click the <em>Play</em> button – located below this explanation – to start your game. A user will not be created unless you
@@ -156,9 +172,15 @@ $_SESSION['language'] = $_POST['language'] ?? 'spanish';
                     <a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>
                 </div>
                 <div class="languagesimages">
-                    <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
-                    <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" onclick="changeLanguage('catalan')">
-                    <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido" onclick="changeLanguage('english')">
+                    <a class="no-underline" href="#">
+                        <img src="imgs/españa.jpeg" alt="Imagen de la bandera de España" onclick="changeLanguage('spanish')">
+                    </a>
+                    <a class="no-underline" href="#">
+                        <img src="imgs/catalunya.jpeg" alt="Imagen de la bandera de Catalunya" onclick="changeLanguage('catalan')">
+                    </a>
+                    <a class="no-underline" href="#">
+                        <img src="imgs/uk.webp" alt="Imagen de la bandera del Reino Unido" onclick="changeLanguage('english')">
+                    </a>
                 </div>
 
                 <div class="presentationimage">
