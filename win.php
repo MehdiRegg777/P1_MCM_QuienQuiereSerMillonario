@@ -81,7 +81,7 @@ session_start();
             <div class="formularioPunage">
                 <?php
                 
-                // Obtener la ID de sesión.
+                // Get the session ID
                 $sessionID = session_id();
                 if ($_SERVER["REQUEST_METHOD"] == "GET") {
                     $puntos = $_GET["puntage"];

@@ -28,10 +28,10 @@ function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
 
     if (respuestaElement && !respuestaElement.classList.contains('bloqueada')) {
-        // Quita la clase "bloqueada" del elemento
+        // Remove the 'locked' class from the element
         respuestaElement.classList.remove('bloqueada');
 
-        // Resto del código para la selección de respuesta y habilitar el botón de responder
+        // The rest of the code for selecting the answer and enabling the respond button
         const respuestas = document.querySelectorAll('#pregunta' + preguntaIndex + ' .respuesta');
         respuestas.forEach((r) => r.classList.remove('seleccionada'));
         respuestaElement.classList.add('seleccionada');
@@ -60,8 +60,8 @@ function responderPregunta(preguntaIndex, nivel, language) {
             playCorrectSound();
 
             alert(mensajes[language]['respuestaCorrecta']);
-            respuestaSeleccionada.classList.remove('seleccionada'); // Quitar la seleccion amarilla al acertar
-            respuestaSeleccionada.classList.add('acertada'); // Y poner la seleccion en verde
+            respuestaSeleccionada.classList.remove('seleccionada'); // Remove the yellow selection upon a correct answer
+            respuestaSeleccionada.classList.add('acertada'); // Change the selection color to green upon a correct answer
             scrollSiguientePregunta(preguntaIndex);
             mostrarSiguientePregunta(preguntaIndex, nivel, language);
         } else {
@@ -70,30 +70,30 @@ function responderPregunta(preguntaIndex, nivel, language) {
             let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
 
-            respuestaSeleccionada.classList.remove('seleccionada'); // Quitar la seleccion amarilla al acertar
-            respuestaSeleccionada.classList.add('fallada'); // Y poner la seleccion en rojo
+            respuestaSeleccionada.classList.remove('seleccionada'); // Remove the yellow selection upon a correct answer
+            respuestaSeleccionada.classList.add('fallada'); //And highlight the selection in red.
 
-            //Alerte de que la respuesta es incorecta
+            // Alert that the response is incorrect
             alert(mensajes[language]['respuestaIncorrecta']);
 
-            // Habilita el botón de respuesta de la siguiente pregunta
+            // Enable the answer button for the next question
             const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
             btnResponder.setAttribute('disabled', '');
 
-            //
             
-            //Bloquear la pregunta
+            
+            // Lock the question
             const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
             bloquearPregunta.classList.add('bloqueada');
 
-            //Bloquear respuestas
+            // Lock the answers
             for (let bucle = 0; bucle <= 3; bucle++) {
 
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
 
-            //ir a la pagin lose
+            // Go to the page 'lose'
             window.location.href = 'lose.php?puntage=' + puntos; 
             
             
@@ -124,7 +124,7 @@ function calculoderespuesta(preguntaActual,nivel){
 }
 
 function regresarAlInicio() {
-    window.location.href = 'index.php'; // Redirige al inicio
+    window.location.href = 'index.php'; // Redirect to the beginning
 }
 
 function nextQuestion(nivel){
@@ -137,37 +137,35 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
 
     if (preguntaActual2 >= 3) {
         if (nivel <= 6) {
-            // Si el usuario ha respondido correctamente a 3 preguntas, aumentar el nivel
+            // If the user has answered correctly to 3 questions, increase the level
             nivel++;
             console.log(nivel);
 
             if (nivel <= 6) {
 
-                //Bloquear la pregunta
+                // Lock the question.
                 const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
                 bloquearPregunta.classList.add('bloqueada');
 
-                //Bloquear respuestas
+                // Lock the answers
                 for (let bucle = 0; bucle <= 3; bucle++) {
 
                     const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                     bloquearRespuestas.classList.add('bloqueada');
                 }
 
-                // Recargar la página actual para cargar las preguntas del nuevo nivel
+                // Alert to go to the next level.
                 alert(mensajes[language]['subirNivel'] + nivel + '.');
 
-                //Insertar el boton para volver al inicio despues de perder
-                // const backIndex = document.getElementById("inicio-btn");
-                // backIndex.style.display = "";
 
-                //Insertar el boton para ir a la pagina siguintes preguntas
+
+                // Insert the button to go to the next page of questions
                 const next = document.getElementById("next-question");
                 next.style.display = "";
                 //document.body.innerHTML += "<button id='next-question' onclick='nextQuestion("+nivel+")' ' >Siguiente pregunta</button>";
             } else {
-                // El usuario ha completado todos los niveles
-                // Puedes mostrar un mensaje de finalización del juego o redirigir a la página principal.
+                // The user has completed all the levels
+                // Display a game completion message or redirect to the main page
                 alert(mensajes[language]['juegoTerminado']);
                 window.location.href = 'win.php?puntage=18'; // Redirigir a la página win.php
             }
@@ -175,31 +173,29 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     }
 
 
-    // Habilita el botón de respuesta de la siguiente pregunta
+    // Enable the answer button for the next question
     const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
     btnResponder.setAttribute('disabled', '');
 
-    //
-
-    //Bloquear la pregunta
+    // Lock the question
     const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
     bloquearPregunta.classList.add('bloqueada');
 
-    //Bloquear respuestas
+    // Lock the answers.
     for (let bucle = 0; bucle <= 3; bucle++) {
 
         const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
         bloquearRespuestas.classList.add('bloqueada');
     }
 
-    //desenfocar la siguiete pregunta    
+    // Blur the next question
     const desenfoqueSiguientePregunta = document.getElementById('pregunta' + (preguntaActual + 1));
     desenfoqueSiguientePregunta.classList.remove('bloqueada');
 
     preguntaActual++;
     preguntaIndex++;
 
-    //Desenfocar siguientes respuestas
+    // Blur the next answers
     for (let bucle = 0; bucle <= 3; bucle++) {
 
         const desenfoqueSeguientesRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
@@ -211,12 +207,12 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
 
 }
 
-// Función para reproducir el sonido correcto
+// Function to play the correct sound
 function playCorrectSound() {
     var correctSound = document.getElementById("correctSound");
     correctSound.play();
 }
-// Función para reproducir el sonido incorrecto
+// Function to play the incorrect sound.
 function playIncorrectSound() {
     var incorrectSound = document.getElementById("incorrectSound");
     incorrectSound.play();

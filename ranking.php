@@ -53,57 +53,44 @@ session_start();
         }      
         ?>
 
-            <?php
-                // Ruta del archivo de registros
-                $archivo = "records.txt";
+        <?php
+            $archivo = "records.txt";
 
-                // Verifica si el archivo existe
-                if (file_exists($archivo)) {
-                    // Abre el archivo para lectura
-                    $handle = fopen($archivo, "r");
+            if (file_exists($archivo)) {
+                $handle = fopen($archivo, "r");
 
-                    // Inicializa un array para almacenar los datos
-                    $data = array();
+                $data = array();
 
-                    // Recorre el archivo línea por línea
-                    while (($line = fgets($handle)) !== false) {
-                        // Divide la línea en sus partes separadas por comas
-                        $parts = explode(",", $line);
+                while (($line = fgets($handle)) !== false) {
+                    $parts = explode(",", $line);
 
-                        // Verifica que haya tres partes
-                        if (count($parts) == 3) {
-                            // Asigna las partes a variables
-                            $nombre = $parts[0];
-                            $puntos = (int)$parts[1]; // Convierte los puntos a entero
-                            $id = $parts[2];
+                    if (count($parts) == 3) {
 
-                            // Almacena los datos en el array
-                            $data[] = array('nombre' => $nombre, 'puntos' => $puntos, 'id' => $id);
-                        }
+                        $nombre = $parts[0];
+                        $puntos = (int)$parts[1]; 
+                        $id = $parts[2];
+
+                        $data[] = array('nombre' => $nombre, 'puntos' => $puntos, 'id' => $id);
                     }
-
-                    // Cierra el archivo
-                    fclose($handle);
-
-                    // Ordena el array por la columna de puntos
-                    usort($data, function($a, $b) {
-                        return $b['puntos'] - $a['puntos'];
-                    });
-
-                    // Imprime la tabla ordenada
-                    
-                    foreach ($data as $row) {
-                        echo "<tr>";
-                        echo "<td>{$row['nombre']}</td>";
-                        echo "<td>{$row['puntos']}</td>";
-                        echo "<td>{$row['id']}</td>";
-                        echo "</tr>";
-                    }
-
-                } else {
-                    echo "El archivo no existe.";
                 }
-                ?>
+
+                fclose($handle);
+
+                usort($data, function($a, $b) {
+                    return $b['puntos'] - $a['puntos'];
+                });                
+                foreach ($data as $row) {
+                    echo "<tr>";
+                    echo "<td>{$row['nombre']}</td>";
+                    echo "<td>{$row['puntos']}</td>";
+                    echo "<td>{$row['id']}</td>";
+                    echo "</tr>";
+                }
+
+            } else {
+                echo "El archivo no existe.";
+            }
+        ?>
 
 
         </table>

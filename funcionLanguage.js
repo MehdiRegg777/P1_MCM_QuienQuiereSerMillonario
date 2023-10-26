@@ -1,14 +1,14 @@
-//Funcion ocultar todos los idiomas y mostrar el seleccionado
+// Function to hide all languages and show the selected one.
 function changeLanguage(language) {
-    // Ocultar todos los idiomas
+    // Hide all languages.
     document.getElementById('spanish').style.display = 'none';
     document.getElementById('catalan').style.display = 'none';
     document.getElementById('english').style.display = 'none';
 
-    // Mostrar el idioma seleccionado
+    // Display the selected language
     document.getElementById(language).style.display = 'block';
 
-    // Enviar el idioma seleccionado al servidor mediante una solicitud AJAX
+    // Send the selected language to the server using an AJAX request
     fetch('index.php', {
         method: 'POST',
         headers: {
@@ -18,6 +18,6 @@ function changeLanguage(language) {
     })
     .then(response => response.text())
     .then(data => {
-        console.log(data); // Imprime la respuesta del servidor
+        console.log(data); // Print the server's response
     });
 }
