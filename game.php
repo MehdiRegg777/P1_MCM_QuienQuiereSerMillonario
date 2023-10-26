@@ -5,6 +5,10 @@ session_start();
 <html lang="es">
     <head>
             <title>¿Quién quiere ser millonario?</title>
+            <noscript>
+                This page needs JavaScript activated to work. 
+                <style>div { background-color: white; display:none; }</style>
+            </noscript>
             <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -139,7 +143,7 @@ session_start();
         ?>
         <audio id="correctSound" src="mp3/correct.mp3"></audio>
         <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
-        <script src="funciomGame.js"></script>
+        <script src="funcionGame.js"></script>
         <script src="funcionLanguage.js"></script>
 
         <footer class="footerinfo">

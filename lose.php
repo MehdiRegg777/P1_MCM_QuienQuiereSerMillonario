@@ -16,11 +16,11 @@ session_start();
         <header>
             <?php
             if ($_SESSION['language'] === 'spanish') {
-                echo "<h1>¿Quién quiere ser millonario?</h1>";
+                echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
             } elseif ($_SESSION['language'] === 'catalan') {
-                echo "<h1>Qui vol ser milionari?</h1>";
+                echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
             } elseif ($_SESSION['language'] === 'english') {
-                echo "<h1>Who wants to be a millionaire?</h1>";
+                echo "<a href='/index.php'><h1>Who wants to be a millonarie</h1></a>";
             }
             ?>
         </header>

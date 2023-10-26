@@ -28,16 +28,13 @@ session_start();
         <div class="container">
             <div class="arribapregunta">
                 <?php
-                if ($_SESSION['language'] === 'spanish') {
-                    echo "<h2>¡Has ganado!</h2>";
-                    echo "<h3><em>Clasificaciones</em></h3>";
-                } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<h2>Has guanyat!</h2>";
-                    echo "<h3><em>Classificacions</em></h3>";
-                } elseif ($_SESSION['language'] === 'english') {
-                    echo "<h2>You win!</h2>";
-                    echo "<h3><em>Leaderboard</em></h3>";                    
-                }
+            if ($_SESSION['language'] === 'spanish') {
+                echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
+            } elseif ($_SESSION['language'] === 'english') {
+                echo "<a href='/index.php'><h1>Who wants to be a millonarie</h1></a>";
+            }
                 ?>
 
                 <?php
@@ -134,8 +131,8 @@ session_start();
             <p>empresa@domini.cat</p>
             <p>twt ig p</p>
         </footer>
-        <audio id="winerr" autoplay>
-            <source src="mp3/wineer.mp3" type="audio/mpeg">
+        <audio id="winner" autoplay>
+            <source src="mp3/winner.mp3" type="audio/mpeg">
         </audio>
         <script src="funcionPublish.js"></script>
     </body>

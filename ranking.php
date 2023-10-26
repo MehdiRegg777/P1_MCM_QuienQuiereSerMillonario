@@ -14,14 +14,15 @@ session_start();
     </head>
     <body>
         <header>
+            <!-- IDIOMAS -->
             <?php
-            if ($_SESSION['language'] === 'spanish') {
-                echo "<h1>¿Quién quiere ser millonario?</h1>";
-            } elseif ($_SESSION['language'] === 'catalan') {
-                echo "<h1>Qui vol ser milionari?</h1>";
-            } elseif ($_SESSION['language'] === 'english') {
-                echo "<h1>Who wants to be a millionaire?</h1>";
-            }
+                if ($_SESSION['language'] === 'spanish') {
+                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie</h1></a>";
+                }
             ?>
         </header>
     <div class="container">    
@@ -92,17 +93,16 @@ session_start();
             }
         ?>
 
-
         </table>
         <?php
-        if ($_SESSION['language'] === 'spanish') {
-            echo '<a class="play-button" href="index.php">Volver al inicio</a>';
-        } elseif ($_SESSION['language'] === 'catalan') {
-            echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
-        } elseif ($_SESSION['language'] === 'english') {
-            echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';
-        }
-        ?>
+            if ($_SESSION['language'] === 'spanish') {
+                echo '<a class="play-button" href="index.php">Volver al inicio</a>';
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
+            } elseif ($_SESSION['language'] === 'english') {
+                echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';
+            }
+            ?>
     </div>
     <footer class="footerinfo">
             <p>© MCM S.A.</p>

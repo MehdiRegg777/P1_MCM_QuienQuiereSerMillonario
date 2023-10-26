@@ -11,6 +11,24 @@ $showStyle = 'style="display: block;"';
 <html>
     <head>
         <title>¿Quién quiere ser millonario?</title>
+
+        <noscript>
+            <p class="noJSEnabled">¡Esta página necesita que tengas activado JavaScript para funcionar!<br />Por favor, actívalo y recarga la página para poder jugar.</p>
+            <style>
+                div {
+                    background-color: white;
+                    display: none;
+                    z-index: 9999;
+                }
+
+                .noJSEnabled{
+                    display: flex;
+                    flex-direction: column;
+                    text-align: center;
+                }
+                </style>
+        </noscript>
+
         <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,7 +38,7 @@ $showStyle = 'style="display: block;"';
     <body>
         <div id="spanish" <?php echo ($selectedLanguage != 'spanish') ? $hideStyle : $showStyle; ?>>
             <header>
-                <h1>¿Quién quiere ser millonario?</h1>
+                <a href="/index.php"><h1>¿Quién quiere ser millonario?</h1></a>
             </header>
 
             <div class="container">    
@@ -198,7 +216,6 @@ $showStyle = 'style="display: block;"';
             <p>empresa@domini.cat</p>
             <p>twt ig p</p>
         </footer>
-        <script src="funcionPublish.js"></script>
-        <script src="funcionLanguage.js"></script>
+        <script src="funcionGame.js"></script>
     </body>
 </html>
