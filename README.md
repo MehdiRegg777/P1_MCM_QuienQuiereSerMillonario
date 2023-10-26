@@ -9,7 +9,8 @@
 ### Requisitos Previos
 - Asegúrate de tener instalados los siguientes componentes en tu entorno antes de ejecutar el juego:
 
-PHP: Asegúrate de tener _PHP_ instalado en tu sistema. Puedes verificar si _PHP_ está instalado ejecutando el comando php -v en tu terminal. Si no está instalado, sigue las instrucciones para instalar _PHP_ en [https://php.net](url).
+PHP: Asegúrate de tener _PHP_ instalado en tu sistema. Puedes verificar si _PHP_ está instalado ejecutando el comando de abajo. Si no está instalado, sigue las instrucciones para instalar _PHP_ en [https://php.net](url).
+> php -v en tu terminal.
 
 
 ### Puedes descargar el juego de la siguiente manera:
