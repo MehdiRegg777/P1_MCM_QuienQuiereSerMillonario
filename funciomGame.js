@@ -211,6 +211,29 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
 
 }
 
+function startChronometer() {
+    var mAux, sAux;
+    s++;
+    if (s>59){m++;s=0;}
+    if (m>59){m=0;}
+
+    if (s<10){sAux="0"+s;}else{sAux=s;}
+    if (m<10){mAux="0"+m;}else{mAux=m;}
+}
+
+function stopChronometer() {
+
+}
+
+function reiniciarChronometer() {
+    
+}
+
+// https://francescricart.com/ejercicio-js-crear-un-cronometro-con-javascript/
+// https://www.youtube.com/watch?v=nO53--j1bDM
+// https://codepen.io/janio/pen/wGOGRa
+
+
 // Función para reproducir el sonido correcto
 function playCorrectSound() {
     var correctSound = document.getElementById("correctSound");
