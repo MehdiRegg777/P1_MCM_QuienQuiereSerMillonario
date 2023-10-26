@@ -56,6 +56,13 @@ p, ul, li{
     font-family: 'Lora', sans-serif;
 }
 
+/* COMPROBACIÓ DE JS ACTIVAT */
+.noJSEnabled{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #080357;
+}
 
 /* INDEX.PHP */
 .container {

@@ -14,19 +14,14 @@ $showStyle = 'style="display: block;"';
 
         <noscript>
             <p class="noJSEnabled">¡Esta página necesita que tengas activado JavaScript para funcionar!<br />Por favor, actívalo y recarga la página para poder jugar.</p>
+
             <style>
-                div {
+                div{
                     background-color: white;
                     display: none;
                     z-index: 9999;
                 }
-
-                .noJSEnabled{
-                    display: flex;
-                    flex-direction: column;
-                    text-align: center;
-                }
-                </style>
+            </style>
         </noscript>
 
         <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
