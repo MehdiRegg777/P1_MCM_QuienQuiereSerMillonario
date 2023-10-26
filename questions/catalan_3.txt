@@ -1,93 +1,112 @@
+# /imagGame/
 * Test Question?
 - Option A
 - Option B
 + Correct Option
 - Option C
+# /imagGame/
 * Més copes del món?
 - Jamaica
 - França
 - Alemanya
 + Anglaterra
+# /imagGame/
 * Més guerres guanyades?
 - Austràlia
 - Canadà
 + Anglaterra
 - Nova Zelanda
+# /imagGame/
 * Més PIB anual?
 + Índia
 - Canadà
 - Austràlia
 - Anglaterra
+# /imagGame/
 * Més població?
 + Índia
 - Bangla Desh
 - Austràlia
 - Anglaterra
+# /imagGame/
 * El país més calent?
 - Austràlia
 - Camerun
 + Índia
 - Nova Zelanda
+# /imagGame/
 * El país més fred?
 - Anglaterra
 + Canadà
 - Ghana
 - Gamba
+# /imagGame/
 * Més hores de treball?
 + Anglaterra
 - Camerun
 - Ghana
 - Malàsia
+# /imagGame/
 * Més reserves naturals?
 - Nauru
 - Ruanda
 + Nigèria
 - Anglaterra
+# /imagGame/
 * La millor economia?
 - Austràlia
 - Canadà
 - Nova Zelanda
 + Anglaterra
+# /imagGame/
 * Millor sistema educatiu?
 + Singapur
 - Nova Zelanda
 - Ghana
 - Anglaterra
+# /imagGame/
 * El més esportista?
 - Jamaica
 - Camerun
 - Ghana
 + Anglaterra
+# /imagGame/
 * Població del Regne Unit?
 - 1.216.000.000
 - 689.000.000
 - 1.356.000.000
 + 67.081.000
+# /imagGame/
 * Més morts?
 - Nova Zelanda
 - Camerun
 - Ghana
 + Anglaterra
+# /imagGame/
 * Millor salut?
 + Singapur
 - Nova Zelanda
 - Bahames
 - Anglaterra
+# /imagGame/
 * Més premis de bellesa?
 - Nova Zelanda
 + Índia
 - Austràlia
 - Anglaterra
+# /imagGame/
 * Més premis Nobel?
 - Jamaica
 - Nova Zelanda
 - Filipines
 + Anglaterra
+# /imagGame/
 * Més cultura?
 - Kènia
 - Namíbia
 + Índia
 - Anglaterra
+# /imagGame/
 * Més menjar ràpid?
 - Canadà
 + Índia
