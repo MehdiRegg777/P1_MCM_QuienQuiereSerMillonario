@@ -46,13 +46,7 @@
         </header>
 
             <!-- CATALÀ -->
-            <div class="container">
-                <div class="comodinesBotones">
-                    <button>Comodín del 50%</button>
-                    <button>Comodín de tiempo extra</button>
-                    <button>Comodín del público</button>
-                </div>
-                
+            <div class="container">                
                 <h2><strong>Bienvenido</strong></h2>
                 <h3><em>Instrucciones del juego</em></h3>
             
