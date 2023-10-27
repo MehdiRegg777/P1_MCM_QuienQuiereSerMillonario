@@ -40,7 +40,7 @@ function startChronometer() {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'timee=' + encodeURIComponent(tiempo),
+        body: 'time=' + encodeURIComponent(tiempo),
     })
     .then(response => response.text())
     .then(data => {
@@ -187,6 +187,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
 
                 alert(mensajes[language]['subirNivel'] + nivel + '.');
                 // Parar cronometro
+                
                 const next = document.getElementById("next-question");
                 next.style.display = "";
             } else {

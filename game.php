@@ -1,6 +1,6 @@
 <?php
 session_start();
-isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
+isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
 ?>
 
 <!DOCTYPE html>
