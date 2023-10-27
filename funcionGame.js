@@ -60,6 +60,12 @@ function reiniciarChronometer() {
       }
 }
 
+// Reanudar cronometro
+function reanudarChronometer() {
+    let time = parseInt(localStorage.getItem("time"));
+    startChronometer()
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     reiniciarChronometer();
   });  
@@ -180,6 +186,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 }
 
                 alert(mensajes[language]['subirNivel'] + nivel + '.');
+                // Parar cronometro
                 const next = document.getElementById("next-question");
                 next.style.display = "";
             } else {
