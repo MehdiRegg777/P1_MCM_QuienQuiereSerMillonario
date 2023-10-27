@@ -7,13 +7,13 @@
     $showStyle = 'style="display: block;"';
     
     /* ERROR 403 */
-    /*
-    $request_uri = $_SERVER["REQUEST_URI"];
-    if (REQUEST_URI === "/win.php" || REQUEST_URI === "/lose.php")
+    $request_uri = $_SERVER['REQUEST_URI'];
+    
+    if ($request_uri === '/win.php' || $request_uri === '/lose.php') {
         http_response_code(403);
-    echo "Acceso prohibido.";
-    exit;
-    */
+        echo "Acceso prohibido";
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,11 @@
 <?php
-session_start();
+    session_start();
+    if (!isset($_SESSION['game_finished']) || $_SESSION['game_finished'] !== true) {
+        header("HTTP/1.0 403 Forbidden");
+        echo "Acceso prohibido";
+        exit;
+    }
+    
 ?>
 
 <!DOCTYPE html>
