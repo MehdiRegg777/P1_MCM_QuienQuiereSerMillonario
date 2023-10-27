@@ -1,6 +1,7 @@
 <?php
-session_start();
+    session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -16,53 +17,42 @@ session_start();
             <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
 
-    <body>
+    <body class="gamePage">
         <header>
             <?php
-            if ($_SESSION['language'] === 'spanish') {
-                echo "<h1>¿Quién quiere ser millonario?</h1>";
-            } elseif ($_SESSION['language'] === 'catalan') {
-                echo "<h1>Qui vol ser milionari?</h1>";
-            } elseif ($_SESSION['language'] === 'english') {
-                echo "<h1>Who wants to be a millionaire?</h1>";
-            }
-            ?>
-        </header>
-        <?php
-        // This part of PHP is used to properly reformat the questions and answers in the files
-        // We go through the files catalan_1.txt to catalan_6, english_1 to english_6, and spanish_1 to spanish_6.
+                if ($_SESSION['language'] === 'spanish') {
+                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie</h1></a>";
+                }
+
+        echo "</header>";
+        
         for ($i = 1; $i <= 6; $i++) {
         $languages = array("catalan", "english", "spanish");
         foreach ($languages as $language) {
             $filename = "questions/".$language . "_" . $i . ".txt";
             
-            // Read the content of the file.
             $lines = file($filename);
 
-            // Initialize a variable to store the modified content.
             $modifiedContent = "";
 
             foreach ($lines as $line) {
-                // Remove trailing spaces, tabs, etc. using the trim function.
                 $cleanLine = trim($line);
 
-                // Only add non-empty lines to the modified content
                 if (!empty($cleanLine)) {
                     $modifiedContent .= $cleanLine . "\n";
                 }
             }
 
-            // To remove blank lines at the end of the file
             $modifiedContent = rtrim($modifiedContent);
 
-            // Save the modified content to the file
             file_put_contents($filename, $modifiedContent);
-
         }
         }
 
-        ?>
-        <?php
         if (isset($_GET['niveles'])) {
             $_GET['nivel'] = intval($_GET['niveles']);
         } else {
@@ -106,13 +96,10 @@ session_start();
             }
 
             $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
-            echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
-            
-            // here the question.
+            echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";            
             echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
             echo "<div id='respuesta $claseRespuesta'>";
             
-            // and here are the answers
             foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
                 $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
                 echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
@@ -131,28 +118,27 @@ session_start();
         $nivels = $_GET['nivel'];
         $nivels++;
         echo "<div class='ghof-buttons'>";
-        // echo "<button id='inicio-btn' onclick='regresarAlInicio()' style='display: none;' ><em><strong>Volver al inicio</em></strong></button>";
+
         if ($_SESSION['language'] === 'spanish') {
             echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
         } elseif ($_SESSION['language'] === 'catalan') {
-            echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Seguent pregunta</button>";
+            echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Següent pregunta</button>";
         } elseif ($_SESSION['language'] === 'english') {
             echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Next question</button>";
         }
         echo "</div>"
         ?>
+
+        <!-- FIN DEL PHP. -->
+
         <audio id="correctSound" src="mp3/correct.mp3"></audio>
         <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
         <script src="funcionGame.js"></script>
         <script src="funcionLanguage.js"></script>
-
         <footer class="footerinfo">
             <p>© MCM S.A.</p>
-            <p>Contact us</p>
-            <p>Follow us</p>
-            <p>empresa@domini.cat</p>
-            <p>twt ig p</p>
+            <p><a href="gmail.com">Contact us</a></p>
+            <p><a href="instagra.com">Follow us</a></p>
         </footer>
-
     </body>
 </html>
