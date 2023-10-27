@@ -5,6 +5,15 @@
     $selectedLanguage = $_SESSION['language'];
     $hideStyle = 'style="display: none;"';
     $showStyle = 'style="display: block;"';
+    
+    /* ERROR 403 */
+    /*
+    $request_uri = $_SERVER["REQUEST_URI"];
+    if (REQUEST_URI === "/win.php" || REQUEST_URI === "/lose.php")
+        http_response_code(403);
+    echo "Acceso prohibido.";
+    exit;
+    */
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +46,13 @@
         </header>
 
             <!-- CATALÀ -->
-            <div class="container">    
+            <div class="container">
+                <div class="comodinesBotones">
+                    <button>Comodín del 50%</button>
+                    <button>Comodín de tiempo extra</button>
+                    <button>Comodín del público</button>
+                </div>
+                
                 <h2><strong>Bienvenido</strong></h2>
                 <h3><em>Instrucciones del juego</em></h3>
             

@@ -102,6 +102,36 @@ a{
     max-width: 100%;
 }
 
+.comodinesBotones{
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    border-radius: 10px;
+    width: auto;
+    height: 100px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.comodinesBotones button{
+    width: auto;
+    height: 50px;
+    margin: 20px;
+    background-color: #F5FF90;
+    border: 1px solid #FFC15E;
+    border-radius: 100px;
+    font-family: 'Lora', sans-serif;
+    font-size: 18px;
+    transition-duration: 1s;
+}
+
+.comodinesBotones button:hover{
+    transition-duration: 1s;
+    box-shadow: 1px 0.6px black;
+}
+
 /* INDEX.PHP */
 .indexPage a.no-underline{
     text-decoration: none;
@@ -157,7 +187,7 @@ a{
     background-color: #F5FF90;
     border: 1px solid #F5FF90;
     width: 300px;
-    height: 50px;
+    height: auto;
     margin-top: 20px;
     margin-bottom: 20px;
     cursor: pointer;
