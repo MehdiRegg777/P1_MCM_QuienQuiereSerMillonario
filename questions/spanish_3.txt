@@ -1,40 +1,68 @@
+<<<<<<< HEAD
 # /imagGame/question19.png
+=======
+# /imagGame/
+>>>>>>> a595486630996f8df6daddafa9be5712af0a34f6
 * ¿Más Mundiales?
 - Jamaica
 - Francia
 - Alemania
 + Inglaterra
+<<<<<<< HEAD
 # /imagGame/question20.png
+=======
+# /imagGame/
+>>>>>>> a595486630996f8df6daddafa9be5712af0a34f6
 * ¿Más guerras ganadas?
 - Australia
 - Canadá
 + Inglaterra
 - Nueva Zelanda
+<<<<<<< HEAD
 # /imagGame/question21.png
+=======
+# /imagGame/
+>>>>>>> a595486630996f8df6daddafa9be5712af0a34f6
 * ¿Más PIB Anual?
 + India
 - Canadá
 - Australia
 - Inglaterra
+<<<<<<< HEAD
 # /imagGame/question22.png
+=======
+# /imagGame/
+>>>>>>> a595486630996f8df6daddafa9be5712af0a34f6
 * ¿Más población?
 + India
 - Bangladesh
 - Australia
 - Inglaterra
+<<<<<<< HEAD
 # /imagGame/question23.png
+=======
+# /imagGame/
+>>>>>>> a595486630996f8df6daddafa9be5712af0a34f6
 * ¿El país más caluroso?
 - Australia
 - Camerún
 + India
 - Nueva Zelanda
+<<<<<<< HEAD
 # /imagGame/question24.png
+=======
+# /imagGame/
+>>>>>>> a595486630996f8df6daddafa9be5712af0a34f6
 * ¿El país más frío?
 - Inglaterra
 + Canadá
 - Ghana
 - Gamba
+<<<<<<< HEAD
 # /imagGame/question25.png
+=======
+# /imagGame/
+>>>>>>> a595486630996f8df6daddafa9be5712af0a34f6
 * ¿Más horas trabajando?
 + Inglaterra
 - Camerún
@@ -53,6 +81,7 @@
 - Nueva Zelanda
 # /imagGame/question28.png
 + Inglaterra
+# /imagGame/
 * ¿Mejor sistema educativo?
 + Singapur
 - Nueva Zelanda

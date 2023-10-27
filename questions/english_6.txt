@@ -24,9 +24,6 @@
 - Ireland
 # /imagGame/question57.png
 * When was the year with most visitors in the British Museum?
-- 2017
-+ 2015
-- 2020
 - 2016
 # /imagGame/question58.png
 * Who said this sentence "Oh Romeo, Romeo! Wherefore art you Romeo? Deny your father and refuse your name; or, if you will rot I swear you my love and I'll not longer be a Capulet."?

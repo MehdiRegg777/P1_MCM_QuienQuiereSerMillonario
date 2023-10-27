@@ -29,6 +29,7 @@
 - Brasil
 # /imagGame/question6.png
 + Inglaterra
+# /imagGame/
 * La pelota solía ser...
 - Con Plástico
 + Con Hojas
