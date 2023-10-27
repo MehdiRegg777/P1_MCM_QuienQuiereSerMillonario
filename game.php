@@ -115,7 +115,11 @@ $preguntas = $_GET['preguntas'];
             }
 
             $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
-            echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";            
+            echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
+            $imagen = $pregunta['imagen']; // Ruta de la imagen
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagen)) {
+                echo '<img src="' . $imagen . '" alt="imagenes">';
+            }
             echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
             echo "<div id='respuesta $claseRespuesta'>";
             
