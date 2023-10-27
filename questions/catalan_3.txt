@@ -1,10 +1,4 @@
 # /imagGame/
-* Test Question?
-- Option A
-- Option B
-+ Correct Option
-- Option C
-# /imagGame/
 * Més copes del món?
 - Jamaica
 - França

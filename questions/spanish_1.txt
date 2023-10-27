@@ -1,43 +1,52 @@
+# /imagGame/
 * ¿Qué hizo Gandhi por el mundo?
 - Nada
 + Paz
 - Revolución
 - Racismo
+# /imagGame/
 * ¿De dónde es Gandhi?
 - Marruecos
 - Inglaterra
 + India
 - Perú
+# /imagGame/
 * Ghandi murió por un...
 - Accidente
 - Infarto de miocardio
 - enfermedad
 + Asesinado
+# /imagGame/
 * ¿En qué siglo se creó el fútbol?
 + Siglo XIX
 - Siglo XX
 - Siglo I
 - Ahora
+# /imagGame/
 * ¿En qué parte del mundo se creó el fútbol?
 - Porcelana
 - México
 - Brasil
 + Inglaterra
+# /imagGame/
 * La pelota solía ser...
 - Con Plástico
 + Con Hojas
 - Con Cajas
 - Con ropa
+# /imagGame/
 * ¿Quiénes fueron los que utilizaron la palabra “alborigen”?
 - árabes
 - asiáticos
 - Español
 + Italianos - Griegos
+# /imagGame/
 * En la antigüedad, los humanos vivían en...
 + Australia
 - Barcelona
 - Singapur
 - Argentina
+# /imagGame/
 * ¿Cuántos años vivieron los aborígenes?
 - 12.000 Años
 + 40.000 Años

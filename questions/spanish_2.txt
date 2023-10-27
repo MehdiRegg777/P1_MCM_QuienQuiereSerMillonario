@@ -1,43 +1,52 @@
+# /imagGame/
 * ¿Cómo es la bandera del Reino Unido?
 - Rosa, azul y rojo
 + Azul Blanco Y Rojo
 - Azul, Negro, Rojo
 - Amarillo Rojo Azul
+# /imagGame/
 * ¿Qué come habitualmente el Reino Unido?
 - gofres
 - Sopa
 - Tocino
 + Patatas Y Pescado
+# /imagGame/
 * ¿Quién es el presidente del Reino Unido?
 - Donald Trump
 - Pedro Sánchez
 - Dina Boluarte
 + Boris Johnson
+# /imagGame/
 * ¿Cuánto duró aproximadamente la guerra entre Palestina e Israel?
 - 2 meses
 - 7 días
 - 2 años
 + 11 Días
+# /imagGame/
 * ¿Cuántos Días Hubo Guerra Con Violencia Entre Palestina E Israel?
 - 11 días
 - 2 meses
 + 3 Días
 - Cada día de guerra
+# /imagGame/
 * ¿Cuántas personas murieron en la guerra entre Palestina e Israel?
 - 3 personas
 - La mitad de la ciudad
 - 200 personas
 + 44 personas
+# /imagGame/
 * ¿Por qué son importantes los imperios británicos?
 - Por su histórico
 + Por sus muertos
 - Por sus victorias
 - Por su dinero
+# /imagGame/
 * Las ideas sobre el imperio en el Reino Unido han fluctuado a lo largo...
 - Victorias
 + Horarios
 - Monarquía
 - País
+# /imagGame/
 * ¿Cuántos territorios conquistó el Imperio Británico?
 + 5 Territorios
 - 8 territorios

@@ -1,93 +1,106 @@
-* Test Question?
-- Option A
-- Option B
-+ Correct Option
-- Option C
+# /imagGame/
 * More World Cups?
 - Jamaica
 - France
 - Germany
 + England
+# /imagGame/
 * More Wars Won?
 - Australia
 - Canada
 + England
 - New Zeland
+# /imagGame/
 * More PIB Annual?
 + India
 - Canada
 - Australia
 - England
+# /imagGame/
 * More Population?
 + India
 - Bangladesh
 - Australia
 - England
+# /imagGame/
 * The Hottest Country?
 - Australia
 - Cameroon
 + India
 - New Zeland
+# /imagGame/
 * The Coldest Country?
 - England
 + Canada
 - Ghana
 - Gamba
+# /imagGame/
 * More Hours Working?
 + England
 - Cameroon
 - Ghana
 - Malasia
+# /imagGame/
 * More Natural Reserves?
 - Nauru
 - Ruanda
 + Nigeria
 - England
+# /imagGame/
 * The Best Economy?
 - Australia
 - Canada
 - New Zeland
 + England
+# /imagGame/
 * Better Education System?
 + Singapore
 - New Zeland
 - Ghana
 - England
+# /imagGame/
 * The Most Athlete?
 - Jamaica
 - Cameroon
 - Ghana
 + England
+# /imagGame/
 * Population of UK?
 - 1.216.000.000
 - 689.000.000
 - 1.356.000.000
 + 67.081.000
+# /imagGame/
 * More Deaths?
 - New Zeland
 - Cameroon
 - Ghana
 + England
+# /imagGame/
 * Better Health?
 + Singapore
 - New Zeland
 - Bahamas
 - England
+# /imagGame/
 * More Beauty Awards?
 - New Zeland
 + India
 - Australia
 - England
+# /imagGame/
 * More Nobel Awards?
 - Jamaica
 - New Zeland
 - Philippines
 + England
+# /imagGame/
 * More Culture?
 - Kenia
 - Namibia
 + India
 - England
+# /imagGame/
 * More Fast Food?
 - Canada
 + India
