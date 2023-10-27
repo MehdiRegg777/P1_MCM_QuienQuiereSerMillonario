@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 # /imagGame/question1.png
-=======
-# /imagGame/
->>>>>>> a595486630996f8df6daddafa9be5712af0a34f6
 * What Did Gandhi Do For The World?
 - Nothing
 + Peace
