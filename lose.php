@@ -138,6 +138,6 @@ session_start();
         <audio id="gameOver" autoplay>
             <source src="mp3/gameover.mp3" type="audio/mpeg">
         </audio>
-        <script src="funcionPublish.js"></script>
+        <script src="funcionGame.js"></script>
     </body>
 </html>
