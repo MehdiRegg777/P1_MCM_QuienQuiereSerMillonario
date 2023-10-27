@@ -35,7 +35,6 @@ h1{
     font-size: 50px;
     color: white;
     z-index: 1;
-    position: relative;
 }
 
 h2{ font-size: 40px; }
@@ -102,22 +101,30 @@ a{
     max-width: 100%;
 }
 
+.container1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .comodinesBotones{
     background-color: #FF9F1C;
     border: 1px solid #FF9F1C;
     border-radius: 10px;
-    width: auto;
+    width: 535px;
     height: 100px;
     color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    position: sticky;
+    bottom: 0;
 }
 
 .comodinesBotones button{
     width: auto;
-    height: 50px;
+    height: auto;
     margin: 20px;
     background-color: #F5FF90;
     border: 1px solid #FFC15E;
@@ -130,6 +137,7 @@ a{
 .comodinesBotones button:hover{
     transition-duration: 1s;
     box-shadow: 1px 0.6px black;
+    cursor: pointer;
 }
 
 /* INDEX.PHP */
