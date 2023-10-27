@@ -51,44 +51,66 @@
                         echo "<h3><em>Leaderboard</em></h3>";                    
                     }
 
-                    if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                    $puntos = $_GET["puntage"];
-                    echo '<table border="1" id="correctqueststable">';
-                    echo '<tr>';
-                    
-                    if ($_SESSION['language'] === 'spanish') {
-                        echo '<th>Preguntas acertadas</th>';
-                    
-                    } elseif ($_SESSION['language'] === 'catalan') {
-                        echo '<th>Preguntas encertades</th>';
-                    
-                    } elseif ($_SESSION['language'] === 'english') {
-                        echo '<th>Correct Answers</th>';                   
-                    }
-                    
-                    echo '<td>' . $puntos . '</td>';
-                    echo '</tr>';
-                    echo '</table>';
-                    }
-
-                    if ($_SESSION['language'] === 'spanish') {
-                        echo '<p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>';
-                        echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
-                        echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
-                        echo '<a class="play-button" href="index.php"><em>Volver al inicio</em></a>';
-                    
-                    } elseif ($_SESSION['language'] === 'catalan') {
-                        echo '<p>Si vols desar la teva partida, fes clic al botó "<em>Publicar</em>".</p>';
-                        echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
-                        echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
-                        echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
-                    
-                    } elseif ($_SESSION['language'] === 'english') {
-                        echo '<p>If you want to save your game, click on the "<em>Publish</em>" button.</p>';
-                        echo '<a class="play-button" onclick="publishGame()"><em>Publish</em></a>';
-                        echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
-                        echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';             
-                    }
+             
+                      if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                        $puntos = $_GET["puntage"];
+                        echo '<table border="1" id="correctqueststable">';
+                        echo '<tr>';
+                        if ($_SESSION['language'] === 'spanish') {
+                            echo '<th>Preguntas acertadas</th>';
+                            echo '<td>' . $puntos . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Tiempo tardado</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Puntos totales</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
+                        } elseif ($_SESSION['language'] === 'catalan') {
+                            echo '<th>Preguntas encertades</th>';
+                            echo '<td>' . $puntos . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Temps trigat</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Punts totals</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
+                        } elseif ($_SESSION['language'] === 'english') {
+                            echo '<th>Correct Answers</th>';
+                            echo '<td>' . $puntos . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>TTime taken</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Total points</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
+                        }
+                        echo '</tr>';
+                        echo '</table>';
+                      }
+                ?>
+                <?php
+                if ($_SESSION['language'] === 'spanish') {
+                    echo '<p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>';
+                    echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
+                    echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
+                    echo '<a class="play-button" href="index.php"><em>Volver al inicio</em></a>';
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo '<p>Si vols desar la teva partida, fes clic al botó "<em>Publicar</em>".</p>';
+                    echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
+                    echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
+                    echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo '<p>If you want to save your game, click on the "<em>Publish</em>" button.</p>';
+                    echo '<a class="play-button" onclick="publishGame()"><em>Publish</em></a>';
+                    echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
+                    echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';             
+                }
                 ?>
             </div>
 

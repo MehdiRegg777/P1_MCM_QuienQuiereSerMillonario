@@ -1,5 +1,10 @@
 <?php
+<<<<<<< HEAD
     session_start();
+=======
+session_start();
+isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
+>>>>>>> origin/Marcelo
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +43,9 @@
             </div>
         </div>
 
+        <div class="timer" id="timer">
+            00:00
+        </div>
         <?php
             for ($i = 1; $i <= 6; $i++) {
             $languages = array("catalan", "english", "spanish");
@@ -113,6 +121,7 @@
                         break;
                     }
 
+<<<<<<< HEAD
                     $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
                     echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
                     $imagen = $pregunta['imagen']; // Ruta de la imagen
@@ -149,6 +158,41 @@
                     echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Next question</button>";
                 }
                 echo "</div>"
+=======
+            $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
+            echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
+            
+            // AQUÍ LA PREGUNTA.
+            echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
+            echo "<div id='respuesta $claseRespuesta'>";
+            
+            foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
+                $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
+                echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
+            }
+            if ($_SESSION['language'] === 'spanish') {
+                echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'spanish')\">Responder</button>";
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'catalan')\">Respondre</button>";
+            } elseif ($_SESSION['language'] === 'english') {
+                echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'english')\">Reply</button>";
+            }
+            echo "</div>";
+            echo "</div>";
+        }
+        
+        $nivels = $_GET['nivel'];
+        $nivels++;
+        echo "<div class='ghof-buttons'>";
+        if ($_SESSION['language'] === 'spanish') {
+            echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
+        } elseif ($_SESSION['language'] === 'catalan') {
+            echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Seguent pregunta</button>";
+        } elseif ($_SESSION['language'] === 'english') {
+            echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Next question</button>";
+        }
+        echo "</div>"
+>>>>>>> origin/Marcelo
         ?>
 
         <!-- FIN DEL PHP. -->
