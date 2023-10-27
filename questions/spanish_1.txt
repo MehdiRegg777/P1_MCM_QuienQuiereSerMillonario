@@ -27,9 +27,8 @@
 - Porcelana
 - México
 - Brasil
-# /imagGame/question6.png
 + Inglaterra
-# /imagGame/
+# /imagGame/question6.png
 * La pelota solía ser...
 - Con Plástico
 + Con Hojas
