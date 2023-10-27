@@ -1,10 +1,9 @@
 <?php
-<<<<<<< HEAD
-    session_start();
-=======
+
 session_start();
 isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
->>>>>>> origin/Marcelo
+
+
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +33,9 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
                 }
             ?>
         </header>
+        <div class="timer" id="timer">
+            00:00
+        </div>
 
         <div class="container1">
             <div class="comodinesBotones">
@@ -43,9 +45,12 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="timer" id="timer">
             00:00
         </div>
+=======
+>>>>>>> origin/Marcelo
         <?php
             for ($i = 1; $i <= 6; $i++) {
             $languages = array("catalan", "english", "spanish");
@@ -122,6 +127,9 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
                     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Marcelo
                     $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
                     echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
                     $imagen = $pregunta['imagen']; // Ruta de la imagen
@@ -158,6 +166,7 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
                     echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Next question</button>";
                 }
                 echo "</div>"
+<<<<<<< HEAD
 =======
             $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
             echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
@@ -192,6 +201,8 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
             echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Next question</button>";
         }
         echo "</div>"
+>>>>>>> origin/Marcelo
+=======
 >>>>>>> origin/Marcelo
         ?>
 

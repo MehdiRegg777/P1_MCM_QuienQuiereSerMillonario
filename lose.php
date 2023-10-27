@@ -51,7 +51,11 @@
                         echo "<h3><em>Leaderboard</em></h3>";                    
                     }
 
+<<<<<<< HEAD
              
+=======
+                
+>>>>>>> origin/Marcelo
                       if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         $puntos = $_GET["puntage"];
                         echo '<table border="1" id="correctqueststable">';
@@ -166,6 +170,6 @@
         <audio id="gameOver" autoplay>
             <source src="mp3/gameover.mp3" type="audio/mpeg">
         </audio>
-        <script src="funcionPublish.js"></script>
+        <script src="funcionGame.js"></script>
     </body>
 </html>

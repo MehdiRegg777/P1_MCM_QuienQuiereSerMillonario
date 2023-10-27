@@ -130,10 +130,6 @@ function responderPregunta(preguntaIndex, nivel, language) {
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
-
-            // Calcular puntos obtenidos por respuesta
-
-            //ir a la pagin lose
             window.location.href = 'lose.php?puntage=' + puntos; 
         }
     } else {
@@ -184,6 +180,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 }
 
                 alert(mensajes[language]['subirNivel'] + nivel + '.');
+<<<<<<< HEAD
 <<<<<<< HEAD:funcionGame.js
 
 =======
@@ -194,6 +191,8 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
 
                 //Insertar el boton para ir a la pagina siguintes preguntas
 >>>>>>> origin/Marcelo:funciomGame.js
+=======
+>>>>>>> origin/Marcelo
                 const next = document.getElementById("next-question");
                 next.style.display = "";
             } else {
