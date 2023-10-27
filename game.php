@@ -1,5 +1,6 @@
 <?php
 session_start();
+isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,6 +25,9 @@ session_start();
             }
             ?>
         </header>
+        <div class="timer" id="timer">
+            00:00
+        </div>
         <?php
         // Recorremos los archivos catalan_1.txt hasta catalan_6, english_1 hasta english_6 y spanish_1 hasta spanish_6
         for ($i = 1; $i <= 6; $i++) {
@@ -125,7 +129,6 @@ session_start();
         $nivels = $_GET['nivel'];
         $nivels++;
         echo "<div class='ghof-buttons'>";
-        // echo "<button id='inicio-btn' onclick='regresarAlInicio()' style='display: none;' ><em><strong>Volver al inicio</em></strong></button>";
         if ($_SESSION['language'] === 'spanish') {
             echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
         } elseif ($_SESSION['language'] === 'catalan') {

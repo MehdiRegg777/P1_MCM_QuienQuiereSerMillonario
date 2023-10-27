@@ -128,6 +128,22 @@ a.no-underline {
 
 /* GAME.PHP */
 /* Hay que hacer esta sección como el "Wireframe". */
+.timer {
+    width: 200px;
+    height: 90px;
+    border-radius: 50px 50px 50px 50px;
+    font-size: 30px;
+    background-color: #FF9F1C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
 .pregunta{
     margin-top: 50px;
     display: flex;

@@ -200,5 +200,6 @@ $showStyle = 'style="display: block;"';
         </footer>
         <script src="funcionPublish.js"></script>
         <script src="funcionLanguage.js"></script>
+        <script src="funciomGame.js"></script>
     </body>
 </html>

@@ -48,12 +48,38 @@ session_start();
                         echo '<tr>';
                         if ($_SESSION['language'] === 'spanish') {
                             echo '<th>Preguntas acertadas</th>';
+                            echo '<td>' . $puntos . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Tiempo tardado</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Puntos totales</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
                         } elseif ($_SESSION['language'] === 'catalan') {
                             echo '<th>Preguntas encertades</th>';
+                            echo '<td>' . $puntos . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Temps trigat</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Punts totals</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
                         } elseif ($_SESSION['language'] === 'english') {
-                            echo '<th>Correct Answers</th>';                   
+                            echo '<th>Correct Answers</th>';
+                            echo '<td>' . $puntos . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>TTime taken</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Total points</th>';
+                            echo '<td>' . $_SESSION['timee'] . '</td>';
                         }
-                        echo '<td>' . $puntos . '</td>';
                         echo '</tr>';
                         echo '</table>';
                       }

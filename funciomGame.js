@@ -24,6 +24,45 @@ const mensajes = {
     }
 };
 
+// Algoritmo cronometro
+function startChronometer() {
+    time++;
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    const minutes00 = minutes < 10 ? "0" + minutes : minutes; // Es un if para mostrar 00:00 y no 0:0
+    const second00 = seconds < 10 ? "0" + seconds : seconds;
+    document.getElementById("timer").textContent = minutes00  + ":" + second00;
+    let tiempo = minutes00  + ":" + second00;
+    localStorage.setItem("time", time);
+    fetch('game.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'timee=' + encodeURIComponent(tiempo),
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+    });
+}
+
+// Inicializar el cronometro
+let time = parseInt(localStorage.getItem("time")) || 0;
+const intervalo = setInterval(startChronometer, 1000);
+
+// Reiniciar el cronometro
+function reiniciarChronometer() {
+    const currentPage = window.location.pathname;
+    if (currentPage === '/index.php' || currentPage === '/') {
+        localStorage.removeItem('time');
+      }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    reiniciarChronometer();
+  });  
+
 function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
 
@@ -93,6 +132,8 @@ function responderPregunta(preguntaIndex, nivel, language) {
                 bloquearRespuestas.classList.add('bloqueada');
             }
 
+            // Calcular puntos obtenidos por respuesta
+
             //ir a la pagin lose
             window.location.href = 'lose.php?puntage=' + puntos; 
             
@@ -156,7 +197,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
 
                 // Recargar la página actual para cargar las preguntas del nuevo nivel
                 alert(mensajes[language]['subirNivel'] + nivel + '.');
-
+                // Parar cronometro
                 //Insertar el boton para volver al inicio despues de perder
                 // const backIndex = document.getElementById("inicio-btn");
                 // backIndex.style.display = "";
@@ -210,29 +251,6 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
 
 
 }
-
-function startChronometer() {
-    var mAux, sAux;
-    s++;
-    if (s>59){m++;s=0;}
-    if (m>59){m=0;}
-
-    if (s<10){sAux="0"+s;}else{sAux=s;}
-    if (m<10){mAux="0"+m;}else{mAux=m;}
-}
-
-function stopChronometer() {
-
-}
-
-function reiniciarChronometer() {
-    
-}
-
-// https://francescricart.com/ejercicio-js-crear-un-cronometro-con-javascript/
-// https://www.youtube.com/watch?v=nO53--j1bDM
-// https://codepen.io/janio/pen/wGOGRa
-
 
 // Función para reproducir el sonido correcto
 function playCorrectSound() {
