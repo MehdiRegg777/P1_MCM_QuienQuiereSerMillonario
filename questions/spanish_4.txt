@@ -1,0 +1,54 @@
+# /imagGame/question37.png
+* Cuantas copas del mundo ha ganado Inglaterra?
+- Ninguna
++ 1 copa del mundo
+- 2 copas del mundo
+- Nunca ha ido
+# /imagGame/question38.png
+* En que direccion conducen los ingleses?
++ Conducen por la izquierda y el conductor esta en la derecha
+- Conducen por la derecha y el conductor esta en la izquierda
+- Como todos
+- Al reves
+# /imagGame/question39.png
+* Que país de la commonwealth crees que tiene la mejor situacion economica?
++ India
+- Canada
+- Pakistan
+- Reino Unido
+# /imagGame/question40.png
+* Cual es el pais que tiene el mayor numero de colonias del mundo?
+- Rusia
++ Francia
+- Dinamarca
+- Portugal
+# /imagGame/question41.png
+* A que hora toman el te los ingleses?
+- 2 P.M
+- 1 P.M
+- 5 P.M
++ 4 P.M
+# /imagGame/question42.png
+* Cual fue el primer club de futbol oficial en el Reino Unido?
+- Notts County Football Club
++ Sheffield
+- Hallam FC
++ Munich
+# /imagGame/question43.png
+* Cual es el nombre de la fiesta donde los ingleses se visten de verde y recogen flores?
+- Easter Day
++ May day
+- San Patrick day
+- April Fool’s Day
+# /imagGame/question44.png
+* Que pais consume mas te anualmente?
+- Portugal
++ Reino Unido
+- España
+- Francia
+# /imagGame/question45.png
+* Que país colonial tiene mas copas del mundo?
+- Francia
+- España
++ Alemania
+- Brasil

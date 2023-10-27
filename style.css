@@ -1,0 +1,340 @@
+/* IMPORTACIÓ DE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap');
+
+
+/* BARRA DE NAVEGACIÓ */
+body::-webkit-scrollbar{ width: 5px; }
+  
+body::-webkit-scrollbar-track{ background: rgba(255, 255, 255, 0); }
+
+body::-webkit-scrollbar-thumb{
+    background-color: #FF9F1C;
+    border: 3px solid #FF9F1C;
+    border-radius: 20px;
+}
+
+/* GENERAL */
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+}
+
+header{
+    background: url(imgs/qqsm.jpg) no-repeat center center;
+    background-size: cover;
+    text-align: center;
+    padding: 100px;
+    margin-bottom: 100px;
+}
+
+h1{
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 50px;
+    color: white;
+    z-index: 1;
+}
+
+h2{ font-size: 40px; }
+
+h3{
+    font-size: 20px;
+    font-weight: 100;
+    color: grey;
+}
+
+p, ul, li{
+    color: black;
+    line-height: 28px;
+    font-family: 'Lora', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+/* GENERAL, BOTONES */
+.ghof-buttons{ text-align: center; }
+
+.play-button{ margin-right: 30px; }
+
+.halloffame-button{ margin-right: 30px; }
+
+.play-button, .halloffame-button, #savepunt-button, .responder-btn{
+    display: inline-block;
+    padding: 20px 40px;
+    margin-top: 50px;
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 24px;
+    color: black;
+    font-family: 'Lora', sans-serif;
+    transition-duration: 1s;
+}
+
+.play-button:hover, .halloffame-button:hover, #savepunt-button:hover{
+    cursor: pointer;
+    transition-duration: 1s;
+    background-color: #FFC15E;
+    color: white;
+}
+
+/* COMPROBACIÓ DE JS ACTIVAT */
+.noJSEnabled{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #080357;
+}
+
+/* INDEX.PHP */
+.container{
+    background-color: white;
+    border-radius: 10px;
+    margin: 80px;
+    max-width: 100%;
+}
+
+.container1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comodinesBotones{
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    border-radius: 10px;
+    width: 535px;
+    height: 100px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    bottom: 0;
+}
+
+.comodinesBotones button{
+    width: auto;
+    height: auto;
+    margin: 20px;
+    background-color: #F5FF90;
+    border: 1px solid #FFC15E;
+    border-radius: 100px;
+    font-family: 'Lora', sans-serif;
+    font-size: 18px;
+    transition-duration: 1s;
+}
+
+.comodinesBotones button:hover{
+    transition-duration: 1s;
+    box-shadow: 1px 0.6px black;
+    cursor: pointer;
+}
+
+/* INDEX.PHP */
+.indexPage a.no-underline{
+    text-decoration: none;
+}
+
+.indexPage .languagesimages{ text-align: center; }
+
+.indexPage .presentationimage{ text-align: center; }
+
+.indexPage .languagesimages img{
+    margin-top: 50px;
+    margin-right: 20px;
+    width: 120px;
+    height: 80px;
+    transition-duration: 1s;
+}
+
+.indexPage .languagesimages img:hover{
+    cursor: pointer;
+    transition-duration: 1s;
+    transform: scale(1.1);
+    box-shadow: 4px 4px #FFC15E;
+}
+
+.indexPage .presentationimage img{
+    margin-top: 50px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* GAME.PHP */
+/* Hay que hacer esta sección como el "Wireframe". */
+.timer {
+    width: 200px;
+    height: 90px;
+    border-radius: 50px 50px 50px 50px;
+    font-size: 30px;
+    background-color: #FF9F1C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-left: 50px;
+    margin-bottom: 50px;
+}
+
+.pregunta{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+
+.gamePage .questiontitle{
+    width: 60%;
+    height: 50%;
+    background-color: #FFC15E;
+    border: 1px solid #FFC15E;
+    font-family: 'Montserrat Alternates', sans-serif;
+    font-size: 25px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.gamePage .respuesta{
+    background-color: #F5FF90;
+    border: 1px solid #F5FF90;
+    width: 300px;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    text-transform: capitalize;
+    font-family: 'Lora', sans-serif;
+    text-align: center;
+    line-height: 50px;
+    text-transform: capitalize;
+    transition-duration: 1s;
+}
+
+.gamePage .respuesta:hover{
+    transition-duration: 1s;
+    box-shadow: 2px 2px #5f570d81;
+    background-color: #d18821;
+    color: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.gamePage .respuesta.bloqueada{
+    background-color: #F5FF90;
+    border: 1px solid #F5FF90;
+    border-radius: 5px;
+    filter: blur(2px);
+    margin-bottom: 20px;
+    cursor: not-allowed;
+}
+
+.gamePage .pregunta.bloqueada{
+    width: 90%;
+    border-radius: 5px;
+    filter: blur(4px);
+    cursor: not-allowed;
+}
+
+.gamePage .pregunta.bloqueada h1{
+    background-color: #FFC15E;
+    border: 1px solid #FFC15E;
+}
+
+.gamePage #next-question{
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    width: 300px;
+    height: 50px;
+    font-family: 'Lora', sans-serif;
+    line-height: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.gamePage #inicio-btn{
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    width: 300px;
+    height: 50px;
+    font-family: 'Lora', sans-serif;
+    line-height: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+/* SELECCIÓN DE PREGUNTA EN "GAME.PHP" */
+.gamePage .respuesta.seleccionada{ background-color: #FF9F1C; }
+
+.gamePage .respuesta.acertada{ background-color: #a2ca83; }
+
+.gamePage .respuesta.fallada{ background-color: #ca8383; }
+
+#guardarpartida{
+    margin-top: 30px;
+    font-family: 'Lora', sans-serif;
+}
+
+/* TABLA DE "RANKING.PHP" */
+#correctqueststable{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+    border-collapse: collapse;
+    font-family: 'Lora', sans-serif;
+    font-size: 16px;
+    border: 2px solid white;
+}
+
+#correctqueststable th{ background-color: #a2ca83; }
+
+#correctqueststable td{ background-color: #D6FFB7; }
+
+#correctqueststable th, td{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* FOOTER */
+.footerinfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.footerinfo p{
+    width: 100%;
+    color: white;
+}
+
+footer{
+    margin-top: 100px;
+    background-color: #080357;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    bottom: 0;
+}
