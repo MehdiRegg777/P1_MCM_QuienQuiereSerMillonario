@@ -5,6 +5,10 @@ session_start();
 <html lang="es">
     <head>
             <title>¿Quién quiere ser millonario?</title>
+            <noscript>
+                This page needs JavaScript activated to work. 
+                <style>div { background-color: white; display:none; }</style>
+            </noscript>
             <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,32 +29,33 @@ session_start();
             ?>
         </header>
         <?php
-        // Recorremos los archivos catalan_1.txt hasta catalan_6, english_1 hasta english_6 y spanish_1 hasta spanish_6
+        // This part of PHP is used to properly reformat the questions and answers in the files
+        // We go through the files catalan_1.txt to catalan_6, english_1 to english_6, and spanish_1 to spanish_6.
         for ($i = 1; $i <= 6; $i++) {
         $languages = array("catalan", "english", "spanish");
         foreach ($languages as $language) {
             $filename = "questions/".$language . "_" . $i . ".txt";
             
-            // Leer el contenido del archivo
+            // Read the content of the file.
             $lines = file($filename);
 
-            // Inicializar una variable para almacenar el contenido modificado
+            // Initialize a variable to store the modified content.
             $modifiedContent = "";
 
             foreach ($lines as $line) {
-                // Eliminar espacios sobrantes, tabulaciones, etc. con la función trim
+                // Remove trailing spaces, tabs, etc. using the trim function.
                 $cleanLine = trim($line);
 
-                // Solo agregar líneas no vacías al contenido modificado
+                // Only add non-empty lines to the modified content
                 if (!empty($cleanLine)) {
                     $modifiedContent .= $cleanLine . "\n";
                 }
             }
 
-            // Eliminar líneas en blanco al final del archivo
+            // To remove blank lines at the end of the file
             $modifiedContent = rtrim($modifiedContent);
 
-            // Guardar el contenido modificado en el archivo
+            // Save the modified content to the file
             file_put_contents($filename, $modifiedContent);
 
         }
@@ -103,10 +108,11 @@ session_start();
             $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
             echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
             
-            // AQUÍ LA PREGUNTA.
+            // here the question.
             echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
             echo "<div id='respuesta $claseRespuesta'>";
             
+            // and here are the answers
             foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
                 $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
                 echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
@@ -137,7 +143,7 @@ session_start();
         ?>
         <audio id="correctSound" src="mp3/correct.mp3"></audio>
         <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
-        <script src="funciomGame.js"></script>
+        <script src="funcionGame.js"></script>
         <script src="funcionLanguage.js"></script>
 
         <footer class="footerinfo">
