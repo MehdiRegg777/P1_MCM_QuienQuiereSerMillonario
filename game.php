@@ -61,13 +61,23 @@
 
         $nivel_actual = $_GET['nivel'];
 
-        if (!isset($_GET['preguntas']) || isset($_GET['nuevo_juego'])) {
-            $contenido = file_get_contents("questions/{$_SESSION['language']}_$nivel_actual.txt");
-            $lineas = explode("\n", $contenido);
-            $preguntas = array();
+if (!isset($_GET['preguntas']) || isset($_GET['nuevo_juego'])) {
+    $contenido = file_get_contents("questions/{$_SESSION['language']}_$nivel_actual.txt");
+    $lineas = explode("\n", $contenido);
+    $preguntas = array();
+    $imagen_actual = null; 
 
-            for ($i = 0; $i < count($lineas); $i += 5) {
-                $pregunta = trim(substr($lineas[$i], 1));
+    for ($i = 0; $i < count($lineas); $i++) {
+        $linea = trim($lineas[$i]);
+
+        if (strpos($linea, '#') === 0) {
+          
+            $imagen_actual = trim(substr($linea, strlen('# ')));
+        } else {
+        
+            if ($imagen_actual !== null) {
+
+                $pregunta = trim(substr($linea, 1));
                 $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4));
 
                 foreach ($respuestas as $posicion => $respuesta) {
@@ -80,15 +90,24 @@
                     "pregunta" => $pregunta,
                     "respuestas" => $respuestas,
                     "respuesta_correcta" => $respuestaCorrecta,
+                    "imagen" => $imagen_actual,
                 );
+
+                $imagen_actual = null; 
             }
-
-            shuffle($preguntas);
-            $_GET['preguntas'] = $preguntas;
-            $_GET['pregunta_actual'] = 0;
         }
+    }
 
-        $preguntas = $_GET['preguntas'];
+    shuffle($preguntas);
+    $_GET['preguntas'] = $preguntas;
+    $_GET['pregunta_actual'] = 0;
+}
+
+// echo "<pre>";
+// var_dump($preguntas); 
+// echo "</pre>";
+
+$preguntas = $_GET['preguntas'];
         
         foreach ($preguntas as $key => $pregunta) {
             if ($key >= 3) {
@@ -96,7 +115,11 @@
             }
 
             $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
-            echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";            
+            echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
+            $imagen = $pregunta['imagen']; // Ruta de la imagen
+            if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagen)) {
+                echo '<img src="' . $imagen . '" alt="imagenes">';
+            }
             echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
             echo "<div id='respuesta $claseRespuesta'>";
             
