@@ -3,11 +3,17 @@ let moscasMuertas = 0;
 function matarMosca() {
     const mosca = document.getElementById('mosca');
     if (mosca) {
-        mosca.style.display = 'none';
+
+        mosca.style.animation = 'none';
+
+        mosca.style.animation = 'rotar 2s linear';
+
+        setTimeout(() => {
+            mosca.style.animation = 'none';
+            moverMosca();
+        }, 2000);
+        
         moscasMuertas++;
-        if (moscasMuertas === 1) {
-            window.location.href = 'win.php?puntage=18';
-        }
     }
 }
 
@@ -26,4 +32,5 @@ function moverMosca() {
 
 document.getElementById('mosca').addEventListener('click', () => matarMosca());
 
-setInterval(() => moverMosca(), 1000);
+
+setInterval(() => moverMosca(), 4000);
