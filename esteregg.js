@@ -26,5 +26,4 @@ function moverMosca() {
 
 document.getElementById('mosca').addEventListener('click', () => matarMosca());
 
-// Mueve la mosca cada 2 segundos
-setInterval(() => moverMosca(), 2000);
+setInterval(() => moverMosca(), 1000);
