@@ -318,6 +318,15 @@ a{
     padding-right: 20px;
 }
 
+.mosca {
+    width: 50px;
+    height: 50px;
+    background-image: url('mosca.png');
+    background-size: cover;
+    position: absolute;
+    cursor: pointer;
+}
+
 /* FOOTER */
 .footerinfo{
     display: flex;
