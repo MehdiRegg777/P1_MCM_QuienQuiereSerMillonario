@@ -146,10 +146,26 @@ function comodinPublico(preguntaIndex) {
     console.log(respuestaCorrecta);
     const modal = document.getElementById('popupModal');
     const imagen = document.getElementById('popupImage');
-    
-    modal.style.display = "block";
-    const imagenSrc = 'graficoBarras/'+ respuestaCorrecta + '.png';
-    imagen.src = imagenSrc;
+
+    const probabilidad = Math.random();
+
+    if (probabilidad <= 0.8) {
+        modal.style.display = "block";
+        const imagenSrc = 'graficoBarras/'+ respuestaCorrecta + '.png';
+        imagen.src = imagenSrc;
+    }else {
+        // Aquí mostraremos la incorrecta
+        let respuestaIncorrecta;
+        do {
+            respuestaIncorrecta = Math.floor(Math.random() * 4); 
+        } while (respuestaIncorrecta == respuestaCorrecta);
+
+        console.log('Respuesta incorrecta: ' + respuestaIncorrecta);
+        
+        modal.style.display = "block";
+        const imagenSrc = 'graficoBarras/'+ respuestaIncorrecta + '.png';
+        imagen.src = imagenSrc;
+    };
 
 }
 
