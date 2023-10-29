@@ -354,9 +354,14 @@ a{
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 20px;
+    background-color: #ffffff;
+    padding: 80px;
     border-radius: 5px;
+}
+
+.popup-public img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .cerrar-button {
