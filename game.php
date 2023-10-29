@@ -34,13 +34,13 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
             00:00
         </div>
 
-        <div class="container1">
+        <!-- <div class="container1">
             <div class="comodinesBotones">
                 <button>Comodín del 50%</button>
                 <button>Comodín de tiempo extra</button>
-                <button>Comodín del público</button>
+                <button onclick = comodinPublico() >Comodín del público</button>
             </div>
-        </div>
+        </div> -->
 
         <?php
             for ($i = 1; $i <= 6; $i++) {
@@ -119,16 +119,18 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
 
                     $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
                     echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
+                    echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
                     $imagen = $pregunta['imagen']; // Ruta de la imagen
                     if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagen)) {
-                        echo '<img src="' . $imagen . '" alt="imagenes">';
+                        echo '<img class="imag-question"  src="' . $imagen . '" alt="imagenes">';
                     }
-                    echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
+
                     echo "<div id='respuesta $claseRespuesta'>";
-                    
                     foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
                         $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
-                        echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
+                        $opciones = ['A', 'B', 'C', 'D'];
+                        $opcionActual = $opciones[$answerKey];
+                        echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$opcionActual) $respuesta</div>";
                     }
                     if ($_SESSION['language'] === 'spanish') {
                         echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'spanish')\">Responder</button>";
@@ -138,7 +140,16 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
                         echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'english')\">Reply</button>";
                     }
                     echo "</div>";
+                    echo "<div class=\"container1\">";
+                    echo "<div class=\"comodinesBotones\">";
+                    echo "<button>Comodín del 50%</button>";
+                    echo "<button>Comodín de tiempo extra</button>";
+                    echo "<button onclick=\"comodinPublico('$key')\">Comodín del público</button>";
                     echo "</div>";
+                    echo "</div>";
+                    echo "</div>";
+
+                    
                 }
                 
                 $nivels = $_GET['nivel'];
@@ -154,7 +165,12 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
                 }
                 echo "</div>"
         ?>
-
+        <div id="popupModal" class="popup">
+            <div class="popup-public">
+                <button class="close-button" onclick="cerrarImagen()">X</button>
+                <img id="popupImage" src="" alt="Imagen">
+            </div>
+        </div>
         <!-- FIN DEL PHP. -->
 
         <audio id="correctSound" src="mp3/correct.mp3"></audio>

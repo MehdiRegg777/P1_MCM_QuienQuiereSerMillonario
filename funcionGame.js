@@ -44,7 +44,7 @@ function startChronometer() {
     })
     .then(response => response.text())
     .then(data => {
-        console.log(data);
+        //console.log(data);
     });
 }
 
@@ -88,13 +88,14 @@ function scrollSiguientePregunta(preguntaIndex) {
     }
 }
 
+
+
 function responderPregunta(preguntaIndex, nivel, language) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
 
     if (respuestaSeleccionada) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
-
         if (respuestaElegida === respuestaCorrecta) {
             //console.log(idioma);
             playCorrectSound();
@@ -134,7 +135,27 @@ function responderPregunta(preguntaIndex, nivel, language) {
         }
     } else {
         alert(mensajes[language]['seleccionaRespuesta']);
-    }
+    };
+    
+    
+}
+
+function comodinPublico(preguntaIndex) {
+    const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta');
+    const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
+    console.log(respuestaCorrecta);
+    const modal = document.getElementById('popupModal');
+    const imagen = document.getElementById('popupImage');
+    
+    modal.style.display = "block";
+    const imagenSrc = 'graficoBarras/'+ respuestaCorrecta + '.png';
+    imagen.src = imagenSrc;
+
+}
+
+function cerrarImagen() {
+    const modal = document.getElementById('popupModal');
+    modal.style.display = "none";
 }
 
 function calculoderespuesta(preguntaActual,nivel){
@@ -166,7 +187,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     if (preguntaActual2 >= 3) {
         if (nivel <= 6) {
             nivel++;
-            console.log(nivel);
+            //console.log(nivel);
 
             if (nivel <= 6) {
 
@@ -210,7 +231,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     for (let bucle = 0; bucle <= 3; bucle++) {
 
         const desenfoqueSeguientesRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
-        console.log(desenfoqueSeguientesRespuestas);
+        //console.log(desenfoqueSeguientesRespuestas);
         desenfoqueSeguientesRespuestas.classList.remove('bloqueada');
     }
 }
@@ -265,3 +286,4 @@ function changeLanguage(language) {
 function demandJS(){
 
 }
+
