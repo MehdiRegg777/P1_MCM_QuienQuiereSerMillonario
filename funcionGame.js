@@ -103,7 +103,9 @@ function responderPregunta(preguntaIndex, nivel, language) {
             alert(mensajes[language]['respuestaCorrecta']);
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('acertada');
-            scrollSiguientePregunta(preguntaIndex);
+            var numeroIndex = parseInt(preguntaIndex, 10);
+            var preguntaIndexplus = numeroIndex + 1;
+            scrollSiguientePregunta(preguntaIndexplus);
             mostrarSiguientePregunta(preguntaIndex, nivel, language);
         } else {
             let puntos=calculoderespuesta(preguntaActual,nivel);
@@ -172,8 +174,7 @@ function comodinPublico(preguntaIndex) {
     botonPublic1.setAttribute('disabled', '');
     const botonPublic2 = document.getElementById('boton-publico-2');
     botonPublic2.setAttribute('disabled', '');
-    const botonPublic3 = document.getElementById('boton-publico-3');
-    botonPublic3.setAttribute('disabled', '');
+
 }
 
 function cerrarImagen() {
