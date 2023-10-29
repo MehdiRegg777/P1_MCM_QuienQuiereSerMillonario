@@ -144,7 +144,7 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
                     echo "<div class=\"comodinesBotones\">";
                     echo "<button>Comodín del 50%</button>";
                     echo "<button>Comodín de tiempo extra</button>";
-                    echo "<button onclick=\"comodinPublico('$key')\">Comodín del público</button>";
+                    echo "<button id=\"boton-publico-$key\" onclick=\"comodinPublico('$key')\">Comodín del público</button>";
                     echo "</div>";
                     echo "</div>";
                     echo "</div>";

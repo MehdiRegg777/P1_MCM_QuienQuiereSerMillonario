@@ -84,7 +84,7 @@ function scrollSiguientePregunta(preguntaIndex) {
     const preguntaElement = document.getElementById(preguntaId);
     
     if (preguntaElement) {
-        preguntaElement.scrollIntoView({ behavior: 'smooth' });
+        preguntaElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
@@ -166,7 +166,14 @@ function comodinPublico(preguntaIndex) {
         const imagenSrc = 'graficoBarras/'+ respuestaIncorrecta + '.png';
         imagen.src = imagenSrc;
     };
-
+    const botonPublic0 = document.getElementById('boton-publico-0');
+    botonPublic0.setAttribute('disabled', '');
+    const botonPublic1 = document.getElementById('boton-publico-1');
+    botonPublic1.setAttribute('disabled', '');
+    const botonPublic2 = document.getElementById('boton-publico-2');
+    botonPublic2.setAttribute('disabled', '');
+    const botonPublic3 = document.getElementById('boton-publico-3');
+    botonPublic3.setAttribute('disabled', '');
 }
 
 function cerrarImagen() {
