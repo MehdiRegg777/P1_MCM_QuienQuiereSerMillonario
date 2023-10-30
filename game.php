@@ -122,18 +122,13 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                     $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
                     echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
                     echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
-                    $imagen = $pregunta['imagen']; // Ruta de la imagen
-                    
-                    echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
-                    echo "<div id='respuesta $claseRespuesta'>";
                     if ($nivels >= 2) {
                         echo "<div class='timerQuestion' id='timerQuestion' style='display: flex;'>30</div>";
                     }
-                    
+                    $imagen = $pregunta['imagen']; // Ruta de la imagen
                     if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagen)) {
                         echo '<img class="imag-question"  src="' . $imagen . '" alt="imagenes">';
                     }
-
                     echo "<div id='respuesta $claseRespuesta'>";
                     foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
                         $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
