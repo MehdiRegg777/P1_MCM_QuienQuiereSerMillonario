@@ -37,6 +37,13 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
             00:00
         </div>
 
+        <div id="popupModal" class="popup">
+            <div class="popup-public">
+                <button class="close-button" onclick="cerrarImagen()">X</button>
+                <img id="popupImage" src="" alt="Imagen">
+            </div>
+        </div>
+
         <div class="container1">
             <div class="comodinesBotones">
                 <button>Comodín del 50%</button>
@@ -180,12 +187,7 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                     echo "<form method='POST' id='next-level-container' class='d-none' action='game.php'>";
                 }
         ?>
-        <div id="popupModal" class="popup">
-            <div class="popup-public">
-                <button class="close-button" onclick="cerrarImagen()">X</button>
-                <img id="popupImage" src="" alt="Imagen">
-            </div>
-        </div>
+        
         <!-- FIN DEL PHP. -->
 
         <audio id="correctSound" src="mp3/correct.mp3"></audio>
