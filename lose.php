@@ -1,5 +1,6 @@
 <?php
 session_start();
+isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +78,7 @@ session_start();
                             echo '<td>' . $puntos . '</td>';
                             echo '</tr>';
                             echo '<tr>';
-                            echo '<th>TTime taken</th>';
+                            echo '<th>Time taken</th>';
                             echo '<td>' . $_SESSION['time'] . '</td>';
                             echo '</tr>';
                             echo '<tr>';

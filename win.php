@@ -1,5 +1,6 @@
 <?php
-    session_start();
+session_start();
+isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -40,12 +41,38 @@
                         echo '<tr>';
                         if ($_SESSION['language'] === 'spanish') {
                             echo '<th>Preguntas acertadas</th>';
+                            echo '<td>' . $puntos . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Tiempo tardado</th>';
+                            echo '<td>' . $_SESSION['time'] . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Puntos totales</th>';
+                            echo '<td>' . $_SESSION['points'] . '</td>';
                         } elseif ($_SESSION['language'] === 'catalan') {
                             echo '<th>Preguntas encertades</th>';
+                            echo '<td>' . $puntos . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Temps trigat</th>';
+                            echo '<td>' . $_SESSION['time'] . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Punts totals</th>';
+                            echo '<td>' . $_SESSION['points'] . '</td>';
                         } elseif ($_SESSION['language'] === 'english') {
-                            echo '<th>Correct Answers</th>';                   
+                            echo '<th>Correct Answers</th>';
+                            echo '<td>' . $puntos . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Time taken</th>';
+                            echo '<td>' . $_SESSION['time'] . '</td>';
+                            echo '</tr>';
+                            echo '<tr>';
+                            echo '<th>Total points</th>';
+                            echo '<td>' . $_SESSION['points'] . '</td>';
                         }
-                        echo '<td>' . $puntos . '</td>';
                         echo '</tr>';
                         echo '</table>';
                       }

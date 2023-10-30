@@ -189,6 +189,19 @@ a{
     margin-bottom: 50px;
 }
 
+.timerQuestion {
+    font-size: 30px;
+    background-color: #FFC15E;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    margin: 0 auto;
+    width: 180px;
+    height: 70px;
+    border-radius: 0px 0px 50px 50px
+}
+
 .pregunta{
     margin-top: 50px;
     display: flex;

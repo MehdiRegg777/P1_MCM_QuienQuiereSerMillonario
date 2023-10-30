@@ -26,7 +26,7 @@ const mensajes = {
 };
 
 // Algoritmo cronometro
-function startChronometer() {
+function startCountUpChronometer() {
     time++;
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
@@ -40,7 +40,7 @@ function startChronometer() {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'time=' + encodeURIComponent(tiempo),
+        body: 'time=' + tiempo,
     })
     .then(response => response.text())
     .then(data => {
@@ -50,10 +50,10 @@ function startChronometer() {
 
 // Inicializar el cronometro
 let time = parseInt(localStorage.getItem("time")) || 0;
-const intervalo = setInterval(startChronometer, 1000);
+const intervalo = setInterval(startCountUpChronometer, 1000);
 
 // Reiniciar el cronometro
-function reiniciarChronometer() {
+function resetChronometer() {
     const currentPage = window.location.pathname;
     if (currentPage === '/index.php' || currentPage === '/') {
         localStorage.removeItem('time');
@@ -63,12 +63,40 @@ function reiniciarChronometer() {
 // Reanudar cronometro
 function reanudarChronometer() {
     let time = parseInt(localStorage.getItem("time"));
-    startChronometer()
+    startCountUpChronometer()
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    reiniciarChronometer();
-  });  
+    resetChronometer();
+});  
+
+
+let tiempoRestante = 30;
+function updateCountDownChronometer() {
+    const timerQuestion = document.getElementById('timerQuestion');
+  if (tiempoRestante > 0) {
+    timerQuestion.textContent = tiempoRestante;
+    tiempoRestante--;
+  } else {
+    timerQuestion.textContent = "Tiempo agotado";
+    window.location.href = 'lose.php';
+  }
+}
+
+function startCountDownChronometer() {
+    const preguntaActual = document.querySelector('.pregunta:not(.bloqueada)'); // Selecciona la pregunta actual
+    const timerQuestion = preguntaActual.querySelector('.timerQuestion'); // Encuentra el elemento timerQuestion dentro de la pregunta actual
+    timerQuestion.style.display = "flex"; // Muestra el contador regresivo
+    tiempoRestante = 30; // Reinicia el tiempo
+    setInterval(updateCountDownChronometer, 1000);
+}
+startCountDownChronometer();
+
+function resetCountDownChronometer() {
+    tiempoRestante = 30;
+    const timerQuestion = document.getElementById('timerQuestion');
+    timerQuestion.textContent = tiempoRestante;
+  }
 
 function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
@@ -110,6 +138,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
             respuestaSeleccionada.classList.add('acertada');
             scrollSiguientePregunta(preguntaIndex);
             mostrarSiguientePregunta(preguntaIndex, nivel, language);
+            resetCountDownChronometer()
         } else {
             let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
@@ -124,7 +153,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
             const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
             btnResponder.setAttribute('disabled', '');
 
-            
+            calculateTotalPoints(puntos);
             
             // Lock the question
             const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
@@ -191,6 +220,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 const next = document.getElementById("next-question");
                 next.style.display = "";
             } else {
+                calculateTotalPoints(18)
                 alert(mensajes[language]['juegoTerminado']);
                 window.location.href = 'win.php?puntage=18';
             }
@@ -221,6 +251,36 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
         console.log(desenfoqueSeguientesRespuestas);
         desenfoqueSeguientesRespuestas.classList.remove('bloqueada');
     }
+}
+
+function calculateTotalPoints(correctAnswer) {
+    const tiempo = parseInt(localStorage.getItem("time")) || 0;
+
+    let pointsTime = 0;
+    if (tiempo >= 1 && tiempo <= 1200) {
+        pointsTime = 1200 - tiempo + 1;
+    } else{
+        pointsTime = 0;
+    }
+
+    let pointsAnswer = 0;
+    if (correctAnswer >= 1 && correctAnswer <= 18) {
+        pointsAnswer = correctAnswer * 1300;
+    }
+
+    const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
+
+    fetch('lose.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'points=' + pointsTotal,
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log(data);
+    });
 }
 
 // FUNCIONS DE SONS/CANÇONS.
@@ -261,7 +321,7 @@ function changeLanguage(language) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'language=' + encodeURIComponent(language),
+        body: 'language=' + language,
     })
     .then(response => response.text())
     .then(data => {

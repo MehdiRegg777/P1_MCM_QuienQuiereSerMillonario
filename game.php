@@ -1,6 +1,7 @@
 <?php
 session_start();
 isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
+$_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
 ?>
 
 <!DOCTYPE html>
@@ -111,6 +112,7 @@ isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
         }
 
         $preguntas = $_GET['preguntas'];
+        $nivels = $_GET['nivel'];
                     
                 foreach ($preguntas as $key => $pregunta) {
                     if ($key >= 3) {
@@ -120,11 +122,12 @@ isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
                     $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
                     echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
                     $imagen = $pregunta['imagen']; // Ruta de la imagen
-                    if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagen)) {
-                        echo '<img src="' . $imagen . '" alt="imagenes">';
-                    }
+                    
                     echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
                     echo "<div id='respuesta $claseRespuesta'>";
+                    if ($nivels >= 2) {
+                        echo "<div class='timerQuestion' id='timerQuestion' style='display: flex;'>30</div>";
+                    }
                     
                     foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
                         $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
@@ -141,7 +144,6 @@ isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
                     echo "</div>";
                 }
                 
-                $nivels = $_GET['nivel'];
                 $nivels++;
                 echo "<div class='ghof-buttons'>";
 
@@ -152,7 +154,7 @@ isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
                 } elseif ($_SESSION['language'] === 'english') {
                     echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Next question</button>";
                 }
-                echo "</div>"
+                echo "</div>";
         ?>
 
         <!-- FIN DEL PHP. -->
