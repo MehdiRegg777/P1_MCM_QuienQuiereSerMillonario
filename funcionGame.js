@@ -177,9 +177,19 @@ function responderPregunta(preguntaIndex, nivel, language) {
     
 }
 
+
+// function comodinPublico2() {
+
+//     const q1_is_answered = document.querySelector(".respuesta:not(.bloqueada)");
+//     const dataCorrecta = q1_is_answered.getAttribute("data-correcta");
+//     console.log(dataCorrecta);
+// }
+
 function comodinPublico(preguntaIndex) {
-    const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta');
-    const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    // const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta');
+    // const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
     console.log(respuestaCorrecta);
     const modal = document.getElementById('popupModal');
     const imagen = document.getElementById('popupImage');
