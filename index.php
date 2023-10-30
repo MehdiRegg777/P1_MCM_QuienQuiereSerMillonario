@@ -218,7 +218,10 @@
         <audio id="start" autoplay>
             <source src="mp3/inicio.mp3" type="audio/mpeg">
         </audio>
+        
+    <div id="mosca" class="mosca"></div>
 
+    <script src="esteregg.js"></script>
         <!-- FOOTER -->
         <footer class="footerinfo">
             <p>© MCM S.A.</p>

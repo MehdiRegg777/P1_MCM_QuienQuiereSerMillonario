@@ -44,7 +44,7 @@ function startCountUpChronometer() {
     })
     .then(response => response.text())
     .then(data => {
-        console.log(data);
+        //console.log(data);
     });
 }
 
@@ -118,9 +118,11 @@ function scrollSiguientePregunta(preguntaIndex) {
     const preguntaElement = document.getElementById(preguntaId);
     
     if (preguntaElement) {
-        preguntaElement.scrollIntoView({ behavior: 'smooth' });
+        preguntaElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
+
+
 
 function responderPregunta(preguntaIndex, nivel, language) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
@@ -128,7 +130,6 @@ function responderPregunta(preguntaIndex, nivel, language) {
     if (respuestaSeleccionada) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
-
         if (respuestaElegida === respuestaCorrecta) {
             //console.log(idioma);
             playCorrectSound();
@@ -136,7 +137,9 @@ function responderPregunta(preguntaIndex, nivel, language) {
             alert(mensajes[language]['respuestaCorrecta']);
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('acertada');
-            scrollSiguientePregunta(preguntaIndex);
+            var numeroIndex = parseInt(preguntaIndex, 10);
+            var preguntaIndexplus = numeroIndex + 1;
+            scrollSiguientePregunta(preguntaIndexplus);
             mostrarSiguientePregunta(preguntaIndex, nivel, language);
             resetCountDownChronometer()
         } else {
@@ -169,7 +172,50 @@ function responderPregunta(preguntaIndex, nivel, language) {
         }
     } else {
         alert(mensajes[language]['seleccionaRespuesta']);
-    }
+    };
+    
+    
+}
+
+function comodinPublico(preguntaIndex) {
+    const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta');
+    const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
+    console.log(respuestaCorrecta);
+    const modal = document.getElementById('popupModal');
+    const imagen = document.getElementById('popupImage');
+
+    const probabilidad = Math.random();
+
+    if (probabilidad <= 0.8) {
+        modal.style.display = "block";
+        const imagenSrc = 'graficoBarras/'+ respuestaCorrecta + '.png';
+        imagen.src = imagenSrc;
+    }else {
+        // Aquí mostraremos la incorrecta
+        let respuestaIncorrecta;
+        do {
+            respuestaIncorrecta = Math.floor(Math.random() * 4); 
+        } while (respuestaIncorrecta == respuestaCorrecta);
+
+        console.log('Respuesta incorrecta: ' + respuestaIncorrecta);
+        
+        modal.style.display = "block";
+        const imagenSrc = 'graficoBarras/'+ respuestaIncorrecta + '.png';
+        imagen.src = imagenSrc;
+    };
+    const botonPublic0 = document.getElementById('boton-publico-0');
+    botonPublic0.setAttribute('disabled', '');
+    localStorage.setItem('boton-publico-0', botonPublic0);
+    const botonPublic1 = document.getElementById('boton-publico-1');
+    botonPublic1.setAttribute('disabled', '');
+    const botonPublic2 = document.getElementById('boton-publico-2');
+    botonPublic2.setAttribute('disabled', '');
+
+}
+
+function cerrarImagen() {
+    const modal = document.getElementById('popupModal');
+    modal.style.display = "none";
 }
 
 function calculoderespuesta(preguntaActual,nivel){
@@ -201,7 +247,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     if (preguntaActual2 >= 3) {
         if (nivel <= 6) {
             nivel++;
-            console.log(nivel);
+            //console.log(nivel);
 
             if (nivel <= 6) {
 
@@ -248,7 +294,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     for (let bucle = 0; bucle <= 3; bucle++) {
 
         const desenfoqueSeguientesRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
-        console.log(desenfoqueSeguientesRespuestas);
+        //console.log(desenfoqueSeguientesRespuestas);
         desenfoqueSeguientesRespuestas.classList.remove('bloqueada');
     }
 }
@@ -333,3 +379,4 @@ function changeLanguage(language) {
 function demandJS(){
 
 }
+
