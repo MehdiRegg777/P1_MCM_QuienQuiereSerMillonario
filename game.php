@@ -39,8 +39,8 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
         <div class="container1">
             <div class="comodinesBotones">
                 <button>Comodín del 50%</button>
-                <button>Comodín de tiempo extra</button>
-                <button id=boton-publico onclick = comodinPublico() >Comodín del público</button>
+                <button id="buttonComodinTime" onclick=buttonTime()>Comodín de tiempo extra</button>
+                <button id="boton-publico" onclick = comodinPublico() >Comodín del público</button>
             </div>
         </div>
 
