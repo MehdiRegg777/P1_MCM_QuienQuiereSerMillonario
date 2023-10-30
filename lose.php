@@ -1,6 +1,11 @@
 <?php
 session_start();
 isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
+if (!isset($_GET["userpoints"])){
+    header('HTTP/1.0 403 Forbidden');
+    echo 'No pots accedir a aquesta pàgina.';
+    exit;
+} else {
 ?>
 
 <!DOCTYPE html>
@@ -14,11 +19,12 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
     <body class="losePage">
-        <header>
+        
             <?php
-                if (!isset($_POST["game_won"])){
-                        header('HTTP/1.0 403 Forbidden');
-                        echo 'No pots accedir a aquesta pàgina.';
+               
+            
+                echo "<header>";
+
                 if ($_SESSION['language'] === 'spanish') {
                     echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 
@@ -90,7 +96,6 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                         echo '</tr>';
                         echo '</table>';
                     }
-
                 if ($_SESSION['language'] === 'spanish') {
                     echo '<p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>';
                     echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';

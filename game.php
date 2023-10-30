@@ -180,12 +180,12 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                 }
                 echo "</div>";
 
-                if ($_SESSION['nivel_actual'] == $nivelmax) {
-                    echo "<form method='POST' id='next-level-container' class='d-none' action='win.php'>";
-                    echo "<input type='hidden' id='game_won' name='game_won' value='1'>";
-                } else {
-                    echo "<form method='POST' id='next-level-container' class='d-none' action='game.php'>";
-                }
+                // if ($_SESSION['nivel_actual'] == $nivelmax) {
+                //     echo "<form method='POST' id='next-level-container' class='d-none' action='win.php'>";
+                //     echo "<input type='hidden' id='game_won' name='game_won' value='1'>";
+                // } else {
+                //     echo "<form method='POST' id='next-level-container' class='d-none' action='game.php'>";
+                // }
         ?>
         
         <!-- FIN DEL PHP. -->
