@@ -36,9 +36,9 @@ isset($_POST['timee']) ? $_SESSION['timee'] = $_POST['timee'] : null;
 
         <div class="container1">
             <div class="comodinesBotones">
-                <button>Comodín del 50%</button>
-                <button>Comodín de tiempo extra</button>
-                <button>Comodín del público</button>
+                <button id="comodin50porciento">Comodín del 50%</button>
+                <button id="comodintiempoextra">Comodín de tiempo extra</button>
+                <button id="comodinpublico">Comodín del público</button>
             </div>
         </div>
 
