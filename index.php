@@ -5,7 +5,7 @@
     $selectedLanguage = $_SESSION['language'];
     $hideStyle = 'style="display: none;"';
     $showStyle = 'style="display: block;"';
-    
+    $_SESSION['comodinPublico'] = 'nousado';
     /* ERROR 403 */
     /*
     $request_uri = $_SERVER["REQUEST_URI"];
@@ -218,7 +218,10 @@
         <audio id="start" autoplay>
             <source src="mp3/inicio.mp3" type="audio/mpeg">
         </audio>
+        
+    <div id="mosca" class="mosca"></div>
 
+    <script src="esteregg.js"></script>
         <!-- FOOTER -->
         <footer class="footerinfo">
             <p>© MCM S.A.</p>

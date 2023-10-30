@@ -72,6 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 let tiempoRestante = 30;
+let intervalCountDown;
 function updateCountDownChronometer() {
     const timerQuestion = document.getElementById('timerQuestion');
   if (tiempoRestante > 0) {
@@ -80,6 +81,7 @@ function updateCountDownChronometer() {
   } else {
     timerQuestion.textContent = "Tiempo agotado";
     window.location.href = 'lose.php';
+    clearInterval(intervalCountDown);
   }
 }
 
@@ -88,7 +90,7 @@ function startCountDownChronometer() {
     const timerQuestion = preguntaActual.querySelector('.timerQuestion'); // Encuentra el elemento timerQuestion dentro de la pregunta actual
     timerQuestion.style.display = "flex"; // Muestra el contador regresivo
     tiempoRestante = 30; // Reinicia el tiempo
-    setInterval(updateCountDownChronometer, 1000);
+    intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 }
 startCountDownChronometer();
 
@@ -96,7 +98,11 @@ function resetCountDownChronometer() {
     tiempoRestante = 30;
     const timerQuestion = document.getElementById('timerQuestion');
     timerQuestion.textContent = tiempoRestante;
-  }
+}
+
+function stopCountDownChronometer() {
+    clearInterval(intervalCountDown);
+}
 
 function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
@@ -193,6 +199,7 @@ function regresarAlInicio() {
 
 function nextQuestion(nivel){
     window.location.href = 'game.php?niveles=' + nivel;
+    resetCountDownChronometer();
 }
 
 function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
@@ -219,6 +226,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 
                 const next = document.getElementById("next-question");
                 next.style.display = "";
+                stopCountDownChronometer();
             } else {
                 calculateTotalPoints(18)
                 alert(mensajes[language]['juegoTerminado']);
