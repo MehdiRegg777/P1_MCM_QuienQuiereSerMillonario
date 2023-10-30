@@ -39,6 +39,7 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
 
         <div class="container1">
             <div class="comodinesBotones">
+<<<<<<< HEAD
                 <button>Comodín del 50%</button>
                 <button id="buttonComodinTime" onclick=buttonTime()>Comodín de tiempo extra</button>
                 <?php 
@@ -49,10 +50,17 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                 }
                 ?>
                 
+=======
+                <button id="comodin50porciento">Comodín del 50%</button>
+                <button id="comodintiempoextra">Comodín de tiempo extra</button>
+                <button id="comodinpublico">Comodín del público</button>
+>>>>>>> origin/CMoyano
             </div>
         </div>
 
         <?php
+            $nivelmax = 6;
+
             for ($i = 1; $i <= 6; $i++) {
             $languages = array("catalan", "english", "spanish");
             foreach ($languages as $language) {
@@ -92,27 +100,27 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                 $imagen_actual = trim(substr($linea, strlen('# ')));
             } else {
             
-            if ($imagen_actual !== null) {
+                if ($imagen_actual !== null) {
 
-                $pregunta = trim(substr($linea, 1));
-                $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4));
+                    $pregunta = trim(substr($linea, 1));
+                    $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4));
 
-                foreach ($respuestas as $posicion => $respuesta) {
-                    if (strpos($respuesta, '+') !== false) {
-                        $respuestaCorrecta = $posicion;
+                    foreach ($respuestas as $posicion => $respuesta) {
+                        if (strpos($respuesta, '+') !== false) {
+                            $respuestaCorrecta = $posicion;
+                        }
+                    }
+
+                        $preguntas[] = array(
+                            "pregunta" => $pregunta,
+                            "respuestas" => $respuestas,
+                            "respuesta_correcta" => $respuestaCorrecta,
+                            "imagen" => $imagen_actual,
+                        );
+
+                        $imagen_actual = null; 
                     }
                 }
-
-                    $preguntas[] = array(
-                        "pregunta" => $pregunta,
-                        "respuestas" => $respuestas,
-                        "respuesta_correcta" => $respuestaCorrecta,
-                        "imagen" => $imagen_actual,
-                    );
-
-                    $imagen_actual = null; 
-                }
-            }
             }
 
             shuffle($preguntas);
@@ -170,6 +178,13 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                     echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Next question</button>";
                 }
                 echo "</div>";
+
+                if ($_SESSION['nivel_actual'] == $nivelmax) {
+                    echo "<form method='POST' id='next-level-container' class='d-none' action='win.php'>";
+                    echo "<input type='hidden' id='game_won' name='game_won' value='1'>";
+                } else {
+                    echo "<form method='POST' id='next-level-container' class='d-none' action='game.php'>";
+                }
         ?>
         <div id="popupModal" class="popup">
             <div class="popup-public">

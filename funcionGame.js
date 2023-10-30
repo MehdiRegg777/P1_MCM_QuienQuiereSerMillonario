@@ -38,12 +38,10 @@ function startCountUpChronometer() {
     saveSession('time=' + tiempo);
 }
 
-// Inicializar el cronometro
 let time = parseInt(localStorage.getItem("time")) || 0;
 const intervalo = setInterval(startCountUpChronometer, 1000);
 
-// Reiniciar el cronometro
-function resetChronometer() {
+function reiniciarChronometer() {
     const currentPage = window.location.pathname;
     if (currentPage === '/index.php' || currentPage === '/') {
         localStorage.removeItem('time');
@@ -104,10 +102,8 @@ function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
 
     if (respuestaElement && !respuestaElement.classList.contains('bloqueada')) {
-        // Remove the 'locked' class from the element
         respuestaElement.classList.remove('bloqueada');
 
-        // The rest of the code for selecting the answer and enabling the respond button
         const respuestas = document.querySelectorAll('#pregunta' + preguntaIndex + ' .respuesta');
         respuestas.forEach((r) => r.classList.remove('seleccionada'));
         respuestaElement.classList.add('seleccionada');
@@ -133,7 +129,6 @@ function responderPregunta(preguntaIndex, nivel, language) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
         if (respuestaElegida === respuestaCorrecta) {
-            //console.log(idioma);
             playCorrectSound();
 
             alert(mensajes[language]['respuestaCorrecta']);
@@ -151,10 +146,8 @@ function responderPregunta(preguntaIndex, nivel, language) {
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('fallada');
 
-            // Alert that the response is incorrect
             alert(mensajes[language]['respuestaIncorrecta']);
 
-            // Enable the answer button for the next question
             const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
             btnResponder.setAttribute('disabled', '');
 
@@ -164,13 +157,12 @@ function responderPregunta(preguntaIndex, nivel, language) {
             const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
             bloquearPregunta.classList.add('bloqueada');
 
-            // Lock the answers
             for (let bucle = 0; bucle <= 3; bucle++) {
 
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
-            window.location.href = 'lose.php?puntage=' + puntos; 
+            window.location.href = 'lose.php?userpoints=' + puntos; 
         }
     } else {
         alert(mensajes[language]['seleccionaRespuesta']);
@@ -238,7 +230,7 @@ function calculoderespuesta(preguntaActual,nivel){
 }
 
 function regresarAlInicio() {
-    window.location.href = 'index.php'; // Redirect to the beginning
+    window.location.href = 'index.php';
 }
 
 function nextQuestion(nivel){
@@ -272,7 +264,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
             } else {
                 calculateTotalPoints(18)
                 alert(mensajes[language]['juegoTerminado']);
-                window.location.href = 'win.php?puntage=18';
+                window.location.href = 'win.php?userpoints=18';
             }
         }
     }
@@ -350,7 +342,7 @@ window.onload = function() {
     startAudio.play();
 };
 window.onload = function() {
-    var startAudio = document.getElementById("winerr");
+    var startAudio = document.getElementById("winner");
     startAudio.play();
 };
 
@@ -388,3 +380,23 @@ function demandJS(){
 
 }
 
+/* COMODÍN 50% */
+var comodinUsado = false;
+
+document.getElementById("comodin-50").addEventListener("click", function () {
+    if (!comodinUsado) {
+        comodinUsado = true;
+
+        var respuestas = document.querySelectorAll(".respuesta");
+
+        var respuestasDeshabilitadas = 0;
+        for (var i = 0; i < respuestas.length; i++) {
+            if (!respuestas[i].classList.contains("respuesta-correcta")) {
+                respuestas[i].disabled = true;
+                respuestasDeshabilitadas++;
+                if (respuestasDeshabilitadas >= 2) {
+                    break;
+                }}}
+        this.disabled = true;
+    }
+});
