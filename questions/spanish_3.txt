@@ -51,6 +51,7 @@
 - Australia
 - Canadá
 - Nueva Zelanda
++ Anglaterra
 # /imagGame/question28.png
 + Inglaterra
 # /imagGame/

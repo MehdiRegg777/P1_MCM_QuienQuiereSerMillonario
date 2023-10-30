@@ -130,7 +130,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
-            window.location.href = 'lose.php?puntage=' + puntos; 
+            window.location.href = 'lose.php?userpoints=' + puntos; 
         }
     } else {
         alert(mensajes[language]['seleccionaRespuesta']);
@@ -153,7 +153,7 @@ function calculoderespuesta(preguntaActual,nivel){
 }
 
 function regresarAlInicio() {
-    window.location.href = 'index.php'; // Redirect to the beginning
+    window.location.href = 'index.php';
 }
 
 function nextQuestion(nivel){
@@ -184,7 +184,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 next.style.display = "";
             } else {
                 alert(mensajes[language]['juegoTerminado']);
-                window.location.href = 'win.php?puntage=18';
+                window.location.href = 'win.php?userpoints=18';
             }
         }
     }
@@ -242,7 +242,7 @@ window.onload = function() {
     startAudio.play();
 };
 window.onload = function() {
-    var startAudio = document.getElementById("winerr");
+    var startAudio = document.getElementById("winner");
     startAudio.play();
 };
 

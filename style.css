@@ -63,7 +63,7 @@ a{
 
 .halloffame-button{ margin-right: 30px; }
 
-.play-button, .halloffame-button, #savepunt-button, .responder-btn{
+.play-button, .halloffame-button, .responder-btn, #savepunt-button{
     display: inline-block;
     padding: 20px 40px;
     margin-top: 50px;
@@ -78,7 +78,20 @@ a{
     transition-duration: 1s;
 }
 
-.play-button:hover, .halloffame-button:hover, #savepunt-button:hover{
+#next-question{
+    width: auto;
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 24px;
+    color: black;
+    font-family: 'Lora', sans-serif;
+    transition-duration: 1s;
+}
+
+.play-button:hover, .halloffame-button:hover, .responder-btn:hover, #savepunt-button:hover #next-question:hover{
     cursor: pointer;
     transition-duration: 1s;
     background-color: #FFC15E;
@@ -174,19 +187,22 @@ a{
 /* GAME.PHP */
 /* Hay que hacer esta sección como el "Wireframe". */
 .timer {
-    width: 200px;
-    height: 90px;
-    border-radius: 50px 50px 50px 50px;
-    font-size: 30px;
-    background-color: #FF9F1C;
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
     bottom: 0;
     left: 0;
+    width: 150px;
+    height: 70px;
+    font-size: 30px;
+    background-color: #FF9F1C;
+    border-radius: 50px 50px 50px 50px;
     margin-left: 50px;
     margin-bottom: 50px;
+    z-index: 9999;
+    font-size: 20px;
+    font-family: 'Lora', serif;
 }
 
 .pregunta{
@@ -200,6 +216,7 @@ a{
 .gamePage .questiontitle{
     width: 60%;
     height: 50%;
+    margin-top: 50px;
     background-color: #FFC15E;
     border: 1px solid #FFC15E;
     font-family: 'Montserrat Alternates', sans-serif;
@@ -235,16 +252,23 @@ a{
 }
 
 .gamePage .respuesta.bloqueada{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    filter: blur(2px);
     background-color: #F5FF90;
     border: 1px solid #F5FF90;
     border-radius: 5px;
-    filter: blur(2px);
-    margin-bottom: 20px;
     cursor: not-allowed;
 }
 
 .gamePage .pregunta.bloqueada{
-    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: c1enter;
+    width: 100%;
+    margin-top: 100px;
     border-radius: 5px;
     filter: blur(4px);
     cursor: not-allowed;
