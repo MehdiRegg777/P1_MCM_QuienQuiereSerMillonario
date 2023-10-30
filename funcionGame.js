@@ -375,28 +375,26 @@ function saveSession(id) {
     });
 };
 
-// COMPROBAR QUE EL USUARIO TIENE "JAVASCRIPT" ACTIVADO.
-function demandJS(){
+// COMODÍN 50%.
+function utilizarComodin50() {
+    // Hay que editar esto para que sea fiel al código de "game.php". "preguntaActual"
+    // y "respuestaCorrecta" no existen en el código, pero no sé cómo implementarlo. :()
+    let preguntaActual = document.getElementById('preguntaActual').value;
+    let respuestaCorrecta = document.getElementById('respuestaCorrecta').value;
 
+    $.post('game.php', {
+        usar_comodin_50: true,
+        pregunta_actual: preguntaActual,
+        respuesta_correcta: respuestaCorrecta
+    }, function (data) {
+        let respuestasDesactivar = JSON.parse(data);
+
+        respuestasDesactivar.forEach(function (respuesta) {
+            
+            // Aquí hay que cambiar "preguntaActual" también.
+            document.getElementById(`respuesta-${preguntaActual}-${respuesta}`).disabled = true;
+        });
+
+        document.getElementById('buttonComodin50').disabled = true;
+    });
 }
-
-/* COMODÍN 50% */
-var comodinUsado = false;
-
-document.getElementById("comodin-50").addEventListener("click", function () {
-    if (!comodinUsado) {
-        comodinUsado = true;
-
-        var respuestas = document.querySelectorAll(".respuesta");
-
-        var respuestasDeshabilitadas = 0;
-        for (var i = 0; i < respuestas.length; i++) {
-            if (!respuestas[i].classList.contains("respuesta-correcta")) {
-                respuestas[i].disabled = true;
-                respuestasDeshabilitadas++;
-                if (respuestasDeshabilitadas >= 2) {
-                    break;
-                }}}
-        this.disabled = true;
-    }
-});

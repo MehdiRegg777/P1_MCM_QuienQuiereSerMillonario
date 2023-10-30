@@ -46,7 +46,7 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
 
         <div class="container1">
             <div class="comodinesBotones">
-                <button>Comodín del 50%</button>
+                <button id="utilizarComodin50" onclick="usarComodin50()">Comodín del 50%</button>
                 <button id="buttonComodinTime" onclick=buttonTime()>Comodín de tiempo extra</button>
                 <?php 
                 if ($_SESSION['comodinPublico'] === 'nousado') {
