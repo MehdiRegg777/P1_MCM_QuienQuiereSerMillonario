@@ -208,13 +208,10 @@ function comodinPublico() {
         const imagenSrc = 'graficoBarras/'+ respuestaIncorrecta + '.png';
         imagen.src = imagenSrc;
     };
-    const botonPublic0 = document.getElementById('boton-publico-0');
+    const botonPublic0 = document.getElementById('boton-publico');
     botonPublic0.setAttribute('disabled', '');
-    localStorage.setItem('boton-publico-0', botonPublic0);
-    const botonPublic1 = document.getElementById('boton-publico-1');
-    botonPublic1.setAttribute('disabled', '');
-    const botonPublic2 = document.getElementById('boton-publico-2');
-    botonPublic2.setAttribute('disabled', '');
+    localStorage.setItem('boton-publico', botonPublic0);
+
 
 }
 
