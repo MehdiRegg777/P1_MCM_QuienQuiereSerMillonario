@@ -39,7 +39,6 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
 
         <div class="container1">
             <div class="comodinesBotones">
-<<<<<<< HEAD
                 <button>Comodín del 50%</button>
                 <button id="buttonComodinTime" onclick=buttonTime()>Comodín de tiempo extra</button>
                 <?php 
@@ -50,11 +49,6 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                 }
                 ?>
                 
-=======
-                <button id="comodin50porciento">Comodín del 50%</button>
-                <button id="comodintiempoextra">Comodín de tiempo extra</button>
-                <button id="comodinpublico">Comodín del público</button>
->>>>>>> origin/CMoyano
             </div>
         </div>
 
