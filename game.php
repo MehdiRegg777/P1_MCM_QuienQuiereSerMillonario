@@ -2,6 +2,7 @@
 session_start();
 isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
 isset($_POST['timeLeft']) ? $_SESSION['timeLeft'] = $_POST['timeLeft'] : 30;
+isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
 $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
 ?>
 
@@ -40,7 +41,14 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
             <div class="comodinesBotones">
                 <button>Comodín del 50%</button>
                 <button id="buttonComodinTime" onclick=buttonTime()>Comodín de tiempo extra</button>
-                <button id="boton-publico" onclick = comodinPublico() >Comodín del público</button>
+                <?php 
+                if ($_SESSION['comodinPublico'] === 'nousado') {
+                    echo '<button id="boton-publico" onclick="comodinPublico()">Comodín del público</button>';
+                } elseif ($_SESSION['comodinPublico'] === 'usado') {
+                    echo '<button id="boton-publico" onclick="comodinPublico()" disabled>Comodín del público</button>';
+                }
+                ?>
+                
             </div>
         </div>
 

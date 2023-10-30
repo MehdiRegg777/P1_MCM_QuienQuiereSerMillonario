@@ -35,17 +35,7 @@ function startCountUpChronometer() {
     document.getElementById("timer").textContent = minutes00  + ":" + second00;
     let tiempo = minutes00  + ":" + second00;
     localStorage.setItem("time", time);
-    fetch('game.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'time=' + tiempo,
-    })
-    .then(response => response.text())
-    .then(data => {
-        //console.log(data);
-    });
+    saveSession('time=' + tiempo);
 }
 
 // Inicializar el cronometro
@@ -79,17 +69,7 @@ function updateCountDownChronometer() {
     timerQuestion.textContent = timeLeft;
     timeLeft--;
     localStorage.setItem('timeLeft', timeLeft);
-    fetch('game.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'timeLeft=' + timeLeft,
-    })
-    .then(response => response.text())
-    .then(data => {
-        //console.log(data);
-    });
+    saveSession('timeLeft=' + timeLeft);
   } else {
     timerQuestion.textContent = "Tiempo agotado";
     window.location.href = 'lose.php';
@@ -232,8 +212,8 @@ function comodinPublico() {
     };
     const botonPublic0 = document.getElementById('boton-publico');
     botonPublic0.setAttribute('disabled', '');
-    localStorage.setItem('boton-publico', botonPublic0);
-
+    
+    saveSession('comodinPublico=' + 'usado');
 
 }
 
@@ -340,17 +320,7 @@ function calculateTotalPoints(correctAnswer) {
 
     const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
 
-    fetch('lose.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'points=' + pointsTotal,
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-    });
+    saveSession('points=' + pointsTotal);
 }
 
 // FUNCIONS DE SONS/CANÇONS.
@@ -398,6 +368,20 @@ function changeLanguage(language) {
         window.location.reload();
     });
 }
+
+function saveSession(id) {
+    fetch('game.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: id,
+    })
+    .then(response => response.text())
+    .then(data => {
+        //console.log(data);
+    });
+};
 
 // COMPROBAR QUE EL USUARIO TIENE "JAVASCRIPT" ACTIVADO.
 function demandJS(){

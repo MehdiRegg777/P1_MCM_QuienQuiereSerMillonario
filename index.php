@@ -5,7 +5,7 @@
     $selectedLanguage = $_SESSION['language'];
     $hideStyle = 'style="display: none;"';
     $showStyle = 'style="display: block;"';
-    
+    $_SESSION['comodinPublico'] = 'nousado';
     /* ERROR 403 */
     /*
     $request_uri = $_SERVER["REQUEST_URI"];
