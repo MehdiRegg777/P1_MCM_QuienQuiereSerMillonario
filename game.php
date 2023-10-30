@@ -47,6 +47,7 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                     echo '<button id="boton-publico" onclick="comodinPublico()" disabled>Comodín del público</button>';
                 }
                 ?>
+                
             </div>
         </div>
 
@@ -151,7 +152,10 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                         echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'english')\">Reply</button>";
                     }
                     echo "</div>";
-                    echo "</div>";                    
+
+                    echo "</div>";
+
+                    
                 }
                 
                 $nivels++;

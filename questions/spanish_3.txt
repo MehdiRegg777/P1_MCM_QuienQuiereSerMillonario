@@ -51,9 +51,8 @@
 - Australia
 - Canadá
 - Nueva Zelanda
-# /imagGame/question28.png
 + Inglaterra
-# /imagGame/
+# /imagGame/question28.png
 * ¿Mejor sistema educativo?
 + Singapur
 - Nueva Zelanda

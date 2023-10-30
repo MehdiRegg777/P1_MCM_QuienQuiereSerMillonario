@@ -35,17 +35,7 @@ function startCountUpChronometer() {
     document.getElementById("timer").textContent = minutes00  + ":" + second00;
     let tiempo = minutes00  + ":" + second00;
     localStorage.setItem("time", time);
-    fetch('game.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'time=' + tiempo,
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-    });
+    saveSession('time=' + tiempo);
 }
 
 // Inicializar el cronometro
@@ -75,34 +65,43 @@ let tiempoRestante = 30;
 let intervalCountDown;
 function updateCountDownChronometer() {
     const timerQuestion = document.getElementById('timerQuestion');
-  if (tiempoRestante > 0) {
-    timerQuestion.textContent = tiempoRestante;
-    tiempoRestante--;
+  if (timeLeft > 0) {
+    timerQuestion.textContent = timeLeft;
+    timeLeft--;
   } else {
     timerQuestion.textContent = "Tiempo agotado";
     window.location.href = 'lose.php';
     clearInterval(intervalCountDown);
   }
 }
-
+// Inicializar el cronometro inverso
 function startCountDownChronometer() {
     const preguntaActual = document.querySelector('.pregunta:not(.bloqueada)'); // Selecciona la pregunta actual
     const timerQuestion = preguntaActual.querySelector('.timerQuestion'); // Encuentra el elemento timerQuestion dentro de la pregunta actual
     timerQuestion.style.display = "flex"; // Muestra el contador regresivo
-    tiempoRestante = 30; // Reinicia el tiempo
+    timeLeft = 30; // Reinicia el tiempo
     intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 }
 startCountDownChronometer();
 
 function resetCountDownChronometer() {
-    tiempoRestante = 30;
+    timeLeft = 30;
     const timerQuestion = document.getElementById('timerQuestion');
-    timerQuestion.textContent = tiempoRestante;
+    timerQuestion.textContent = timeLeft;
 }
 
 function stopCountDownChronometer() {
     clearInterval(intervalCountDown);
 }
+
+function buttonTime() {
+    timeLeft += 30;
+    const timerQuestion = document.querySelector('.timerQuestion');
+    timerQuestion.textContent = timeLeft;
+
+    intervalo = setInterval(updateCountDownChronometer, 1000); // Reinicia el contador
+};
+
 
 function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
@@ -124,9 +123,11 @@ function scrollSiguientePregunta(preguntaIndex) {
     const preguntaElement = document.getElementById(preguntaId);
     
     if (preguntaElement) {
-        preguntaElement.scrollIntoView({ behavior: 'smooth' });
+        preguntaElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
+
+
 
 function responderPregunta(preguntaIndex, nivel, language) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
@@ -134,7 +135,6 @@ function responderPregunta(preguntaIndex, nivel, language) {
     if (respuestaSeleccionada) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
-
         if (respuestaElegida === respuestaCorrecta) {
             //console.log(idioma);
             playCorrectSound();
@@ -142,9 +142,11 @@ function responderPregunta(preguntaIndex, nivel, language) {
             alert(mensajes[language]['respuestaCorrecta']);
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('acertada');
-            scrollSiguientePregunta(preguntaIndex);
+            var numeroIndex = parseInt(preguntaIndex, 10);
+            var preguntaIndexplus = numeroIndex + 1;
+            scrollSiguientePregunta(preguntaIndexplus);
             mostrarSiguientePregunta(preguntaIndex, nivel, language);
-            resetCountDownChronometer()
+            resetCountDownChronometer();
         } else {
             let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
@@ -175,7 +177,52 @@ function responderPregunta(preguntaIndex, nivel, language) {
         }
     } else {
         alert(mensajes[language]['seleccionaRespuesta']);
-    }
+    };
+    
+    
+}
+
+
+
+
+function comodinPublico() {
+    //Obtener la respuesta correcta a traves de la respuestas que estan desenfocadas
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+   
+    console.log(respuestaCorrecta);
+    const modal = document.getElementById('popupModal');
+    const imagen = document.getElementById('popupImage');
+
+    const probabilidad = Math.random();
+
+    if (probabilidad <= 0.8) {
+        modal.style.display = "block";
+        const imagenSrc = 'graficoBarras/'+ respuestaCorrecta + '.png';
+        imagen.src = imagenSrc;
+    }else {
+        // Aquí mostraremos la incorrecta
+        let respuestaIncorrecta;
+        do {
+            respuestaIncorrecta = Math.floor(Math.random() * 4); 
+        } while (respuestaIncorrecta == respuestaCorrecta);
+
+        console.log('Respuesta incorrecta: ' + respuestaIncorrecta);
+        
+        modal.style.display = "block";
+        const imagenSrc = 'graficoBarras/'+ respuestaIncorrecta + '.png';
+        imagen.src = imagenSrc;
+    };
+    const botonPublic0 = document.getElementById('boton-publico');
+    botonPublic0.setAttribute('disabled', '');
+    
+    saveSession('comodinPublico=' + 'usado');
+
+}
+
+function cerrarImagen() {
+    const modal = document.getElementById('popupModal');
+    modal.style.display = "none";
 }
 
 function calculoderespuesta(preguntaActual,nivel){
@@ -208,7 +255,12 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     if (preguntaActual2 >= 3) {
         if (nivel <= 6) {
             nivel++;
-            console.log(nivel);
+            /* if (nivel = 2) {
+                const timeL = document.getElementById("timerQuestion");
+                timeL.style.display = "";
+                saveSession('timeL=' + timeL)
+            } */
+            //console.log(nivel);
 
             if (nivel <= 6) {
 
@@ -222,7 +274,6 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 }
 
                 alert(mensajes[language]['subirNivel'] + nivel + '.');
-                // Parar cronometro
                 
                 const next = document.getElementById("next-question");
                 next.style.display = "";
@@ -256,7 +307,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     for (let bucle = 0; bucle <= 3; bucle++) {
 
         const desenfoqueSeguientesRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
-        console.log(desenfoqueSeguientesRespuestas);
+        //console.log(desenfoqueSeguientesRespuestas);
         desenfoqueSeguientesRespuestas.classList.remove('bloqueada');
     }
 }
@@ -278,17 +329,7 @@ function calculateTotalPoints(correctAnswer) {
 
     const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
 
-    fetch('lose.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'points=' + pointsTotal,
-    })
-    .then(response => response.text())
-    .then(data => {
-        console.log(data);
-    });
+    saveSession('points=' + pointsTotal);
 }
 
 // FUNCIONS DE SONS/CANÇONS.
@@ -337,7 +378,22 @@ function changeLanguage(language) {
     });
 }
 
+function saveSession(id) {
+    fetch('game.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: id,
+    })
+    .then(response => response.text())
+    .then(data => {
+        //console.log(data);
+    });
+};
+
 // COMPROBAR QUE EL USUARIO TIENE "JAVASCRIPT" ACTIVADO.
 function demandJS(){
 
 }
+
