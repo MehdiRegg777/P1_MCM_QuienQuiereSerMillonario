@@ -1,6 +1,11 @@
 <?php
 session_start();
 isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
+if (!isset($_GET["userpoints"])){
+    header('HTTP/1.0 403 Forbidden');
+    echo 'No pots accedir a aquesta pàgina.';
+    exit;
+} else {
 ?>
 
 <!DOCTYPE html>
@@ -16,11 +21,7 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
     <body class="losePage">
         
             <?php
-               if (!isset($_GET["userpoints"])){
-                        header('HTTP/1.0 403 Forbidden');
-                        echo 'No pots accedir a aquesta pàgina.';
-                        exit;
-               } else {
+               
             
                 echo "<header>";
 
@@ -95,7 +96,6 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                         echo '</tr>';
                         echo '</table>';
                     }
-
                 if ($_SESSION['language'] === 'spanish') {
                     echo '<p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>';
                     echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
