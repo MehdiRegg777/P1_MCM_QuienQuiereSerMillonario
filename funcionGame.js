@@ -170,6 +170,7 @@ function comodinPublico(preguntaIndex) {
     };
     const botonPublic0 = document.getElementById('boton-publico-0');
     botonPublic0.setAttribute('disabled', '');
+    localStorage.setItem('boton-publico-0', botonPublic0);
     const botonPublic1 = document.getElementById('boton-publico-1');
     botonPublic1.setAttribute('disabled', '');
     const botonPublic2 = document.getElementById('boton-publico-2');
