@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Algoritmo cronometro inverso
 let timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30;
+let intervalCountDown;
 function updateCountDownChronometer() {
     const timerQuestion = document.getElementById('timerQuestion');
   if (timeLeft > 0) {
@@ -73,6 +74,7 @@ function updateCountDownChronometer() {
   } else {
     timerQuestion.textContent = "Tiempo agotado";
     window.location.href = 'lose.php';
+    clearInterval(intervalCountDown);
   }
 }
 // Inicializar el cronometro inverso
@@ -81,7 +83,7 @@ function startCountDownChronometer() {
     //const timerQuestion = preguntaActual.querySelector('.timerQuestion'); // Encuentra el elemento timerQuestion dentro de la pregunta actual
     //timerQuestion.style.display = "flex"; // Muestra el contador regresivo
     timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30;
-    setInterval(updateCountDownChronometer, 1000);
+    intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 }
 startCountDownChronometer();
 
@@ -89,6 +91,10 @@ function resetCountDownChronometer() {
     timeLeft = 30;
     const timerQuestion = document.getElementById('timerQuestion');
     timerQuestion.textContent = timeLeft;
+}
+
+function stopCountDownChronometer() {
+    clearInterval(intervalCountDown);
 }
 
 function buttonTime() {
@@ -143,7 +149,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
             var preguntaIndexplus = numeroIndex + 1;
             scrollSiguientePregunta(preguntaIndexplus);
             mostrarSiguientePregunta(preguntaIndex, nivel, language);
-            resetCountDownChronometer()
+            resetCountDownChronometer();
         } else {
             let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
@@ -251,6 +257,11 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     if (preguntaActual2 >= 3) {
         if (nivel <= 6) {
             nivel++;
+            /* if (nivel = 2) {
+                const timeL = document.getElementById("timerQuestion");
+                timeL.style.display = "";
+                saveSession('timeL=' + timeL)
+            } */
             //console.log(nivel);
 
             if (nivel <= 6) {
@@ -265,10 +276,10 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 }
 
                 alert(mensajes[language]['subirNivel'] + nivel + '.');
-                // Parar cronometro
                 
                 const next = document.getElementById("next-question");
                 next.style.display = "";
+                stopCountDownChronometer();
             } else {
                 calculateTotalPoints(18)
                 alert(mensajes[language]['juegoTerminado']);
