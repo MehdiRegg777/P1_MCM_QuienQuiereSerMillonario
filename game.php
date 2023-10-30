@@ -172,11 +172,11 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                 echo "<div class='ghof-buttons'>";
 
                 if ($_SESSION['language'] === 'spanish') {
-                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
+                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;'>Siguiente pregunta</button>";
                 } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Següent pregunta</button>";
+                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;'>Següent pregunta</button>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Next question</button>";
+                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;'>Next question</button>";
                 }
                 echo "</div>";
 
