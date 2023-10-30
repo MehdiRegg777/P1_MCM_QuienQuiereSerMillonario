@@ -95,11 +95,11 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                         echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
                         echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';             
                     }
-                ?>
-            </div>
 
-            <div class="formularioPunage">
-                <?php
+            echo '</div>';
+
+            echo '<div class="formularioPunage">';
+      
                     $sessionID = session_id();
                     if ($_SERVER["REQUEST_METHOD"] == "GET") {
                         $puntos = $_GET["puntage"];
