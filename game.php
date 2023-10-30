@@ -1,6 +1,7 @@
 <?php
 session_start();
 isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
+isset($_POST['timeLeft']) ? $_SESSION['timeLeft'] = $_POST['timeLeft'] : 30;
 $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
 ?>
 

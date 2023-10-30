@@ -57,6 +57,7 @@ function resetChronometer() {
     const currentPage = window.location.pathname;
     if (currentPage === '/index.php' || currentPage === '/') {
         localStorage.removeItem('time');
+        localStorage.removeItem('timeLeft');
       }
 }
 
@@ -70,33 +71,54 @@ document.addEventListener('DOMContentLoaded', function () {
     resetChronometer();
 });  
 
-
-let tiempoRestante = 30;
+// Algoritmo cronometro inverso
+let timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30;
 function updateCountDownChronometer() {
     const timerQuestion = document.getElementById('timerQuestion');
-  if (tiempoRestante > 0) {
-    timerQuestion.textContent = tiempoRestante;
-    tiempoRestante--;
+  if (timeLeft > 0) {
+    timerQuestion.textContent = timeLeft;
+    timeLeft--;
+    localStorage.setItem('timeLeft', timeLeft);
+    fetch('game.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: 'timeLeft=' + timeLeft,
+    })
+    .then(response => response.text())
+    .then(data => {
+        //console.log(data);
+    });
   } else {
     timerQuestion.textContent = "Tiempo agotado";
     window.location.href = 'lose.php';
   }
 }
-
+// Inicializar el cronometro inverso
 function startCountDownChronometer() {
-    const preguntaActual = document.querySelector('.pregunta:not(.bloqueada)'); // Selecciona la pregunta actual
-    const timerQuestion = preguntaActual.querySelector('.timerQuestion'); // Encuentra el elemento timerQuestion dentro de la pregunta actual
-    timerQuestion.style.display = "flex"; // Muestra el contador regresivo
-    tiempoRestante = 30; // Reinicia el tiempo
+    //const preguntaActual = document.querySelector('.pregunta:not(.bloqueada)'); // Selecciona la pregunta actual
+    //const timerQuestion = preguntaActual.querySelector('.timerQuestion'); // Encuentra el elemento timerQuestion dentro de la pregunta actual
+    //timerQuestion.style.display = "flex"; // Muestra el contador regresivo
+    timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30;
     setInterval(updateCountDownChronometer, 1000);
 }
 startCountDownChronometer();
 
 function resetCountDownChronometer() {
-    tiempoRestante = 30;
+    timeLeft = 30;
     const timerQuestion = document.getElementById('timerQuestion');
-    timerQuestion.textContent = tiempoRestante;
-  }
+    timerQuestion.textContent = timeLeft;
+}
+
+function buttonTime() {
+    timeLeft += 30;
+    const timerQuestion = document.querySelector('.timerQuestion');
+    timerQuestion.textContent = timeLeft;
+
+    intervalo = setInterval(updateCountDownChronometer, 1000); // Reinicia el contador
+};
+
 
 function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
