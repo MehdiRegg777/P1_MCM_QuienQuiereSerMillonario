@@ -199,9 +199,14 @@ function responderPregunta(preguntaIndex, nivel, language) {
     
 }
 
-function comodinPublico(preguntaIndex) {
-    const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta');
-    const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
+
+
+
+function comodinPublico() {
+    //Obtener la respuesta correcta a traves de la respuestas que estan desenfocadas
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+   
     console.log(respuestaCorrecta);
     const modal = document.getElementById('popupModal');
     const imagen = document.getElementById('popupImage');
@@ -225,13 +230,10 @@ function comodinPublico(preguntaIndex) {
         const imagenSrc = 'graficoBarras/'+ respuestaIncorrecta + '.png';
         imagen.src = imagenSrc;
     };
-    const botonPublic0 = document.getElementById('boton-publico-0');
+    const botonPublic0 = document.getElementById('boton-publico');
     botonPublic0.setAttribute('disabled', '');
-    localStorage.setItem('boton-publico-0', botonPublic0);
-    const botonPublic1 = document.getElementById('boton-publico-1');
-    botonPublic1.setAttribute('disabled', '');
-    const botonPublic2 = document.getElementById('boton-publico-2');
-    botonPublic2.setAttribute('disabled', '');
+    localStorage.setItem('boton-publico', botonPublic0);
+
 
 }
 

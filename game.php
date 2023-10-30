@@ -36,13 +36,13 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
             00:00
         </div>
 
-        <!-- <div class="container1">
+        <div class="container1">
             <div class="comodinesBotones">
                 <button>Comodín del 50%</button>
                 <button>Comodín de tiempo extra</button>
-                <button onclick = comodinPublico() >Comodín del público</button>
+                <button id=boton-publico onclick = comodinPublico() >Comodín del público</button>
             </div>
-        </div> -->
+        </div>
 
         <?php
             for ($i = 1; $i <= 6; $i++) {
@@ -145,13 +145,7 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                         echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'english')\">Reply</button>";
                     }
                     echo "</div>";
-                    echo "<div class=\"container1\">";
-                    echo "<div class=\"comodinesBotones\">";
-                    echo "<button>Comodín del 50%</button>";
-                    echo "<button>Comodín de tiempo extra</button>";
-                    echo "<button id=\"boton-publico-$key\" onclick=\"comodinPublico('$key')\">Comodín del público</button>";
-                    echo "</div>";
-                    echo "</div>";
+
                     echo "</div>";
 
                     
