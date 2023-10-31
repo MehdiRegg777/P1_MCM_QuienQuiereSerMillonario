@@ -40,6 +40,19 @@ if (!isset($_POST["userpoints"])) {
  
                 echo '<div class="arribapregunta">';
 
+                if ($_SESSION['language'] === 'spanish') {
+                    echo "<h2>¡Has ganado!</h2>";
+                    echo "<h3><em>Clasificaciones</em></h3>";
+                
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<h2>Has guanyat!</h2>";
+                    echo "<h3><em>Classificacions</em></h3>";
+                
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<h2>You won!</h2>";
+                    echo "<h3><em>Leaderboard</em></h3>";                    
+                }
+
                       if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $puntos = $_POST["userpoints"];
                         echo '<table border="1" id="correctqueststable">';
@@ -105,7 +118,7 @@ if (!isset($_POST["userpoints"])) {
             echo '<div class="formularioPunage">';
       
                     $sessionID = session_id();
-                    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $puntos = $_POST["userpoints"];
                         if ($_SESSION['language'] === 'spanish') {
                             echo '<form id="guardarpartida" method="post" style="display: none;">
