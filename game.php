@@ -173,7 +173,7 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
 
                     
                 }
-                
+                echo "<p class='nivel_actual' nivelactual=$nivel_actual style='display: none;'></p>";
                 $nivels++;
                 echo "<div class='ghof-buttons'>";
 
@@ -186,8 +186,10 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                 }
                 echo "</div>";
 
+                
+
+
         ?>
-        
         <!-- FIN DEL PHP. -->
 
         <audio id="correctSound" src="mp3/correct.mp3"></audio>

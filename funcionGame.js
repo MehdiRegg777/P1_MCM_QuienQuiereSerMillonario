@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });  
 
 let intervalCountDown;
+
 function updateCountDownChronometer() {
     const timerQuestion = document.getElementById('timerQuestion');
     if (timeLeft > 0) {
@@ -69,9 +70,30 @@ function updateCountDownChronometer() {
         saveSession('timeLeft=' + timeLeft);
     } else {
         timerQuestion.textContent = "Tiempo agotado";
-        window.location.href = 'lose.php?puntage=' + document.getElementById('nivel');
         clearInterval(intervalCountDown);
+        paginalose();
+        //window.location.href = 'lose.php?userpoints=' + document.getElementById('nivel');
+        
     }
+}
+
+function paginalose(){
+    let niveles = document.querySelector(".nivel_actual");
+    let nivel = niveles.getAttribute("nivelactual");
+    console.log(calculoderespuesta(preguntaActual,nivel));
+    const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'lose.php';
+
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'userpoints';
+        input.value = calculoderespuesta(preguntaActual,nivel);
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+
+        form.submit();
 }
 // Inicializar el cronometro inverso
 function startCountDownChronometer() {
