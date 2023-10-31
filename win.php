@@ -25,7 +25,7 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                 } elseif ($_SESSION['language'] === 'catalan') {
                     echo "<a href='/index.php'><h1 class ='our-text'>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<a href='/index.php'><h1 class ='our-text'>Who wants to be a millonarie</h1></a>";
+                    echo "<a href='/index.php'><h1 class ='our-text'>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
         </header>
@@ -135,7 +135,9 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                         $nombre = $_POST["datos"]["nombre"];
                         $puntuacion = $_POST["datos"]["puntuacion"];
                         $id = $_POST["datos"]["id"];
-                        $comanda = $nombre . "," . $puntuacion . "," . $id;
+                        $tiempo = $_SESSION['time'];
+                        $puntosTotales = $_SESSION['points'];
+                        $comanda = $nombre . "," . $puntuacion . "," . $id . "," . $tiempo . "," . $puntosTotales;
                         fwrite($file, $comanda . "\n");
                         fclose($file);
                     }
@@ -150,6 +152,6 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
         <audio id="winner" autoplay>
             <source src="mp3/winner.mp3" type="audio/mpeg">
         </audio>
-        <script src="funcionPublish.js"></script>
+        <script src="funcionGame.js"></script>
     </body>
 </html>

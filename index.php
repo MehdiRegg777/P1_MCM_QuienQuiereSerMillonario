@@ -6,6 +6,7 @@
     $hideStyle = 'style="display: none;"';
     $showStyle = 'style="display: block;"';
     $_SESSION['comodinPublico'] = 'nousado';
+    $_SESSION['comodinTime'] = 'nousado';
     /* ERROR 403 */
     /*
     $request_uri = $_SERVER["REQUEST_URI"];
@@ -40,7 +41,7 @@
                 } elseif ($_SESSION['language'] === 'catalan') {
                     echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<a href='/index.php'><h1>Who wants to be a millonarie</h1></a>";
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
         </header>

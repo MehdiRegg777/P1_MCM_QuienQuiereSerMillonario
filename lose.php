@@ -23,7 +23,7 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                     echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<a href='/index.php'><h1>Who wants to be a millonarie</h1></a>";
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
         </header>
@@ -146,7 +146,9 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                         $nombre = $_POST["datos"]["nombre"];
                         $puntuacion = $_POST["datos"]["puntuacion"];
                         $id = $_POST["datos"]["id"];
-                        $comanda = $nombre . "," . $puntuacion . "," . $id;
+                        $tiempo = $_SESSION['time'];
+                        $puntosTotales = $_SESSION['points'];
+                        $comanda = $nombre . "," . $puntuacion . "," . $id . "," . $tiempo . "," . $puntosTotales;
                         fwrite($file, $comanda . "\n");
                         fclose($file);
                     }
