@@ -1,7 +1,7 @@
 <?php
 session_start();
 isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
-if (!isset($_GET["userpoints"])){
+if (!isset($_POST["userpoints"])){
     header('HTTP/1.0 403 Forbidden');
     echo 'No pots accedir a aquesta pàgina.';
     exit;
@@ -55,8 +55,8 @@ if (!isset($_GET["userpoints"])){
                             echo "<h3><em>Leaderboard</em></h3>";                    
                         }
                     
-                    if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                        $puntos = $_GET["userpoints"];
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $puntos = $_POST["userpoints"];
                         echo '<table border="1" id="correctqueststable">';
                         echo '<tr>';
                         if ($_SESSION['language'] === 'spanish') {
@@ -118,8 +118,8 @@ if (!isset($_GET["userpoints"])){
 
                 <div class='formularioPunage'>";
                         $sessionID = session_id();
-                        if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                            $puntos = $_GET["userpoints"];
+                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                            $puntos = $_POST["userpoints"];
                             if ($_SESSION['language'] === 'spanish') {
                                 echo '<form id="guardarpartida" method="post" style="display: none;">
                                 <label for="nombre">Nombre del jugador:</label>

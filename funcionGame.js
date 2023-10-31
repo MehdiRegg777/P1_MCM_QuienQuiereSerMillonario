@@ -162,7 +162,20 @@ function responderPregunta(preguntaIndex, nivel, language) {
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
-            window.location.href = 'lose.php?userpoints=' + puntos; 
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'lose.php';
+
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'userpoints';
+            input.value = puntos;
+
+            form.appendChild(input);
+            document.body.appendChild(form);
+
+            form.submit();
+            //window.location.href = 'lose.php?userpoints=' + puntos; 
         }
     } else {
         alert(mensajes[language]['seleccionaRespuesta']);
@@ -234,7 +247,20 @@ function regresarAlInicio() {
 }
 
 function nextQuestion(nivel){
-    window.location.href = 'game.php?niveles=' + nivel;
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'game.php';
+
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'niveles';
+    input.value = nivel;
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+
+    form.submit();
+    //window.location.href = 'game.php?niveles=' + nivel;
 }
 
 function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
@@ -264,7 +290,20 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
             } else {
                 calculateTotalPoints(18)
                 alert(mensajes[language]['juegoTerminado']);
-                window.location.href = 'win.php?userpoints=18';
+
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'win.php';
+
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'userpoints';
+                input.value = '18';
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+
+                form.submit();
             }
         }
     }

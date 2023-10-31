@@ -81,8 +81,8 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
             }
             }
 
-            if (isset($_GET['niveles'])) {
-                $_GET['nivel'] = intval($_GET['niveles']);
+            if (isset($_POST['niveles'])) {
+                $_GET['nivel'] = intval($_POST['niveles']);
             } else { $_GET['nivel'] = 1; }
 
             $nivel_actual = $_GET['nivel'];
@@ -180,12 +180,6 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                 }
                 echo "</div>";
 
-                // if ($_SESSION['nivel_actual'] == $nivelmax) {
-                //     echo "<form method='POST' id='next-level-container' class='d-none' action='win.php'>";
-                //     echo "<input type='hidden' id='game_won' name='game_won' value='1'>";
-                // } else {
-                //     echo "<form method='POST' id='next-level-container' class='d-none' action='game.php'>";
-                // }
         ?>
         
         <!-- FIN DEL PHP. -->
