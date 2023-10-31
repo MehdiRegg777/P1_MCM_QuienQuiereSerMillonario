@@ -264,7 +264,20 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
             } else {
                 calculateTotalPoints(18)
                 alert(mensajes[language]['juegoTerminado']);
-                window.location.href = 'win.php?userpoints=18';
+
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'win.php';
+
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'userpoints';
+                input.value = '18';
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+
+                form.submit();
             }
         }
     }

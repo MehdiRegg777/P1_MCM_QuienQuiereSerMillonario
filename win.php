@@ -1,7 +1,7 @@
 <?php
 session_start();
 isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
-if (!isset($_GET["userpoints"])) {
+if (!isset($_POST["userpoints"])) {
     header('HTTP/1.0 403 Forbidden');
     echo 'No pots accedir a aquesta pàgina.';
     exit;
@@ -35,14 +35,13 @@ if (!isset($_GET["userpoints"])) {
 
                 echo '</header>';
    
-                echo '<audio id="gameOver" src="gameover.mp3" preload="auto" style="display:none"></audio>';
 
                 echo '<div class="container">';
  
                 echo '<div class="arribapregunta">';
 
-                      if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                        $puntos = $_GET["userpoints"];
+                      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $puntos = $_POST["userpoints"];
                         echo '<table border="1" id="correctqueststable">';
                         echo '<tr>';
                         if ($_SESSION['language'] === 'spanish') {
@@ -107,7 +106,7 @@ if (!isset($_GET["userpoints"])) {
       
                     $sessionID = session_id();
                     if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                        $puntos = $_GET["userpoints"];
+                        $puntos = $_POST["userpoints"];
                         if ($_SESSION['language'] === 'spanish') {
                             echo '<form id="guardarpartida" method="post" style="display: none;">
                             <label for="nombre">Nombre del jugador:</label>
@@ -152,8 +151,8 @@ if (!isset($_GET["userpoints"])) {
                         <p><a href='gmail.com'>Contact us</a></p>
                         <p><a href='instagram.com'>Follow us</a></p>
                     </footer>
-                    <audio id='gameOver' autoplay>
-                        <source src='mp3/gameover.mp3' type='audio/mpeg'>
+                    <audio id='winner' autoplay>
+                        <source src='mp3/wineer.mp3' type='audio/mpeg'>
                     </audio>
                     <script src='funcionGame.js'></script>";
     }
