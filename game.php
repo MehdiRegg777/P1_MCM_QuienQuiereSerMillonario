@@ -59,6 +59,8 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
         </div>
 
         <?php
+            $nivelmax = 6;
+
             for ($i = 1; $i <= 6; $i++) {
             $languages = array("catalan", "english", "spanish");
             foreach ($languages as $language) {
@@ -78,8 +80,8 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
             }
             }
 
-            if (isset($_GET['niveles'])) {
-                $_GET['nivel'] = intval($_GET['niveles']);
+            if (isset($_POST['niveles'])) {
+                $_GET['nivel'] = intval($_POST['niveles']);
             } else { $_GET['nivel'] = 1; }
 
             $nivel_actual = $_GET['nivel'];
@@ -98,27 +100,27 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                 $imagen_actual = trim(substr($linea, strlen('# ')));
             } else {
             
-            if ($imagen_actual !== null) {
+                if ($imagen_actual !== null) {
 
-                $pregunta = trim(substr($linea, 1));
-                $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4));
+                    $pregunta = trim(substr($linea, 1));
+                    $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4));
 
-                foreach ($respuestas as $posicion => $respuesta) {
-                    if (strpos($respuesta, '+') !== false) {
-                        $respuestaCorrecta = $posicion;
+                    foreach ($respuestas as $posicion => $respuesta) {
+                        if (strpos($respuesta, '+') !== false) {
+                            $respuestaCorrecta = $posicion;
+                        }
+                    }
+
+                        $preguntas[] = array(
+                            "pregunta" => $pregunta,
+                            "respuestas" => $respuestas,
+                            "respuesta_correcta" => $respuestaCorrecta,
+                            "imagen" => $imagen_actual,
+                        );
+
+                        $imagen_actual = null; 
                     }
                 }
-
-                    $preguntas[] = array(
-                        "pregunta" => $pregunta,
-                        "respuestas" => $respuestas,
-                        "respuesta_correcta" => $respuestaCorrecta,
-                        "imagen" => $imagen_actual,
-                    );
-
-                    $imagen_actual = null; 
-                }
-            }
             }
 
             shuffle($preguntas);
@@ -164,18 +166,19 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
 
                     
                 }
-                
+                echo "<p class='nivel_actual' nivelactual=$nivel_actual style='display: none;'></p>";
                 $nivels++;
                 echo "<div class='ghof-buttons'>";
 
                 if ($_SESSION['language'] === 'spanish') {
-                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
+                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;'>Siguiente pregunta</button>";
                 } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Següent pregunta</button>";
+                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;'>Següent pregunta</button>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Next question</button>";
+                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;'>Next question</button>";
                 }
                 echo "</div>";
+
         ?>
         <div id="popupModal" class="popup">
             <div class="popup-public">

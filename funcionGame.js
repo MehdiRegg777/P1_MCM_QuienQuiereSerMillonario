@@ -38,11 +38,9 @@ function startCountUpChronometer() {
     saveSession('time=' + tiempo);
 }
 
-// Inicializar el cronometro
 let time = parseInt(localStorage.getItem("time")) || 0;
 const intervalo = setInterval(startCountUpChronometer, 1000);
 
-// Reiniciar el cronometro
 function resetChronometer() {
     const currentPage = window.location.pathname;
     if (currentPage === '/index.php' || currentPage === '/') {
@@ -61,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
     resetChronometer();
 });  
 
+// Algoritmo cronometro inverso
 let intervalCountDown;
 function updateCountDownChronometer() {
     const timerQuestion = document.getElementById('timerQuestion');
@@ -71,10 +70,30 @@ function updateCountDownChronometer() {
         saveSession('timeLeft=' + timeLeft);
     } else {
         timerQuestion.textContent = "Tiempo agotado";
-        window.location.href = 'lose.php?puntage=' + document.getElementById('nivel');
         clearInterval(intervalCountDown);
+        pageLose();
     }
 }
+
+function pageLose(){
+    let niveles = document.querySelector(".nivel_actual");
+    let nivel = niveles.getAttribute("nivelactual");
+    console.log(calculoderespuesta(preguntaActual,nivel));
+    const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'lose.php';
+
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'userpoints';
+        input.value = calculoderespuesta(preguntaActual,nivel);
+
+        form.appendChild(input);
+        document.body.appendChild(form);
+
+        form.submit();
+}
+
 // Inicializar el cronometro inverso
 function startCountDownChronometer() {
     timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30; // Reinicia el tiempo
@@ -101,8 +120,7 @@ function buttonTime() {
     timeLeft += 30;
     const timerQuestion = document.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
-
-    clearInterval(intervalCountDown); // Detén el intervalo anterior
+    clearInterval(intervalCountDown);
     intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 };
 
@@ -111,10 +129,8 @@ function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
 
     if (respuestaElement && !respuestaElement.classList.contains('bloqueada')) {
-        // Remove the 'locked' class from the element
         respuestaElement.classList.remove('bloqueada');
 
-        // The rest of the code for selecting the answer and enabling the respond button
         const respuestas = document.querySelectorAll('#pregunta' + preguntaIndex + ' .respuesta');
         respuestas.forEach((r) => r.classList.remove('seleccionada'));
         respuestaElement.classList.add('seleccionada');
@@ -140,7 +156,6 @@ function responderPregunta(preguntaIndex, nivel, language) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
         if (respuestaElegida === respuestaCorrecta) {
-            //console.log(idioma);
             playCorrectSound();
 
             alert(mensajes[language]['respuestaCorrecta']);
@@ -158,10 +173,8 @@ function responderPregunta(preguntaIndex, nivel, language) {
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('fallada');
 
-            // Alert that the response is incorrect
             alert(mensajes[language]['respuestaIncorrecta']);
 
-            // Enable the answer button for the next question
             const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
             btnResponder.setAttribute('disabled', '');
 
@@ -171,13 +184,25 @@ function responderPregunta(preguntaIndex, nivel, language) {
             const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
             bloquearPregunta.classList.add('bloqueada');
 
-            // Lock the answers
             for (let bucle = 0; bucle <= 3; bucle++) {
 
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
-            window.location.href = 'lose.php?puntage=' + puntos; 
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'lose.php';
+
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'userpoints';
+            input.value = puntos;
+
+            form.appendChild(input);
+            document.body.appendChild(form);
+
+            form.submit();
+            //window.location.href = 'lose.php?userpoints=' + puntos; 
         }
     } else {
         alert(mensajes[language]['seleccionaRespuesta']);
@@ -249,7 +274,20 @@ function regresarAlInicio() {
 }
 
 function nextQuestion(nivel){
-    window.location.href = 'game.php?niveles=' + nivel;
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'game.php';
+
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'niveles';
+    input.value = nivel;
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+
+    form.submit();
+    //window.location.href = 'game.php?niveles=' + nivel;
     resetCountDownChronometer();
 }
 
@@ -278,7 +316,20 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
             } else {
                 calculateTotalPoints(18)
                 alert(mensajes[language]['juegoTerminado']);
-                window.location.href = 'win.php?puntage=18';
+                
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'win.php';
+
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'userpoints';
+                input.value = '18';
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+
+                form.submit();
             }
         }
     }
@@ -356,7 +407,7 @@ window.onload = function() {
     startAudio.play();
 };
 window.onload = function() {
-    var startAudio = document.getElementById("winerr");
+    var startAudio = document.getElementById("winner");
     startAudio.play();
 };
 
@@ -389,8 +440,26 @@ function saveSession(id) {
     });
 };
 
-// COMPROBAR QUE EL USUARIO TIENE "JAVASCRIPT" ACTIVADO.
-function demandJS(){
+// COMODÍN 50%.
+function utilizarComodin50() {
+    // Hay que editar esto para que sea fiel al código de "game.php". "preguntaActual"
+    // y "respuestaCorrecta" no existen en el código, pero no sé cómo implementarlo. :()
+    let preguntaActual = document.getElementById('preguntaActual').value;
+    let respuestaCorrecta = document.getElementById('respuestaCorrecta').value;
 
+    $.post('game.php', {
+        usar_comodin_50: true,
+        pregunta_actual: preguntaActual,
+        respuesta_correcta: respuestaCorrecta
+    }, function (data) {
+        let respuestasDesactivar = JSON.parse(data);
+
+        respuestasDesactivar.forEach(function (respuesta) {
+            
+            // Aquí hay que cambiar "preguntaActual" también.
+            document.getElementById(`respuesta-${preguntaActual}-${respuesta}`).disabled = true;
+        });
+
+        document.getElementById('buttonComodin50').disabled = true;
+    });
 }
-

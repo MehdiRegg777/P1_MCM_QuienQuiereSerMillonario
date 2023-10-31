@@ -1,6 +1,11 @@
 <?php
 session_start();
 isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
+if (!isset($_POST["userpoints"])) {
+    header('HTTP/1.0 403 Forbidden');
+    echo 'No pots accedir a aquesta pàgina.';
+    exit;
+} else {
 ?>
 
 <!DOCTYPE html>
@@ -18,8 +23,8 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
     <body class="winPage">
-        <header>
-            <?php
+    <?php
+                echo "<header>";
                 if ($_SESSION['language'] === 'spanish') {
                     echo "<a href='/index.php'><h1 class ='our-text'>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
@@ -27,16 +32,29 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                 } elseif ($_SESSION['language'] === 'english') {
                     echo "<a href='/index.php'><h1 class ='our-text'>Who wants to be a millonarie?</h1></a>";
                 }
-            ?>
-        </header>
-        
-        <audio id="gameOver" src="gameover.mp3" preload="auto" style="display:none"></audio>
 
-        <div class="container">
-            <div class="arribapregunta">
-                <?php
-                      if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                        $puntos = $_GET["puntage"];
+                echo '</header>';
+   
+
+                echo '<div class="container">';
+ 
+                echo '<div class="arribapregunta">';
+
+                if ($_SESSION['language'] === 'spanish') {
+                    echo "<h2>¡Has ganado!</h2>";
+                    echo "<h3><em>Clasificaciones</em></h3>";
+                
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<h2>Has guanyat!</h2>";
+                    echo "<h3><em>Classificacions</em></h3>";
+                
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<h2>You won!</h2>";
+                    echo "<h3><em>Leaderboard</em></h3>";                    
+                }
+
+                      if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $puntos = $_POST["userpoints"];
                         echo '<table border="1" id="correctqueststable">';
                         echo '<tr>';
                         if ($_SESSION['language'] === 'spanish') {
@@ -76,7 +94,6 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                         echo '</tr>';
                         echo '</table>';
                       }
-                
                     if ($_SESSION['language'] === 'spanish') {
                         echo '<p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>';
                         echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
@@ -95,14 +112,14 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                         echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
                         echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';             
                     }
-                ?>
-            </div>
 
-            <div class="formularioPunage">
-                <?php
+            echo '</div>';
+
+            echo '<div class="formularioPunage">';
+      
                     $sessionID = session_id();
-                    if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                        $puntos = $_GET["puntage"];
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $puntos = $_POST["userpoints"];
                         if ($_SESSION['language'] === 'spanish') {
                             echo '<form id="guardarpartida" method="post" style="display: none;">
                             <label for="nombre">Nombre del jugador:</label>
@@ -141,17 +158,19 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                         fwrite($file, $comanda . "\n");
                         fclose($file);
                     }
-                ?>
-            </div>
-        </div>
-        <footer class="footerinfo">
-            <p>© MCM S.A.</p>
-            <p><a href="gmail.com">Contact us</a></p>
-            <p><a href="instagra.com">Follow us</a></p>
-        </footer>
-        <audio id="winner" autoplay>
-            <source src="mp3/winner.mp3" type="audio/mpeg">
-        </audio>
-        <script src="funcionGame.js"></script>
+                    echo "</div>
+                    </div>
+                    
+                    <footer class='footerinfo'>
+                        <p>© MCM S.A.</p>
+                        <p><a href='gmail.com'>Contact us</a></p>
+                        <p><a href='instagram.com'>Follow us</a></p>
+                    </footer>
+                    <audio id='winner' autoplay>
+                        <source src='mp3/wineer.mp3' type='audio/mpeg'>
+                    </audio>
+                    <script src='funcionGame.js'></script>";
+    }
+            ?>
     </body>
 </html>
