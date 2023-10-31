@@ -47,8 +47,6 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
 
         <div class="container1">
             <div class="comodinesBotones">
-                <button id="utilizarComodin50" onclick="usarComodin50()">Comodín del 50%</button>
-                <button id="buttonComodinTime" onclick=buttonTime()>Comodín de tiempo extra</button>
                 <button><i class="fa-solid fa-5"></i><i class="fa-solid fa-0"></i></button>
                 <?php 
                 if ($_SESSION['comodinTime'] === 'nousado') {
