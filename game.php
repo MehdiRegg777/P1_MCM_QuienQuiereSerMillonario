@@ -1,9 +1,9 @@
 <?php
 session_start();
 isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
-isset($_POST['timeLeft']) ? $_SESSION['timeLeft'] = $_POST['timeLeft'] : 30;
 isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
-$_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
+isset($_POST['comodinTime']) ? $_SESSION['comodinTime'] = $_POST['comodinTime'] : 'nousado';
+isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
 ?>
 
 <!DOCTYPE html>
@@ -17,6 +17,7 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
             <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             <link href="style.css" rel="stylesheet">
             <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
@@ -29,7 +30,7 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
                 } elseif ($_SESSION['language'] === 'catalan') {
                     echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<a href='/index.php'><h1>Who wants to be a millonarie</h1></a>";
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
         </header>
@@ -48,13 +49,20 @@ $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
             <div class="comodinesBotones">
                 <button id="utilizarComodin50" onclick="usarComodin50()">Comodín del 50%</button>
                 <button id="buttonComodinTime" onclick=buttonTime()>Comodín de tiempo extra</button>
+                <button><i class="fa-solid fa-5"></i><i class="fa-solid fa-0"></i></button>
                 <?php 
+                if ($_SESSION['comodinTime'] === 'nousado') {
+                    echo '<button id="buttonComodinTime" onclick="buttonTime()"><i class="fa-solid fa-stopwatch"></i></button>';
+                } elseif ($_SESSION['comodinTime'] === 'usado') {
+                    echo '<button id="buttonComodinTime" onclick="buttonTime()" disabled><i class="fa-solid fa-stopwatch"></i></button>';
+                }
                 if ($_SESSION['comodinPublico'] === 'nousado') {
-                    echo '<button id="boton-publico" onclick="comodinPublico()">Comodín del público</button>';
+                    echo '<button id="boton-publico" onclick="comodinPublico()"><i class="fa-solid fa-users"></i></button>';
                 } elseif ($_SESSION['comodinPublico'] === 'usado') {
-                    echo '<button id="boton-publico" onclick="comodinPublico()" disabled>Comodín del público</button>';
+                    echo '<button id="boton-publico" onclick="comodinPublico()" disabled><i class="fa-solid fa-users"></i></button>';
                 }
                 ?>
+                <button style='display: none'><i class="fa-solid fa-phone-volume"></i></button>
                 
             </div>
         </div>

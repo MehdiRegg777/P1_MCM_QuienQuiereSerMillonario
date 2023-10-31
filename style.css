@@ -123,16 +123,19 @@ a{
 .comodinesBotones{
     background-color: #FF9F1C;
     border: 1px solid #FF9F1C;
-    border-radius: 10px;
-    width: 535px;
-    height: 100px;
+    width: 350px;
+    height: 90px;
+    border-radius: 50px;
     color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    position: sticky;
+    position: fixed;
     bottom: 0;
+    right: 0;
+    margin-right: 50px;
+    margin-bottom: 50px;
 }
 
 .comodinesBotones button{
@@ -143,8 +146,9 @@ a{
     border: 1px solid #FFC15E;
     border-radius: 100px;
     font-family: 'Lora', sans-serif;
-    font-size: 18px;
+    font-size: 23px;
     transition-duration: 1s;
+    padding: 15px 20px;
 }
 
 .comodinesBotones button:hover{
@@ -213,8 +217,8 @@ a{
     justify-content: center;
     top: 0;
     margin: 0 auto;
-    width: 180px;
-    height: 70px;
+    width: 170px;
+    height: 60px;
     border-radius: 0px 0px 50px 50px
 }
 

@@ -59,27 +59,24 @@ document.addEventListener('DOMContentLoaded', function () {
     resetChronometer();
 });  
 
-// Algoritmo cronometro inverso
-let timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30;
+let intervalCountDown;
 function updateCountDownChronometer() {
     const timerQuestion = document.getElementById('timerQuestion');
-  if (timeLeft > 0) {
-    timerQuestion.textContent = timeLeft;
-    timeLeft--;
-    localStorage.setItem('timeLeft', timeLeft);
-    saveSession('timeLeft=' + timeLeft);
-  } else {
-    timerQuestion.textContent = "Tiempo agotado";
-    window.location.href = 'lose.php';
-  }
+    if (timeLeft > 0) {
+        timerQuestion.textContent = timeLeft;
+        timeLeft--;
+        localStorage.setItem('timeLeft', timeLeft);
+        saveSession('timeLeft=' + timeLeft);
+    } else {
+        timerQuestion.textContent = "Tiempo agotado";
+        window.location.href = 'lose.php?puntage=' + document.getElementById('nivel');
+        clearInterval(intervalCountDown);
+    }
 }
 // Inicializar el cronometro inverso
 function startCountDownChronometer() {
-    //const preguntaActual = document.querySelector('.pregunta:not(.bloqueada)'); // Selecciona la pregunta actual
-    //const timerQuestion = preguntaActual.querySelector('.timerQuestion'); // Encuentra el elemento timerQuestion dentro de la pregunta actual
-    //timerQuestion.style.display = "flex"; // Muestra el contador regresivo
-    timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30;
-    setInterval(updateCountDownChronometer, 1000);
+    timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30; // Reinicia el tiempo
+    intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 }
 startCountDownChronometer();
 
@@ -89,12 +86,22 @@ function resetCountDownChronometer() {
     timerQuestion.textContent = timeLeft;
 }
 
+function stopCountDownChronometer() {
+    clearInterval(intervalCountDown);
+    const timerQuestion = 30;
+    localStorage.setItem('timeLeft', timerQuestion);
+}
+
 function buttonTime() {
+    const buttonTime = document.getElementById('buttonComodinTime');
+    buttonTime.setAttribute('disabled', '');
+    saveSession('comodinTime=' + 'usado');
     timeLeft += 30;
     const timerQuestion = document.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
 
-    intervalo = setInterval(updateCountDownChronometer, 1000); // Reinicia el contador
+    clearInterval(intervalCountDown); // Detén el intervalo anterior
+    intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 };
 
 
@@ -138,7 +145,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
             var preguntaIndexplus = numeroIndex + 1;
             scrollSiguientePregunta(preguntaIndexplus);
             mostrarSiguientePregunta(preguntaIndex, nivel, language);
-            resetCountDownChronometer()
+            resetCountDownChronometer();
         } else {
             let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
@@ -269,8 +276,6 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     if (preguntaActual2 >= 3) {
         if (nivel <= 6) {
             nivel++;
-            //console.log(nivel);
-
             if (nivel <= 6) {
 
                 const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
@@ -283,10 +288,10 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 }
 
                 alert(mensajes[language]['subirNivel'] + nivel + '.');
-                // Parar cronometro
                 
                 const next = document.getElementById("next-question");
                 next.style.display = "";
+                stopCountDownChronometer();
             } else {
                 calculateTotalPoints(18)
                 alert(mensajes[language]['juegoTerminado']);

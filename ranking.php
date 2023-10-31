@@ -25,7 +25,7 @@
                 } elseif ($_SESSION['language'] === 'catalan') {
                     echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<a href='/index.php'><h1>Who wants to be a millonarie</h1></a>";
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
         </header>
@@ -39,6 +39,8 @@
                         echo '<th>Nombre</th>';
                         echo '<th>Puntos</th>';
                         echo '<th>ID</th>';
+                        echo '<th>Tiempo</th>';
+                        echo '<th>Puntos Totales</th>';
                     echo '</tr>';  
             
             } elseif ($_SESSION['language'] === 'catalan') {
@@ -48,6 +50,8 @@
                         echo '<th>Nom</th>';
                         echo '<th>Punts</th>';
                         echo '<th>ID</th>';
+                        echo '<th>Temps</th>';
+                        echo '<th>Punts Totals</th>';
                     echo '</tr>';
             
             } elseif ($_SESSION['language'] === 'english') {
@@ -57,6 +61,8 @@
                     echo '<th>Name</th>';
                     echo '<th>Points</th>';
                     echo '<th>ID</th>';
+                    echo '<th>Time</th>';
+                    echo '<th>Total Points</th>';
                 echo '</tr>';
             }      
 
@@ -70,17 +76,19 @@
                 while (($line = fgets($handle)) !== false) {
                     $parts = explode(",", $line);
 
-                    if (count($parts) == 3) {
+                    if (count($parts) == 5) {
                         $nombre = $parts[0];
                         $puntos = (int)$parts[1]; 
                         $id = $parts[2];
-                        $data[] = array('nombre' => $nombre, 'puntos' => $puntos, 'id' => $id);
+                        $tiempo = $parts[3];
+                        $puntosTotales = $parts[4];
+                        $data[] = array('nombre' => $nombre, 'puntos' => $puntos, 'id' => $id, 'tiempo' => $tiempo, 'puntosTotales' => $puntosTotales);
                     }}
 
                 fclose($handle);
 
                 usort($data, function($a, $b) {
-                    return $b['puntos'] - $a['puntos'];
+                    return $b['puntosTotales'] - $a['puntosTotales'];
                 });
 
                 foreach ($data as $row) {
@@ -88,6 +96,8 @@
                         echo "<td>{$row['nombre']}</td>";
                         echo "<td>{$row['puntos']}</td>";
                         echo "<td>{$row['id']}</td>";
+                        echo "<td>{$row['tiempo']}</td>";
+                        echo "<td>{$row['puntosTotales']}</td>";
                     echo "</tr>";
                 }
 
