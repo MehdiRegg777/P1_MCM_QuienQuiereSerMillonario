@@ -114,9 +114,9 @@ function stopCountDownChronometer() {
 //
 // COMODÍN 50%.
 function button50() {
-    // const button50 = document.getElementById('buttonComodin50');
-    // button50.setAttribute('disabled', '');
-    // saveSession('comodin50=' + 'usado');
+    const button50 = document.getElementById('buttonComodin50');
+    button50.setAttribute('disabled', '');
+    saveSession('comodin50=' + 'usado');
     const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
     const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
     const respuestaNivel = respuestaDesenfocada.getAttribute("data-pregunta");
