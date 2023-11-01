@@ -25,12 +25,12 @@ const mensajes = {
     }
 };
 
-// Algoritmo cronometro
+// CRONÓMETRO.
 function startCountUpChronometer() {
     time++;
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    const minutes00 = minutes < 10 ? "0" + minutes : minutes; // Es un if para mostrar 00:00 y no 0:0
+    const minutes00 = minutes < 10 ? "0" + minutes : minutes;
     const second00 = seconds < 10 ? "0" + seconds : seconds;
     document.getElementById("timer").textContent = minutes00  + ":" + second00;
     let tiempo = minutes00  + ":" + second00;
@@ -49,7 +49,6 @@ function reiniciarChronometer() {
       }
 }
 
-// Reanudar cronometro
 function reanudarChronometer() {
     let time = parseInt(localStorage.getItem("time"));
     startCountUpChronometer()
@@ -57,23 +56,22 @@ function reanudarChronometer() {
 
 document.addEventListener('DOMContentLoaded', function () {
     resetChronometer();
-});  
+});
 
 let intervalCountDown;
 
 function updateCountDownChronometer() {
     const timerQuestion = document.getElementById('timerQuestion');
+    
     if (timeLeft > 0) {
         timerQuestion.textContent = timeLeft;
         timeLeft--;
         localStorage.setItem('timeLeft', timeLeft);
         saveSession('timeLeft=' + timeLeft);
     } else {
-        timerQuestion.textContent = "Tiempo agotado";
+        timerQuestion.textContent = "Tiempo agotado.";
         clearInterval(intervalCountDown);
         paginalose();
-        //window.location.href = 'lose.php?userpoints=' + document.getElementById('nivel');
-        
     }
 }
 
@@ -84,20 +82,17 @@ function paginalose(){
     const form = document.createElement('form');
         form.method = 'POST';
         form.action = 'lose.php';
-
         const input = document.createElement('input');
         input.type = 'hidden';
         input.name = 'userpoints';
         input.value = calculoderespuesta(preguntaActual,nivel);
-
         form.appendChild(input);
         document.body.appendChild(form);
-
         form.submit();
 }
-// Inicializar el cronometro inverso
+
 function startCountDownChronometer() {
-    timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30; // Reinicia el tiempo
+    timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30;
     intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 }
 startCountDownChronometer();
@@ -114,6 +109,38 @@ function stopCountDownChronometer() {
     localStorage.setItem('timeLeft', timerQuestion);
 }
 
+//
+// COMODINES.
+//
+// COMODÍN 50%.
+function button50() {
+    const button50 = document.getElementById('buttonComodin50');
+    button50.setAttribute('disabled', '');
+    saveSession('comodin50=' + 'usado');
+    let nivelActual = document.querySelector('.nivel_actual').getAttribute('nivelactual');
+    let preguntaActual = preguntaActual2;
+    let respuestasPosibles = ["A", "B", "C", "D"];
+    let respuestaCorrecta = document.querySelector(`#respuesta-${nivelActual}-${preguntaActual}-0`).getAttribute('data-respuesta');
+    let respuestaIncorrectaIndices = [];
+
+    while (respuestaIncorrectaIndices.length < 2) {
+        const randomIndex = Math.floor(Math.random() * 4);
+
+        if (randomIndex != respuestaCorrecta && !respuestaIncorrectaIndices.includes(randomIndex)) {
+            respuestaIncorrectaIndices.push(randomIndex);
+        }
+    }
+
+    respuestaIncorrectaIndices.forEach((indice) => {
+        const respuestaElement = document.getElementById(`respuesta-${nivelActual}-${preguntaActual}-${indice}`);
+        respuestaElement.disabled = true;
+        respuestaElement.classList.add('respuesta-desactivada');
+        console.log(`Respuesta ${respuestasPosibles[indice]} desactivada.`);
+    });
+
+    document.getElementById('buttonComodin50').disabled = true;
+}
+
 function buttonTime() {
     const buttonTime = document.getElementById('buttonComodinTime');
     buttonTime.setAttribute('disabled', '');
@@ -121,18 +148,82 @@ function buttonTime() {
     timeLeft += 30;
     const timerQuestion = document.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
-
-    clearInterval(intervalCountDown); // Detén el intervalo anterior
+    clearInterval(intervalCountDown);
     intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 };
 
+function comodinPublico() {
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const modal = document.getElementById('popupModal');
+    const imagen = document.getElementById('popupImage');
+    const probabilidad = Math.random();
+    const imagenSrcPublico = 'imgs/publico.jpeg';
+    const closeButton = document.querySelector('.close-button');
+    const audioPopup = new Audio('mp3/epic.mp3');
+    modal.style.display = "block";
+    imagen.src = imagenSrcPublico;
+    audioPopup.play();
+
+    closeButton.addEventListener('click', function() {
+        audioPopup.pause();
+        audioPopup.currentTime = 0;
+        modal.style.display = "none";
+    });
+
+    imagen.classList.add('scale-animation');
+
+    setTimeout(function() {
+        imagen.classList.remove('scale-animation');
+        setTimeout(function() {
+            const segundaImagen = new Image();
+            segundaImagen.onload = function() {
+                imagen.src = segundaImagen.src;
+            };
+            
+            if (probabilidad <= 0.8) {
+                segundaImagen.src = 'graficoBarras/' + respuestaCorrecta + '.png';
+            } else {
+                let respuestaIncorrecta;
+                do {
+                    respuestaIncorrecta = Math.floor(Math.random() * 4);
+                } while (respuestaIncorrecta == respuestaCorrecta);
+                segundaImagen.src = 'graficoBarras/' + respuestaIncorrecta + '.png';
+            }
+        }, 1000);
+    }, 6000)
+
+    const botonPublic0 = document.getElementById('boton-publico');
+    botonPublic0.setAttribute('disabled', '');
+    saveSession('comodinPublico=' + 'usado');
+}
+
+function cerrarImagen() {
+    const modal = document.getElementById('popupModal');
+    modal.style.display = "none";
+}
+
+function calculoderespuesta(preguntaActual,nivel){
+    let calculo;
+    if (nivel == 1){
+        return preguntaActual
+        
+    } if ((preguntaActual)== 3){
+        return nivel*3
+    } else {
+        calculo = (nivel-1)*3
+        calculo+=preguntaActual
+        return calculo
+    }
+}
+
+// FIN COMODINES.
 
 function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
 
     if (respuestaElement && !respuestaElement.classList.contains('bloqueada')) {
         respuestaElement.classList.remove('bloqueada');
-
         const respuestas = document.querySelectorAll('#pregunta' + preguntaIndex + ' .respuesta');
         respuestas.forEach((r) => r.classList.remove('seleccionada'));
         respuestaElement.classList.add('seleccionada');
@@ -149,17 +240,15 @@ function scrollSiguientePregunta(preguntaIndex) {
     }
 }
 
-
-
 function responderPregunta(preguntaIndex, nivel, language) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
 
     if (respuestaSeleccionada) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
+        
         if (respuestaElegida === respuestaCorrecta) {
             playCorrectSound();
-
             alert(mensajes[language]['respuestaCorrecta']);
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('acertada');
@@ -171,104 +260,34 @@ function responderPregunta(preguntaIndex, nivel, language) {
         } else {
             let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
-
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('fallada');
-
             alert(mensajes[language]['respuestaIncorrecta']);
-
             const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
             btnResponder.setAttribute('disabled', '');
-
             calculateTotalPoints(puntos);
-            
-            // Lock the question
             const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
             bloquearPregunta.classList.add('bloqueada');
 
             for (let bucle = 0; bucle <= 3; bucle++) {
-
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
+
             const form = document.createElement('form');
+            const input = document.createElement('input');
             form.method = 'POST';
             form.action = 'lose.php';
-
-            const input = document.createElement('input');
             input.type = 'hidden';
             input.name = 'userpoints';
             input.value = puntos;
-
             form.appendChild(input);
             document.body.appendChild(form);
-
             form.submit();
-            //window.location.href = 'lose.php?userpoints=' + puntos; 
         }
     } else {
         alert(mensajes[language]['seleccionaRespuesta']);
     };
-    
-    
-}
-
-
-
-
-function comodinPublico() {
-    //Obtener la respuesta correcta a traves de la respuestas que estan desenfocadas
-    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
-    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
-   
-    console.log(respuestaCorrecta);
-    const modal = document.getElementById('popupModal');
-    const imagen = document.getElementById('popupImage');
-
-    const probabilidad = Math.random();
-
-    if (probabilidad <= 0.8) {
-        modal.style.display = "block";
-        const imagenSrc = 'graficoBarras/'+ respuestaCorrecta + '.png';
-        imagen.src = imagenSrc;
-    }else {
-        // Aquí mostraremos la incorrecta
-        let respuestaIncorrecta;
-        do {
-            respuestaIncorrecta = Math.floor(Math.random() * 4); 
-        } while (respuestaIncorrecta == respuestaCorrecta);
-
-        console.log('Respuesta incorrecta: ' + respuestaIncorrecta);
-        
-        modal.style.display = "block";
-        const imagenSrc = 'graficoBarras/'+ respuestaIncorrecta + '.png';
-        imagen.src = imagenSrc;
-    };
-    const botonPublic0 = document.getElementById('boton-publico');
-    botonPublic0.setAttribute('disabled', '');
-    
-    saveSession('comodinPublico=' + 'usado');
-
-}
-
-function cerrarImagen() {
-    const modal = document.getElementById('popupModal');
-    modal.style.display = "none";
-}
-
-function calculoderespuesta(preguntaActual,nivel){
-    let calculo;
-    if (nivel == 1){
-
-        return preguntaActual
-        
-    } if ((preguntaActual)== 3){
-        return nivel*3
-    } else {
-        calculo = (nivel-1)*3
-        calculo+=preguntaActual
-        return calculo
-    }
 }
 
 function regresarAlInicio() {
@@ -440,27 +459,3 @@ function saveSession(id) {
         //console.log(data);
     });
 };
-
-// COMODÍN 50%.
-function utilizarComodin50() {
-    // Hay que editar esto para que sea fiel al código de "game.php". "preguntaActual"
-    // y "respuestaCorrecta" no existen en el código, pero no sé cómo implementarlo. :()
-    let preguntaActual = document.getElementById('preguntaActual').value;
-    let respuestaCorrecta = document.getElementById('respuestaCorrecta').value;
-
-    $.post('game.php', {
-        usar_comodin_50: true,
-        pregunta_actual: preguntaActual,
-        respuesta_correcta: respuestaCorrecta
-    }, function (data) {
-        let respuestasDesactivar = JSON.parse(data);
-
-        respuestasDesactivar.forEach(function (respuesta) {
-            
-            // Aquí hay que cambiar "preguntaActual" también.
-            document.getElementById(`respuesta-${preguntaActual}-${respuesta}`).disabled = true;
-        });
-
-        document.getElementById('buttonComodin50').disabled = true;
-    });
-}
