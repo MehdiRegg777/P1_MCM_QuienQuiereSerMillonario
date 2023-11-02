@@ -5,6 +5,10 @@ session_start();
     isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
     isset($_POST['comodinTime']) ? $_SESSION['comodinTime'] = $_POST['comodinTime'] : 'nousado';
     isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
+<<<<<<< HEAD
+=======
+    $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
+>>>>>>> origin/Marcelo
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +39,7 @@ session_start();
                 }
             ?>
         </header>
-        
+        <div id="message" style="display: none;"></div>
         <div class="timer" id="timer">
             00:00
         </div>
@@ -48,17 +52,20 @@ session_start();
         </div>
 
         <div class="container1">
-            <div class="comodinesBotones">                
+            <div class="comodinesBotones">
                 <?php
                     if ($_SESSION['comodin50'] === 'nousado') {
                         echo '<button id="buttonComodin50" onclick="button50()"><i class="fa-solid fa-5"></i><i class="fa-solid fa-0">%</i></button>';
                     } elseif ($_SESSION['comodin50'] === 'usado') {
                         echo '<button id="buttonComodin50" onclick="button50()" disabled><i class="fa-solid fa-5"></i><i class="fa-solid fa-0">%</i></button>';
                     }
-                    
-                    if ($_SESSION['comodinTime'] === 'nousado') {
-                        echo '<button id="buttonComodinTime" onclick="buttonTime()"><i class="fa-solid fa-stopwatch"></i></button>';
-                    } elseif ($_SESSION['comodinTime'] === 'usado') {
+                    if ($_SESSION['nivels'] >= 2) {
+                        if ($_SESSION['comodinTime'] === 'nousado') {
+                            echo '<button id="buttonComodinTime" onclick="buttonTime()"><i class="fa-solid fa-stopwatch"></i></button>';
+                        } elseif ($_SESSION['comodinTime'] === 'usado') {
+                            echo '<button id="buttonComodinTime" onclick="buttonTime()" disabled><i class="fa-solid fa-stopwatch"></i></button>';
+                        }
+                    }else {
                         echo '<button id="buttonComodinTime" onclick="buttonTime()" disabled><i class="fa-solid fa-stopwatch"></i></button>';
                     }
                     if ($_SESSION['comodinPublico'] === 'nousado') {
@@ -178,6 +185,7 @@ session_start();
 
                 echo "<p class='nivel_actual' nivelactual=$nivel_actual style='display: none;'></p>";
                 $nivels++;
+                $_SESSION['nivels'] = $nivel_actual + 1;
                 echo "<div class='ghof-buttons'>";
 
                 if ($_SESSION['language'] === 'spanish') {

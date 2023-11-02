@@ -123,8 +123,8 @@ a{
 .comodinesBotones{
     background-color: #FF9F1C;
     border: 1px solid #FF9F1C;
-    width: 350px;
-    height: 90px;
+    width: 300px;
+    height: 80px;
     border-radius: 50px;
     color: white;
     display: flex;
@@ -142,14 +142,14 @@ a{
 .comodinesBotones button{
     width: auto;
     height: auto;
-    margin: 20px;
+    margin: 15px;
     background-color: #F5FF90;
     border: 1px solid #FFC15E;
     border-radius: 100px;
     font-family: 'Lora', sans-serif;
-    font-size: 23px;
+    font-size: 20px;
     transition-duration: 1s;
-    padding: 15px 20px;
+    padding: 15px 18px;
 }
 
 .comodinesBotones button:hover{
@@ -211,7 +211,7 @@ a{
 }
 
 .timerQuestion {
-    font-size: 30px;
+    font-size: 25px;
     background-color: #FFC15E;
     display: none;
     align-items: center;
@@ -219,8 +219,22 @@ a{
     top: 0;
     margin: 0 auto;
     width: 170px;
-    height: 60px;
+    height: 50px;
     border-radius: 0px 0px 50px 50px
+}
+
+#message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FF9F1C;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+    z-index: 9999;
 }
 
 .pregunta{

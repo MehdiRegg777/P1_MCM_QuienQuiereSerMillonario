@@ -24,6 +24,18 @@ const mensajes = {
         'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.'
     }
 };
+function showMessage(message) {
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = message;
+    messageElement.style.display = 'block';
+    setTimeout(function () {
+        hideMessage();
+    }, 4000);
+}
+function hideMessage() {
+    const messageElement = document.getElementById('message');
+    messageElement.style.display = 'none'; // Ocultar el div de mensaje
+}
 
 // CRONÓMETRO.
 function startCountUpChronometer() {
@@ -41,7 +53,11 @@ function startCountUpChronometer() {
 let time = parseInt(localStorage.getItem("time")) || 0;
 const intervalo = setInterval(startCountUpChronometer, 1000);
 
+<<<<<<< HEAD
 function reiniciarChronometer() {
+=======
+function resetChronometer() {
+>>>>>>> origin/Marcelo
     const currentPage = window.location.pathname;
     if (currentPage === '/index.php' || currentPage === '/') {
         localStorage.removeItem('time');
@@ -61,24 +77,25 @@ document.addEventListener('DOMContentLoaded', function () {
 let intervalCountDown;
 
 function updateCountDownChronometer() {
-    const timerQuestion = document.getElementById('timerQuestion');
-    
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
     if (timeLeft > 0) {
         timerQuestion.textContent = timeLeft;
         timeLeft--;
         localStorage.setItem('timeLeft', timeLeft);
         saveSession('timeLeft=' + timeLeft);
     } else {
-        timerQuestion.textContent = "Tiempo agotado.";
+        timerQuestion.textContent = "Tiempo agotado";
         clearInterval(intervalCountDown);
-        paginalose();
+        pageLose();
     }
 }
 
-function paginalose(){
+function pageLose(){
     let niveles = document.querySelector(".nivel_actual");
     let nivel = niveles.getAttribute("nivelactual");
     console.log(calculoderespuesta(preguntaActual,nivel));
+    calculateTotalPoints(calculoderespuesta(preguntaActual,nivel));
     const form = document.createElement('form');
         form.method = 'POST';
         form.action = 'lose.php';
@@ -99,14 +116,51 @@ startCountDownChronometer();
 
 function resetCountDownChronometer() {
     timeLeft = 30;
-    const timerQuestion = document.getElementById('timerQuestion');
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
 }
 
-function stopCountDownChronometer() {
+function stopCountDownChronometerReset() {
     clearInterval(intervalCountDown);
     const timerQuestion = 30;
     localStorage.setItem('timeLeft', timerQuestion);
+}
+function stopCountDownChronometerContinue() {
+    clearInterval(intervalCountDown);
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); // Obtener la pregunta actual que no está bloqueada
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
+    localStorage.setItem('timeLeft', timeLeft); // Guardar el tiempo restante en el almacenamiento local
+}
+
+//
+// COMODINES.
+//
+// COMODÍN 50%.
+function button50() {
+    
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const respuestaNivel = respuestaDesenfocada.getAttribute("data-pregunta");
+    const respuestasParaBloquear = [];
+
+    // Genera un arreglo con dos respuestas incorrectas aleatorias
+    while (respuestasParaBloquear.length < 2) {
+        const numeroAleatorio = Math.floor(Math.random() * 4); // Suponiendo que hay 4 respuestas
+        if (numeroAleatorio != respuestaCorrecta && !respuestasParaBloquear.includes(numeroAleatorio)) {
+        respuestasParaBloquear.push(numeroAleatorio);
+        }
+    }
+
+    for (let bucle = 0; bucle <= 3; bucle++) {
+        const bloquearRespuestas = document.getElementById('respuesta-' + respuestaNivel + '-' + bucle);
+        if (respuestasParaBloquear.includes(bucle)) {
+          bloquearRespuestas.classList.add('bloqueada');
+        }
+    }
+    const button50 = document.getElementById('buttonComodin50');
+    button50.setAttribute('disabled', '');
+    saveSession('comodin50=' + 'usado');
 }
 
 //
@@ -151,6 +205,7 @@ function buttonTime() {
 };
 
 function comodinPublico() {
+    stopCountDownChronometerContinue();
     const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
     const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
     const modal = document.getElementById('popupModal');
@@ -197,6 +252,7 @@ function comodinPublico() {
 }
 
 function cerrarImagen() {
+    startCountDownChronometer();
     const modal = document.getElementById('popupModal');
     modal.style.display = "none";
 }
@@ -247,7 +303,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
         
         if (respuestaElegida === respuestaCorrecta) {
             playCorrectSound();
-            alert(mensajes[language]['respuestaCorrecta']);
+            showMessage(mensajes[language]['respuestaCorrecta']);
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('acertada');
             var numeroIndex = parseInt(preguntaIndex, 10);
@@ -260,7 +316,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
             playIncorrectSound();
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('fallada');
-            alert(mensajes[language]['respuestaIncorrecta']);
+            showMessage(mensajes[language]['respuestaIncorrecta']);
             const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
             btnResponder.setAttribute('disabled', '');
             calculateTotalPoints(puntos);
@@ -272,19 +328,21 @@ function responderPregunta(preguntaIndex, nivel, language) {
                 bloquearRespuestas.classList.add('bloqueada');
             }
 
-            const form = document.createElement('form');
-            const input = document.createElement('input');
-            form.method = 'POST';
-            form.action = 'lose.php';
-            input.type = 'hidden';
-            input.name = 'userpoints';
-            input.value = puntos;
-            form.appendChild(input);
-            document.body.appendChild(form);
-            form.submit();
+            setTimeout(function () {
+                const form = document.createElement('form');
+                const input = document.createElement('input');
+                form.method = 'POST';
+                form.action = 'lose.php';
+                input.type = 'hidden';
+                input.name = 'userpoints';
+                input.value = puntos;
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }, 4000);
         }
     } else {
-        alert(mensajes[language]['seleccionaRespuesta']);
+        showMessage(mensajes[language]['seleccionaRespuesta']);
     };
 }
 
@@ -307,6 +365,7 @@ function nextQuestion(nivel){
 
     form.submit();
     //window.location.href = 'game.php?niveles=' + nivel;
+    resetCountDownChronometer();
 }
 
 function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
@@ -326,15 +385,15 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                     bloquearRespuestas.classList.add('bloqueada');
                 }
 
-                alert(mensajes[language]['subirNivel'] + nivel + '.');
+                showMessage(mensajes[language]['subirNivel'] + nivel + '.');
                 
                 const next = document.getElementById("next-question");
                 next.style.display = "";
-                stopCountDownChronometer();
+                stopCountDownChronometerReset();
             } else {
                 calculateTotalPoints(18)
-                alert(mensajes[language]['juegoTerminado']);
-
+                showMessage(mensajes[language]['juegoTerminado']);
+                
                 const form = document.createElement('form');
                 form.method = 'POST';
                 form.action = 'win.php';
