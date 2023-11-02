@@ -1,7 +1,7 @@
 <?php
 session_start();
     isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
-    isset($_POST['comodin50']) ? $_SESSION['comodin50'] = $_POST['comodin50'] : $_SESSION['comodin50'] = 'nousado';
+    isset($_POST['comodin50']) ? $_SESSION['comodin50'] = $_POST['comodin50'] : 'nousado';
     isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
     isset($_POST['comodinTime']) ? $_SESSION['comodinTime'] = $_POST['comodinTime'] : 'nousado';
     isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;

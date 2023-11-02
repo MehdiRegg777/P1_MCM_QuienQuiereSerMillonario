@@ -5,8 +5,9 @@
     $selectedLanguage = $_SESSION['language'];
     $hideStyle = 'style="display: none;"';
     $showStyle = 'style="display: block;"';
-    $_SESSION['comodinPublico'] = 'nousado';
+    $_SESSION['comodin50'] = 'nousado';
     $_SESSION['comodinTime'] = 'nousado';
+    $_SESSION['comodinPublico'] = 'nousado';
 ?>
 
 <!DOCTYPE html>
