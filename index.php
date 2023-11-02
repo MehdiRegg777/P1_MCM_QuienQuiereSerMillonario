@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <html>
     <head>
         <title>¿Quién quiere ser millonario?</title>
@@ -9,6 +9,7 @@
         <link href="style.css" rel="stylesheet">
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
+    
     <body>
         <header>
             <h1>¿Quién quiere ser millonario?</h1>

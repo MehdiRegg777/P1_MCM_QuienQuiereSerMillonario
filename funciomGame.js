@@ -1,3 +1,7 @@
+function jsActivated(){
+    
+}
+
 let preguntaActual = 0;
 let preguntaActual2 = 0;
 // Función para iniciar el juego
