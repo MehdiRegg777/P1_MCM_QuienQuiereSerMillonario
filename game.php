@@ -1,99 +1,205 @@
+<?php
+session_start();
+isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
+isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
+isset($_POST['comodinTime']) ? $_SESSION['comodinTime'] = $_POST['comodinTime'] : 'nousado';
+isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
     <head>
             <title>¿Quién quiere ser millonario?</title>
+            <noscript>
+                This page needs JavaScript activated to work. 
+                <style>div { background-color: white; display:none; }</style>
+            </noscript>
             <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             <link href="style.css" rel="stylesheet">
             <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
 
-    <body>
+    <body class="gamePage">
         <header>
-            <h1>¿Quién quiere ser millonario?</h1>
+            <?php
+                if ($_SESSION['language'] === 'spanish') {
+                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
+                }
+            ?>
         </header>
-        
+        <div class="timer" id="timer">
+            00:00
+        </div>
+
+        <div id="popupModal" class="popup">
+            <div class="popup-public">
+                <button class="close-button" onclick="cerrarImagen()">X</button>
+                <img id="popupImage" src="" alt="Imagen">
+            </div>
+        </div>
+
+        <div class="container1">
+            <div class="comodinesBotones">
+                <button><i class="fa-solid fa-5"></i><i class="fa-solid fa-0"></i></button>
+                <?php 
+                if ($_SESSION['comodinTime'] === 'nousado') {
+                    echo '<button id="buttonComodinTime" onclick="buttonTime()"><i class="fa-solid fa-stopwatch"></i></button>';
+                } elseif ($_SESSION['comodinTime'] === 'usado') {
+                    echo '<button id="buttonComodinTime" onclick="buttonTime()" disabled><i class="fa-solid fa-stopwatch"></i></button>';
+                }
+                if ($_SESSION['comodinPublico'] === 'nousado') {
+                    echo '<button id="boton-publico" onclick="comodinPublico()"><i class="fa-solid fa-users"></i></button>';
+                } elseif ($_SESSION['comodinPublico'] === 'usado') {
+                    echo '<button id="boton-publico" onclick="comodinPublico()" disabled><i class="fa-solid fa-users"></i></button>';
+                }
+                ?>
+                <button style='display: none'><i class="fa-solid fa-phone-volume"></i></button>
+                
+            </div>
+        </div>
+
         <?php
-        
-        if (isset($_GET['niveles'])) {
-            $_SESSION['nivel'] = intval($_GET['niveles']);
-        } else {
-            $_SESSION['nivel'] = 1;
-        }
+            $nivelmax = 6;
 
-        $nivel_actual = $_SESSION['nivel'];
+            for ($i = 1; $i <= 6; $i++) {
+            $languages = array("catalan", "english", "spanish");
+            foreach ($languages as $language) {
+                $filename = "questions/".$language . "_" . $i . ".txt";
+                $lines = file($filename);
+                $modifiedContent = "";
 
-        if (!isset($_SESSION['preguntas']) || isset($_GET['nuevo_juego'])) {
-            $contenido = file_get_contents("questions/spanish_$nivel_actual.txt");
-            $lineas = explode("\n", $contenido);
-            $preguntas = array();
-
-            for ($i = 0; $i < count($lineas); $i += 5) {
-                $pregunta = trim(substr($lineas[$i], 1));
-                $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4));
-
-                foreach ($respuestas as $posicion => $respuesta) {
-                    if (strpos($respuesta, '+') !== false) {
-                        $respuestaCorrecta = $posicion;
+                foreach ($lines as $line) {
+                    $cleanLine = trim($line);
+                    if (!empty($cleanLine)) {
+                        $modifiedContent .= $cleanLine . "\n";
                     }
                 }
 
-                $preguntas[] = array(
-                    "pregunta" => $pregunta,
-                    "respuestas" => $respuestas,
-                    "respuesta_correcta" => $respuestaCorrecta,
-                );
+                $modifiedContent = rtrim($modifiedContent);
+                file_put_contents($filename, $modifiedContent);
+            }
+            }
+
+            if (isset($_POST['niveles'])) {
+                $_GET['nivel'] = intval($_POST['niveles']);
+            } else { $_GET['nivel'] = 1; }
+
+            $nivel_actual = $_GET['nivel'];
+
+            if (!isset($_GET['preguntas']) || isset($_GET['nuevo_juego'])) {
+                $contenido = file_get_contents("questions/{$_SESSION['language']}_$nivel_actual.txt");
+                $lineas = explode("\n", $contenido);
+                $preguntas = array();
+                $imagen_actual = null; 
+
+            for ($i = 0; $i < count($lineas); $i++) {
+                $linea = trim($lineas[$i]);
+
+            if (strpos($linea, '#') === 0) {
+            
+                $imagen_actual = trim(substr($linea, strlen('# ')));
+            } else {
+            
+                if ($imagen_actual !== null) {
+
+                    $pregunta = trim(substr($linea, 1));
+                    $respuestas = array_map('trim', array_slice($lineas, $i + 1, 4));
+
+                    foreach ($respuestas as $posicion => $respuesta) {
+                        if (strpos($respuesta, '+') !== false) {
+                            $respuestaCorrecta = $posicion;
+                        }
+                    }
+
+                        $preguntas[] = array(
+                            "pregunta" => $pregunta,
+                            "respuestas" => $respuestas,
+                            "respuesta_correcta" => $respuestaCorrecta,
+                            "imagen" => $imagen_actual,
+                        );
+
+                        $imagen_actual = null; 
+                    }
+                }
             }
 
             shuffle($preguntas);
-            $_SESSION['preguntas'] = $preguntas;
-            $_SESSION['pregunta_actual'] = 0;
+            $_GET['preguntas'] = $preguntas;
+            $_GET['pregunta_actual'] = 0;
         }
 
-        $preguntas = $_SESSION['preguntas'];
-        
-        foreach ($preguntas as $key => $pregunta) {
-            if ($key >= 3) {
-                break;
-            }
+        $preguntas = $_GET['preguntas'];
+        $nivels = $_GET['nivel'];
+                    
+                foreach ($preguntas as $key => $pregunta) {
+                    if ($key >= 3) {
+                        break;
+                    }
 
-            $claseRespuesta = $key <= $_SESSION['pregunta_actual'] ? '' : 'bloqueada';
-            echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
-            
-            // AQUÍ LA PREGUNTA.
-            echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
-            echo "<div id='respuesta $claseRespuesta'>";
-            
-            foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
-                $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
-                echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$respuesta</div>";
-            }
-            
-            echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual')\">Responder</button>";
-            echo "</div>";
-            echo "</div>";
-        }
-        
-        $nivels = $_SESSION['nivel'];
-        $nivels++;
-        echo "<div class='ghof-buttons'>";
-        echo "<button id='inicio-btn' onclick='regresarAlInicio()' style='display: none;' ><em><strong>Volver al inicio</em></strong></button>";
-        echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;' >Siguiente pregunta</button>";
-        echo "</div>"
+                    $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
+                    echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
+                    echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
+                    if ($nivels >= 2) {
+                        echo "<div class='timerQuestion' id='timerQuestion' style='display: flex;'>30</div>";
+                    }
+                    $imagen = $pregunta['imagen']; // Ruta de la imagen
+                    if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagen)) {
+                        echo '<img class="imag-question"  src="' . $imagen . '" alt="imagenes">';
+                    }
+                    echo "<div id='respuesta $claseRespuesta'>";
+                    foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
+                        $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
+                        $opciones = ['A', 'B', 'C', 'D'];
+                        $opcionActual = $opciones[$answerKey];
+                        echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$opcionActual) $respuesta</div>";
+                    }
+                    if ($_SESSION['language'] === 'spanish') {
+                        echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'spanish')\">Responder</button>";
+                    } elseif ($_SESSION['language'] === 'catalan') {
+                        echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'catalan')\">Respondre</button>";
+                    } elseif ($_SESSION['language'] === 'english') {
+                        echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'english')\">Reply</button>";
+                    }
+                    echo "</div>";
+
+                    echo "</div>";
+
+                    
+                }
+                echo "<p class='nivel_actual' nivelactual=$nivel_actual style='display: none;'></p>";
+                $nivels++;
+                echo "<div class='ghof-buttons'>";
+
+                if ($_SESSION['language'] === 'spanish') {
+                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;'>Siguiente pregunta</button>";
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;'>Següent pregunta</button>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;'>Next question</button>";
+                }
+                echo "</div>";
+
+                
+
+
         ?>
-        
+        <!-- FIN DEL PHP. -->
+
         <audio id="correctSound" src="mp3/correct.mp3"></audio>
         <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
-        <script src="funciomGame.js"></script>
-
+        <script src="funcionGame.js"></script>
+        <script src="funcionLanguage.js"></script>
         <footer class="footerinfo">
             <p>© MCM S.A.</p>
-            <p>Contact us</p>
-            <p>Follow us</p>
-            <p>empresa@domini.cat</p>
-            <p>twt ig p</p>
+            <p><a href="gmail.com">Contact us</a></p>
+            <p><a href="instagra.com">Follow us</a></p>
         </footer>
-
     </body>
 </html>

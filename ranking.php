@@ -1,90 +1,125 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <html>
     <head>
         <title>¿Quién quiere ser millonario?</title>
+        <noscript>
+            This page needs JavaScript activated to work. 
+            <style>div { background-color: white; display:none; }</style>
+        </noscript>
         <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="style.css" rel="stylesheet">
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
-    <body>
+    <body class="rankingPage">
         <header>
-            <h1>¿Quién quiere ser millonario?</h1>
-        </header>
-    <div class="container">    
-        <h3>Clasificaciones</h3><br>
-            <table border="1" id="correctqueststable">
-            <tr>
-                <th>Nombre</th>
-                <th>Puntos</th>
-                <th>ID</th>
-            </tr>
-
             <?php
-                // Ruta del archivo de registros
-                $archivo = "records.txt";
+                if ($_SESSION['language'] === 'spanish') {
+                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
+                }
+            ?>
+        </header>
 
-                // Verifica si el archivo existe
-                if (file_exists($archivo)) {
-                    // Abre el archivo para lectura
-                    $handle = fopen($archivo, "r");
+    <div class="container">    
+        <?php
+            if ($_SESSION['language'] === 'spanish') {
+                echo '<h3><em>Clasificaciones</em></h3><br>';
+                echo '<table border="1" id="correctqueststable">';
+                    echo '<tr>';
+                        echo '<th>Nombre</th>';
+                        echo '<th>Puntos</th>';
+                        echo '<th>ID</th>';
+                        echo '<th>Tiempo</th>';
+                        echo '<th>Puntos Totales</th>';
+                    echo '</tr>';  
+            
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo '<h3>Classificacions</h3><br>';
+                echo '<table border="1" id="correctqueststable">';
+                    echo '<tr>';
+                        echo '<th>Nom</th>';
+                        echo '<th>Punts</th>';
+                        echo '<th>ID</th>';
+                        echo '<th>Temps</th>';
+                        echo '<th>Punts Totals</th>';
+                    echo '</tr>';
+            
+            } elseif ($_SESSION['language'] === 'english') {
+                echo '<h3>Leaderboard</h3><br>';
+                echo '<table border="1" id="correctqueststable">';
+                echo '<tr>';
+                    echo '<th>Name</th>';
+                    echo '<th>Points</th>';
+                    echo '<th>ID</th>';
+                    echo '<th>Time</th>';
+                    echo '<th>Total Points</th>';
+                echo '</tr>';
+            }      
 
-                    // Inicializa un array para almacenar los datos
-                    $data = array();
+            $archivo = "records.txt";
 
-                    // Recorre el archivo línea por línea
-                    while (($line = fgets($handle)) !== false) {
-                        // Divide la línea en sus partes separadas por comas
-                        $parts = explode(",", $line);
+            if (file_exists($archivo)) {
+                $handle = fopen($archivo, "r");
 
-                        // Verifica que haya tres partes
-                        if (count($parts) == 3) {
-                            // Asigna las partes a variables
-                            $nombre = $parts[0];
-                            $puntos = (int)$parts[1]; // Convierte los puntos a entero
-                            $id = $parts[2];
+                $data = array();
 
-                            // Almacena los datos en el array
-                            $data[] = array('nombre' => $nombre, 'puntos' => $puntos, 'id' => $id);
-                        }
-                    }
+                while (($line = fgets($handle)) !== false) {
+                    $parts = explode(",", $line);
 
-                    // Cierra el archivo
-                    fclose($handle);
+                    if (count($parts) == 5) {
+                        $nombre = $parts[0];
+                        $puntos = (int)$parts[1]; 
+                        $id = $parts[2];
+                        $tiempo = $parts[3];
+                        $puntosTotales = $parts[4];
+                        $data[] = array('nombre' => $nombre, 'puntos' => $puntos, 'id' => $id, 'tiempo' => $tiempo, 'puntosTotales' => $puntosTotales);
+                    }}
 
-                    // Ordena el array por la columna de puntos
-                    usort($data, function($a, $b) {
-                        return $b['puntos'] - $a['puntos'];
-                    });
+                fclose($handle);
 
-                    // Imprime la tabla ordenada
-                    
-                    foreach ($data as $row) {
-                        echo "<tr>";
+                usort($data, function($a, $b) {
+                    return $b['puntosTotales'] - $a['puntosTotales'];
+                });
+
+                foreach ($data as $row) {
+                    echo "<tr>";
                         echo "<td>{$row['nombre']}</td>";
                         echo "<td>{$row['puntos']}</td>";
                         echo "<td>{$row['id']}</td>";
-                        echo "</tr>";
-                    }
-
-                } else {
-                    echo "El archivo no existe.";
+                        echo "<td>{$row['tiempo']}</td>";
+                        echo "<td>{$row['puntosTotales']}</td>";
+                    echo "</tr>";
                 }
-                ?>
 
+                } else { echo "El archivo no existe."; }
 
-        </table>
-
-        <a class="play-button" href="index.php">Volver al inicio</a>
+            echo "</table>";
+                
+            if ($_SESSION['language'] === 'spanish') {
+                echo '<a class="play-button" href="index.php">Volver al inicio</a>';
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
+            } elseif ($_SESSION['language'] === 'english') {
+                echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';
+            }
+        ?>
     </div>
+    
     <footer class="footerinfo">
             <p>© MCM S.A.</p>
-            <p>Contact us</p>
-            <p>Follow us</p>
-            <p>empresa@domini.cat</p>
-            <p>twt ig p</p>
-        </footer>
+            <p><a href="gmail.com">Contact us</a></p>
+            <p><a href="instagra.com">Follow us</a></p>
+    </footer>
+    
     </body>
 </html>
