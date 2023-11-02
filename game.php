@@ -1,9 +1,11 @@
 <?php
 session_start();
-isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
-isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
-isset($_POST['comodinTime']) ? $_SESSION['comodinTime'] = $_POST['comodinTime'] : 'nousado';
-isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
+    isset($_POST['time']) ? $_SESSION['time'] = $_POST['time'] : null;
+    isset($_POST['comodin50']) ? $_SESSION['comodin50'] = $_POST['comodin50'] : 'nousado';
+    isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
+    isset($_POST['comodinTime']) ? $_SESSION['comodinTime'] = $_POST['comodinTime'] : 'nousado';
+    isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
+    $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
 ?>
 
 <!DOCTYPE html>
@@ -34,6 +36,7 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                 }
             ?>
         </header>
+        <div id="message" style="display: none;"></div>
         <div class="timer" id="timer">
             00:00
         </div>
@@ -47,24 +50,30 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
 
         <div class="container1">
             <div class="comodinesBotones">
-                <button><i class="fa-solid fa-5"></i><i class="fa-solid fa-0"></i></button>
-                <?php 
-                if ($_SESSION['comodinTime'] === 'nousado') {
-                    echo '<button id="buttonComodinTime" onclick="buttonTime()"><i class="fa-solid fa-stopwatch"></i></button>';
-                } elseif ($_SESSION['comodinTime'] === 'usado') {
-                    echo '<button id="buttonComodinTime" onclick="buttonTime()" disabled><i class="fa-solid fa-stopwatch"></i></button>';
-                }
-                if ($_SESSION['comodinPublico'] === 'nousado') {
-                    echo '<button id="boton-publico" onclick="comodinPublico()"><i class="fa-solid fa-users"></i></button>';
-                } elseif ($_SESSION['comodinPublico'] === 'usado') {
-                    echo '<button id="boton-publico" onclick="comodinPublico()" disabled><i class="fa-solid fa-users"></i></button>';
-                }
+                <?php
+                    if ($_SESSION['comodin50'] === 'nousado') {
+                        echo '<button id="buttonComodin50" onclick="button50()"><i class="fa-solid fa-5"></i><i class="fa-solid fa-0">%</i></button>';
+                    } elseif ($_SESSION['comodin50'] === 'usado') {
+                        echo '<button id="buttonComodin50" onclick="button50()" disabled><i class="fa-solid fa-5"></i><i class="fa-solid fa-0">%</i></button>';
+                    }
+                    if ($_SESSION['nivels'] >= 2) {
+                        if ($_SESSION['comodinTime'] === 'nousado') {
+                            echo '<button id="buttonComodinTime" onclick="buttonTime()"><i class="fa-solid fa-stopwatch"></i></button>';
+                        } elseif ($_SESSION['comodinTime'] === 'usado') {
+                            echo '<button id="buttonComodinTime" onclick="buttonTime()" disabled><i class="fa-solid fa-stopwatch"></i></button>';
+                        }
+                    }else {
+                        echo '<button id="buttonComodinTime" onclick="buttonTime()" disabled><i class="fa-solid fa-stopwatch"></i></button>';
+                    }
+                    if ($_SESSION['comodinPublico'] === 'nousado') {
+                        echo '<button id="boton-publico" onclick="comodinPublico()"><i class="fa-solid fa-users"></i></button>';
+                    } elseif ($_SESSION['comodinPublico'] === 'usado') {
+                        echo '<button id="boton-publico" onclick="comodinPublico()" disabled><i class="fa-solid fa-users"></i></button>';
+                    }
                 ?>
                 <button style='display: none'><i class="fa-solid fa-phone-volume"></i></button>
-                
             </div>
         </div>
-
         <?php
             $nivelmax = 6;
 
@@ -84,8 +93,7 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
 
                 $modifiedContent = rtrim($modifiedContent);
                 file_put_contents($filename, $modifiedContent);
-            }
-            }
+            }}
 
             if (isset($_POST['niveles'])) {
                 $_GET['nivel'] = intval($_POST['niveles']);
@@ -115,8 +123,7 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                     foreach ($respuestas as $posicion => $respuesta) {
                         if (strpos($respuesta, '+') !== false) {
                             $respuestaCorrecta = $posicion;
-                        }
-                    }
+                        }}
 
                         $preguntas[] = array(
                             "pregunta" => $pregunta,
@@ -124,11 +131,8 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                             "respuesta_correcta" => $respuestaCorrecta,
                             "imagen" => $imagen_actual,
                         );
-
                         $imagen_actual = null; 
-                    }
-                }
-            }
+                    }}}
 
             shuffle($preguntas);
             $_GET['preguntas'] = $preguntas;
@@ -146,13 +150,16 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                     $claseRespuesta = $key <= $_GET['pregunta_actual'] ? '' : 'bloqueada';
                     echo "<div class='pregunta $claseRespuesta' id='pregunta" . $key . "'>";
                     echo "<h2 class = 'questiontitle'>{$pregunta['pregunta']}</h2>";
+                    
                     if ($nivels >= 2) {
                         echo "<div class='timerQuestion' id='timerQuestion' style='display: flex;'>30</div>";
                     }
+
                     $imagen = $pregunta['imagen']; // Ruta de la imagen
                     if (file_exists($_SERVER['DOCUMENT_ROOT'] . $imagen)) {
                         echo '<img class="imag-question"  src="' . $imagen . '" alt="imagenes">';
                     }
+
                     echo "<div id='respuesta $claseRespuesta'>";
                     foreach ($pregunta['respuestas'] as $answerKey => $respuesta) {
                         $respuesta = str_replace(['+', '-', '*'], '', $respuesta);
@@ -160,6 +167,7 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                         $opcionActual = $opciones[$answerKey];
                         echo "<div class='respuesta $claseRespuesta' data-pregunta='$key' data-respuesta='$answerKey' data-correcta='" . $pregunta['respuesta_correcta'] . "' id='respuesta-$key-$answerKey' onclick=\"seleccionarRespuesta('$key', '$answerKey')\">$opcionActual) $respuesta</div>";
                     }
+
                     if ($_SESSION['language'] === 'spanish') {
                         echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'spanish')\">Responder</button>";
                     } elseif ($_SESSION['language'] === 'catalan') {
@@ -167,14 +175,14 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                     } elseif ($_SESSION['language'] === 'english') {
                         echo "<button class='responder-btn' data-pregunta='$key' id='responder-btn-$key' disabled onclick=\"responderPregunta('$key', '$nivel_actual', 'english')\">Reply</button>";
                     }
-                    echo "</div>";
 
                     echo "</div>";
-
-                    
+                    echo "</div>";
                 }
+
                 echo "<p class='nivel_actual' nivelactual=$nivel_actual style='display: none;'></p>";
                 $nivels++;
+                $_SESSION['nivels'] = $nivel_actual + 1;
                 echo "<div class='ghof-buttons'>";
 
                 if ($_SESSION['language'] === 'spanish') {
@@ -185,10 +193,6 @@ isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
                     echo "<button id='next-question' onclick='nextQuestion($nivels)' style='display: none;'>Next question</button>";
                 }
                 echo "</div>";
-
-                
-
-
         ?>
         <!-- FIN DEL PHP. -->
 

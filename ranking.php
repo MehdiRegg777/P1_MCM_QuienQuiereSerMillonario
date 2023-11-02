@@ -38,7 +38,6 @@
                     echo '<tr>';
                         echo '<th>Nombre</th>';
                         echo '<th>Puntos</th>';
-                        echo '<th>ID</th>';
                         echo '<th>Tiempo</th>';
                         echo '<th>Puntos Totales</th>';
                     echo '</tr>';  
@@ -49,7 +48,6 @@
                     echo '<tr>';
                         echo '<th>Nom</th>';
                         echo '<th>Punts</th>';
-                        echo '<th>ID</th>';
                         echo '<th>Temps</th>';
                         echo '<th>Punts Totals</th>';
                     echo '</tr>';
@@ -60,7 +58,6 @@
                 echo '<tr>';
                     echo '<th>Name</th>';
                     echo '<th>Points</th>';
-                    echo '<th>ID</th>';
                     echo '<th>Time</th>';
                     echo '<th>Total Points</th>';
                 echo '</tr>';
@@ -79,10 +76,9 @@
                     if (count($parts) == 5) {
                         $nombre = $parts[0];
                         $puntos = (int)$parts[1]; 
-                        $id = $parts[2];
                         $tiempo = $parts[3];
                         $puntosTotales = $parts[4];
-                        $data[] = array('nombre' => $nombre, 'puntos' => $puntos, 'id' => $id, 'tiempo' => $tiempo, 'puntosTotales' => $puntosTotales);
+                        $data[] = array('nombre' => $nombre, 'puntos' => $puntos, 'tiempo' => $tiempo, 'puntosTotales' => $puntosTotales);
                     }}
 
                 fclose($handle);
@@ -95,7 +91,6 @@
                     echo "<tr>";
                         echo "<td>{$row['nombre']}</td>";
                         echo "<td>{$row['puntos']}</td>";
-                        echo "<td>{$row['id']}</td>";
                         echo "<td>{$row['tiempo']}</td>";
                         echo "<td>{$row['puntosTotales']}</td>";
                     echo "</tr>";

@@ -24,8 +24,20 @@ const mensajes = {
         'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.'
     }
 };
+function showMessage(message) {
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = message;
+    messageElement.style.display = 'block';
+    setTimeout(function () {
+        hideMessage();
+    }, 4000);
+}
+function hideMessage() {
+    const messageElement = document.getElementById('message');
+    messageElement.style.display = 'none'; // Ocultar el div de mensaje
+}
 
-// Algoritmo cronometro
+// CRONÓMETRO.
 function startCountUpChronometer() {
     time++;
     const minutes = Math.floor(time / 60);
@@ -41,7 +53,7 @@ function startCountUpChronometer() {
 let time = parseInt(localStorage.getItem("time")) || 0;
 const intervalo = setInterval(startCountUpChronometer, 1000);
 
-function reiniciarChronometer() {
+function resetChronometer() {
     const currentPage = window.location.pathname;
     if (currentPage === '/index.php' || currentPage === '/') {
         localStorage.removeItem('time');
@@ -49,7 +61,6 @@ function reiniciarChronometer() {
       }
 }
 
-// Reanudar cronometro
 function reanudarChronometer() {
     let time = parseInt(localStorage.getItem("time"));
     startCountUpChronometer()
@@ -60,9 +71,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });  
 
 let intervalCountDown;
-
 function updateCountDownChronometer() {
-    const timerQuestion = document.getElementById('timerQuestion');
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
     if (timeLeft > 0) {
         timerQuestion.textContent = timeLeft;
         timeLeft--;
@@ -71,47 +82,80 @@ function updateCountDownChronometer() {
     } else {
         timerQuestion.textContent = "Tiempo agotado";
         clearInterval(intervalCountDown);
-        paginalose();
-        //window.location.href = 'lose.php?userpoints=' + document.getElementById('nivel');
-        
+        pageLose();
     }
 }
 
-function paginalose(){
+function pageLose(){
     let niveles = document.querySelector(".nivel_actual");
     let nivel = niveles.getAttribute("nivelactual");
     console.log(calculoderespuesta(preguntaActual,nivel));
+    calculateTotalPoints(calculoderespuesta(preguntaActual,nivel));
     const form = document.createElement('form');
         form.method = 'POST';
         form.action = 'lose.php';
-
         const input = document.createElement('input');
         input.type = 'hidden';
         input.name = 'userpoints';
         input.value = calculoderespuesta(preguntaActual,nivel);
-
         form.appendChild(input);
         document.body.appendChild(form);
-
         form.submit();
 }
-// Inicializar el cronometro inverso
+
 function startCountDownChronometer() {
-    timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30; // Reinicia el tiempo
+    timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30;
     intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 }
 startCountDownChronometer();
 
 function resetCountDownChronometer() {
     timeLeft = 30;
-    const timerQuestion = document.getElementById('timerQuestion');
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
 }
 
-function stopCountDownChronometer() {
+function stopCountDownChronometerReset() {
     clearInterval(intervalCountDown);
     const timerQuestion = 30;
     localStorage.setItem('timeLeft', timerQuestion);
+}
+function stopCountDownChronometerContinue() {
+    clearInterval(intervalCountDown);
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); // Obtener la pregunta actual que no está bloqueada
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
+    localStorage.setItem('timeLeft', timeLeft); // Guardar el tiempo restante en el almacenamiento local
+}
+
+//
+// COMODINES.
+//
+// COMODÍN 50%.
+function button50() {
+    
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const respuestaNivel = respuestaDesenfocada.getAttribute("data-pregunta");
+    const respuestasParaBloquear = [];
+
+    // Genera un arreglo con dos respuestas incorrectas aleatorias
+    while (respuestasParaBloquear.length < 2) {
+        const numeroAleatorio = Math.floor(Math.random() * 4); // Suponiendo que hay 4 respuestas
+        if (numeroAleatorio != respuestaCorrecta && !respuestasParaBloquear.includes(numeroAleatorio)) {
+        respuestasParaBloquear.push(numeroAleatorio);
+        }
+    }
+
+    for (let bucle = 0; bucle <= 3; bucle++) {
+        const bloquearRespuestas = document.getElementById('respuesta-' + respuestaNivel + '-' + bucle);
+        if (respuestasParaBloquear.includes(bucle)) {
+          bloquearRespuestas.classList.add('bloqueada');
+        }
+    }
+    const button50 = document.getElementById('buttonComodin50');
+    button50.setAttribute('disabled', '');
+    saveSession('comodin50=' + 'usado');
 }
 
 function buttonTime() {
@@ -121,18 +165,84 @@ function buttonTime() {
     timeLeft += 30;
     const timerQuestion = document.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
-
-    clearInterval(intervalCountDown); // Detén el intervalo anterior
+    clearInterval(intervalCountDown);
     intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 };
 
+function comodinPublico() {
+    stopCountDownChronometerContinue();
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const modal = document.getElementById('popupModal');
+    const imagen = document.getElementById('popupImage');
+    const probabilidad = Math.random();
+    const imagenSrcPublico = 'imgs/publico.jpeg';
+    const closeButton = document.querySelector('.close-button');
+    const audioPopup = new Audio('mp3/epic.mp3');
+    modal.style.display = "block";
+    imagen.src = imagenSrcPublico;
+    audioPopup.play();
+
+    closeButton.addEventListener('click', function() {
+        audioPopup.pause();
+        audioPopup.currentTime = 0;
+        modal.style.display = "none";
+    });
+
+    imagen.classList.add('scale-animation');
+
+    setTimeout(function() {
+        imagen.classList.remove('scale-animation');
+        setTimeout(function() {
+            const segundaImagen = new Image();
+            segundaImagen.onload = function() {
+                imagen.src = segundaImagen.src;
+            };
+            
+            if (probabilidad <= 0.8) {
+                segundaImagen.src = 'graficoBarras/' + respuestaCorrecta + '.png';
+            } else {
+                let respuestaIncorrecta;
+                do {
+                    respuestaIncorrecta = Math.floor(Math.random() * 4);
+                } while (respuestaIncorrecta == respuestaCorrecta);
+                segundaImagen.src = 'graficoBarras/' + respuestaIncorrecta + '.png';
+            }
+        }, 1000);
+    }, 6000)
+
+    const botonPublic0 = document.getElementById('boton-publico');
+    botonPublic0.setAttribute('disabled', '');
+    saveSession('comodinPublico=' + 'usado');
+}
+
+function cerrarImagen() {
+    startCountDownChronometer();
+    const modal = document.getElementById('popupModal');
+    modal.style.display = "none";
+}
+
+function calculoderespuesta(preguntaActual,nivel){
+    let calculo;
+    if (nivel == 1){
+        return preguntaActual
+        
+    } if ((preguntaActual)== 3){
+        return nivel*3
+    } else {
+        calculo = (nivel-1)*3
+        calculo+=preguntaActual
+        return calculo
+    }
+}
+
+// FIN COMODINES.
 
 function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
 
     if (respuestaElement && !respuestaElement.classList.contains('bloqueada')) {
         respuestaElement.classList.remove('bloqueada');
-
         const respuestas = document.querySelectorAll('#pregunta' + preguntaIndex + ' .respuesta');
         respuestas.forEach((r) => r.classList.remove('seleccionada'));
         respuestaElement.classList.add('seleccionada');
@@ -149,18 +259,16 @@ function scrollSiguientePregunta(preguntaIndex) {
     }
 }
 
-
-
 function responderPregunta(preguntaIndex, nivel, language) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
 
     if (respuestaSeleccionada) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
+        
         if (respuestaElegida === respuestaCorrecta) {
             playCorrectSound();
-
-            alert(mensajes[language]['respuestaCorrecta']);
+            showMessage(mensajes[language]['respuestaCorrecta']);
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('acertada');
             var numeroIndex = parseInt(preguntaIndex, 10);
@@ -171,108 +279,40 @@ function responderPregunta(preguntaIndex, nivel, language) {
         } else {
             let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
-
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('fallada');
-
-            alert(mensajes[language]['respuestaIncorrecta']);
-
+            showMessage(mensajes[language]['respuestaIncorrecta']);
             const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
             btnResponder.setAttribute('disabled', '');
-
             calculateTotalPoints(puntos);
-            
-            // Lock the question
             const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
             bloquearPregunta.classList.add('bloqueada');
 
             for (let bucle = 0; bucle <= 3; bucle++) {
-
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
-            const form = document.createElement('form');
-            form.method = 'POST';
-            form.action = 'lose.php';
 
-            const input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = 'userpoints';
-            input.value = puntos;
-
-            form.appendChild(input);
-            document.body.appendChild(form);
-
-            form.submit();
-            //window.location.href = 'lose.php?userpoints=' + puntos; 
+            setTimeout(function () {
+                const form = document.createElement('form');
+                const input = document.createElement('input');
+                form.method = 'POST';
+                form.action = 'lose.php';
+                input.type = 'hidden';
+                input.name = 'userpoints';
+                input.value = puntos;
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }, 4000);
         }
     } else {
-        alert(mensajes[language]['seleccionaRespuesta']);
+        showMessage(mensajes[language]['seleccionaRespuesta']);
     };
-    
-    
-}
-
-
-
-
-function comodinPublico() {
-    //Obtener la respuesta correcta a traves de la respuestas que estan desenfocadas
-    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
-    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
-   
-    console.log(respuestaCorrecta);
-    const modal = document.getElementById('popupModal');
-    const imagen = document.getElementById('popupImage');
-
-    const probabilidad = Math.random();
-
-    if (probabilidad <= 0.8) {
-        modal.style.display = "block";
-        const imagenSrc = 'graficoBarras/'+ respuestaCorrecta + '.png';
-        imagen.src = imagenSrc;
-    }else {
-        // Aquí mostraremos la incorrecta
-        let respuestaIncorrecta;
-        do {
-            respuestaIncorrecta = Math.floor(Math.random() * 4); 
-        } while (respuestaIncorrecta == respuestaCorrecta);
-
-        console.log('Respuesta incorrecta: ' + respuestaIncorrecta);
-        
-        modal.style.display = "block";
-        const imagenSrc = 'graficoBarras/'+ respuestaIncorrecta + '.png';
-        imagen.src = imagenSrc;
-    };
-    const botonPublic0 = document.getElementById('boton-publico');
-    botonPublic0.setAttribute('disabled', '');
-    
-    saveSession('comodinPublico=' + 'usado');
-
-}
-
-function cerrarImagen() {
-    const modal = document.getElementById('popupModal');
-    modal.style.display = "none";
-}
-
-function calculoderespuesta(preguntaActual,nivel){
-    let calculo;
-    if (nivel == 1){
-
-        return preguntaActual
-        
-    } if ((preguntaActual)== 3){
-        return nivel*3
-    } else {
-        calculo = (nivel-1)*3
-        calculo+=preguntaActual
-        return calculo
-    }
 }
 
 function regresarAlInicio() {
-    window.location.href = 'index.php';
+    window.location.href = 'index.php'; // Redirect to the beginning
 }
 
 function nextQuestion(nivel){
@@ -290,6 +330,7 @@ function nextQuestion(nivel){
 
     form.submit();
     //window.location.href = 'game.php?niveles=' + nivel;
+    resetCountDownChronometer();
 }
 
 function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
@@ -309,15 +350,15 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                     bloquearRespuestas.classList.add('bloqueada');
                 }
 
-                alert(mensajes[language]['subirNivel'] + nivel + '.');
+                showMessage(mensajes[language]['subirNivel'] + nivel + '.');
                 
                 const next = document.getElementById("next-question");
                 next.style.display = "";
-                stopCountDownChronometer();
+                stopCountDownChronometerReset();
             } else {
                 calculateTotalPoints(18)
-                alert(mensajes[language]['juegoTerminado']);
-
+                showMessage(mensajes[language]['juegoTerminado']);
+                
                 const form = document.createElement('form');
                 form.method = 'POST';
                 form.action = 'win.php';
@@ -440,27 +481,3 @@ function saveSession(id) {
         //console.log(data);
     });
 };
-
-// COMODÍN 50%.
-function utilizarComodin50() {
-    // Hay que editar esto para que sea fiel al código de "game.php". "preguntaActual"
-    // y "respuestaCorrecta" no existen en el código, pero no sé cómo implementarlo. :()
-    let preguntaActual = document.getElementById('preguntaActual').value;
-    let respuestaCorrecta = document.getElementById('respuestaCorrecta').value;
-
-    $.post('game.php', {
-        usar_comodin_50: true,
-        pregunta_actual: preguntaActual,
-        respuesta_correcta: respuestaCorrecta
-    }, function (data) {
-        let respuestasDesactivar = JSON.parse(data);
-
-        respuestasDesactivar.forEach(function (respuesta) {
-            
-            // Aquí hay que cambiar "preguntaActual" también.
-            document.getElementById(`respuesta-${preguntaActual}-${respuesta}`).disabled = true;
-        });
-
-        document.getElementById('buttonComodin50').disabled = true;
-    });
-}

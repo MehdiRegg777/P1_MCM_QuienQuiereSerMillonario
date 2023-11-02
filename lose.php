@@ -1,7 +1,7 @@
 <?php
 session_start();
 isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
-if (!isset($_POST["userpoints"])){
+if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
     header('HTTP/1.0 403 Forbidden');
     echo 'No pots accedir a aquesta pàgina.';
     exit;
