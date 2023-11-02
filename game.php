@@ -5,10 +5,7 @@ session_start();
     isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
     isset($_POST['comodinTime']) ? $_SESSION['comodinTime'] = $_POST['comodinTime'] : 'nousado';
     isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
-<<<<<<< HEAD
-=======
     $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
->>>>>>> origin/Marcelo
 ?>
 
 <!DOCTYPE html>

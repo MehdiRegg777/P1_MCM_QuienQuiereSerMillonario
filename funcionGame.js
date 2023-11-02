@@ -53,11 +53,7 @@ function startCountUpChronometer() {
 let time = parseInt(localStorage.getItem("time")) || 0;
 const intervalo = setInterval(startCountUpChronometer, 1000);
 
-<<<<<<< HEAD
-function reiniciarChronometer() {
-=======
 function resetChronometer() {
->>>>>>> origin/Marcelo
     const currentPage = window.location.pathname;
     if (currentPage === '/index.php' || currentPage === '/') {
         localStorage.removeItem('time');
