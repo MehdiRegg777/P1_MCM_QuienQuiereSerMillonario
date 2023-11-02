@@ -1,6 +1,7 @@
 <?php
 session_start();
 isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
+isset($_POST['buttonPublish']) ? $_SESSION['buttonPublish'] = $_POST['buttonPublish'] : 'nousado';
 if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
     header('HTTP/1.0 403 Forbidden');
     echo 'No pots accedir a aquesta pàgina.';
@@ -43,6 +44,7 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                     <div class='arribapregunta'>";
                     
                         if ($_SESSION['language'] === 'spanish') {
+                            echo "<h2>Respuesta incorrecta</h2>";
                             echo "<h2>¡Has perdido!</h2>";
                             echo "<h3><em>Clasificaciones</em></h3>";
                         
@@ -97,8 +99,12 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                         echo '</table>';
                     }
                 if ($_SESSION['language'] === 'spanish') {
-                    echo '<p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>';
-                    echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
+                    if ($_SESSION['buttonPublish'] === 'nousado') {
+                        echo '<p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>';
+                        echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
+                    } elseif ($_SESSION['buttonPublish'] === 'usado') {
+                        echo '<p>Tu partida se ha guardado correctamente en "<em>Hall of fame</em>".</p>';
+                    }
                     echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
                     echo '<a class="play-button" href="index.php"><em>Volver al inicio</em></a>';
                 

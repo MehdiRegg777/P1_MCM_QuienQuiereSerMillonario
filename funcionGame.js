@@ -34,7 +34,7 @@ function showMessage(message) {
 }
 function hideMessage() {
     const messageElement = document.getElementById('message');
-    messageElement.style.display = 'none'; // Ocultar el div de mensaje
+    messageElement.style.display = 'none';
 }
 
 // CRONÓMETRO.
@@ -47,7 +47,7 @@ function startCountUpChronometer() {
     document.getElementById("timer").textContent = minutes00  + ":" + second00;
     let tiempo = minutes00  + ":" + second00;
     localStorage.setItem("time", time);
-    saveSession('time=' + tiempo);
+    saveSession('time=' + tiempo,'game.php');
 }
 
 let time = parseInt(localStorage.getItem("time")) || 0;
@@ -78,7 +78,7 @@ function updateCountDownChronometer() {
         timerQuestion.textContent = timeLeft;
         timeLeft--;
         localStorage.setItem('timeLeft', timeLeft);
-        saveSession('timeLeft=' + timeLeft);
+        saveSession('timeLeft=' + timeLeft,'game.php');
     } else {
         timerQuestion.textContent = "Tiempo agotado";
         clearInterval(intervalCountDown);
@@ -111,7 +111,7 @@ startCountDownChronometer();
 
 function resetCountDownChronometer() {
     timeLeft = 30;
-    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)");
     const timerQuestion = currentQuestion.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
 }
@@ -123,9 +123,9 @@ function stopCountDownChronometerReset() {
 }
 function stopCountDownChronometerContinue() {
     clearInterval(intervalCountDown);
-    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); // Obtener la pregunta actual que no está bloqueada
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)");
     const timerQuestion = currentQuestion.querySelector('.timerQuestion');
-    localStorage.setItem('timeLeft', timeLeft); // Guardar el tiempo restante en el almacenamiento local
+    localStorage.setItem('timeLeft', timeLeft);
 }
 
 //
@@ -155,13 +155,13 @@ function button50() {
     }
     const button50 = document.getElementById('buttonComodin50');
     button50.setAttribute('disabled', '');
-    saveSession('comodin50=' + 'usado');
+    saveSession('comodin50=' + 'usado','game.php');
 }
 
 function buttonTime() {
     const buttonTime = document.getElementById('buttonComodinTime');
     buttonTime.setAttribute('disabled', '');
-    saveSession('comodinTime=' + 'usado');
+    saveSession('comodinTime=' + 'usado','game.php');
     timeLeft += 30;
     const timerQuestion = document.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
@@ -213,7 +213,7 @@ function comodinPublico() {
 
     const botonPublic0 = document.getElementById('boton-publico');
     botonPublic0.setAttribute('disabled', '');
-    saveSession('comodinPublico=' + 'usado');
+    saveSession('comodinPublico=' + 'usado','game.php');
 }
 
 function cerrarImagen() {
@@ -419,7 +419,7 @@ function calculateTotalPoints(correctAnswer) {
 
     const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
 
-    saveSession('points=' + pointsTotal);
+    saveSession('points=' + pointsTotal,'game.php');
 }
 
 // FUNCIONS DE SONS/CANÇONS.
@@ -437,6 +437,7 @@ function playIncorrectSound() {
 function publishGame(){
     const mostrarFormulartio = document.getElementById("guardarpartida");
     mostrarFormulartio.style.display = "";
+    saveSession('buttonPublish=' + 'usado','lose.php');
 }
 
 window.onload = function() {
@@ -468,8 +469,8 @@ function changeLanguage(language) {
     });
 }
 
-function saveSession(id) {
-    fetch('game.php', {
+function saveSession(id,direction) {
+    fetch(direction, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
