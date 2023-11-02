@@ -1,50 +1,45 @@
 /* IMPORTACIÓ DE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@700&display=swap');
 
 
 /* BARRA DE NAVEGACIÓ */
-body::-webkit-scrollbar {
-    width: 5px;
-  }
+body::-webkit-scrollbar{ width: 5px; }
   
-  body::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0);
-  }
-  
-  body::-webkit-scrollbar-thumb {
+body::-webkit-scrollbar-track{ background: rgba(255, 255, 255, 0); }
+
+body::-webkit-scrollbar-thumb{
     background-color: #FF9F1C;
     border: 3px solid #FF9F1C;
     border-radius: 20px;
-  }
+}
 
-/* LO DEMÁS */
+/* GENERAL */
 body{
     margin: 0;
     padding: 0;
     font-size: 18px;
 }
 
-header {
+header{
     background: url(imgs/qqsm.jpg) no-repeat center center;
     background-size: cover;
     text-align: center;
     padding: 100px;
+    margin-bottom: 100px;
 }
 
-h1 {
+h1{
     font-family: 'Montserrat Alternates', sans-serif;
     font-size: 50px;
     color: white;
     z-index: 1;
-    position: relative;
 }
 
-h2{
-    font-size: 40px;
-}
+h2{ font-size: 40px; }
 
-h3 {
+h3{
     font-size: 20px;
     font-weight: 100;
     color: grey;
@@ -56,23 +51,19 @@ p, ul, li{
     font-family: 'Lora', sans-serif;
 }
 
-
-/* INDEX.PHP */
-.container {
-    background-color: white;
-    border-radius: 10px;
-    margin: 100px;
-    max-width: 100%;
+a{
+    text-decoration: none;
+    color: white;
 }
 
-/* BOTONS DE L' INICI.PHP */
-.ghof-buttons { text-align: center; }
+/* GENERAL, BOTONES */
+.ghof-buttons{ text-align: center; }
 
-.play-button { margin-right: 30px; }
+.play-button{ margin-right: 30px; }
 
-.halloffame-button { margin-right: 30px; }
+.halloffame-button{ margin-right: 30px; }
 
-.play-button, .halloffame-button, #savepunt-button {
+.play-button, .halloffame-button, .responder-btn, #savepunt-button{
     display: inline-block;
     padding: 20px 40px;
     margin-top: 50px;
@@ -83,28 +74,100 @@ p, ul, li{
     font-weight: bold;
     font-size: 24px;
     color: black;
-    
     font-family: 'Lora', sans-serif;
     transition-duration: 1s;
 }
 
-.play-button:hover, .halloffame-button:hover, #savepunt-button:hover {
+#next-question{
+    width: auto;
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 24px;
+    color: black;
+    font-family: 'Lora', sans-serif;
+    transition-duration: 1s;
+}
+
+.play-button:hover, .halloffame-button:hover, .responder-btn:hover, #savepunt-button:hover #next-question:hover{
     cursor: pointer;
     transition-duration: 1s;
     background-color: #FFC15E;
     color: white;
 }
 
-/* IMATGES DE L'INICI */
-a.no-underline {
+/* COMPROBACIÓ DE JS ACTIVAT */
+.noJSEnabled{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #080357;
+}
+
+/* INDEX.PHP */
+.container{
+    background-color: white;
+    border-radius: 10px;
+    margin: 80px;
+    max-width: 100%;
+}
+
+.container1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comodinesBotones{
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    width: 300px;
+    height: 80px;
+    border-radius: 50px;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    z-index: 9999;
+}
+
+.comodinesBotones button{
+    width: auto;
+    height: auto;
+    margin: 15px;
+    background-color: #F5FF90;
+    border: 1px solid #FFC15E;
+    border-radius: 100px;
+    font-family: 'Lora', sans-serif;
+    font-size: 20px;
+    transition-duration: 1s;
+    padding: 15px 18px;
+}
+
+.comodinesBotones button:hover{
+    transition-duration: 1s;
+    box-shadow: 1px 0.6px black;
+    cursor: pointer;
+}
+
+/* INDEX.PHP */
+.indexPage a.no-underline{
     text-decoration: none;
 }
 
-.languagesimages{ text-align: center; }
+.indexPage .languagesimages{ text-align: center; }
 
-.presentationimage { text-align: center; }
+.indexPage .presentationimage{ text-align: center; }
 
-.languagesimages img {
+.indexPage .languagesimages img{
     margin-top: 50px;
     margin-right: 20px;
     width: 120px;
@@ -112,14 +175,14 @@ a.no-underline {
     transition-duration: 1s;
 }
 
-.languagesimages img:hover{
+.indexPage .languagesimages img:hover{
     cursor: pointer;
     transition-duration: 1s;
     transform: scale(1.1);
     box-shadow: 4px 4px #FFC15E;
 }
 
-.presentationimage img{
+.indexPage .presentationimage img{
     margin-top: 50px;
     width: 100%;
     max-width: 100%;
@@ -128,6 +191,52 @@ a.no-underline {
 
 /* GAME.PHP */
 /* Hay que hacer esta sección como el "Wireframe". */
+.timer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 150px;
+    height: 70px;
+    font-size: 30px;
+    background-color: #FF9F1C;
+    border-radius: 50px 50px 50px 50px;
+    margin-left: 50px;
+    margin-bottom: 50px;
+    z-index: 9999;
+    font-size: 20px;
+    font-family: 'Lora', serif;
+}
+
+.timerQuestion {
+    font-size: 25px;
+    background-color: #FFC15E;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    margin: 0 auto;
+    width: 170px;
+    height: 50px;
+    border-radius: 0px 0px 50px 50px
+}
+
+#message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #FF9F1C;
+    color: #000;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+    z-index: 9999;
+}
+
 .pregunta{
     margin-top: 50px;
     display: flex;
@@ -136,9 +245,10 @@ a.no-underline {
     justify-content: center; 
 }
 
-.questiontitle {
+.gamePage .questiontitle{
     width: 60%;
     height: 50%;
+    margin-top: 50px;
     background-color: #FFC15E;
     border: 1px solid #FFC15E;
     font-family: 'Montserrat Alternates', sans-serif;
@@ -147,11 +257,11 @@ a.no-underline {
     margin: 0 auto;
 }
 
-.respuesta {
+.gamePage .respuesta{
     background-color: #F5FF90;
     border: 1px solid #F5FF90;
     width: 300px;
-    height: 50px;
+    height: auto;
     margin-top: 20px;
     margin-bottom: 20px;
     cursor: pointer;
@@ -163,7 +273,7 @@ a.no-underline {
     transition-duration: 1s;
 }
 
-.respuesta:hover {
+.gamePage .respuesta:hover{
     transition-duration: 1s;
     box-shadow: 2px 2px #5f570d81;
     background-color: #d18821;
@@ -173,28 +283,35 @@ a.no-underline {
     text-transform: capitalize;
 }
 
-.respuesta.bloqueada {
+.gamePage .respuesta.bloqueada{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    filter: blur(2px);
     background-color: #F5FF90;
     border: 1px solid #F5FF90;
     border-radius: 5px;
-    filter: blur(2px);
-    margin-bottom: 20px;
     cursor: not-allowed;
 }
 
-.pregunta.bloqueada {
-    width: 90%;
+.gamePage .pregunta.bloqueada{
+    display: flex;
+    flex-direction: column;
+    align-items: c1enter;
+    width: 100%;
+    margin-top: 100px;
     border-radius: 5px;
     filter: blur(4px);
     cursor: not-allowed;
 }
 
-.pregunta.bloqueada h1{
+.gamePage .pregunta.bloqueada h1{
     background-color: #FFC15E;
     border: 1px solid #FFC15E;
 }
 
-#next-question{
+.gamePage #next-question{
     background-color: #FF9F1C;
     border: 1px solid #FF9F1C;
     width: 300px;
@@ -208,7 +325,7 @@ a.no-underline {
     display: block;
 }
 
-#inicio-btn {
+.gamePage #inicio-btn{
     background-color: #FF9F1C;
     border: 1px solid #FF9F1C;
     width: 300px;
@@ -222,50 +339,40 @@ a.no-underline {
     display: block;
 }
 
-.responder-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #FF9F1C;
-    border: 1px solid #FF9F1C;
-    color: black;
-    font-family: 'Lora', sans-serif;
-    font-size: 14px;
-}
+/* SELECCIÓN DE PREGUNTA EN "GAME.PHP" */
+.gamePage .respuesta.seleccionada{ background-color: #FF9F1C; }
 
-/* Parte cuando seleccionamos la pregunta */
-.respuesta.seleccionada {
-    background-color: #FF9F1C;
-}
+.gamePage .respuesta.acertada{ background-color: #a2ca83; }
 
-.respuesta.acertada {
-    background-color: #a2ca83;
-}
-.respuesta.fallada {
-    background-color: #ca8383;
-}
+.gamePage .respuesta.fallada{ background-color: #ca8383; }
 
-/* LOSE.PHP */
 #guardarpartida{
     margin-top: 30px;
     font-family: 'Lora', sans-serif;
 }
 
+/* Para el comodín del 50%. :) */
+.respuesta-desactivada {
+    color: lightgray;
+    pointer-events: not-allowed;
+    text-decoration: line-through;
+}
+
+/* TABLA DE "RANKING.PHP" */
 #correctqueststable{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
     border-collapse: collapse;
     font-family: 'Lora', sans-serif;
     font-size: 16px;
+    border: 2px solid white;
 }
 
-#correctqueststable th{
-    background-color: #a2ca83;
-}
+#correctqueststable th{ background-color: #a2ca83; }
 
-
-#correctqueststable td{
-    background-color: #D6FFB7;
-}
+#correctqueststable td{ background-color: #D6FFB7; }
 
 #correctqueststable th, td{
     padding-top: 10px;
@@ -274,7 +381,95 @@ a.no-underline {
     padding-right: 20px;
 }
 
-/* ESTO SIEMPRE LO ÚLTIMO, PARA ORDENAR*/
+.mosca {
+    width: 50px;
+    height: 50px;
+    background-image: url('imgs/mosca.png');
+    background-size: cover;
+    position: absolute;
+    cursor: pointer;
+}
+
+@keyframes rotar {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*Estilo para el popup imagen comodin public*/
+
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.popup-public {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    padding: 80px;
+    border-radius: 5px;
+}
+
+.popup-public img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.cerrar-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.imag-question {
+    max-width: 15%;
+    height: auto; 
+    margin-top: 15px;
+}
+
+/* IMAGEN COMODÍN PÚBLICO */
+/* Estilo CSS para la animación de escala */
+.scale-animation {
+    animation-name: scale;
+    animation-duration: 6s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+@keyframes scale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #000;
+}
+
+
 /* FOOTER */
 .footerinfo{
     display: flex;
@@ -287,7 +482,8 @@ a.no-underline {
     color: white;
 }
 
-footer {
+footer{
+    margin-top: 100px;
     background-color: #080357;
     color: #fff;
     text-align: center;

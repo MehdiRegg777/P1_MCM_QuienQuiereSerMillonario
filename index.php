@@ -1,47 +1,47 @@
 <?php
-session_start();
-$_SESSION['language'] = isset($_SESSION['language']) ? $_SESSION['language'] : 'spanish';
-isset($_POST['language']) ? $_SESSION['language'] = $_POST['language'] : null;
-$selectedLanguage = $_SESSION['language'];
-$hideStyle = 'style="display: none;"';
-$showStyle = 'style="display: block;"';
+    session_start();
+    $_SESSION['language'] = isset($_SESSION['language']) ? $_SESSION['language'] : 'spanish';
+    isset($_POST['language']) ? $_SESSION['language'] = $_POST['language'] : null;
+    $selectedLanguage = $_SESSION['language'];
+    $hideStyle = 'style="display: none;"';
+    $showStyle = 'style="display: block;"';
+    $_SESSION['comodin50'] = 'nousado';
+    $_SESSION['comodinTime'] = 'nousado';
+    $_SESSION['comodinPublico'] = 'nousado';
+    unset($_SESSION['nivels']);
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <html>
     <head>
         <title>¿Quién quiere ser millonario?</title>
-
         <noscript>
-            <p class="noJSEnabled">¡Esta página necesita que tengas activado JavaScript para funcionar!<br />Por favor, actívalo y recarga la página para poder jugar.</p>
-            <style>
-                div {
-                    background-color: white;
-                    display: none;
-                    z-index: 9999;
-                }
-
-                .noJSEnabled{
-                    display: flex;
-                    flex-direction: column;
-                    text-align: center;
-                }
-                </style>
+            Esta página requiere tener Javascript activado. Por favor, actívalo  para poder jugar.
+            <style>div { background-color: white; display:none; }</style>
         </noscript>
-
         <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="style.css" rel="stylesheet">
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
-    <body>
+    <body class="indexPage">
         <div id="spanish" <?php echo ($selectedLanguage != 'spanish') ? $hideStyle : $showStyle; ?>>
-            <header>
-                <a href="/index.php"><h1>¿Quién quiere ser millonario?</h1></a>
-            </header>
+        <header>
+            <?php
+                if ($_SESSION['language'] === 'spanish') {
+                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
+                }
+            ?>
+        </header>
 
-            <div class="container">    
+            <!-- CATALÀ -->
+            <div class="container">                
                 <h2><strong>Bienvenido</strong></h2>
                 <h3><em>Instrucciones del juego</em></h3>
             
@@ -93,6 +93,8 @@ $showStyle = 'style="display: block;"';
                 </div>
             </div>
         </div>
+
+        <!-- CATALÀ -->
         <div id="catalan" <?php echo ($selectedLanguage != 'catalan') ? $hideStyle : $showStyle; ?>>
             <header>
                 <h1>Qui vol ser milionari?</h1>
@@ -110,7 +112,7 @@ $showStyle = 'style="display: block;"';
                 així fins a la tercera. Si superes la primera ronda, la dificultat augmentarà. El joc SEMPRE canvia la dificultat automàticament després de
                 que l'usuari respongui a la tercera pregunta del conjunt.<br/><br /></p>
                 
-                <h3><em>Com començar a jugar?</em></hr>
+                <h3><em>Com començar a jugar?</em></h3></hr>
                 
                 <p>Primer, tens l'opció de triar l'idioma en què vols que es mostri tota la pàgina sota aquesta explicació. Quan hagis triat,
                 has de fer clic al botó <em>Jugar</em> – es situa sota aquesta explicació – per iniciar la teva partida. No es crearà un usuari llevat que
@@ -150,6 +152,8 @@ $showStyle = 'style="display: block;"';
                 </div>
             </div>
         </div>
+
+        <!-- ENGLISH -->
         <div id="english" <?php echo ($selectedLanguage != 'english') ? $hideStyle : $showStyle; ?>>
             <header>
                 <h1>Who wants to be a millionaire?</h1>
@@ -161,7 +165,7 @@ $showStyle = 'style="display: block;"';
 
                 <p>The online game of <em>Who Wants to Be a Millionaire?</em> works just like the successful real-life TV show.
 
-                <br /><br />Before you start, it's important to understand that the online game consists of a total of six difficulties, each distributed into three questions, so
+                <br /><br />Before you start, it's important to understand that the online game has a total of six difficulties, each one distributed into three questions, so
                 there are 18 questions in total. The difficulties are: very easy, easy, medium, expert, hard, and very hard.
                 The game starts with a question from the first level of difficulty. If you answer correctly, the next question will be displayed, and
                 so on until the third question. If you pass the first round, the difficulty will increase. The game ALWAYS changes the difficulty automatically after
@@ -170,7 +174,7 @@ $showStyle = 'style="display: block;"';
                 <h3><em>How to Start Playing?</em></hr>
 
                 <p>First, you have the option to choose the language in which you want the entire page to be displayed below this explanation. Once you have chosen,
-                you should click the <em>Play</em> button – located below this explanation – to start your game. A user will not be created unless you
+                you have to click the <em>Play</em> button –located below this explanation– to start your game. A user will not be created unless you
                 specify that you want one and give consent to upload your username, along with your player ID and the points you have scored, to publish it
                 on the leaderboard that is displayed when you click the <em>Hall of Fame</em> button or when the game ends (whether you win or lose).
 
@@ -178,8 +182,8 @@ $showStyle = 'style="display: block;"';
                 show you whether you got it right or wrong.</p>
 
                 <ul>
-                    <li>If you get it wrong, don't worry, the page will show you a button to return to the beginning, and you can play again whenever you want.</li>
-                    <li>If you get it right, congratulations, the next question will appear on the page. And so on until you complete all six difficulties.</li>
+                    <li>If you get it wrong, don't worry!, the page will show you a button to return to the beginning, and you can play again whenever you want.</li>
+                    <li>If you get it right, congratulations!, the next question will appear on the page. And so on until you complete all six difficulties.</li>
                 </ul>
 
                 <p>If you win, a new screen will appear congratulating you on your great achievement and showing the amount of money you have won! The leaderboard will also appear. Before this, we will ask you if you want to publish your aforementioned data (username, user ID,
@@ -209,13 +213,18 @@ $showStyle = 'style="display: block;"';
         <audio id="start" autoplay>
             <source src="mp3/inicio.mp3" type="audio/mpeg">
         </audio>
+        
+    <div id="mosca" class="mosca"></div>
+
+    <script src="easteregg.js"></script>
+        <!-- FOOTER -->
         <footer class="footerinfo">
             <p>© MCM S.A.</p>
-            <p>Contact us</p>
-            <p>Follow us</p>
-            <p>empresa@domini.cat</p>
-            <p>twt ig p</p>
+            <p><a href="gmail.com">Contact us</a></p>
+            <p><a href="instagra.com">Follow us</a></p>
         </footer>
+
         <script src="funcionGame.js"></script>
+    
     </body>
 </html>

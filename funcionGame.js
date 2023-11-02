@@ -24,15 +24,225 @@ const mensajes = {
         'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.'
     }
 };
+function showMessage(message) {
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = message;
+    messageElement.style.display = 'block';
+    setTimeout(function () {
+        hideMessage();
+    }, 4000);
+}
+function hideMessage() {
+    const messageElement = document.getElementById('message');
+    messageElement.style.display = 'none'; // Ocultar el div de mensaje
+}
+
+// CRONÓMETRO.
+function startCountUpChronometer() {
+    time++;
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    const minutes00 = minutes < 10 ? "0" + minutes : minutes; // Es un if para mostrar 00:00 y no 0:0
+    const second00 = seconds < 10 ? "0" + seconds : seconds;
+    document.getElementById("timer").textContent = minutes00  + ":" + second00;
+    let tiempo = minutes00  + ":" + second00;
+    localStorage.setItem("time", time);
+    saveSession('time=' + tiempo);
+}
+
+let time = parseInt(localStorage.getItem("time")) || 0;
+const intervalo = setInterval(startCountUpChronometer, 1000);
+
+function resetChronometer() {
+    const currentPage = window.location.pathname;
+    if (currentPage === '/index.php' || currentPage === '/') {
+        localStorage.removeItem('time');
+        localStorage.removeItem('timeLeft');
+      }
+}
+
+function reanudarChronometer() {
+    let time = parseInt(localStorage.getItem("time"));
+    startCountUpChronometer()
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    resetChronometer();
+});  
+
+let intervalCountDown;
+function updateCountDownChronometer() {
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
+    if (timeLeft > 0) {
+        timerQuestion.textContent = timeLeft;
+        timeLeft--;
+        localStorage.setItem('timeLeft', timeLeft);
+        saveSession('timeLeft=' + timeLeft);
+    } else {
+        timerQuestion.textContent = "Tiempo agotado";
+        clearInterval(intervalCountDown);
+        pageLose();
+    }
+}
+
+function pageLose(){
+    let niveles = document.querySelector(".nivel_actual");
+    let nivel = niveles.getAttribute("nivelactual");
+    console.log(calculoderespuesta(preguntaActual,nivel));
+    calculateTotalPoints(calculoderespuesta(preguntaActual,nivel));
+    const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'lose.php';
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'userpoints';
+        input.value = calculoderespuesta(preguntaActual,nivel);
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+}
+
+function startCountDownChronometer() {
+    timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30;
+    intervalCountDown = setInterval(updateCountDownChronometer, 1000);
+}
+startCountDownChronometer();
+
+function resetCountDownChronometer() {
+    timeLeft = 30;
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
+    timerQuestion.textContent = timeLeft;
+}
+
+function stopCountDownChronometerReset() {
+    clearInterval(intervalCountDown);
+    const timerQuestion = 30;
+    localStorage.setItem('timeLeft', timerQuestion);
+}
+function stopCountDownChronometerContinue() {
+    clearInterval(intervalCountDown);
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); // Obtener la pregunta actual que no está bloqueada
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
+    localStorage.setItem('timeLeft', timeLeft); // Guardar el tiempo restante en el almacenamiento local
+}
+
+//
+// COMODINES.
+//
+// COMODÍN 50%.
+function button50() {
+    
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const respuestaNivel = respuestaDesenfocada.getAttribute("data-pregunta");
+    const respuestasParaBloquear = [];
+
+    // Genera un arreglo con dos respuestas incorrectas aleatorias
+    while (respuestasParaBloquear.length < 2) {
+        const numeroAleatorio = Math.floor(Math.random() * 4); // Suponiendo que hay 4 respuestas
+        if (numeroAleatorio != respuestaCorrecta && !respuestasParaBloquear.includes(numeroAleatorio)) {
+        respuestasParaBloquear.push(numeroAleatorio);
+        }
+    }
+
+    for (let bucle = 0; bucle <= 3; bucle++) {
+        const bloquearRespuestas = document.getElementById('respuesta-' + respuestaNivel + '-' + bucle);
+        if (respuestasParaBloquear.includes(bucle)) {
+          bloquearRespuestas.classList.add('bloqueada');
+        }
+    }
+    const button50 = document.getElementById('buttonComodin50');
+    button50.setAttribute('disabled', '');
+    saveSession('comodin50=' + 'usado');
+}
+
+function buttonTime() {
+    const buttonTime = document.getElementById('buttonComodinTime');
+    buttonTime.setAttribute('disabled', '');
+    saveSession('comodinTime=' + 'usado');
+    timeLeft += 30;
+    const timerQuestion = document.querySelector('.timerQuestion');
+    timerQuestion.textContent = timeLeft;
+    clearInterval(intervalCountDown);
+    intervalCountDown = setInterval(updateCountDownChronometer, 1000);
+};
+
+function comodinPublico() {
+    stopCountDownChronometerContinue();
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const modal = document.getElementById('popupModal');
+    const imagen = document.getElementById('popupImage');
+    const probabilidad = Math.random();
+    const imagenSrcPublico = 'imgs/publico.jpeg';
+    const closeButton = document.querySelector('.close-button');
+    const audioPopup = new Audio('mp3/epic.mp3');
+    modal.style.display = "block";
+    imagen.src = imagenSrcPublico;
+    audioPopup.play();
+
+    closeButton.addEventListener('click', function() {
+        audioPopup.pause();
+        audioPopup.currentTime = 0;
+        modal.style.display = "none";
+    });
+
+    imagen.classList.add('scale-animation');
+
+    setTimeout(function() {
+        imagen.classList.remove('scale-animation');
+        setTimeout(function() {
+            const segundaImagen = new Image();
+            segundaImagen.onload = function() {
+                imagen.src = segundaImagen.src;
+            };
+            
+            if (probabilidad <= 0.8) {
+                segundaImagen.src = 'graficoBarras/' + respuestaCorrecta + '.png';
+            } else {
+                let respuestaIncorrecta;
+                do {
+                    respuestaIncorrecta = Math.floor(Math.random() * 4);
+                } while (respuestaIncorrecta == respuestaCorrecta);
+                segundaImagen.src = 'graficoBarras/' + respuestaIncorrecta + '.png';
+            }
+        }, 1000);
+    }, 6000)
+
+    const botonPublic0 = document.getElementById('boton-publico');
+    botonPublic0.setAttribute('disabled', '');
+    saveSession('comodinPublico=' + 'usado');
+}
+
+function cerrarImagen() {
+    startCountDownChronometer();
+    const modal = document.getElementById('popupModal');
+    modal.style.display = "none";
+}
+
+function calculoderespuesta(preguntaActual,nivel){
+    let calculo;
+    if (nivel == 1){
+        return preguntaActual
+        
+    } if ((preguntaActual)== 3){
+        return nivel*3
+    } else {
+        calculo = (nivel-1)*3
+        calculo+=preguntaActual
+        return calculo
+    }
+}
+
+// FIN COMODINES.
 
 function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
     const respuestaElement = document.getElementById('respuesta-' + preguntaIndex + '-' + respuestaIndex);
 
     if (respuestaElement && !respuestaElement.classList.contains('bloqueada')) {
-        // Remove the 'locked' class from the element
         respuestaElement.classList.remove('bloqueada');
-
-        // The rest of the code for selecting the answer and enabling the respond button
         const respuestas = document.querySelectorAll('#pregunta' + preguntaIndex + ' .respuesta');
         respuestas.forEach((r) => r.classList.remove('seleccionada'));
         respuestaElement.classList.add('seleccionada');
@@ -45,7 +255,7 @@ function scrollSiguientePregunta(preguntaIndex) {
     const preguntaElement = document.getElementById(preguntaId);
     
     if (preguntaElement) {
-        preguntaElement.scrollIntoView({ behavior: 'smooth' });
+        preguntaElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
@@ -55,62 +265,50 @@ function responderPregunta(preguntaIndex, nivel, language) {
     if (respuestaSeleccionada) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
-
+        
         if (respuestaElegida === respuestaCorrecta) {
-            //console.log(idioma);
             playCorrectSound();
-
-            alert(mensajes[language]['respuestaCorrecta']);
+            showMessage(mensajes[language]['respuestaCorrecta']);
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('acertada');
-            scrollSiguientePregunta(preguntaIndex);
+            var numeroIndex = parseInt(preguntaIndex, 10);
+            var preguntaIndexplus = numeroIndex + 1;
+            scrollSiguientePregunta(preguntaIndexplus);
             mostrarSiguientePregunta(preguntaIndex, nivel, language);
+            resetCountDownChronometer();
         } else {
             let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
-
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('fallada');
-
-            // Alert that the response is incorrect
-            alert(mensajes[language]['respuestaIncorrecta']);
-
-            // Enable the answer button for the next question
+            showMessage(mensajes[language]['respuestaIncorrecta']);
             const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
             btnResponder.setAttribute('disabled', '');
-
-            
-            
-            // Lock the question
+            calculateTotalPoints(puntos);
             const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
             bloquearPregunta.classList.add('bloqueada');
 
-            // Lock the answers
             for (let bucle = 0; bucle <= 3; bucle++) {
-
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
-            window.location.href = 'lose.php?puntage=' + puntos; 
+
+            setTimeout(function () {
+                const form = document.createElement('form');
+                const input = document.createElement('input');
+                form.method = 'POST';
+                form.action = 'lose.php';
+                input.type = 'hidden';
+                input.name = 'userpoints';
+                input.value = puntos;
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }, 4000);
         }
     } else {
-        alert(mensajes[language]['seleccionaRespuesta']);
-    }
-}
-
-function calculoderespuesta(preguntaActual,nivel){
-    let calculo;
-    if (nivel == 1){
-
-        return preguntaActual
-        
-    } if ((preguntaActual)== 3){
-        return nivel*3
-    } else {
-        calculo = (nivel-1)*3
-        calculo+=preguntaActual
-        return calculo
-    }
+        showMessage(mensajes[language]['seleccionaRespuesta']);
+    };
 }
 
 function regresarAlInicio() {
@@ -118,7 +316,21 @@ function regresarAlInicio() {
 }
 
 function nextQuestion(nivel){
-    window.location.href = 'game.php?niveles=' + nivel;
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = 'game.php';
+
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'niveles';
+    input.value = nivel;
+
+    form.appendChild(input);
+    document.body.appendChild(form);
+
+    form.submit();
+    //window.location.href = 'game.php?niveles=' + nivel;
+    resetCountDownChronometer();
 }
 
 function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
@@ -127,8 +339,6 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     if (preguntaActual2 >= 3) {
         if (nivel <= 6) {
             nivel++;
-            console.log(nivel);
-
             if (nivel <= 6) {
 
                 const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
@@ -140,13 +350,28 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                     bloquearRespuestas.classList.add('bloqueada');
                 }
 
-                alert(mensajes[language]['subirNivel'] + nivel + '.');
-
+                showMessage(mensajes[language]['subirNivel'] + nivel + '.');
+                
                 const next = document.getElementById("next-question");
                 next.style.display = "";
+                stopCountDownChronometerReset();
             } else {
-                alert(mensajes[language]['juegoTerminado']);
-                window.location.href = 'win.php?puntage=18';
+                calculateTotalPoints(18)
+                showMessage(mensajes[language]['juegoTerminado']);
+                
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'win.php';
+
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'userpoints';
+                input.value = '18';
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+
+                form.submit();
             }
         }
     }
@@ -172,9 +397,29 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     for (let bucle = 0; bucle <= 3; bucle++) {
 
         const desenfoqueSeguientesRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
-        console.log(desenfoqueSeguientesRespuestas);
+        //console.log(desenfoqueSeguientesRespuestas);
         desenfoqueSeguientesRespuestas.classList.remove('bloqueada');
     }
+}
+
+function calculateTotalPoints(correctAnswer) {
+    const tiempo = parseInt(localStorage.getItem("time")) || 0;
+
+    let pointsTime = 0;
+    if (tiempo >= 1 && tiempo <= 1200) {
+        pointsTime = 1200 - tiempo + 1;
+    } else{
+        pointsTime = 0;
+    }
+
+    let pointsAnswer = 0;
+    if (correctAnswer >= 1 && correctAnswer <= 18) {
+        pointsAnswer = correctAnswer * 1300;
+    }
+
+    const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
+
+    saveSession('points=' + pointsTotal);
 }
 
 // FUNCIONS DE SONS/CANÇONS.
@@ -204,7 +449,7 @@ window.onload = function() {
     startAudio.play();
 };
 window.onload = function() {
-    var startAudio = document.getElementById("winerr");
+    var startAudio = document.getElementById("winner");
     startAudio.play();
 };
 
@@ -215,7 +460,7 @@ function changeLanguage(language) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: 'language=' + encodeURIComponent(language),
+        body: 'language=' + language,
     })
     .then(response => response.text())
     .then(data => {
@@ -223,7 +468,16 @@ function changeLanguage(language) {
     });
 }
 
-// COMPROBAR QUE EL USUARIO TIENE "JAVASCRIPT" ACTIVADO.
-function demandJS(){
-
-}
+function saveSession(id) {
+    fetch('game.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: id,
+    })
+    .then(response => response.text())
+    .then(data => {
+        //console.log(data);
+    });
+};

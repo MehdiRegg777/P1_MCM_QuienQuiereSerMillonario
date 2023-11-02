@@ -1,33 +1,40 @@
+# /imagGame/question46.png
 * Quin jugador australià té el salari més alt?
 + Mathew Ryan
 - Harry Soutar
 - Milos Degenek
 - Leo Messi
+# /imagGame/question47.png
 * Són els britànics puntuals?
 + Sempre
 - Generalment
 - Potser
 - Mai
+# /imagGame/question48.png
 * Quins d'aquests països no van ser colonitzats per Anglaterra?
 - Illes Maldives
 - Illes Caiman
 - Illes Bermudes
 + Bielorrusia
+# /imagGame/question49.png
 * A quin segle el cricket es va convertir en l'esport nacional?
 + A finals del segle XVIII
 - A principis del segle XVII
 - A finals del segle XV
 - A principis del segle XIX
+# /imagGame/question50.png
 * A quina colonia anglesa es juga menys al cricket?
 - India
 + Austràlia
 - Pakistán
 - Sudàfrica
+# /imagGame/question51.png
 * Quin d'aquests països europeus segueix siguent una colonia de l'Imperi Britànic?
 + Gibraltar
 - Chipre
 - Illes del Canal
 - Anglaterra
+# /imagGame/question52.png
 * De què tracta la tradició del Rolling Cheese?
 - Menjar formatge rodó
 + Llençar formatge per un pujol
