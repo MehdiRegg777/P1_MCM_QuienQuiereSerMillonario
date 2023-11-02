@@ -48,6 +48,8 @@ session_start();
             </div>
         </div>
 
+
+
         <div class="container1">
             <div class="comodinesBotones">
                 <?php
@@ -71,7 +73,7 @@ session_start();
                         echo '<button id="boton-publico" onclick="comodinPublico()" disabled><i class="fa-solid fa-users"></i></button>';
                     }
                 ?>
-                <button style='display: none'><i class="fa-solid fa-phone-volume"></i></button>
+                <button onclick="comodinLlamada()" ><i class="fa-solid fa-phone-volume"></i></button>
             </div>
         </div>
         <?php

@@ -216,6 +216,59 @@ function comodinPublico() {
     saveSession('comodinPublico=' + 'usado');
 }
 
+function comodinLlamada() {
+    stopCountDownChronometerContinue();
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const modal = document.getElementById('popupModal');
+    const imagen = document.getElementById('popupImage');
+    const closeButton = document.querySelector('.close-button');
+    const audioPopup = new Audio('mp3/epic.mp3');
+    modal.style.display = "block";
+
+    // Generar un número aleatorio entre 1 y 10 para la cantidad de repeticiones del tono
+    const numRepeticiones = Math.floor(Math.random() * 10) + 1;
+
+    // Función para reproducir el tono de llamada X veces
+    function reproducirTonoLlamada(veces) {
+        let contador = 0;
+
+        function reproducir() {
+            if (contador < veces) {
+                audioPopup.play();
+                setTimeout(() => {
+                    audioPopup.pause();
+                    audioPopup.currentTime = 0;
+                    contador++;
+                    reproducir();
+                }, audioPopup.duration * 1000); // Pausar el audio después de su duración en segundos
+            } else {
+                // Cuando termine de sonar el tono de llamada, preguntar al usuario cuántas veces sonó
+                const respuestaUsuario = prompt("¿Cuántas veces sonó el tono de llamada?");
+                if (respuestaUsuario === numRepeticiones.toString()) {
+                    alert("¡Respuesta correcta!");
+                } else {
+                    alert("Respuesta incorrecta. La respuesta correcta era " + numRepeticiones);
+                }
+            }
+        }
+
+        reproducir();
+    }
+
+    closeButton.addEventListener('click', function() {
+        audioPopup.pause();
+        audioPopup.currentTime = 0;
+        modal.style.display = "";
+    });
+
+    imagen.classList.add('scale-animation-call');
+
+    // Iniciar la reproducción del tono de llamada X veces
+    reproducirTonoLlamada(numRepeticiones);
+}
+
+
 function cerrarImagen() {
     startCountDownChronometer();
     const modal = document.getElementById('popupModal');

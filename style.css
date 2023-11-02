@@ -458,6 +458,13 @@ a{
     }
 }
 
+.scale-animation-call {
+    animation-name: scale;
+    animation-duration: 2s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
 .close-button {
     position: absolute;
     top: 10px;
