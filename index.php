@@ -5,16 +5,10 @@
     $selectedLanguage = $_SESSION['language'];
     $hideStyle = 'style="display: none;"';
     $showStyle = 'style="display: block;"';
-    $_SESSION['comodinPublico'] = 'nousado';
+    $_SESSION['comodin50'] = 'nousado';
     $_SESSION['comodinTime'] = 'nousado';
-    /* ERROR 403 */
-    /*
-    $request_uri = $_SERVER["REQUEST_URI"];
-    if (REQUEST_URI === "/win.php" || REQUEST_URI === "/lose.php")
-        http_response_code(403);
-    echo "Acceso prohibido.";
-    exit;
-    */
+    $_SESSION['comodinPublico'] = 'nousado';
+    unset($_SESSION['nivels']);
 ?>
 
 <!DOCTYPE html>
@@ -222,7 +216,7 @@
         
     <div id="mosca" class="mosca"></div>
 
-    <script src="esteregg.js"></script>
+    <script src="easteregg.js"></script>
         <!-- FOOTER -->
         <footer class="footerinfo">
             <p>© MCM S.A.</p>
