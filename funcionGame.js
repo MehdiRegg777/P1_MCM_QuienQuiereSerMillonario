@@ -42,7 +42,7 @@ function startCountUpChronometer() {
     time++;
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    const minutes00 = minutes < 10 ? "0" + minutes : minutes;
+    const minutes00 = minutes < 10 ? "0" + minutes : minutes; // Es un if para mostrar 00:00 y no 0:0
     const second00 = seconds < 10 ? "0" + seconds : seconds;
     document.getElementById("timer").textContent = minutes00  + ":" + second00;
     let tiempo = minutes00  + ":" + second00;
@@ -68,10 +68,9 @@ function reanudarChronometer() {
 
 document.addEventListener('DOMContentLoaded', function () {
     resetChronometer();
-});
+});  
 
 let intervalCountDown;
-
 function updateCountDownChronometer() {
     const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
     const timerQuestion = currentQuestion.querySelector('.timerQuestion');
@@ -127,36 +126,6 @@ function stopCountDownChronometerContinue() {
     const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); // Obtener la pregunta actual que no está bloqueada
     const timerQuestion = currentQuestion.querySelector('.timerQuestion');
     localStorage.setItem('timeLeft', timeLeft); // Guardar el tiempo restante en el almacenamiento local
-}
-
-//
-// COMODINES.
-//
-// COMODÍN 50%.
-function button50() {
-    
-    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
-    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
-    const respuestaNivel = respuestaDesenfocada.getAttribute("data-pregunta");
-    const respuestasParaBloquear = [];
-
-    // Genera un arreglo con dos respuestas incorrectas aleatorias
-    while (respuestasParaBloquear.length < 2) {
-        const numeroAleatorio = Math.floor(Math.random() * 4); // Suponiendo que hay 4 respuestas
-        if (numeroAleatorio != respuestaCorrecta && !respuestasParaBloquear.includes(numeroAleatorio)) {
-        respuestasParaBloquear.push(numeroAleatorio);
-        }
-    }
-
-    for (let bucle = 0; bucle <= 3; bucle++) {
-        const bloquearRespuestas = document.getElementById('respuesta-' + respuestaNivel + '-' + bucle);
-        if (respuestasParaBloquear.includes(bucle)) {
-          bloquearRespuestas.classList.add('bloqueada');
-        }
-    }
-    const button50 = document.getElementById('buttonComodin50');
-    button50.setAttribute('disabled', '');
-    saveSession('comodin50=' + 'usado');
 }
 
 //
@@ -343,7 +312,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
 }
 
 function regresarAlInicio() {
-    window.location.href = 'index.php';
+    window.location.href = 'index.php'; // Redirect to the beginning
 }
 
 function nextQuestion(nivel){
