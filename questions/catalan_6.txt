@@ -1,15 +1,3 @@
-# /imagGame/question53.png
-* Quin territori africà va conquistar Anglaterra al segle XIX?
-+ Uganda
-- Espanya
-- França
-- Melilla
-# /imagGame/question54.png
-* A on es troba el Big Ben?
-- París
-+ Londres
-- Andorra
-- Alemanya
 # /imagGame/question55.png
 * "La vida és com muntar una bicicleta. Per mantenir el balanç, has de continuar movent-te". Qui va dir aquesta frase?
 + Albert Einstein
@@ -34,21 +22,33 @@
 + 1952
 - 1954
 - 1960
-# /imagGame/question59.png
-* Qui era Ada Lovelace?
-- Política
-- Científica
-+ Matemàtica
-- Química
-# /imagGame/question60.png
-* A on es localitza el palau de Buckingham?
-- França
-+ Anglaterra
-- Itàlia
-- Sudàfrica.
+# /imagGame/question9.png
+* Quants anys van viure els aborígens?
+- 12.000 anys
++ 40.000 anys
+- 25.000 anys
+- 60.000 anys
 # /imagGame/question61.png
 * "Oh Romeu, Romeu! Per què ets Romeu? Nega el teu pare i rebutja el teu nom; o, si et podrís, et juro amor meu i ja no seré una Capulet." Qui va escriure això?
 + Shakespeare
 - Zorrilla
 - Quevedo
 - Cervantes
+# /imagGame/question13.png
+* Quant temps va durar aproximadament la guerra entre Palestina i Israel?
+- 2 mesos
+- 7 dies
+- 2 Vears
++ 11 dies
+# /imagGame/question14.png
+* Quants dies hi va haver guerra amb violència entre Palestina i Israel?
+- 11 dies
+- 2 mesos
++ 3 dies
+- Cada dia
+# /imagGame/question15.png
+* Quantes persones van morir a la guerra entre Palestina i Israel?
+- 3 persones
+- La meitat del poble
+- 200 persones
++ 44 persones

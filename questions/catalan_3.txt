@@ -1,107 +1,107 @@
 # /imagGame/question19.png
-* Més copes del món?
+* Quin país té més copes del món?
 - Jamaica
 - França
 - Alemanya
 + Anglaterra
 # /imagGame/question20.png
-* Més guerres guanyades?
+* Quin país va guanyar més guerres?
 - Austràlia
 - Canadà
 + Anglaterra
 - Nova Zelanda
 # /imagGame/question21.png
-* Més PIB anual?
+* Quin país té més PIB anual?
 + Índia
 - Canadà
 - Austràlia
 - Anglaterra
 # /imagGame/question22.png
-* Més població?
+* Quin país té més població?
 + Índia
 - Bangla Desh
 - Austràlia
 - Anglaterra
 # /imagGame/question23.png
-* El país més calent?
+* Quin és el país més calent?
 - Austràlia
 - Camerun
 + Índia
 - Nova Zelanda
 # /imagGame/question24.png
-* El país més fred?
+* Quin és el país més fred?
 - Anglaterra
 + Canadà
 - Ghana
 - Gamba
 # /imagGame/question25.png
-* Més hores de treball?
+* A quin país es treballen més hores de treball?
 + Anglaterra
-- Camerun
+- Camerún
 - Ghana
 - Malàsia
 # /imagGame/question26.png
-* Més reserves naturals?
+* Quin país té més reserves naturals?
 - Nauru
 - Ruanda
 + Nigèria
 - Anglaterra
 # /imagGame/question27.png
-* La millor economia?
+* Quin país té la millor economia?
 - Austràlia
 - Canadà
 - Nova Zelanda
 + Anglaterra
 # /imagGame/question28.png
-* Millor sistema educatiu?
+* Quin país consta amb el millor sistema educatiu?
 + Singapur
 - Nova Zelanda
 - Ghana
 - Anglaterra
 # /imagGame/question29.png
-* El més esportista?
+* Quin és el país més esportista?
 - Jamaica
 - Camerun
 - Ghana
 + Anglaterra
 # /imagGame/question30.png
-* Població del Regne Unit?
+* Quina és la població del Regne Unit?
 - 1.216.000.000
 - 689.000.000
 - 1.356.000.000
 + 67.081.000
 # /imagGame/question31.png
-* Més morts?
+* Quin és el país que més ha assassinat?
 - Nova Zelanda
 - Camerun
 - Ghana
 + Anglaterra
 # /imagGame/question32.png
-* Millor salut?
+* Quin és el país amb la millor salut entre la seva població?
 + Singapur
 - Nova Zelanda
 - Bahames
 - Anglaterra
 # /imagGame/question33.png
-* Més premis de bellesa?
+* Quin és el país amb més premis de bellesa?
 - Nova Zelanda
 + Índia
 - Austràlia
 - Anglaterra
 # /imagGame/question34.png
-* Més premis Nobel?
+* Quin és el país amb més premis Nobel?
 - Jamaica
 - Nova Zelanda
 - Filipines
 + Anglaterra
 # /imagGame/question35.png
-* Més cultura?
+* Quin és el país amb més cultura?
 - Kènia
 - Namíbia
 + Índia
 - Anglaterra
 # /imagGame/question36.png
-* Més menjar ràpid?
+* Quin és el país amb més menjar ràpid?
 - Canadà
 + Índia
 - Ghana

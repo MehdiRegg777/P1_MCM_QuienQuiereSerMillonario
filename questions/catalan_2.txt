@@ -5,43 +5,43 @@
 - Blau, Negre, Vermell
 - Groc Vermell Blau
 # /imagGame/question11.png
-* Què menja normalment el Regne Unit?
+* Què es menja normalment el Regne Unit?
 - Gofres
 - Sopa
 - Cansalada
-+ Patates I Peix
++ Patates i peix
 # /imagGame/question12.png
 * Qui és el president del Regne Unit?
 - Donald Trump
 - Pedro Sánchez
 - Dina Boluarte
 + Boris Johnson
-# /imagGame/question13.png
-* Quant de temps va durar aproximadament la guerra entre Palestina i Israel?
-- 2 mesos
-- 7 dies
-- 2 Vears
-+ 11 dies
-# /imagGame/question14.png
-* Quants dies hi va haver una guerra amb violència entre Palestina i Israel?
-- 11 dies
-- 2 mesos
-+ 3 dies
-- Cada dia de guerra
-# /imagGame/question15.png
-* Quantes persones van morir a la guerra entre Palestina i Israel?
-- 3 persones
-- La meitat del poble
-- 200 persones
-+ 44 persones
+# /imagGame/question53.png
+* Quin territori africà va conquistar Anglaterra al segle XIX?
++ Uganda
+- Espanya
+- França
+- Melilla
+# /imagGame/question54.png
+* A on es troba el Big Ben?
+- París
++ Londres
+- Andorra
+- Alemanya
+# /imagGame/question59.png
+* Qui era Ada Lovelace?
+- Política
+- Científica
++ Matemàtica
+- Química
 # /imagGame/question16.png
 * Per què són importants els imperis britànics?
-- Pel seu històric
-+ Per als seus morts
+- Per la seva història
++ Per la gent assassinada per l'imperi
 - Per les seves victòries
-- Pels seus diners
+- Per la seva riquesa
 # /imagGame/question17.png
-* Les idees sobre l'Imperi al Regne Unit han fluctuat...
+* Les idees sobre l'imperi al Regne Unit han fluctuat...
 - Victòries
 + Temps
 - Monarquia

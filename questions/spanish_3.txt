@@ -1,69 +1,69 @@
 # /imagGame/question19.png
-* ¿Más Mundiales?
+* ¿Cuál es el país con más mundiales?
 - Jamaica
 - Francia
 - Alemania
 + Inglaterra
 # /imagGame/question20.png
-* ¿Más guerras ganadas?
-- Australia
-- Canadá
-+ Inglaterra
-- Nueva Zelanda
+* ¿Quién o quienes mataron a Aquiles en la mitología griega?
+- Los ecatonquiros
+- Hércules
++ Paris
+- Ganímedes
 # /imagGame/question21.png
-* ¿Más PIB Anual?
-+ India
-- Canadá
-- Australia
-- Inglaterra
+* ¿Cuál es la capital de Islandia?
+- Kriktäv
++ Reikiavik
+- Crakentork
+- Slivikro
 # /imagGame/question22.png
-* ¿Más población?
+* ¿Cuál es el país con más población?
 + India
 - Bangladesh
 - Australia
 - Inglaterra
 # /imagGame/question23.png
-* ¿El país más caluroso?
+* ¿CUál es el país más caluroso?
 - Australia
 - Camerún
 + India
 - Nueva Zelanda
 # /imagGame/question24.png
-* ¿El país más frío?
+* ¿Cuál es el país más frío?
 - Inglaterra
 + Canadá
 - Ghana
 - Gamba
 # /imagGame/question25.png
-* ¿Más horas trabajando?
-+ Inglaterra
-- Camerún
-- Ghana
-- Malasia
+* ¿Cómo se llama esta herramienta de escalada con forma de pico para subir por paredes de hielo o nieve?
++ Piolet
+- Pico
+- Escalador
+- Espatadola
 # /imagGame/question26.png
-* ¿Más Reservas Naturales?
+* ¿Cuál es el país con más reservas naturales?
 - Nauru
 - Ruanda
 + Nigeria
 - Inglaterra
 # /imagGame/question27.png
-* ¿La mejor economía?
-- Australia
-- Canadá
-- Nueva Zelanda
-+ Inglaterra
+* ¿Cuál es la capital de Vietnam?
+- Thử Lại
+- Đây Không Phải Là
+- Hồ Chí Minh
++ Hà Nội
 # /imagGame/question28.png
-* ¿Mejor sistema educativo?
+* ¿Cuál es el país con mejor sistema educativo?
 + Singapur
 - Nueva Zelanda
 - Ghana
 - Inglaterra
 # /imagGame/question29.png
-* ¿El más deportista?
-- Jamaica
-- Camerún
-- Ghana
-+ Inglaterra
+* ¿Quién fue el último faraón egipcio?
+- Keops
+- Amenofis III
+- Cleopatra
++ Ramsés III
 # /imagGame/question30.png
 * ¿Población del Reino Unido?
 - 1.216.000.000
@@ -77,32 +77,32 @@
 - Ghana
 + Inglaterra
 # /imagGame/question32.png
-* ¿Mejor salud?
+* ¿Cuál es el país que cuenta con mejor salud?
 + Singapur
 - Nueva Zelanda
 - Bahamas
 - Inglaterra
 # /imagGame/question33.png
-* ¿Más premios de belleza?
-- Nueva Zelanda
-+ India
-- Australia
-- Inglaterra
+* ¿Qué tipo de huelga convoca Lisístrata para frenar la guerra civil en el libro de "Lisístrata" de Aristófanes?
+- Estudiantil
++ Sexual
+- Proletaria
+- Pacífica
 # /imagGame/question34.png
-* ¿Más premios Nobel?
+* ¿Qué país cuenta con más premios Nobel?
 - Jamaica
 - Nueva Zelanda
 - Filipinas
 + Inglaterra
 # /imagGame/question35.png
-* ¿Más cultura?
-- Kenia
-- Namibia
-+ India
-- Inglaterra
+* ¿En qué comedia latina se esconde un caldero de oro?
+- "Las Metamorfosis" de Ovidio
+- "Lísistrata" de Aristófanes
++ "Aulularia" de Plauto
+- "Edipo Rey" de Sófocles
 # /imagGame/question36.png
-* ¿Más comida rápida?
-- Canadá
-+ India
-- Ghana
-- Inglaterra
+* "¿Cuál es el ser que con una sola voz tiene cuatro patas, dos patas y tres patas?", ¿en qué libro se pregunta esto y cuál es la respuesta correcta al acertijo?
+- "Eneida" de Virgilio y el codicioso
++ "Edipo Rey" de Sófocles y el humano
+- "Odisea" de Homero y la araña
+- "Los Siete Contra Tebas" de Esquilo y el traidor

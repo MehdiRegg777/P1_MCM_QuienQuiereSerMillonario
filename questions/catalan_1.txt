@@ -3,52 +3,52 @@
 - Res
 + Pau
 - Revolució
-- El racisme
+- Racisme
 # /imagGame/question2.png
 * D'on és Gandhi?
-- El Marroc
+- Marroc
 - Anglaterra
 + Índia
 - Perú
 # /imagGame/question3.png
-* Ghandi va morir per un...
+* Gandhi va morir a causa d'un/a...
 - Accident
 - Atac de cor
 - Malaltia
 + Assassinat
 # /imagGame/question4.png
 * En quin segle es va crear el futbol?
-+ Segle Xix
++ Segle XIX
 - Segle XX
 - Segle I
 - Ara
 # /imagGame/question5.png
-* On del món es va crear el futbol?
+* A quin país del món es va crear el futbol?
 - Xina
 - Mèxic
 - Brasil
 + Anglaterra
 # /imagGame/question6.png
-* La pilota solia ser...
-- Amb plàstic
-+ Amb Fulles
-- Amb caixes
-- Amb roba
+* La pilota solia estar feta de...
+- Plàstic
++ Fulles
+- Caixes
+- Roba
 # /imagGame/question7.png
-* Qui van ser els que van utilitzar la paraula "alborigen"?
+* Quins van ser els primers que van utilitzar la paraula "aborigen"?
 - Àrabs
 - Asiàtics
-- Castellà
-+ italians - grecs
+- Castellans
++ Italians i grecs
 # /imagGame/question8.png
 * En l'antiguitat, els humans solien viure a...
 + Austràlia
 - Barcelona
 - Singapur
 - Argentina
-# /imagGame/question9.png
-* Quants anys van viure els aborígens?
-- 12.000 anys
-+ 40.000 anys
-- 25.000 anys
-- 60.000 anys
+# /imagGame/question60.png
+* A on es localitza el palau de Buckingham?
+- França
++ Anglaterra
+- Itàlia
+- Sudàfrica.

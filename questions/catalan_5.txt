@@ -5,13 +5,13 @@
 - Milos Degenek
 - Leo Messi
 # /imagGame/question47.png
-* Són els britànics puntuals?
-+ Sempre
-- Generalment
-- Potser
-- Mai
+* Com s'anomenava la ciutat romana de Mataró?
++ Iluro
+- Matarum
+- Matarae
+- Ilurae
 # /imagGame/question48.png
-* Quins d'aquests països no van ser colonitzats per Anglaterra?
+* Quins d'aquests països no va ser colonitzats per Anglaterra?
 - Illes Maldives
 - Illes Caiman
 - Illes Bermudes
