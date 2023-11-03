@@ -240,9 +240,9 @@ function comodinLlamada() {
             audioPopup.onended = () => {
                 playAudio(repetitionsLeft - 1);
                 if (repetitionsLeft === 1) {
-                    // Ocultar la imagen al finalizar la última repetición
+                    // Ocultar la imagen al finalizar el untimo sonido
                     imagen.style.display = 'none';
-                    // Mostrar el campo de entrada y botón
+                    // Mostrar el campo del formulario
                     const titelcall = document.getElementById('preguntaLlamada');
                     titelcall.style.display = 'block';
 
@@ -261,8 +261,6 @@ function cantidadSonido() {
     const cantidadVeces = vecesAudioInput.value;
     const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
     const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
-    // Aquí puedes usar la variable 'cantidadVeces' como lo necesites.
-    // Por ejemplo, puedes mostrar un mensaje o realizar alguna acción.
     console.log('Cantidad de veces que sonó el audio:', cantidadVeces);
 }
 /////
