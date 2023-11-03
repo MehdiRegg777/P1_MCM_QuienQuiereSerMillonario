@@ -462,7 +462,7 @@ a{
 /* Estilo CSS para la animación de escala */
 .scale-animation-call {
     animation-name: scale2;
-    animation-duration: 6s;
+    animation-duration: 4.7s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
 }
@@ -472,7 +472,7 @@ a{
         transform: scale(1);
     }
     50% {
-        transform: scale(1.1);
+        transform: scale(1.2);
     }
 }
 

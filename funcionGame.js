@@ -216,38 +216,56 @@ function comodinPublico() {
     saveSession('comodinPublico=' + 'usado');
 }
 
+////
+
 function comodinLlamada() {
     stopCountDownChronometerContinue();
-    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
-    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
     const modal = document.getElementById('popupModal');
     const imagen = document.getElementById('popupImage');
     const imagenSrcPublico = 'imgs/llamada.png';
+    const closeButton = document.querySelector('.close-button');
     const audioPopup = new Audio('mp3/ringtone.mp3');
     modal.style.display = "block";
     imagen.src = imagenSrcPublico;
-
+    imagen.classList.add('scale-animation-call');
     const repetitions = Math.floor(Math.random() * 10) + 1;
-
     const playAudio = (repetitionsLeft) => {
         if (repetitionsLeft > 0) {
             audioPopup.play();
+            closeButton.addEventListener('click', function() {
+                audioPopup.pause();
+                audioPopup.currentTime = 0;
+                modal.style.display = "none";
+            });
             audioPopup.onended = () => {
                 playAudio(repetitionsLeft - 1);
+                if (repetitionsLeft === 1) {
+                    // Ocultar la imagen al finalizar la última repetición
+                    imagen.style.display = 'none';
+                    // Mostrar el campo de entrada y botón
+                    const titelcall = document.getElementById('preguntaLlamada');
+                    titelcall.style.display = 'block';
+
+                }
             };
         }
     };
-
     playAudio(repetitions);
-
-    imagen.classList.add('scale-animation');
-
-    const botonPublic0 = document.getElementById('boton-publico');
-    botonPublic0.setAttribute('disabled', '');
-    saveSession('comodinPublico=' + 'usado');
+    //const botonPublic0 = document.getElementById('boton-publico');
+    //botonPublic0.setAttribute('disabled', '');
+    //saveSession('comodinPublico=' + 'usado');
 }
 
-
+function cantidadSonido() {
+    const vecesAudioInput = document.getElementById('vecesAudio');
+    const cantidadVeces = vecesAudioInput.value;
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    // Aquí puedes usar la variable 'cantidadVeces' como lo necesites.
+    // Por ejemplo, puedes mostrar un mensaje o realizar alguna acción.
+    console.log('Cantidad de veces que sonó el audio:', cantidadVeces);
+}
+/////
 
 function cerrarImagen() {
     startCountDownChronometer();
