@@ -85,7 +85,7 @@ session_start();
                     if ($_SESSION['comodinLlamada'] === 'nousado') {
                         echo '<button id="buttoncomodinLlamada" onclick="comodinLlamada()" ><i class="fa-solid fa-phone-volume"></i></button>';
                     } elseif ($_SESSION['comodinLlamada'] === 'usado') {
-                        echo '<button id="buttoncomodinLlamada" onclick="comodinLlamada()" ><i class="fa-solid fa-phone-volume"></i></button>';
+                        echo '<button id="buttoncomodinLlamada" onclick="comodinLlamada()" disabled><i class="fa-solid fa-phone-volume"></i></button>';
                     }
                 ?>
             </div>

@@ -309,6 +309,12 @@ function cerrarImagen() {
     startCountDownChronometer();
     const modal = document.getElementById('popupModal');
     modal.style.display = "none";
+    const titelcall = document.getElementById('preguntaLlamada');
+    titelcall.style.display = 'none';
+    const titeQuestion = document.getElementById('respuestaLlamada');
+    titeQuestion.style.display = 'none';
+    const imagen = document.getElementById('popupImage');
+    imagen.removeAttribute('style');
 }
 
 function calculoderespuesta(preguntaActual,nivel){
