@@ -49,7 +49,7 @@ session_start();
                 <div style="display: none;" id="preguntaLlamada">
                     <label style="display:block;" id="tituloLlamada">¿Cuántas veces sonó el audio?</label>
                     <input style="display:block;"  type="number" id="vecesAudio" name="vecesAudio" min="0" required>
-                    <button style="display:block;"  id="enviarBtn" onclick="cantidadSonido()">Enviar</button>
+                    <button style="display:block;"  id="enviarBtn" onclick="comodinCantidadSonido()">Enviar</button>
                 </div>
                 <div style="display: none;" id="respuestaLlamada">
                     <h4>La respuesta correcta es:</h4>

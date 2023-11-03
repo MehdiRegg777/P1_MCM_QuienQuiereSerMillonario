@@ -216,8 +216,6 @@ function comodinPublico() {
     saveSession('comodinPublico=' + 'usado');
 }
 
-////
-
 function comodinLlamada() {
     stopCountDownChronometerContinue();
     const modal = document.getElementById('popupModal');
@@ -259,7 +257,7 @@ function comodinLlamada() {
     saveSession('comodinLlamada=' + 'usado');
 }
 
-function cantidadSonido() {
+function comodinCantidadSonido() {
     //El input del mini formulario
     const vecesAudioInput = document.getElementById('vecesAudio');
     const cantidadLlamadaAudio = vecesAudioInput.value;
