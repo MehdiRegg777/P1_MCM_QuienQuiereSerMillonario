@@ -80,7 +80,7 @@ function updateCountDownChronometer() {
         localStorage.setItem('timeLeft', timeLeft);
         saveSession('timeLeft=' + timeLeft,'game.php');
     } else {
-        timerQuestion.textContent = "Tiempo agotado";
+        timerQuestion.textContent = "--:--";
         clearInterval(intervalCountDown);
         pageLose();
     }

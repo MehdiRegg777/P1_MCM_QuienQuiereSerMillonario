@@ -95,20 +95,32 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                         echo '</table>';
                       }
                     if ($_SESSION['language'] === 'spanish') {
-                        echo '<p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>';
-                        echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
+                        if ($_SESSION['buttonPublish'] === 'nousado') {
+                            echo '<p>Si quieres guardar tu partida da clic en el botón "<em>Publicar</em>".</p>';
+                            echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
+                        } elseif ($_SESSION['buttonPublish'] === 'usado') {
+                            echo '<p>Tu partida se ha guardado correctamente en "<em>Hall of fame</em>".</p>';
+                        }
                         echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
                         echo '<a class="play-button" href="index.php"><em>Volver al inicio</em></a>';
                     
                     } elseif ($_SESSION['language'] === 'catalan') {
-                        echo '<p>Si vols desar la teva partida, fes clic al botó "<em>Publicar</em>".</p>';
-                        echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
+                        if ($_SESSION['buttonPublish'] === 'nousado') {
+                            echo '<p>Si vols desar la teva partida, fes clic al botó "<em>Publicar</em>".</p>';
+                            echo '<a class="play-button" onclick="publishGame()"><em>Publicar</em></a>';
+                        } elseif ($_SESSION['buttonPublish'] === 'usado') {
+                            echo "<p>La teva partida s'ha guardat correctament a  '<em>Hall of fame</em>'.</p>";
+                        }
                         echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
                         echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
                     
                     } elseif ($_SESSION['language'] === 'english') {
-                        echo '<p>If you want to save your game, click on the "<em>Publish</em>" button.</p>';
-                        echo '<a class="play-button" onclick="publishGame()"><em>Publish</em></a>';
+                        if ($_SESSION['buttonPublish'] === 'nousado') {
+                            echo '<p>If you want to save your game, click on the "<em>Publish</em>" button.</p>';
+                            echo '<a class="play-button" onclick="publishGame()"><em>Publish</em></a>';
+                        } elseif ($_SESSION['buttonPublish'] === 'usado') {
+                            echo '<p>Your game has been successfully saved in "<em>Hall of fame</em>".</p>';
+                        }
                         echo '<a class="halloffame-button" href="ranking.php"><em>Hall of fame</em></a>';
                         echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';             
                     }
