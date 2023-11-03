@@ -5,6 +5,7 @@ const mensajes = {
     'spanish': {
         'respuestaCorrecta': '¡Felicidades! Respuesta correcta.',
         'respuestaIncorrecta': 'Respuesta incorrecta. Fin del juego.',
+        'tiempoAgotado': 'Tiempo agotado. Fin del juego.',
         'seleccionaRespuesta': 'Por favor, selecciona una respuesta.',
         'subirNivel': 'Ahora subirá el nivel de dificultad a ',
         'juegoTerminado': '¡Has respondido todas las preguntas! Juego terminado.'
@@ -12,6 +13,7 @@ const mensajes = {
     'catalan': {
         'respuestaCorrecta': 'Felicitats! Resposta correcta.',
         'respuestaIncorrecta': 'Resposta incorrecta. Fi del joc.',
+        'tiempoAgotado': 'Time out. End of the game.',
         'seleccionaRespuesta': 'Si us plau, seleccioneu una resposta.',
         'subirNivel': 'Ara pujarà el nivell de dificultat a ',
         'juegoTerminado': 'Has respost totes les preguntes! Joc acabat.'
@@ -19,6 +21,7 @@ const mensajes = {
     'english': {
         'respuestaCorrecta': 'Congratulations! Correct answer.',
         'respuestaIncorrecta': 'Incorrect answer. End of the game.',
+        'tiempoAgotado': 'Temps esgotat. Fi del joc.',
         'seleccionaRespuesta': 'Please select an answer.',
         'subirNivel': 'Now it will increase the difficulty level to ',
         'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.'
@@ -30,7 +33,7 @@ function showMessage(message) {
     messageElement.style.display = 'block';
     setTimeout(function () {
         hideMessage();
-    }, 4000);
+    }, 3000);
 }
 function hideMessage() {
     const messageElement = document.getElementById('message');
@@ -72,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let intervalCountDown;
 function updateCountDownChronometer() {
-    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)");
     const timerQuestion = currentQuestion.querySelector('.timerQuestion');
     if (timeLeft > 0) {
         timerQuestion.textContent = timeLeft;
@@ -81,6 +84,8 @@ function updateCountDownChronometer() {
         saveSession('timeLeft=' + timeLeft,'game.php');
     } else {
         timerQuestion.textContent = "--:--";
+        //let language = document.getElementById('language');
+        //showMessage(mensajes[language]['respuestaIncorrecta']);
         clearInterval(intervalCountDown);
         pageLose();
     }
@@ -91,6 +96,8 @@ function pageLose(){
     let nivel = niveles.getAttribute("nivelactual");
     console.log(calculoderespuesta(preguntaActual,nivel));
     calculateTotalPoints(calculoderespuesta(preguntaActual,nivel));
+    playIncorrectSound();
+    setTimeout(function () {
     const form = document.createElement('form');
         form.method = 'POST';
         form.action = 'lose.php';
@@ -101,6 +108,7 @@ function pageLose(){
         form.appendChild(input);
         document.body.appendChild(form);
         form.submit();
+    }, 3000);
 }
 
 function startCountDownChronometer() {
@@ -304,7 +312,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
                 form.appendChild(input);
                 document.body.appendChild(form);
                 form.submit();
-            }, 4000);
+            }, 3000);
         }
     } else {
         showMessage(mensajes[language]['seleccionaRespuesta']);

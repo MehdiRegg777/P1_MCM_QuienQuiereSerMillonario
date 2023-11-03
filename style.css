@@ -490,3 +490,10 @@ footer{
     padding: 20px;
     bottom: 0;
 }
+
+@media only screen and (max-width: 400px) {
+    header{
+        padding: 10px;
+        margin-bottom: 0;
+    }
+}

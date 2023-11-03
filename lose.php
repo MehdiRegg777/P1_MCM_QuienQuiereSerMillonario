@@ -44,7 +44,6 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                     <div class='arribapregunta'>";
                     
                         if ($_SESSION['language'] === 'spanish') {
-                            echo "<h2>Respuesta incorrecta</h2>";
                             echo "<h2>¡Has perdido!</h2>";
                             echo "<h3><em>Clasificaciones</em></h3>";
                         
@@ -59,11 +58,12 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                     
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $puntos = $_POST["userpoints"];
+                        $_SESSION['answer'] = isset($_SESSION['answer']) ? $_SESSION['answer'] : $puntos;
                         echo '<table border="1" id="correctqueststable">';
                         echo '<tr>';
                         if ($_SESSION['language'] === 'spanish') {
                             echo '<th>Preguntas acertadas</th>';
-                            echo '<td>' . $puntos . '</td>';
+                            echo '<td>' . $_SESSION['answer'] . '</td>';
                             echo '</tr>';
                             echo '<tr>';
                             echo '<th>Tiempo tardado</th>';
@@ -74,7 +74,7 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                             echo '<td>' . $_SESSION['points'] . '</td>';
                         } elseif ($_SESSION['language'] === 'catalan') {
                             echo '<th>Preguntas encertades</th>';
-                            echo '<td>' . $puntos . '</td>';
+                            echo '<td>' . $_SESSION['answer'] . '</td>';
                             echo '</tr>';
                             echo '<tr>';
                             echo '<th>Temps trigat</th>';
@@ -85,7 +85,7 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                             echo '<td>' . $_SESSION['points'] . '</td>';
                         } elseif ($_SESSION['language'] === 'english') {
                             echo '<th>Correct Answers</th>';
-                            echo '<td>' . $puntos . '</td>';
+                            echo '<td>' . $_SESSION['answer'] . '</td>';
                             echo '</tr>';
                             echo '<tr>';
                             echo '<th>Time taken</th>';
@@ -131,7 +131,22 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                 echo "</div>
 
                 <div class='formularioPunage'>";
-                        $sessionID = session_id();
+                        function createNewID() {
+                            $archivo = "records.txt";
+                            $handle = fopen($archivo, "r");
+                            $data = array();
+                            while (($line = fgets($handle)) !== false) {
+                                $parts = explode(",", $line);
+                                if (count($parts) == 5) {
+                                    $ID = $parts[2];
+                                    $data[] = array('ID' => $ID);}}
+                            fclose($handle);
+                            $newID = 1;
+                            while (in_array("player_" . $newID, array_column($data, 'ID'))) {
+                                $newID++;}
+                            return "player_" . $newID;}
+                        $playerID = createNewID();
+                        $_SESSION['playerID'] = $playerID;
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $puntos = $_POST["userpoints"];
                             if ($_SESSION['language'] === 'spanish') {
@@ -139,7 +154,7 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                                 <label for="nombre">Nombre del jugador:</label>
                                 <input type="text" name="datos[nombre]" id="nombre" required><br>
                                 <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>
-                                <input type="hidden" name="datos[id]" id="id" value="' . $sessionID . '"><br>
+                                <input type="hidden" name="datos[id]" id="id" value="' . $playerID . '"><br>
                                 <input type="submit" value="Guardar puntuación" id ="savepunt-button">
                                 </form>';
                             } elseif ($_SESSION['language'] === 'catalan') {
@@ -147,7 +162,7 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                                 <label for="nombre">Nom del jugador:</label>
                                 <input type="text" name="datos[nombre]" id="nombre" required><br>
                                 <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>
-                                <input type="hidden" name="datos[id]" id="id" value="' . $sessionID . '"><br>
+                                <input type="hidden" name="datos[id]" id="id" value="' . $playerID . '"><br>
                                 <input type="submit" value="Desa la puntuació" id ="savepunt-button">
                                 </form>';
                             } elseif ($_SESSION['language'] === 'english') {
@@ -155,7 +170,7 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                                 <label for="nombre">Player Name:</label>
                                 <input type="text" name="datos[nombre]" id="nombre" required><br>
                                 <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>
-                                <input type="hidden" name="datos[id]" id="id" value="' . $sessionID . '"><br>
+                                <input type="hidden" name="datos[id]" id="id" value="' . $playerID . '"><br>
                                 <input type="submit" value="Save Score" id ="savepunt-button">
                                 </form>';                   
                             }
