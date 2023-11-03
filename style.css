@@ -19,6 +19,7 @@ body::-webkit-scrollbar-thumb{
 body{
     margin: 0;
     padding: 0;
+    width: 100vw;
     font-size: 18px;
 }
 
@@ -123,7 +124,7 @@ a{
 .comodinesBotones{
     background-color: #FF9F1C;
     border: 1px solid #FF9F1C;
-    width: 300px;
+    width: 22%;
     height: 80px;
     border-radius: 50px;
     color: white;
@@ -159,7 +160,7 @@ a{
 }
 
 /* INDEX.PHP */
-.indexPage a.no-underline{
+.indexPage a{
     text-decoration: none;
 }
 
@@ -265,11 +266,9 @@ a{
     margin-top: 20px;
     margin-bottom: 20px;
     cursor: pointer;
-    text-transform: capitalize;
     font-family: 'Lora', sans-serif;
     text-align: center;
     line-height: 50px;
-    text-transform: capitalize;
     transition-duration: 1s;
 }
 
@@ -501,10 +500,45 @@ a{
 }
 
 footer{
+    width: 100vw;
     margin-top: 100px;
     background-color: #080357;
     color: #fff;
     text-align: center;
     padding: 20px;
     bottom: 0;
+}
+
+@media only screen and (max-width: 400px) {
+    header{
+        padding: 20px;
+        margin-bottom: 100px;
+        width: 100vw;
+    }
+
+    h1{
+        font-size: 30px;
+    }
+
+    p, ul, li{
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    .play-button, .halloffame-button{
+        display: inline-block;
+        padding: 10px 30px;
+        margin-top: 20px;
+        font-size: 15px;
+    }
+
+    .languagesimages img{
+        margin-bottom: -25px;
+    }
+
+    .footer{
+        width: 100vw;
+    }
+
+
 }

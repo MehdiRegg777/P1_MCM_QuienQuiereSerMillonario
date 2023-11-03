@@ -1,36 +1,36 @@
 # /imagGame/question53.png
-* Quin territori africà va conquistar Anglaterra al segle XIX?
-+ Uganda
-- Espanya
-- França
-- Melilla
+* Com es diu l'os més petit del cos humà?
+- Ecifiliquéd
++ Estrep
+- Peroné
+- Esternoclidomastoïdal
 # /imagGame/question54.png
-* A on es troba el Big Ben?
-- París
-+ Londres
-- Andorra
-- Alemanya
+* Quan es parla d'una persona amb acrofòbia, a què ens referim?
+- Por de les aranyes
++ Por a les altures
+- Por a les acrobàcies
+- Por de la gent
 # /imagGame/question55.png
-* "La vida és com muntar una bicicleta. Per mantenir el balanç, has de continuar movent-te". Qui va dir aquesta frase?
-+ Albert Einstein
-- Forrest Gump
-- Will Smith
-- Barack Obama
+* Quantes vàlvules té el cor humà?
++ Quatre
+- Cinc
+- Sis
+- Tres
 # /imagGame/question56.png
-* A on és típic menjar peix i patates (fish and chips)?
-+ Regne Unit
-- Escòcia
-- França
-- Irlanda
+* Quants elements hi ha a la taula periòdica?
++ 118
+- 117
+- 119
+- 120
 # /imagGame/question57.png
-* Quin va ser l'any amb més visitants al Museu Britànic?
-- 2017
-+ 2015
-- 2020
-- 2016
+* Què mesura un comptador Geiger?
+- Els litres daigua caiguts per metre quadrat
+- La tensió de les persones
+- Els anys llum d'una galàxia amb una altra
++ La radiació
 # /imagGame/question58.png
-* En quin any va convertir-se Isabel en reina?
-- 1939
+* Quin any Isabel va pujar al tron?
+- 1959
 + 1952
 - 1954
 - 1960
@@ -41,14 +41,14 @@
 + Matemàtica
 - Química
 # /imagGame/question60.png
-* A on es localitza el palau de Buckingham?
+* On es troba el palau de Buckingham?
 - França
 + Anglaterra
 - Itàlia
-- Sudàfrica.
+- Sud-àfrica.
 # /imagGame/question61.png
-* "Oh Romeu, Romeu! Per què ets Romeu? Nega el teu pare i rebutja el teu nom; o, si et podrís, et juro amor meu i ja no seré una Capulet." Qui va escriure això?
+* "Oh Romeu, Romeu! On et trobes Romeu? Rebutja el teu pare i rebutja el teu nom; o, si et podriràs, et juro el meu amor i així jo no seré una Capulet". Qui va escriure això?
 + Shakespeare
-- Zorrilla
+- Guineta
 - Quevedo
 - Cervantes

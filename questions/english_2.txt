@@ -1,54 +1,54 @@
 # /imagGame/question10.png
-* What Is The Uk Flag Like?
-- Pink, Blue, And Red
+* What is the flag of the United Kingdom like?
+- Pink, blue and red
 + Blue White And Red
 - Blue, Black, Red
 - Yellow Red Blue
 # /imagGame/question11.png
-* What Do The Uk Usually Eat?
-- Waffles
-- Soup
-- Bacon
-+ Potatoes And Fish
+* What was the name of the wife of Ulysses, the character in the Odyssey created by Homer?
+- Lysistrata
+- Claudia
++ Penelope
+- Sofia
 # /imagGame/question12.png
-* Who Is The President Of The Uk?
+*Who is the president of the United Kingdom?
 - Donald Trump
 - Pedro Sánchez
 - Dina Boluarte
 + Boris Johnson
 # /imagGame/question13.png
-* Approximately How Long Did The War Between Palestine And Israel Last?
-- 2 Months
-- 7 Days
-- 2 Vears
+* Approximately how long did the war between Palestine and Israel last?
+- 2 months
+- 7 days
+- 2 years
 + 11 Days
 # /imagGame/question14.png
-* How Many Days Was There War With Violence Between Palestine And Israel?
-- 11 Days
-- 2 Months
-+ 3 Days
-- Every Day Of War
+*Which German philosopher wrote about the theory of superman?
+- Shinji Ikari
++ Friedrich Nietzsche
+- Haruki Murakami
+- Harper Lee
 # /imagGame/question15.png
-* How Many People Died In The War Between Palestine And Israel?
-- 3 People
-- Half The Town
-- 200 People
-+ 44 People
+* How many people died in the war between Palestine and Israel?
+- 3 people
+- Half of the city
+- 200 people
++ 44 people
 # /imagGame/question16.png
-* Why Are The Brtish Empires Inportant?
-- For Its Historical
-+ For Their Deads
-- For Their Victories
-- For Their Money
+* How many syllables make up a haiku?
+- Three verses without rhyme of 7, 7 and 5 syllables.
++ Three verses without rhyme of 5, 7 and 5 syllables.
+- Three verses without rhyme of 7, 7 and 5 syllables.
+- Three verses without rhyme of 5, 5 and 7 syllables.
 # /imagGame/question17.png
-* Ideas About Empire In The Uk Have Fluctuaded Over...
-- Victories
-+ Times
-- Monarchy
-- Country
+* According to legend, who founded Rome?
++ Romulus and Remus
+- Caesar and Cicero
+- Hercules and Creon
+- Alexander the Great and his father
 # /imagGame/question18.png
-* How Many Territories Did The British Empire Conquer?
-+ 5 Territories
-- 8 Territories
-- 10 Territories
-- 12 Territories
+* How many territories did the British Empire conquer?
++ 5 territories
+- 8 territories
+- 10 territories
+- 12 territories

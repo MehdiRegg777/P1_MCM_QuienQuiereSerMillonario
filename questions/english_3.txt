@@ -1,108 +1,108 @@
 # /imagGame/question19.png
-* More World Cups?
+* Which is the country with the most World Cups?
 - Jamaica
 - France
 - Germany
 + England
 # /imagGame/question20.png
-* More Wars Won?
-- Australia
-- Canada
-+ England
-- New Zeland
+* Who or who killed Achilles in Greek mythology?
+- The ecatonchiros
+- Hercules
++ Paris
+- Ganymede
 # /imagGame/question21.png
-* More PIB Annual?
-+ India
-- Canada
-- Australia
-- England
+* What is the capital of Iceland?
+- Kriktäv
++ Reykjavik
+- Crackentork
+- Slivinkro
 # /imagGame/question22.png
-* More Population?
+* What is the country with the most population?
 + India
 - Bangladesh
 - Australia
 - England
 # /imagGame/question23.png
-* The Hottest Country?
-- Australia
-- Cameroon
-+ India
-- New Zeland
+* What is the hottest country?
+- Botswana
+- Iran
++ Saudi Arabia
+- India
 # /imagGame/question24.png
-* The Coldest Country?
+* What is the coldest country?
 - England
 + Canada
-- Ghana
-- Gamba
+- France
+- Kyrgyzstan
 # /imagGame/question25.png
-* More Hours Working?
-+ England
-- Cameroon
-- Ghana
-- Malasia
+* What is the name of this spike-shaped climbing tool for climbing ice or snow walls?
++ Ice ax
+- Beak
+- Climber
+- Esphatador
 # /imagGame/question26.png
-* More Natural Reserves?
-- Nauru
-- Ruanda
+* Which is the country with the most natural reserves?
+- Kiribati
+- Belize
 + Nigeria
 - England
 # /imagGame/question27.png
-* The Best Economy?
-- Australia
-- Canada
-- New Zeland
-+ England
+* What is the capital of Vietnam?
+- Thử Lại
+- Đây Không Phải Là
+- Ho Chi Minh
++ Hà Nội
 # /imagGame/question28.png
-* Better Education System?
+* Which is the country with the best educational system?
 + Singapore
-- New Zeland
+- New Zealand
 - Ghana
 - England
 # /imagGame/question29.png
-* The Most Athlete?
-- Jamaica
-- Cameroon
-- Ghana
-+ England
+* Who was the last Egyptian pharaoh?
+- Khufu
+- Amenophis III
+- Cleopatra
++ Ramses III
 # /imagGame/question30.png
-* Population of UK?
-- 1.216.000.000
-- 689.000.000
-- 1.356.000.000
-+ 67.081.000
+* UK population?
+- 1,216,000,000
+- 689,000,000
+- 1,356,000,000
++ 67,081,000
 # /imagGame/question31.png
-* More Deaths?
-- New Zeland
+* Country that has carried out the most deaths?
+- New Zealand
 - Cameroon
-- Ghana
+- South Korea
 + England
 # /imagGame/question32.png
-* Better Health?
+* Which country has the best health?
 + Singapore
-- New Zeland
+- New Zealand
 - Bahamas
 - England
 # /imagGame/question33.png
-* More Beauty Awards?
-- New Zeland
-+ India
-- Australia
-- England
+* What type of strike does Lysistrata call to stop the civil war in the book of "Lysistrata" by Aristophanes?
+- Student
++ Sexual
+- Proletarian
+- Peaceful
 # /imagGame/question34.png
-* More Nobel Awards?
+* Which country has the most Nobel Prize winners?
 - Jamaica
-- New Zeland
+- New Zealand
 - Philippines
 + England
 # /imagGame/question35.png
-* More Culture?
-- Kenia
-- Namibia
-+ India
-- England
+* In which Latin comedy is a pot of gold hidden?
+- "The Metamorphoses" by Ovid
+- "Lysistrata" by Aristophanes
++ "Aulularia" by Plautus
+- "Oedipus the King" by Sophocles
 # /imagGame/question36.png
-* More Fast Food?
-- Canada
-+ India
-- Ghana
-- England
+* "What is the being that with one voice has four legs, two legs and three legs?", in which book is this asked and what is the correct answer to the riddle?
+- "Aeneid" from Virgil and the Greedy
++ "Oedipus Rex" by Sophocles and the human
+- "Odyssey" by Homer and the spider
+- "The Seven Against Thebes" by Aeschylus and the traitor

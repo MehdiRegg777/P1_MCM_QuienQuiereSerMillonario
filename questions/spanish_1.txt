@@ -1,21 +1,21 @@
 # /imagGame/question1.png
 * ¿Qué hizo Gandhi por el mundo?
-- Nada
-+ Paz
-- Revolución
-- Racismo
+- Descubrir la cura de la malaria
++ Promover la no violencia
+- La extensión del cristianismo por Ásia Central
+- Calcular cuánto mide la Tierra
 # /imagGame/question2.png
-* ¿De dónde es Gandhi?
-- Marruecos
-- Inglaterra
-+ India
-- Perú
+* De las siguientes frases, ¿cuál se trata de una aliteración?
++ En el silencio solo se escuchaba un susurro de abejas que sonaba
+- Vine, vi, vencí
+- Recibió un caballero por criado un mozo
+- Ayer naciste y morirás mañana
 # /imagGame/question3.png
-* Ghandi murió por un...
-- Accidente
-- Infarto de miocardio
-- enfermedad
-+ Asesinado
+* ¿A qué intérprete mexicano se le apoda el "Sol de México"?
++ Luis Miguel
+- Cristian Castro
+- Alejandra Guzmán
+- Peso Pluma
 # /imagGame/question4.png
 * ¿En qué siglo se creó el fútbol?
 + Siglo XIX
@@ -24,22 +24,22 @@
 - Ahora
 # /imagGame/question5.png
 * ¿En qué parte del mundo se creó el fútbol?
-- Porcelana
+- España
 - México
 - Brasil
 + Inglaterra
 # /imagGame/question6.png
-* La pelota solía ser...
-- Con Plástico
-+ Con Hojas
-- Con Cajas
-- Con ropa
+* ¿Cuál es el símbolo químico del hierro?
+- Hi
++ Fe
+- He
+- Fi
 # /imagGame/question7.png
-* ¿Quiénes fueron los que utilizaron la palabra “alborigen”?
-- árabes
-- asiáticos
-- Español
-+ Italianos - Griegos
+* ¿Cómo se llamaba el caballo de don Quijote?
+- Rozalén
++ Rocinante
+- Rocío
+- Roncano
 # /imagGame/question8.png
 * En la antigüedad, los humanos vivían en...
 + Australia
