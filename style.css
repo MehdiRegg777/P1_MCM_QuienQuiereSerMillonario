@@ -458,11 +458,22 @@ a{
     }
 }
 
+/* IMAGEN COMODÍN LLAMADA */
+/* Estilo CSS para la animación de escala */
 .scale-animation-call {
-    animation-name: scale;
-    animation-duration: 2s;
+    animation-name: scale2;
+    animation-duration: 6s;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
+}
+
+@keyframes scale2 {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 .close-button {
