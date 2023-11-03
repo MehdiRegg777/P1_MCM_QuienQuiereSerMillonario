@@ -19,7 +19,7 @@ body::-webkit-scrollbar-thumb{
 body{
     margin: 0;
     padding: 0;
-    width: 100vw;
+    width: 100%;
     font-size: 18px;
 }
 
@@ -58,6 +58,22 @@ a{
 }
 
 /* GENERAL, BOTONES */
+#loginButton {
+    padding: 5px 10px;
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 12px;
+    color: black;
+    font-family: 'Lora', sans-serif;
+    transition-duration: 1s;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 .ghof-buttons{ text-align: center; }
 
 .play-button{ margin-right: 30px; }
@@ -510,17 +526,20 @@ footer{
 }
 
 @media only screen and (max-width: 400px) {
+    body{
+        padding: 0;
+        margin: 0;
+    }
+    
     header{
         padding: 20px;
         margin-bottom: 100px;
-        width: 100vw;
+        width: 100%;
     }
 
-    h1{
-        font-size: 30px;
-    }
+    h1{ font-size: 30px; }
 
-    p, ul, li{
+    p, ul, li{10px
         font-size: 15px;
         line-height: 20px;
     }
@@ -532,13 +551,7 @@ footer{
         font-size: 15px;
     }
 
-    .languagesimages img{
-        margin-bottom: -25px;
-    }
+    .languagesimages img{ margin-bottom: -25px; }
 
-    .footer{
-        width: 100vw;
-    }
-
-
+    .footer{ width: 100vw; }
 }

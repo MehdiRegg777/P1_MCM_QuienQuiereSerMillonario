@@ -18,7 +18,7 @@
         <title>¿Quién quiere ser millonario?</title>
         <noscript>
             Esta página requiere tener Javascript activado. Por favor, actívalo  para poder jugar.
-            <style>div { background-color: white; display:none; }</style>
+            <style>div { background-color: white; display: none; bottom: 0; }</style>
         </noscript>
         <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
         <meta charset="UTF-8">
@@ -31,16 +31,19 @@
         <header>
             <?php
                 if ($_SESSION['language'] === 'spanish') {
+                    echo "<button onclick id='loginButton'>Inicia sesión</button>";
                     echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<button onclick id='loginButton'>Inicia sesión</button>";
                     echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
+                    echo "<button onclick id='loginButton'>Inicia sesión</button>";
                     echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
         </header>
 
-            <!-- CATALÀ -->
+            <!-- ESPAÑOL -->
             <div class="container">                
                 <h2><strong>Bienvenido</strong></h2>
                 <h3><em>Instrucciones del juego</em></h3>
