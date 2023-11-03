@@ -45,8 +45,16 @@ session_start();
             <div class="popup-public">
                 <button class="close-button" onclick="cerrarImagen()">X</button>
                 <img id="popupImage" src="" alt="Imagen">
+                <div style="display: none;" id="preguntaLlamada">
+                    <label style="display:block;" id="tituloLlamada">¿Cuántas veces sonó el audio?</label>
+                    <input style="display:block;"  type="number" id="vecesAudio" name="vecesAudio" min="0" required>
+                    <button style="display:block;"  id="enviarBtn" onclick="cantidadSonido()">Enviar</button>
+                </div>
+                
             </div>
         </div>
+
+
 
         <div class="container1">
             <div class="comodinesBotones">
@@ -71,7 +79,7 @@ session_start();
                         echo '<button id="boton-publico" onclick="comodinPublico()" disabled><i class="fa-solid fa-users"></i></button>';
                     }
                 ?>
-                <button style='display: none'><i class="fa-solid fa-phone-volume"></i></button>
+                <button onclick="comodinLlamada()" ><i class="fa-solid fa-phone-volume"></i></button>
             </div>
         </div>
         <?php
