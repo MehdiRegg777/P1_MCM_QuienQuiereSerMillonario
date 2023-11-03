@@ -11,7 +11,7 @@
 - Recibió un caballero por criado un mozo
 - Ayer naciste y morirás mañana
 # /imagGame/question3.png
-* ¿A qué intérprete mexicano se le apoda el ‘Sol de México’?
+* ¿A qué intérprete mexicano se le apoda el "Sol de México"?
 + Luis Miguel
 - Cristian Castro
 - Alejandra Guzmán

@@ -5,11 +5,11 @@
 - Song Kim
 - Camilo Suárez
 # /imagGame/question38.png
-* ¿En que direccion conducen los ingleses?
-+ Conducen por la izquierda y el conductor esta en la derecha
-- Conducen por la derecha y el conductor esta en la izquierda
-- Como todos
-- Al reves
+* ¿Cuál es el significado de "litosfera"?
++ Lithos,y sphaira (piedra-esfera)
+- Litos y skaira (piedra-flotante)
+- Linthos y fera (cielo-arriba)
+- Litos y skaira (litio-húmedo)
 # /imagGame/question39.png
 * ¿Cómo se llama el estudio de los hongos?
 - Talasología
@@ -18,10 +18,10 @@
 + Micología
 # /imagGame/question40.png
 * "Al despertar Gregorio Samsa una mañana, tras un sueño intranquilo, se encontró en su cama convertido en un monstruoso insecto". ¿De qué libro es esta cita?
-- Insectos
-+ La Metamorfosis
-- La Historia de Gregorio Samsa
-- Las Metamorfosis
+- "Insectos"
++ "La Metamorfosis"
+- "La Historia de Gregorio Samsa"
+- "Las Metamorfosis"
 # /imagGame/question41.png
 * ¿Cómo se llamaba el Cid Campeador?
 + Rodrigo Díaz de Vivar
@@ -29,25 +29,25 @@
 - José Fernández Machaco
 - Juan Guitierrez Cortés
 # /imagGame/question42.png
-* Cual fue el primer club de futbol oficial en el Reino Unido?
+* ¿Cuál fue el primer club de futbol oficial en el Reino Unido?
 - Notts County Football Club
 + Sheffield
 - Hallam FC
 + Munich
 # /imagGame/question43.png
-* Cual es el nombre de la fiesta donde los ingleses se visten de verde y recogen flores?
+* ¿Cuál es el nombre de la fiesta donde los ingleses se visten de verde y recogen flores?
 - Easter Day
-+ May day
-- San Patrick day
++ May Day
+- St. Patrick's Day
 - April Fool’s Day
 # /imagGame/question44.png
-* Que pais consume mas te anualmente?
-- Portugal
-+ Reino Unido
-- España
-- Francia
+* 9*N es igual a 108. ¿Cuánto es N?
+- 107
++ 108
+- 109
+- 110
 # /imagGame/question45.png
-* Que país colonial tiene mas copas del mundo?
+* ¿Qué país colonial tiene más copas del mundo?
 - Francia
 - España
 + Alemania

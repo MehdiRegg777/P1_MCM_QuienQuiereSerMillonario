@@ -1,21 +1,21 @@
 # /imagGame/question1.png
 * Què va fer Gandhi pel món?
-- Res
-+ Pau
-- Revolució
-- Racisme
+- Descobrir la cura de la malària
++ Promoure la no violència
+- L'extensió del cristianisme per Àsia Central
+- Calcular quant mesura la Terra
 # /imagGame/question2.png
-* D'on és Gandhi?
-- Marroc
-- Anglaterra
-+ Índia
-- Perú
+* De les frases següents, quina es tracta d'una aliteració?
++ En el silenci només se sentia un xiuxiueig d'abelles que sonava
+- Vaig venir, vaig veure, vaig vèncer
+- Va rebre un cavaller per criat un mosso
+- Ahir vas néixer i moriràs demà
 # /imagGame/question3.png
-* Gandhi va morir a causa d'un/a...
-- Accident
-- Atac de cor
-- Malaltia
-+ Assassinat
+* A quin intèrpret mexicà se li anomena el "Sol de Mèxic"?
++ Luis Miguel
+- Cristian Castro
+- Alejandra Guzmán
+- Pes Ploma
 # /imagGame/question4.png
 * En quin segle es va crear el futbol?
 + Segle XIX
@@ -23,32 +23,32 @@
 - Segle I
 - Ara
 # /imagGame/question5.png
-* A quin país del món es va crear el futbol?
-- Xina
+* A quina part del món es va crear el futbol?
+- Espanya
 - Mèxic
 - Brasil
 + Anglaterra
 # /imagGame/question6.png
-* La pilota solia estar feta de...
-- Plàstic
-+ Fulles
-- Caixes
-- Roba
+* Quin és el símbol químic del ferro?
+- Hi
++ Fe
+- He
+- Fi
 # /imagGame/question7.png
-* Quins van ser els primers que van utilitzar la paraula "aborigen"?
-- Àrabs
-- Asiàtics
-- Castellans
-+ Italians i grecs
+* Com es deia el cavall de don Quixot?
+- Rozalén
++ Rocinant
+- Rosada
+- Roncano
 # /imagGame/question8.png
-* En l'antiguitat, els humans solien viure a...
+* A l'antiguitat, els humans vivien en...
 + Austràlia
 - Barcelona
 - Singapur
 - Argentina
-# /imagGame/question60.png
-* A on es localitza el palau de Buckingham?
-- França
-+ Anglaterra
-- Itàlia
-- Sudàfrica.
+# /imagGame/question9.png
+* Quants anys van viure els aborígens?
+- 12.000 anys
++ 40.000 Anys
+- 25.000 anys
+- 60.000 anys

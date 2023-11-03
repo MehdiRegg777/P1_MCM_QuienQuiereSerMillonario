@@ -15,7 +15,7 @@
 - Kriktäv
 + Reikiavik
 - Crakentork
-- Slivikro
+- Slivinkro
 # /imagGame/question22.png
 * ¿Cuál es el país con más población?
 + India
@@ -23,17 +23,17 @@
 - Australia
 - Inglaterra
 # /imagGame/question23.png
-* ¿CUál es el país más caluroso?
-- Australia
-- Camerún
-+ India
-- Nueva Zelanda
+* ¿Cuál es el país más caluroso?
+- Botsuana
+- Irán
++ Arabia Saudita
+- India
 # /imagGame/question24.png
 * ¿Cuál es el país más frío?
 - Inglaterra
 + Canadá
-- Ghana
-- Gamba
+- Francia
+- Kirguistán
 # /imagGame/question25.png
 * ¿Cómo se llama esta herramienta de escalada con forma de pico para subir por paredes de hielo o nieve?
 + Piolet
@@ -42,8 +42,8 @@
 - Espatadola
 # /imagGame/question26.png
 * ¿Cuál es el país con más reservas naturales?
-- Nauru
-- Ruanda
+- Kiribati
+- Belice
 + Nigeria
 - Inglaterra
 # /imagGame/question27.png
@@ -71,10 +71,10 @@
 - 1.356.000.000
 + 67.081.000
 # /imagGame/question31.png
-* ¿Más muertes?
+* ¿País que ha llevado a cabo más muertes?
 - Nueva Zelanda
 - Camerún
-- Ghana
+- Corea del Sur
 + Inglaterra
 # /imagGame/question32.png
 * ¿Cuál es el país que cuenta con mejor salud?

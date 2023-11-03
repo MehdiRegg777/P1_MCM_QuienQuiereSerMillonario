@@ -2,41 +2,41 @@
 * Quin jugador australià té el salari més alt?
 + Mathew Ryan
 - Harry Soutar
-- Milos Degenek
+- Milers Degenek
 - Leo Messi
 # /imagGame/question47.png
-* Com s'anomenava la ciutat romana de Mataró?
-+ Iluro
-- Matarum
-- Matarae
-- Ilurae
+* Qui va descobrir la penicil·lina?
+- Joseph Smith
++ Alexander Fleming
+- Tsarkovitx Penikilin
+- Vladimir Tolstoi
 # /imagGame/question48.png
-* Quins d'aquests països no va ser colonitzats per Anglaterra?
-- Illes Maldives
-- Illes Caiman
-- Illes Bermudes
-+ Bielorrusia
+* Quin és el nom del primer dirigent de la Unió Sovitica?
++ Vladímir Ilitx Uliànov
+- Iòsif Stalin
+- Nikita Khrusxov
+- Mikhaïl Gorbatxov
 # /imagGame/question49.png
-* A quin segle el cricket es va convertir en l'esport nacional?
-+ A finals del segle XVIII
-- A principis del segle XVII
-- A finals del segle XV
-- A principis del segle XIX
+* En quins regnes es divideix els éssers vius?
++ Animal, vegetal, fungi, protista i monera.
+- Animal, vegetal, fungi, plantes i fongs.
+- Animal, vegetal, plantes, fruites i verdures.
+- Animal, vegetal i fungi.
 # /imagGame/question50.png
-* A quina colonia anglesa es juga menys al cricket?
-- India
-+ Austràlia
-- Pakistán
-- Sudàfrica
+* Quina és l'escultura que va catapultar a la fama Auguste Rodin?
+- Ara Pacis
++ El pensador
+- August de Prima Porta
+- Venus Capitolina
 # /imagGame/question51.png
-* Quin d'aquests països europeus segueix siguent una colonia de l'Imperi Britànic?
-+ Gibraltar
-- Chipre
-- Illes del Canal
-- Anglaterra
+* Quina és la mitjana dels primers 50 nombres naturals?
++ 25.5
+- 24.5
+- 23.5
+- 22.5
 # /imagGame/question52.png
-* De què tracta la tradició del Rolling Cheese?
-- Menjar formatge rodó
-+ Llençar formatge per un pujol
-- Fer una tarta de formatge rodona
-- Compra un formatge rodó gegant
+* Quants acres fan una milla quadrada?
+- 639
++ 640
+- 641
+- 435

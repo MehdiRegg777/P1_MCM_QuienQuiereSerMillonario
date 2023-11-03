@@ -41,14 +41,14 @@
 - Tres versos carentes de rima de 7, 7 y 5 sílabas.
 - Tres versos carentes de rima de 5, 5 y 7 sílabas.
 # /imagGame/question17.png
-* De acuerdo con la leyenda, ¿quiénes fundaron a Roma?
+* De acuerdo con la leyenda, ¿quiénes fundaron Roma?
 + Rómulo y Remo
 - Caesar y Cicerón
 - Hércules y Creonte
 - Alejandro Magno y su padre
 # /imagGame/question18.png
 * ¿Cuántos territorios conquistó el Imperio Británico?
-+ 5 Territorios
++ 5 territorios
 - 8 territorios
 - 10 territorios
 - 12 territorios
