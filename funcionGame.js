@@ -242,6 +242,9 @@ function comodinLlamada() {
                 if (repetitionsLeft === 1) {
                     // Ocultar la imagen al finalizar el untimo sonido
                     imagen.style.display = 'none';
+                    //Añadir un atributo sobre numero random
+                    const numRepetitions = document.getElementById('tituloLlamada');
+                    numRepetitions.setAttribute('Repeticiones', repetitions);
                     // Mostrar el campo del formulario
                     const titelcall = document.getElementById('preguntaLlamada');
                     titelcall.style.display = 'block';
@@ -257,11 +260,43 @@ function comodinLlamada() {
 }
 
 function cantidadSonido() {
+    //El input del mini formulario
     const vecesAudioInput = document.getElementById('vecesAudio');
-    const cantidadVeces = vecesAudioInput.value;
+    const cantidadLlamadaAudio = vecesAudioInput.value;
+
+    //Las veces corectas que se repitio el audio
+    const numRepetitions = document.getElementById('tituloLlamada');
+    const RepeticionAudioCorrecto = numRepetitions.getAttribute('Repeticiones'); 
+
+    //Respuesta correcta del juego general
     const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
     const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
-    console.log('Cantidad de veces que sonó el audio:', cantidadVeces);
+    
+
+    const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="'+respuestaCorrecta+'"]');
+    const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
+    console.log(textoRespuestaCorrecta);
+
+
+
+    if (cantidadLlamadaAudio == RepeticionAudioCorrecto) {
+        const titelcall = document.getElementById('preguntaLlamada');
+        titelcall.style.display = 'none';
+        const titeQuestion = document.getElementById('respuestaLlamada');
+        titeQuestion.style.display = 'block';
+
+        const pTexto = document.getElementById("RespuestaTexto");
+        pTexto.textContent = textoRespuestaCorrecta;
+
+    } else {
+        console.log("Fallaste");
+        // let respuestaIncorrecta;
+        // do {
+        //     respuestaIncorrecta = Math.floor(Math.random() * 4);
+        // } while (respuestaIncorrecta == respuestaCorrecta);
+        // segundaImagen.src = 'graficoBarras/' + respuestaIncorrecta + '.png';
+    }
+
 }
 /////
 

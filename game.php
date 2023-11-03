@@ -50,7 +50,10 @@ session_start();
                     <input style="display:block;"  type="number" id="vecesAudio" name="vecesAudio" min="0" required>
                     <button style="display:block;"  id="enviarBtn" onclick="cantidadSonido()">Enviar</button>
                 </div>
-                
+                <div style="display: none;" id="respuestaLlamada">
+                    <h5>La respuesta correcta es:</h5>
+                    <p  style="text-align: center;" id="RespuestaTexto"></p>
+                </div>
             </div>
         </div>
 
