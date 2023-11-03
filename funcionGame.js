@@ -254,9 +254,9 @@ function comodinLlamada() {
         }
     };
     playAudio(repetitions);
-    //const botonPublic0 = document.getElementById('boton-publico');
-    //botonPublic0.setAttribute('disabled', '');
-    //saveSession('comodinPublico=' + 'usado');
+    const botonPublic0 = document.getElementById('buttoncomodinLlamada');
+    botonPublic0.setAttribute('disabled', '');
+    saveSession('comodinLlamada=' + 'usado');
 }
 
 function cantidadSonido() {
@@ -271,34 +271,41 @@ function cantidadSonido() {
     //Respuesta correcta del juego general
     const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
     const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
-    
-
-    const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="'+respuestaCorrecta+'"]');
-    const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
-    console.log(textoRespuestaCorrecta);
-
-
 
     if (cantidadLlamadaAudio == RepeticionAudioCorrecto) {
+        //Obtener texto respuesta corecta
+        const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="'+respuestaCorrecta+'"]');
+        const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
+        //Ocultamos el formulario
         const titelcall = document.getElementById('preguntaLlamada');
         titelcall.style.display = 'none';
+        //Mostramos el div de la respuesta correcta
         const titeQuestion = document.getElementById('respuestaLlamada');
         titeQuestion.style.display = 'block';
-
+        //Imprimimos la respuesta corecta
         const pTexto = document.getElementById("RespuestaTexto");
         pTexto.textContent = textoRespuestaCorrecta;
 
     } else {
-        console.log("Fallaste");
-        // let respuestaIncorrecta;
-        // do {
-        //     respuestaIncorrecta = Math.floor(Math.random() * 4);
-        // } while (respuestaIncorrecta == respuestaCorrecta);
-        // segundaImagen.src = 'graficoBarras/' + respuestaIncorrecta + '.png';
+        let respuestaIncorrecta;
+        do {
+            respuestaIncorrecta = Math.floor(Math.random() * 4);
+        } while (respuestaIncorrecta == respuestaCorrecta);
+        //Obtener texto respuesta incorrecta
+        const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="'+respuestaIncorrecta+'"]');
+        const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
+        //Ocultamos el formulario
+        const titelcall = document.getElementById('preguntaLlamada');
+        titelcall.style.display = 'none';
+        //Mostramos el div de la respuesta incorrecta
+        const titeQuestion = document.getElementById('respuestaLlamada');
+        titeQuestion.style.display = 'block';
+        //Imprimimos la respuesta incorrecta
+        const pTexto = document.getElementById("RespuestaTexto");
+        pTexto.textContent = textoRespuestaCorrecta;
     }
 
 }
-/////
 
 function cerrarImagen() {
     startCountDownChronometer();

@@ -4,6 +4,7 @@ session_start();
     isset($_POST['comodin50']) ? $_SESSION['comodin50'] = $_POST['comodin50'] : 'nousado';
     isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
     isset($_POST['comodinTime']) ? $_SESSION['comodinTime'] = $_POST['comodinTime'] : 'nousado';
+    isset($_POST['comodinLlamada']) ? $_SESSION['comodinLlamada'] = $_POST['comodinLlamada'] : 'nousado';
     isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
     $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
 ?>
@@ -51,7 +52,7 @@ session_start();
                     <button style="display:block;"  id="enviarBtn" onclick="cantidadSonido()">Enviar</button>
                 </div>
                 <div style="display: none;" id="respuestaLlamada">
-                    <h5>La respuesta correcta es:</h5>
+                    <h4>La respuesta correcta es:</h4>
                     <p  style="text-align: center;" id="RespuestaTexto"></p>
                 </div>
             </div>
@@ -81,8 +82,12 @@ session_start();
                     } elseif ($_SESSION['comodinPublico'] === 'usado') {
                         echo '<button id="boton-publico" onclick="comodinPublico()" disabled><i class="fa-solid fa-users"></i></button>';
                     }
+                    if ($_SESSION['comodinLlamada'] === 'nousado') {
+                        echo '<button id="buttoncomodinLlamada" onclick="comodinLlamada()" ><i class="fa-solid fa-phone-volume"></i></button>';
+                    } elseif ($_SESSION['comodinLlamada'] === 'usado') {
+                        echo '<button id="buttoncomodinLlamada" onclick="comodinLlamada()" ><i class="fa-solid fa-phone-volume"></i></button>';
+                    }
                 ?>
-                <button onclick="comodinLlamada()" ><i class="fa-solid fa-phone-volume"></i></button>
             </div>
         </div>
         <?php
