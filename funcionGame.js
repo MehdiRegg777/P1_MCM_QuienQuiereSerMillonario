@@ -275,7 +275,7 @@ function comodinLlamada() {
     playAudio(repetitions);
     const botonPublic0 = document.getElementById('buttoncomodinLlamada');
     botonPublic0.setAttribute('disabled', '');
-    saveSession('comodinLlamada=' + 'usado');
+    saveSession('comodinLlamada=' + 'usado','game.php');
 }
 
 function comodinCantidadSonido() {
@@ -541,6 +541,7 @@ function calculateTotalPoints(correctAnswer) {
     saveSession('points=' + pointsTotal,'game.php');
 }
 
+// FUNCION DE VALIDAR NOMBRE.
 function validateName() {
     if (document.getElementById("spanish")) {
         var language = "spanish";
@@ -582,7 +583,6 @@ function validateName() {
     ];
     for (var i = 0; i < inappropriateWords.length; i++) {
         if (nombre.toLowerCase().includes(inappropriateWords[i].toLowerCase())) {
-            //alert("¡IMPOSIBLE! El nombre contiene una palabra inadecuada: " + inappropriateWords[i]);
             showMessage(mensajes[language]['palabraInapropiada'] + inappropriateWords[i]);
             return false;
         }

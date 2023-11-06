@@ -28,9 +28,10 @@ session_start();
         </header>
         <div class="forumCreate">
             <?php
+            echo "<div id='message' style='display: none;'></div>";
             if ($_SESSION['language'] === 'spanish') {
                 echo '<h2>Crear Nueva Pregunta</h2>';
-                echo '<form action="create.php" method="post">';
+                echo '<form action="create.php" method="post" onsubmit="return showMessage(mensajes[\'spanish\'][\'tiempoAgotado\']);">';
                 echo '    <label for="idioma">Idioma:</label>';
                 echo '    <select name="idioma" required>';
                 echo '        <option value="spanish">Español</option>';
@@ -195,7 +196,7 @@ session_start();
                 if ($file) {
                     fwrite($file, "\n".$nueva_pregunta);
                     fclose($file);
-                    echo "<script>alert('Pregunta creada con éxito.');</script>";
+                    //echo "<script>alert('Pregunta creada con éxito.');</script>";
                 } else {
                     echo "<script>alert('Error al abrir el archivo.');</script>";
                 }
