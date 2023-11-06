@@ -35,10 +35,10 @@
                     echo "<button onclick id='loginButton'>Inicia sesión</button>";
                     echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<button onclick id='loginButton'>Inicia sesión</button>";
+                    echo "<button onclick id='loginButton'>Inicia sessió</button>";
                     echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<button onclick id='loginButton'>Inicia sesión</button>";
+                    echo "<button onclick id='loginButton'>Log in</button>";
                     echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
