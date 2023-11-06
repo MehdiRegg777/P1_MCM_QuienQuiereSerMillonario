@@ -28,10 +28,13 @@ session_start();
         <header>
             <?php
                 if ($_SESSION['language'] === 'spanish') {
+                    echo "<div id='spanish'></div>";
                     echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<div id='catalan'></div>";
                     echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
+                    echo "<div id='english'></div>";
                     echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
@@ -199,7 +202,6 @@ session_start();
         <audio id="correctSound" src="mp3/correct.mp3"></audio>
         <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
         <script src="funcionGame.js"></script>
-        <script src="funcionLanguage.js"></script>
         <footer class="footerinfo">
             <p>© MCM S.A.</p>
             <p><a href="gmail.com">Contact us</a></p>

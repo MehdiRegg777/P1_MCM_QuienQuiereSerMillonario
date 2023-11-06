@@ -13,7 +13,7 @@ const mensajes = {
     'catalan': {
         'respuestaCorrecta': 'Felicitats! Resposta correcta.',
         'respuestaIncorrecta': 'Resposta incorrecta. Fi del joc.',
-        'tiempoAgotado': 'Time out. End of the game.',
+        'tiempoAgotado': 'Temps esgotat. Fi del joc.',
         'seleccionaRespuesta': 'Si us plau, seleccioneu una resposta.',
         'subirNivel': 'Ara pujarà el nivell de dificultat a ',
         'juegoTerminado': 'Has respost totes les preguntes! Joc acabat.'
@@ -21,7 +21,7 @@ const mensajes = {
     'english': {
         'respuestaCorrecta': 'Congratulations! Correct answer.',
         'respuestaIncorrecta': 'Incorrect answer. End of the game.',
-        'tiempoAgotado': 'Temps esgotat. Fi del joc.',
+        'tiempoAgotado': 'Time out. End of the game.',
         'seleccionaRespuesta': 'Please select an answer.',
         'subirNivel': 'Now it will increase the difficulty level to ',
         'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.'
@@ -64,6 +64,10 @@ function resetChronometer() {
       }
 }
 
+function stopCountUpChronometer() {
+    clearInterval(intervalo);
+}
+
 function reanudarChronometer() {
     let time = parseInt(localStorage.getItem("time"));
     startCountUpChronometer()
@@ -84,8 +88,14 @@ function updateCountDownChronometer() {
         saveSession('timeLeft=' + timeLeft,'game.php');
     } else {
         timerQuestion.textContent = "--:--";
-        //let language = document.getElementById('language');
-        //showMessage(mensajes[language]['respuestaIncorrecta']);
+        if (document.getElementById("spanish")) {
+            var language = "spanish";
+        } else if (document.getElementById("catalan")) {
+            var language = "catalan";
+        } else if (document.getElementById("english")) {
+            var language = "english";
+        }
+        showMessage(mensajes[language]['tiempoAgotado']);
         clearInterval(intervalCountDown);
         pageLose();
     }
@@ -94,7 +104,7 @@ function updateCountDownChronometer() {
 function pageLose(){
     let niveles = document.querySelector(".nivel_actual");
     let nivel = niveles.getAttribute("nivelactual");
-    console.log(calculoderespuesta(preguntaActual,nivel));
+    stopCountUpChronometer();
     calculateTotalPoints(calculoderespuesta(preguntaActual,nivel));
     playIncorrectSound();
     setTimeout(function () {
@@ -287,6 +297,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
         } else {
             let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
+            stopCountUpChronometer();
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('fallada');
             showMessage(mensajes[language]['respuestaIncorrecta']);
@@ -316,7 +327,7 @@ function responderPregunta(preguntaIndex, nivel, language) {
         }
     } else {
         showMessage(mensajes[language]['seleccionaRespuesta']);
-    };
+    }
 }
 
 function regresarAlInicio() {
@@ -364,9 +375,10 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 next.style.display = "";
                 stopCountDownChronometerReset();
             } else {
-                calculateTotalPoints(18)
+                calculateTotalPoints(18);
+                stopCountUpChronometer();
                 showMessage(mensajes[language]['juegoTerminado']);
-                
+                setTimeout(function() {
                 const form = document.createElement('form');
                 form.method = 'POST';
                 form.action = 'win.php';
@@ -380,6 +392,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 document.body.appendChild(form);
 
                 form.submit();
+            }, 3000);
             }
         }
     }
@@ -428,6 +441,47 @@ function calculateTotalPoints(correctAnswer) {
     const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
 
     saveSession('points=' + pointsTotal,'game.php');
+}
+
+function validateName() {
+    var nombre = document.getElementById("nombre").value;
+    var inappropriateWords = [
+        "retrasado","retrasat","retarded",
+        "maldito","maleït","fucking",
+        "maldita","maleïda","fucking",
+        "puta","puta","whore",
+        "puto","put","whore",
+        "gilipollas","gilipolles","idiot",
+        "tonto","tonto","fool",
+        "golfo","golf","asshole",
+        "pene","penis","penis",
+        "vagina","vagina","vagina",
+        "polla","polla","dick",
+        "coño","cony","pussy",
+        "culo","cul","butt",
+        "gordo","gord","fat",
+        "subnormal","subnormal","abnormal",
+        "anormal","anormal","abnormal",
+        "mierda","merda","shit",
+        "droga","droga","drug",
+        "maricon","maricó","faggot",
+        "soplagaitas","soplagaites","blowjob",
+        "capullo","capull","jerk",
+        "pardillo","pardell","gullible",
+        "lameculos","llepaculs","ass-licker",
+        "pendejo","penso","dumbass",
+        "follar","follar","fuck",
+        "pajas","pajilles","wank",
+        "masturbar","masturbar","masturbate",
+        "suicidar","suïcidar","suicide"
+    ];
+    for (var i = 0; i < inappropriateWords.length; i++) {
+        if (nombre.toLowerCase().includes(inappropriateWords[i].toLowerCase())) {
+            alert("¡IMPOSIBLE! El nombre contiene una palabra inadecuada: " + inappropriateWords[i]);
+            return false;
+        }
+    }
+    return true;
 }
 
 // FUNCIONS DE SONS/CANÇONS.

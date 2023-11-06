@@ -10,6 +10,7 @@
     $_SESSION['comodinPublico'] = 'nousado';
     $_SESSION['buttonPublish'] = 'nousado';
     unset($_SESSION['nivels']);
+    unset($_SESSION['answer']);
 ?>
 
 <!DOCTYPE html>
