@@ -27,14 +27,14 @@ session_start();
             <h2>Crear Nueva Pregunta</h2>
             <form action="create.php" method="post">
                 <label for="idioma">Idioma:</label>
-                <select name="idioma">
+                <select name="idioma" required>
                     <option value="spanish">Español</option>
                     <option value="catalan">Catalán</option>
                     <option value="english">Inglés</option>
                 </select><br>
 
                 <label for="nivel">Nivel:</label>
-                <select name="nivel">
+                <select name="nivel" required>
                     <option value="1">Nivel 1</option>
                     <option value="2">Nivel 2</option>
                     <option value="3">Nivel 3</option>
@@ -44,36 +44,68 @@ session_start();
                 </select><br>
 
                 <label for="pregunta">Pregunta:</label>
-                <textarea name="pregunta" rows="4" cols="50"></textarea><br>
+                <textarea name="pregunta" rows="4" cols="50" required></textarea><br>
 
-                <label for="opciones">Opciones de Respuesta (separadas por líneas):</label>
-                <textarea name="opciones" rows="4" cols="50"></textarea><br>
+                <label for="opcionA">Respuesta Opción A:</label>
+                <input type="radio" name="respuesta" value="A" required><br>
+                <textarea name="opcionA" rows="4" cols="50" required></textarea>
+              
+
+                <label for="opcionB">Respuesta Opción B:</label>
+                <input type="radio" name="respuesta" value="B" required><br>
+                <textarea name="opcionB" rows="4" cols="50" required></textarea>
+
+                <label for="opcionC">Respuesta Opción C:</label>
+                <input type="radio" name="respuesta" value="C" required><br>
+                <textarea name="opcionC" rows="4" cols="50" required></textarea>
+
+                <label for="opcionD">Respuesta Opción D:</label>
+                <input type="radio" name="respuesta" value="D" required><br>
+                <textarea name="opcionD" rows="4" cols="50" required></textarea>
 
                 <input type="submit" value="Crear Pregunta">
             </form>
         </div>
 
         <?php
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                $idioma = $_POST["idioma"];
-                $nivel = $_POST["nivel"];
-                $pregunta = $_POST["pregunta"];
-                $opciones = explode("\n", $_POST["opciones"]);
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $idioma = $_POST["idioma"];
+            $nivel = $_POST["nivel"];
+            $pregunta = $_POST["pregunta"];
+            $respuesta = $_POST["respuesta"];
+            $opciones = [
+                "A" => $_POST["opcionA"],
+                "B" => $_POST["opcionB"],
+                "C" => $_POST["opcionC"],
+                "D" => $_POST["opcionD"]
+            ];
 
+            if (empty($pregunta) || empty($respuesta) || in_array("", $opciones)) {
+                echo "Por favor, complete todas las opciones y la pregunta.";
+            } else {
+                $nueva_pregunta = "# /imagGame/question100.png" . "\n"; 
+                $nueva_pregunta .= "* " . $pregunta . "\n";
 
-                $nueva_pregunta = "* " . $pregunta . "\n";
-                foreach ($opciones as $opcion) {
-                    $nueva_pregunta .= ($opcion[0] == "+") ? "+ " . substr($opcion, 1) . "\n" : "- " . $opcion;
+                foreach ($opciones as $opcion => $texto) {
+                    if ($respuesta == $opcion) {
+                        $nueva_pregunta .= "+ " . $texto . "\n";
+                    } else {
+                        $nueva_pregunta .= "- " . $texto . "\n";
+                    }
                 }
 
                 $archivo = "questions/".$idioma . "_" . $nivel . ".txt";
 
-                if (file_put_contents($archivo, $nueva_pregunta, FILE_APPEND | LOCK_EX) !== false) {
+                $file = fopen($archivo, "a");
+                if ($file) {
+                    fwrite($file, "\n".$nueva_pregunta);
+                    fclose($file);
                     echo "Pregunta creada con éxito.";
                 } else {
-                    echo "Error al crear la pregunta.";
+                    echo "Error al abrir el archivo.";
                 }
-            } 
+            }
+        } 
         ?>
 
 
