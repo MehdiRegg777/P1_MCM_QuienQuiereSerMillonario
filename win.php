@@ -26,11 +26,11 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
     <?php
                 echo "<header>";
                 if ($_SESSION['language'] === 'spanish') {
-                    echo "<a href='/index.php'><h1 class ='our-text'>¿Quién quiere ser millonario?</h1></a>";
+                    echo "<a id='spanish' href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<a href='/index.php'><h1 class ='our-text'>Qui vol ser milionari?</h1></a>";
+                    echo "<a id='catalan' href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<a href='/index.php'><h1 class ='our-text'>Who wants to be a millonarie?</h1></a>";
+                    echo "<a id='english'  href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
 
                 echo '</header>';
@@ -148,7 +148,7 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                     if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $puntos = $_POST["userpoints"];
                         if ($_SESSION['language'] === 'spanish') {
-                            echo '<form id="guardarpartida" method="post" style="display: none;">
+                            echo '<form id="guardarpartida" method="post" style="display: none;" onsubmit="return validateName();">
                             <label for="nombre">Nombre del jugador:</label>
                             <input type="text" name="datos[nombre]" id="nombre" required><br>
                             <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>
@@ -156,7 +156,7 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                             <input type="submit" value="Guardar puntuación" id ="savepunt-button">
                             </form>';
                         } elseif ($_SESSION['language'] === 'catalan') {
-                            echo '<form id="guardarpartida" method="post" style="display: none;">
+                            echo '<form id="guardarpartida" method="post" style="display: none;" onsubmit="return validateName();">
                             <label for="nombre">Nom del jugador:</label>
                             <input type="text" name="datos[nombre]" id="nombre" required><br>
                             <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>
@@ -164,7 +164,7 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                             <input type="submit" value="Desa la puntuació" id ="savepunt-button">
                             </form>';
                         } elseif ($_SESSION['language'] === 'english') {
-                            echo '<form id="guardarpartida" method="post" style="display: none;">
+                            echo '<form id="guardarpartida" method="post" style="display: none;" onsubmit="return validateName();">
                             <label for="nombre">Player Name:</label>
                             <input type="text" name="datos[nombre]" id="nombre" required><br>
                             <input type="hidden" name="datos[puntuacion]" id="puntuacion"  value="' . $puntos . '"><br>

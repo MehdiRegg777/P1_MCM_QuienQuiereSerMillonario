@@ -8,7 +8,8 @@ const mensajes = {
         'tiempoAgotado': 'Tiempo agotado. Fin del juego.',
         'seleccionaRespuesta': 'Por favor, selecciona una respuesta.',
         'subirNivel': 'Ahora subirá el nivel de dificultad a ',
-        'juegoTerminado': '¡Has respondido todas las preguntas! Juego terminado.'
+        'juegoTerminado': '¡Has respondido todas las preguntas! Juego terminado.',
+        'palabraInapropiada': '¡IMPOSIBLE! El nombre contiene una palabra inadecuada: '
     },
     'catalan': {
         'respuestaCorrecta': 'Felicitats! Resposta correcta.',
@@ -16,7 +17,8 @@ const mensajes = {
         'tiempoAgotado': 'Temps esgotat. Fi del joc.',
         'seleccionaRespuesta': 'Si us plau, seleccioneu una resposta.',
         'subirNivel': 'Ara pujarà el nivell de dificultat a ',
-        'juegoTerminado': 'Has respost totes les preguntes! Joc acabat.'
+        'juegoTerminado': 'Has respost totes les preguntes! Joc acabat.',
+        'palabraInapropiada': 'IMPOSSIBLE! El nom conté una paraula inadequada: '
     },
     'english': {
         'respuestaCorrecta': 'Congratulations! Correct answer.',
@@ -24,7 +26,8 @@ const mensajes = {
         'tiempoAgotado': 'Time out. End of the game.',
         'seleccionaRespuesta': 'Please select an answer.',
         'subirNivel': 'Now it will increase the difficulty level to ',
-        'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.'
+        'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.',
+        'palabraInapropiada': 'IMPOSSIBLE! The name contains an inappropriate word: '
     }
 };
 function showMessage(message) {
@@ -444,6 +447,13 @@ function calculateTotalPoints(correctAnswer) {
 }
 
 function validateName() {
+    if (document.getElementById("spanish")) {
+        var language = "spanish";
+    } else if (document.getElementById("catalan")) {
+        var language = "catalan";
+    } else if (document.getElementById("english")) {
+        var language = "english";
+    }
     var nombre = document.getElementById("nombre").value;
     var inappropriateWords = [
         "retrasado","retrasat","retarded",
@@ -477,7 +487,8 @@ function validateName() {
     ];
     for (var i = 0; i < inappropriateWords.length; i++) {
         if (nombre.toLowerCase().includes(inappropriateWords[i].toLowerCase())) {
-            alert("¡IMPOSIBLE! El nombre contiene una palabra inadecuada: " + inappropriateWords[i]);
+            //alert("¡IMPOSIBLE! El nombre contiene una palabra inadecuada: " + inappropriateWords[i]);
+            showMessage(mensajes[language]['palabraInapropiada'] + inappropriateWords[i]);
             return false;
         }
     }

@@ -28,14 +28,11 @@ session_start();
         <header>
             <?php
                 if ($_SESSION['language'] === 'spanish') {
-                    echo "<div id='spanish'></div>";
-                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                    echo "<a id='spanish' href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<div id='catalan'></div>";
-                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
+                    echo "<a id='catalan' href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<div id='english'></div>";
-                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
+                    echo "<a id='english' href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
         </header>
