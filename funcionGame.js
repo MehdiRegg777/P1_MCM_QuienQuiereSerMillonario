@@ -326,6 +326,17 @@ function comodinCantidadSonido() {
 
 }
 
+/* CERRAR "POPUPS" */
+const loginPopUp = document.getElementById("loginPopUp");
+
+function togglePopUp() {
+    if (loginPopUp.style.display === "none" || loginPopUp.style.display === "") {
+        loginPopUp.style.display = "block";
+    } else {
+        loginPopUp.style.display = "none";
+    }
+}
+
 function cerrarImagen() {
     startCountDownChronometer();
     const modal = document.getElementById('popupModal');
@@ -650,3 +661,19 @@ function saveSession(id,direction) {
         //console.log(data);
     });
 };
+
+/* INICIO DE SESIÓN */
+const loginButton = document.getElementById("loginButton");
+const popupContainer = document.getElementById("loginPopUp");
+const closeButton = document.getElementById("closeButton");
+
+function showPopup() {
+    popupContainer.style.display = "block";
+}
+
+function closePopup() {
+    popupContainer.style.display = "none";
+}
+
+loginButton.addEventListener("click", showPopup);
+closeButton.addEventListener("click", closePopup);
