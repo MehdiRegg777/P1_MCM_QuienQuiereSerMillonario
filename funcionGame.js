@@ -216,8 +216,6 @@ function comodinPublico() {
     saveSession('comodinPublico=' + 'usado');
 }
 
-////
-
 function comodinLlamada() {
     stopCountDownChronometerContinue();
     const modal = document.getElementById('popupModal');
@@ -242,6 +240,9 @@ function comodinLlamada() {
                 if (repetitionsLeft === 1) {
                     // Ocultar la imagen al finalizar el untimo sonido
                     imagen.style.display = 'none';
+                    //Añadir un atributo sobre numero random
+                    const numRepetitions = document.getElementById('tituloLlamada');
+                    numRepetitions.setAttribute('Repeticiones', repetitions);
                     // Mostrar el campo del formulario
                     const titelcall = document.getElementById('preguntaLlamada');
                     titelcall.style.display = 'block';
@@ -251,24 +252,69 @@ function comodinLlamada() {
         }
     };
     playAudio(repetitions);
-    //const botonPublic0 = document.getElementById('boton-publico');
-    //botonPublic0.setAttribute('disabled', '');
-    //saveSession('comodinPublico=' + 'usado');
+    const botonPublic0 = document.getElementById('buttoncomodinLlamada');
+    botonPublic0.setAttribute('disabled', '');
+    saveSession('comodinLlamada=' + 'usado');
 }
 
-function cantidadSonido() {
+function comodinCantidadSonido() {
+    //El input del mini formulario
     const vecesAudioInput = document.getElementById('vecesAudio');
-    const cantidadVeces = vecesAudioInput.value;
+    const cantidadLlamadaAudio = vecesAudioInput.value;
+
+    //Las veces corectas que se repitio el audio
+    const numRepetitions = document.getElementById('tituloLlamada');
+    const RepeticionAudioCorrecto = numRepetitions.getAttribute('Repeticiones'); 
+
+    //Respuesta correcta del juego general
     const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
     const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
-    console.log('Cantidad de veces que sonó el audio:', cantidadVeces);
+
+    if (cantidadLlamadaAudio == RepeticionAudioCorrecto) {
+        //Obtener texto respuesta corecta
+        const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="'+respuestaCorrecta+'"]');
+        const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
+        //Ocultamos el formulario
+        const titelcall = document.getElementById('preguntaLlamada');
+        titelcall.style.display = 'none';
+        //Mostramos el div de la respuesta correcta
+        const titeQuestion = document.getElementById('respuestaLlamada');
+        titeQuestion.style.display = 'block';
+        //Imprimimos la respuesta corecta
+        const pTexto = document.getElementById("RespuestaTexto");
+        pTexto.textContent = textoRespuestaCorrecta;
+
+    } else {
+        let respuestaIncorrecta;
+        do {
+            respuestaIncorrecta = Math.floor(Math.random() * 4);
+        } while (respuestaIncorrecta == respuestaCorrecta);
+        //Obtener texto respuesta incorrecta
+        const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="'+respuestaIncorrecta+'"]');
+        const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
+        //Ocultamos el formulario
+        const titelcall = document.getElementById('preguntaLlamada');
+        titelcall.style.display = 'none';
+        //Mostramos el div de la respuesta incorrecta
+        const titeQuestion = document.getElementById('respuestaLlamada');
+        titeQuestion.style.display = 'block';
+        //Imprimimos la respuesta incorrecta
+        const pTexto = document.getElementById("RespuestaTexto");
+        pTexto.textContent = textoRespuestaCorrecta;
+    }
+
 }
-/////
 
 function cerrarImagen() {
     startCountDownChronometer();
     const modal = document.getElementById('popupModal');
     modal.style.display = "none";
+    const titelcall = document.getElementById('preguntaLlamada');
+    titelcall.style.display = 'none';
+    const titeQuestion = document.getElementById('respuestaLlamada');
+    titeQuestion.style.display = 'none';
+    const imagen = document.getElementById('popupImage');
+    imagen.removeAttribute('style');
 }
 
 function calculoderespuesta(preguntaActual,nivel){
