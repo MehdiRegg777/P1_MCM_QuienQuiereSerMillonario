@@ -1,15 +1,15 @@
 # /imagGame/question10.png
 * Com és la bandera del Regne Unit?
 - Rosa, blau i vermell
-+ Blau Blanc I Vermell
++ Blau Blanc i Vermell
 - Blau, Negre, Vermell
 - Groc Vermell Blau
 # /imagGame/question11.png
-* Què menja normalment el Regne Unit?
-- Gofres
-- Sopa
-- Cansalada
-+ Patates I Peix
+* Com es deia l'esposa d'Ulisses, el personatge de l'Odissea creat per Homer?
+- Lisístrata
+- Claudia
++ Penèlope
+- Sofia
 # /imagGame/question12.png
 * Qui és el president del Regne Unit?
 - Donald Trump
@@ -17,38 +17,38 @@
 - Dina Boluarte
 + Boris Johnson
 # /imagGame/question13.png
-* Quant de temps va durar aproximadament la guerra entre Palestina i Israel?
+* Quant va durar aproximadament la guerra entre Palestina i Israel?
 - 2 mesos
 - 7 dies
-- 2 Vears
-+ 11 dies
+- 2 anys
++ 11 Dies
 # /imagGame/question14.png
-* Quants dies hi va haver una guerra amb violència entre Palestina i Israel?
-- 11 dies
-- 2 mesos
-+ 3 dies
-- Cada dia de guerra
+* Quin filòsof alemany va escriure sobre la teoria del superhome?
+- Shinji Ikari
++ Friedrich Nietzche
+- Haruki Murakami
+- Harper Lee
 # /imagGame/question15.png
 * Quantes persones van morir a la guerra entre Palestina i Israel?
 - 3 persones
-- La meitat del poble
+- La meitat de la ciutat
 - 200 persones
 + 44 persones
 # /imagGame/question16.png
-* Per què són importants els imperis britànics?
-- Pel seu històric
-+ Per als seus morts
-- Per les seves victòries
-- Pels seus diners
+* Quantes síl·labes formen un haikú?
+- Tres versos sense rima de 7, 7 i 5 síl·labes.
++ Tres versos sense rima de 5, 7 i 5 síl·labes.
+- Tres versos sense rima de 7, 7 i 5 síl·labes.
+- Tres versos sense rima de 5, 5 i 7 síl·labes.
 # /imagGame/question17.png
-* Les idees sobre l'Imperi al Regne Unit han fluctuat...
-- Victòries
-+ Temps
-- Monarquia
-- País
+* D'acord amb la llegenda, qui van fundar Roma?
++ Ròmul i Rem
+- Caesar i Ciceró
+- Hèrcules i Creont
+- Alexandre el Gran i el seu pare
 # /imagGame/question18.png
-* Quants territoris va conquerir l'Imperi Britànic?
-+ 5 Territoris
-- 8 Territoris
-- 10 Territoris
-- 12 Territoris
+* Quants territoris va conquistar l'Imperi Britànic?
++ 5 territoris
+- 8 territoris
+- 10 territoris
+- 12 territoris

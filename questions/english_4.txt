@@ -1,53 +1,53 @@
 # /imagGame/question37.png
-* How many world cups has England win?
-- None
-+ 1 World Cup
-- 2 World Cup
-- Never gone
+* Who devised the laws of genetic inheritance?
++ Gregor Mendel
+- Karen Materizza
+- Song Kim
+- Camilo Suarez
 # /imagGame/question38.png
-* Which way do the English people drive?
-+ Driving in the left lane and the driver on the right.
-- Driving in the right lane and the driver on the left.
-- Like everyone.
-- To the other way
+* What is the meaning of "lithosphere"?
++ Lithos, and sphaira (stone-sphere)
+- Lithos and skaira (floating stone)
+- Linthos and fera (sky-above)
+- Lithos and skaira (wet lithium)
 # /imagGame/question39.png
-* Which commonwealth country do you think has the best economic situation?
-+ India
-- Canada
-- Pakistan
-- United Kingdom
+* What is the study of fungi called?
+- Thalassology
+- Thanatology
+- Chirology
++ Mycology
 # /imagGame/question40.png
-* What is the country with the most colonies in the world?
-- Russia
-+ France
-- Denmark
-- Portugal
+* "When Gregorio Samsa woke up one morning, after a restless dream, he found himself in his bed transformed into a monstrous insect." What book is this quote from?
+- "Insects"
++ "The Metamorphosis"
+- "The Story of Gregorio Samsa"
+- "The Metamorphoses"
 # /imagGame/question41.png
-* In what time of the day do the British drink tea?
-- 2 P.M
-- 1 P.M
-- 5 P.M
-+ 4 P.M
+* What was the name of El Cid Campeador?
++ Rodrigo Díaz de Vivar
+- Cid González del Rocío
+- José Fernández Machaco
+- Juan Guitierrez Cortés
 # /imagGame/question42.png
-* What was the first official team of football in the UK?
+* What was the first official football club in the United Kingdom?
 - Notts County Football Club
 + Sheffield
 - Hallam FC
-- Munich
++ Munich
 # /imagGame/question43.png
-* What is the name of the party where the British dressed in green and pick flowers?
-- Easter day
-+ May day
-- San Patrick day
-- April Fool's day
+* What is the name of the festival where the English dress in green and pick flowers?
+- Easter Day
++ May Day
+- St. Patrick's Day
+- April Fool's Day
 # /imagGame/question44.png
-* Which country consumes more tea annually?
-- Portugal
-+ The UK
-- Spain
-- France
+* 9*N is equal to 108. What is N?
+- 107
++ 108
+- 109
+- 110
 # /imagGame/question45.png
-* Which colonial country has more world cups?
+* Which colonial country has the most world cups?
 - France
 - Spain
 + Germany

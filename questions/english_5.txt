@@ -1,42 +1,42 @@
 # /imagGame/question46.png
 * Which Australian player has the highest salary?
 + Mathew Ryan
-- Harry Souttar
-- Milos Degenejer
+- Harry Soutar
+- Milos Degenek
 - Leo Messi
 # /imagGame/question47.png
-* Are the British punctual?
-+ Always
-- Usually
-- Maybe
-- Never
+* Who discovered the penicillin?
+- Joseph Smith
++ Alexander Fleming
+- Tsarkovich Penikilin
+- Vladimir Tolstoy
 # /imagGame/question48.png
-* Which of these countries were not colonized by England?
-- Maldiva's Islands
-- Cayman Islands
-- Bermuda
-+ Belarus
+* What is the name of the first leader of the Soviet Union?
++ Vladimir Ilyich Ulyanov
+- Joseph Stalin
+- Nikita Khrushchev
+- Mikhail Gorbachev
 # /imagGame/question49.png
-* In what century the cricket become a national sport?
-+ In the end of 18th century
-- In the beginning of 17th century
-- In the end of 15th century
-- At the beginning of the 19th century
+* Into what kingdoms are living beings divided?
++ Animal, vegetable, fungi, protista and monera.
+- Animal, vegetable, fungi, plants and mushrooms.
+- Animal, vegetable, plants, fruits and vegetables.
+- Animal, vegetable and fungi.
 # /imagGame/question50.png
-* In which English colony do they play cricket the least?
-- India
-+ Australia
-- Pakistán
-- South Africa
+* What is the sculpture that catapulted Auguste Rodin to fame?
+- Ara Pacis
++ The thinker
+- Augustus of Prima Porta
+- Capitoline Venus
 # /imagGame/question51.png
-* Which of these European countries is still a colony of the British Empire?
-+ Gibraltar
-- Cyprus
-- Channel islands
-- England
+* What is the average of the first 50 natural numbers?
++ 25.5
+- 24.5
+- 23.5
+- 22.5
 # /imagGame/question52.png
-* What is the Rolling Cheese tradition about?
-- Eat round cheese
-+ Throw round cheese off a hille
-- Making a round cheesecake
-- Buy a big round cheese
+* How many acres make a square mile?
+- 639
++ 640
+- 641
+- 435
