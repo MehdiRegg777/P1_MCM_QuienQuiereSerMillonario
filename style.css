@@ -588,6 +588,17 @@ a{
     font-size: 16px;
 }
 
+.forumCreate a {
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
 .forumCreate input[type="submit"]:hover {
     cursor: pointer;
     transition-duration: 1s;

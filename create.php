@@ -15,10 +15,13 @@ session_start();
     <header>
             <?php
                 if ($_SESSION['language'] === 'spanish') {
+                    echo "<button onclick id='loginButton'>Cerrar Sesión</button>";
                     echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<button onclick id='loginButton'>Tancar Sessió</button>";
                     echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
+                    echo "<button onclick id='loginButton'>Sign Off</button>";
                     echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
@@ -65,9 +68,18 @@ session_start();
 
                 <input type="submit" value="Crear Pregunta">
             </form>
+            
+            <?php
+            if ($_SESSION['language'] === 'spanish') {
+                echo '<a class="play-button" href="index.php"><em>Volver al inicio</em></a>';
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
+            } elseif ($_SESSION['language'] === 'english') {
+                echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';             
+            }
+            ?>
         </div>
-
-        <?php
+        <?php   
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $idioma = $_POST["idioma"];
             $nivel = $_POST["nivel"];
