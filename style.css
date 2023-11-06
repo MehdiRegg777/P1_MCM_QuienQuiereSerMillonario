@@ -127,8 +127,8 @@ a{
 .container{
     background-color: white;
     border-radius: 10px;
-    margin: 80px;
     max-width: 100%;
+    margin: 100px;
 }
 
 .container1{
@@ -204,6 +204,59 @@ a{
     width: 100%;
     max-width: 100%;
     height: auto;
+}
+
+/* INICIO DE SESIÓN*/
+#loginButton:hover, #siguienteInicioSesion:hover{
+    cursor: pointer;
+}
+
+.loginPopUp {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.contenidoPopUp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+    font-family: 'Montserrat Alternative', sans-serif;
+}
+
+.contenidoPopUp h2{
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-family: 'Lora', serif;
+}
+
+#usernameInput, #passwordInput{
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+#siguienteInicioSesion{
+    width: auto;
+    height: auto;
+    margin: 1px;
+    background-color: #FF9F1C;
+    border: 1px solid #FF9F1C;
+    border-radius: 10px;
+    font-family: 'Lora', sans-serif;
+    font-size: 15px;
+    padding: 15px 18px;
 }
 
 /* GAME.PHP */
@@ -534,7 +587,7 @@ a{
     line-height: 50px;
 }
 
-/*Css para el formulario del create*/
+/*Css para el formulario                     del create*/
 
 .forumCreate {
     background-color: #f5f5f5;
@@ -609,7 +662,6 @@ a{
 }
 
 footer{
-    width: 100vw;
     margin-top: 100px;
     background-color: #080357;
     color: #fff;
@@ -627,7 +679,6 @@ footer{
     header{
         padding: 20px;
         margin-bottom: 100px;
-        width: 100%;
     }
 
     h1{ font-size: 30px; }
@@ -637,6 +688,10 @@ footer{
         line-height: 20px;
     }
 
+    .container{
+        margin: 30px;
+    }
+
     .play-button, .halloffame-button{
         display: inline-block;
         padding: 10px 30px;
@@ -644,7 +699,9 @@ footer{
         font-size: 15px;
     }
 
-    .languagesimages img{ margin-bottom: -25px; }
+    .languagesimages img{
+        margin-bottom: -25px;
+    }
 
     .footer{ width: 100vw; }
 }
