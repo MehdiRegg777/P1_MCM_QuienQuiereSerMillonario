@@ -710,8 +710,16 @@ footer{
         font-size: 15px;
     }
 
-    .languagesimages img{
-        margin-bottom: -25px;
+    .languagesimages{
+        width: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;   
+    }
+
+    a.no-underline img{
+        width: 20px;
+        height: 10px;
     }
 
     .footer{ width: 100vw; }

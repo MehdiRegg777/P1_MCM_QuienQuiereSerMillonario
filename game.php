@@ -59,7 +59,6 @@ session_start();
         </div>
 
 
-
         <div class="container1">
             <div class="comodinesBotones">
                 <?php
