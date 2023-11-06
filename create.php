@@ -195,14 +195,14 @@ session_start();
                 if ($file) {
                     fwrite($file, "\n".$nueva_pregunta);
                     fclose($file);
-                    echo "Pregunta creada con éxito.";
+                    echo "<script>alert('Pregunta creada con éxito.');</script>";
                 } else {
-                    echo "Error al abrir el archivo.";
+                    echo "<script>alert('Error al abrir el archivo.');</script>";
                 }
+                
             }
         } 
         ?>
-
 
         <footer class='footerinfo'>
             <p>© MCM S.A.</p>
