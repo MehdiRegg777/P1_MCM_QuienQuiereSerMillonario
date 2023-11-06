@@ -52,7 +52,8 @@ session_start();
                     <button style="display:block;"  id="enviarBtn" onclick="comodinCantidadSonido()">Enviar</button>
                 </div>
                 <div style="display: none;" id="respuestaLlamada">
-                    <h4>La respuesta correcta es:</h4>
+                    <h4 id="respuestaValida">La respuesta correcta es:</h4>
+                    <h4 style="display: none;" id="respuestaInvalida">Llamada sin respuesta</h4>
                     <p  style="text-align: center;" id="RespuestaTexto"></p>
                 </div>
             </div>

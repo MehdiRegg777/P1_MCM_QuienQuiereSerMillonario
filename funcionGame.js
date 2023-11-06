@@ -319,9 +319,12 @@ function comodinCantidadSonido() {
         //Mostramos el div de la respuesta incorrecta
         const titeQuestion = document.getElementById('respuestaLlamada');
         titeQuestion.style.display = 'block';
-        //Imprimimos la respuesta incorrecta
-        const pTexto = document.getElementById("RespuestaTexto");
-        pTexto.textContent = textoRespuestaCorrecta;
+        //Mostramos el div de la respuesta incorrecta
+        const validQuestion = document.getElementById('respuestaValida');
+        validQuestion.style.display = 'none';
+        const invalidQuestion = document.getElementById('respuestaInvalida');
+        invalidQuestion.style.display = 'block';
+        
     }
 
 }
