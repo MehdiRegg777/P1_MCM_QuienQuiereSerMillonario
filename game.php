@@ -47,14 +47,38 @@ session_start();
                 <button class="close-button" onclick="cerrarImagen()">X</button>
                 <img id="popupImage" src="" alt="Imagen">
                 <div style="display: none;" id="preguntaLlamada">
-                    <label style="display:block;" id="tituloLlamada">¿Cuántas veces sonó el audio?</label>
-                    <input style="display:block;"  type="number" id="vecesAudio" name="vecesAudio" min="0" required>
-                    <button style="display:block;"  id="enviarBtn" onclick="comodinCantidadSonido()">Enviar</button>
+                    <?php
+                     if ($_SESSION['language'] === 'spanish') {
+                        echo '<label style="display:block;" id="tituloLlamada">¿Cuántas veces sonó el audio?</label>';
+                        echo '<input style="display:block;" type="number" id="vecesAudio" name="vecesAudio" min="0" required>';
+                        echo '<button style="display:block;" id="enviarBtn" onclick="comodinCantidadSonido()">Enviar</button>';
+                    } elseif ($_SESSION['language'] === 'catalan') {
+                        echo "<label style='display:block;' id='tituloLlamada'>Quantes vegades va sonar l'àudio?</label>";
+                        echo '<input style="display:block;" type="number" id="vecesAudio" name="vecesAudio" min="0" required>';
+                        echo '<button style="display:block;" id="enviarBtn" onclick="comodinCantidadSonido()">Enviar</button>';
+                    } elseif ($_SESSION['language'] === 'english') {
+                        echo '<label style="display:block;" id="tituloLlamada">How many times did the audio ring?</label>';
+                        echo '<input style="display:block;" type="number" id="vecesAudio" name="vecesAudio" min="0" required>';
+                        echo '<button style="display:block;" id="enviarBtn" onclick="comodinCantidadSonido()">Send</button>';
+                    }
+                    ?>
                 </div>
                 <div style="display: none;" id="respuestaLlamada">
-                    <h4 id="respuestaValida">La respuesta correcta es:</h4>
-                    <h4 style="display: none;" id="respuestaInvalida">Llamada sin respuesta</h4>
-                    <p  style="text-align: center;" id="RespuestaTexto"></p>
+                <?php
+                     if ($_SESSION['language'] === 'spanish') {
+                        echo '<h4 id="respuestaValida">La respuesta correcta es:</h4>';
+                        echo '<h4 style="display: none;" id="respuestaInvalida">Llamada sin respuesta</h4>';
+                        echo '<p style="text-align: center;" id="RespuestaTexto"></p>';
+                    } elseif ($_SESSION['language'] === 'catalan') {
+                        echo '<h4 id="respuestaValida">La resposta correcta és:</h4>';
+                        echo '<h4 style="display: none;" id="respuestaInvalida">Trucada sense resposta</h4>';
+                        echo '<p style="text-align: center;" id="RespuestaTexto"></p>';
+                    } elseif ($_SESSION['language'] === 'english') {
+                        echo '<h4 id="respuestaValida">The correct answer is:</h4>';
+                        echo '<h4 style="display: none;" id="respuestaInvalida">Unanswered call</h4>';
+                        echo '<p style="text-align: center;" id="RespuestaTexto"></p>';
+                    }
+                    ?>
                 </div>
             </div>
         </div>

@@ -279,6 +279,7 @@ function comodinLlamada() {
 }
 
 function comodinCantidadSonido() {
+    const audioPopupFail = new Audio('mp3/fallCall.mp3');
     //El input del mini formulario
     const vecesAudioInput = document.getElementById('vecesAudio');
     const cantidadLlamadaAudio = vecesAudioInput.value;
@@ -317,7 +318,8 @@ function comodinCantidadSonido() {
         validQuestion.style.display = 'none';
         const invalidQuestion = document.getElementById('respuestaInvalida');
         invalidQuestion.style.display = 'block';
-        
+        audioPopupFail.play();
+                
     }
 
 }
