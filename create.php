@@ -27,49 +27,132 @@ session_start();
             ?>
         </header>
         <div class="forumCreate">
-            <h2>Crear Nueva Pregunta</h2>
-            <form action="create.php" method="post">
-                <label for="idioma">Idioma:</label>
-                <select name="idioma" required>
-                    <option value="spanish">Español</option>
-                    <option value="catalan">Catalán</option>
-                    <option value="english">Inglés</option>
-                </select><br>
-
-                <label for="nivel">Nivel:</label>
-                <select name="nivel" required>
-                    <option value="1">Nivel 1</option>
-                    <option value="2">Nivel 2</option>
-                    <option value="3">Nivel 3</option>
-                    <option value="4">Nivel 4</option>
-                    <option value="5">Nivel 5</option>
-                    <option value="6">Nivel 6</option>
-                </select><br>
-
-                <label for="pregunta">Pregunta:</label>
-                <textarea name="pregunta" rows="4" cols="50" required></textarea><br>
-
-                <label for="opcionA">Respuesta Opción A:</label>
-                <input type="radio" name="respuesta" value="A" required><br>
-                <textarea name="opcionA" rows="4" cols="50" required></textarea>
-              
-
-                <label for="opcionB">Respuesta Opción B:</label>
-                <input type="radio" name="respuesta" value="B" required><br>
-                <textarea name="opcionB" rows="4" cols="50" required></textarea>
-
-                <label for="opcionC">Respuesta Opción C:</label>
-                <input type="radio" name="respuesta" value="C" required><br>
-                <textarea name="opcionC" rows="4" cols="50" required></textarea>
-
-                <label for="opcionD">Respuesta Opción D:</label>
-                <input type="radio" name="respuesta" value="D" required><br>
-                <textarea name="opcionD" rows="4" cols="50" required></textarea>
-
-                <input type="submit" value="Crear Pregunta">
-            </form>
-            
             <?php
+            if ($_SESSION['language'] === 'spanish') {
+                echo '<h2>Crear Nueva Pregunta</h2>';
+                echo '<form action="create.php" method="post">';
+                echo '    <label for="idioma">Idioma:</label>';
+                echo '    <select name="idioma" required>';
+                echo '        <option value="spanish">Español</option>';
+                echo '        <option value="catalan">Catalán</option>';
+                echo '        <option value="english">Inglés</option>';
+                echo '    </select><br>';
+                
+                echo '    <label for="nivel">Nivel:</label>';
+                echo '    <select name="nivel" required>';
+                echo '        <option value="1">Nivel 1</option>';
+                echo '        <option value="2">Nivel 2</option>';
+                echo '        <option value="3">Nivel 3</option>';
+                echo '        <option value="4">Nivel 4</option>';
+                echo '        <option value="5">Nivel 5</option>';
+                echo '        <option value="6">Nivel 6</option>';
+                echo '    </select><br>';
+                
+                echo '    <label for="pregunta">Pregunta:</label>';
+                echo '    <textarea name="pregunta" rows="4" cols="50" required></textarea><br>';
+                
+                echo '    <label for="opcionA">Respuesta Opción A:</label>';
+                echo '    <input type="radio" name="respuesta" value="A" required><br>';
+                echo '    <textarea name="opcionA" rows="4" cols="50" required></textarea>';
+                
+                echo '    <label for="opcionB">Respuesta Opción B:</label>';
+                echo '    <input type="radio" name="respuesta" value="B" required><br>';
+                echo '    <textarea name="opcionB" rows="4" cols="50" required></textarea>';
+                
+                echo '    <label for="opcionC">Respuesta Opción C:</label>';
+                echo '    <input type="radio" name="respuesta" value="C" required><br>';
+                echo '    <textarea name="opcionC" rows="4" cols="50" required></textarea>';
+                
+                echo '    <label for="opcionD">Respuesta Opción D:</label>';
+                echo '    <input type="radio" name="respuesta" value="D" required><br>';
+                echo '    <textarea name="opcionD" rows="4" cols="50" required></textarea>';
+                
+                echo '    <input type="submit" value="Crear Pregunta">';
+                echo '</form>';
+   
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo '<h2>Crear Nova Pregunta</h2>';
+                echo '<form action="create.php" method="post">';
+                echo '    <label for="idioma">Idioma:</label>';
+                echo '    <select name="idioma" required>';
+                echo '        <option value="spanish">Espanyol</option>';
+                echo '        <option value="catalan">Català</option>';
+                echo '        <option value="english">Anglès</option>';
+                echo '    </select><br>';
+                
+                echo '    <label for="nivel">Nivell:</label>';
+                echo '    <select name="nivel" required>';
+                echo '        <option value="1">Nivell 1</option>';
+                echo '        <option value="2">Nivell 2</option>';
+                echo '        <option value="3">Nivell 3</option>';
+                echo '        <option value="4">Nivell 4</option>';
+                echo '        <option value="5">Nivell 5</option>';
+                echo '        <option value="6">Nivell 6</option>';
+                echo '    </select><br>';
+                
+                echo '    <label for="pregunta">Pregunta:</label>';
+                echo '    <textarea name="pregunta" rows="4" cols="50" required></textarea><br>';
+                
+                echo '    <label for="opcionA">Resposta Opció A:</label>';
+                echo '    <input type="radio" name="respuesta" value="A" required><br>';
+                echo '    <textarea name="opcionA" rows="4" cols="50" required></textarea>';
+                
+                echo '    <label for="opcionB">Resposta Opció B:</label>';
+                echo '    <input type="radio" name="respuesta" value="B" required><br>';
+                echo '    <textarea name="opcionB" rows="4" cols="50" required></textarea>';
+                
+                echo '    <label for="opcionC">Resposta Opció C:</label>';
+                echo '    <input type="radio" name="respuesta" value="C" required><br>';
+                echo '    <textarea name="opcionC" rows="4" cols="50" required></textarea>';
+                
+                echo '    <label for="opcionD">Resposta Opció D:</label>';
+                echo '    <input type="radio" name="respuesta" value="D" required><br>';
+                echo '    <textarea name="opcionD" rows="4" cols="50" required></textarea>';
+                
+                echo '    <input type="submit" value="Crear Pregunta">';
+                echo '</form>';
+            } elseif ($_SESSION['language'] === 'english') {
+                echo '<h2>Create New Question</h2>';
+                echo '<form action="create.php" method="post">';
+                echo '    <label for="idioma">Language:</label>';
+                echo '    <select name="idioma" required>';
+                echo '        <option value="spanish">Spanish</option>';
+                echo '        <option value="catalan">Catalan</option>';
+                echo '        <option value="english">English</option>';
+                echo '    </select><br>';
+                
+                echo '    <label for="nivel">Level:</label>';
+                echo '    <select name="nivel" required>';
+                echo '        <option value="1">Level 1</option>';
+                echo '        <option value="2">Level 2</option>';
+                echo '        <option value="3">Level 3</option>';
+                echo '        <option value="4">Level 4</option>';
+                echo '        <option value="5">Level 5</option>';
+                echo '        <option value="6">Level 6</option>';
+                echo '    </select><br>';
+                
+                echo '    <label for="pregunta">Question:</label>';
+                echo '    <textarea name="pregunta" rows="4" cols="50" required></textarea><br>';
+                
+                echo '    <label for="opcionA">Answer Option A:</label>';
+                echo '    <input type="radio" name="respuesta" value="A" required><br>';
+                echo '    <textarea name="opcionA" rows="4" cols="50" required></textarea>';
+                
+                echo '    <label for="opcionB">Answer Option B:</label>';
+                echo '    <input type="radio" name="respuesta" value="B" required><br>';
+                echo '    <textarea name="opcionB" rows="4" cols="50" required></textarea>';
+                
+                echo '    <label for="opcionC">Answer Option C:</label>';
+                echo '    <input type="radio" name="respuesta" value="C" required><br>';
+                echo '    <textarea name="opcionC" rows="4" cols="50" required></textarea>';
+                
+                echo '    <label for="opcionD">Answer Option D:</label>';
+                echo '    <input type="radio" name="respuesta" value="D" required><br>';
+                echo '    <textarea name="opcionD" rows="4" cols="50" required></textarea>';
+                
+                echo '    <input type="submit" value="Create Question">';
+                echo '</form>';
+            }
             if ($_SESSION['language'] === 'spanish') {
                 echo '<a class="play-button" href="index.php"><em>Volver al inicio</em></a>';
             } elseif ($_SESSION['language'] === 'catalan') {
