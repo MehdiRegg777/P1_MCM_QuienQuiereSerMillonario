@@ -8,8 +8,10 @@
     $_SESSION['comodin50'] = 'nousado';
     $_SESSION['comodinTime'] = 'nousado';
     $_SESSION['comodinPublico'] = 'nousado';
+    $_SESSION['buttonPublish'] = 'nousado';
     $_SESSION['comodinLlamada'] = 'nousado';
     unset($_SESSION['nivels']);
+    unset($_SESSION['answer']);
 ?>
 
 <!DOCTYPE html>
