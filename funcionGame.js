@@ -306,13 +306,6 @@ function comodinCantidadSonido() {
         pTexto.textContent = textoRespuestaCorrecta;
 
     } else {
-        let respuestaIncorrecta;
-        do {
-            respuestaIncorrecta = Math.floor(Math.random() * 4);
-        } while (respuestaIncorrecta == respuestaCorrecta);
-        //Obtener texto respuesta incorrecta
-        const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="'+respuestaIncorrecta+'"]');
-        const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
         //Ocultamos el formulario
         const titelcall = document.getElementById('preguntaLlamada');
         titelcall.style.display = 'none';
