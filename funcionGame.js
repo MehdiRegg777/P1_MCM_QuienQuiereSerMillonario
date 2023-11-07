@@ -254,7 +254,7 @@ function comodinLlamada() {
     playAudio(repetitions);
     const botonPublic0 = document.getElementById('buttoncomodinLlamada');
     botonPublic0.setAttribute('disabled', '');
-    saveSession('comodinLlamada=' + 'usado');
+    saveSession('comodinLlamada=' + 'usado','game.php');
 }
 
 function comodinCantidadSonido() {
@@ -523,7 +523,56 @@ function calculateTotalPoints(correctAnswer) {
 
     const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
 
-    saveSession('points=' + pointsTotal);
+    saveSession('points=' + pointsTotal,'game.php');
+}
+
+// FUNCION DE VALIDAR NOMBRE.
+function validateName() {
+    if (document.getElementById("spanish")) {
+        var language = "spanish";
+    } else if (document.getElementById("catalan")) {
+        var language = "catalan";
+    } else if (document.getElementById("english")) {
+        var language = "english";
+    }
+    var nombre = document.getElementById("nombre").value;
+    var inappropriateWords = [
+        "retrasado","retrasat","retarded",
+        "maldito","maleït","fucking",
+        "maldita","maleïda","fucking",
+        "puta","puta","whore",
+        "puto","put","whore",
+        "gilipollas","gilipolles","idiot",
+        "tonto","tonto","fool",
+        "golfo","golf","asshole",
+        "pene","penis","penis",
+        "vagina","vagina","vagina",
+        "polla","polla","dick",
+        "coño","cony","pussy",
+        "culo","cul","butt",
+        "gordo","gord","fat",
+        "subnormal","subnormal","abnormal",
+        "anormal","anormal","abnormal",
+        "mierda","merda","shit",
+        "droga","droga","drug",
+        "maricon","maricó","faggot",
+        "soplagaitas","soplagaites","blowjob",
+        "capullo","capull","jerk",
+        "pardillo","pardell","gullible",
+        "lameculos","llepaculs","ass-licker",
+        "pendejo","penso","dumbass",
+        "follar","follar","fuck",
+        "pajas","pajilles","wank",
+        "masturbar","masturbar","masturbate",
+        "suicidar","suïcidar","suicide"
+    ];
+    for (var i = 0; i < inappropriateWords.length; i++) {
+        if (nombre.toLowerCase().includes(inappropriateWords[i].toLowerCase())) {
+            showMessage(mensajes[language]['palabraInapropiada'] + inappropriateWords[i]);
+            return false;
+        }
+    }
+    return true;
 }
 
 // FUNCIONS DE SONS/CANÇONS.

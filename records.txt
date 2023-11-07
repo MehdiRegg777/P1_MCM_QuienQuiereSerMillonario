@@ -1,5 +1,4 @@
-Player1,1,player_1,00:07,2497
-Messi,4,player_2,01:32,6312
-Amapola,2,player_3,00:10,2600
+Messi,4,player_2,01:32,6309
 Jon,1,player_4,00:04,2497
 Loser,0,player_5,00:01,0
+mola,2,player_6,00:14,3787

@@ -34,7 +34,7 @@ if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
                 }
 
                 echo '</header>';
-   
+                echo "<div id='message' style='display: none;'></div>";
 
                 echo '<div class="container">';
  
