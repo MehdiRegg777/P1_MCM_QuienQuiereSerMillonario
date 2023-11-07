@@ -15,13 +15,10 @@ session_start();
     <header>
             <?php
                 if ($_SESSION['language'] === 'spanish') {
-                    echo "<button onclick id='loginButton'>Cerrar Sesión</button>";
                     echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<button onclick id='loginButton'>Tancar Sessió</button>";
                     echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<button onclick id='loginButton'>Sign Off</button>";
                     echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
@@ -164,11 +161,11 @@ session_start();
                 echo '</form>';
             }
             if ($_SESSION['language'] === 'spanish') {
-                echo '<a class="play-button" href="index.php"><em>Volver al inicio</em></a>';
+                echo '<a class="play-button" href="index.php"><em>Cerrar Sesión</em></a>';
             } elseif ($_SESSION['language'] === 'catalan') {
-                echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
+                echo "<a class='play-button' href='index.php'><em>Tancar Sessió</em></a>";
             } elseif ($_SESSION['language'] === 'english') {
-                echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';             
+                echo '<a class="play-button" href="index.php"><em>Sign Off</em></a>';             
             }
             ?>
         </div>
