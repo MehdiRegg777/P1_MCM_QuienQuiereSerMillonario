@@ -69,7 +69,7 @@ session_start();
 
                 echo '    <label for="imagen">Subir Imagen:</label>'; 
                 echo '    <input type="file" name="imagen" id="imagen" ><br>';
-                
+                echo '    <br>';
                 echo '    <input type="submit" value="Crear Pregunta">';
                 echo '</form>';
    
@@ -114,7 +114,7 @@ session_start();
 
                 echo '    <label for="imagen">Pujar Imatge:</label>'; 
                 echo '    <input type="file" name="imagen" id="imagen" ><br>';
-                
+                echo '    <br>';
                 echo '    <input type="submit" value="Crear Pregunta">';
                 echo '</form>';
             } elseif ($_SESSION['language'] === 'english') {
@@ -158,7 +158,7 @@ session_start();
                 
                 echo '    <label for="imagen">Upload Image:</label>'; 
                 echo '    <input type="file" name="imagen" id="imagen" ><br>';
-
+                echo '    <br>';
                 echo '    <input type="submit" value="Create Question">';
                 echo '</form>';
             }
