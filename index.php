@@ -29,38 +29,32 @@
         <link href="style.css" rel="stylesheet">
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
+    
     <body class="indexPage">
+        <!-- ESPAÑOL -->    
         <div id="spanish" <?php echo ($selectedLanguage != 'spanish') ? $hideStyle : $showStyle; ?>>
-        <header>
-            <?php
-                if ($_SESSION['language'] === 'spanish') {
-                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
-                    echo "<button onclick='login()' id='loginButton'>Inicia sesión</button>";
-                }
-            ?>
-
-            <div id="loginPopUp" class="loginPopUp">
-                <div class="contenidoPopUp">
-                    <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>    
-                    <h2>Inicia sesión</h2>
-                    
-                    <label for="username">Nombre de usuario</label>
-                    <br />
-                    <input id="usernameInput" type="username" placeholder="Introduce el nombre de usuario" required/>
-                    <br />
-                            
-                    <label for="password">Contraseña</label>
-                    <br />
-                    <input id="passwordInput" type="password" placeholder="Introduce la contraseña" required/>
-                    <br />
-
-                    <!-- Aquí va "create.php" -->
-                    <button id="siguienteInicioSesion" onclick=""><strong>Siguiente</strong></button>
+            <header>
+                <?php
+                    if ($_SESSION['language'] === 'spanish') {
+                        echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                        echo "<button onclick='login()' id='loginButton'>Inicia sesión</button>";
+                    }
+                ?>
+                <div id="loginPopUp" class="loginPopUp">
+                    <div class="contenidoPopUp">
+                        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>    
+                        <h2>Inicia sesión</h2>                    
+                        <p id="error-message" style="color: red;"></p>
+                        <form>
+                            <label for="username">Usuario</label><br />
+                            <input type="text" name="username" id="username" required><br><br>
+                            <label for="password">Contraseña</label><br />
+                            <input type="password" name="password" id="password" required><br><br>
+                            <button type="button" onclick="login()" id="botonSiguiente">Siguiente</button>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </header>
-
-            <!-- ESPAÑOL -->
+            </header>
             <div class="container">                
                 <h2><strong>Bienvenido</strong></h2>
                 <h3><em>Instrucciones del juego</em></h3>
