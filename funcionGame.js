@@ -590,6 +590,7 @@ function playIncorrectSound() {
 function publishGame(){
     const mostrarFormulartio = document.getElementById("guardarpartida");
     mostrarFormulartio.style.display = "";
+    saveSession('buttonPublish=' + 'usado','lose.php');
 }
 
 window.onload = function() {
