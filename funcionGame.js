@@ -5,29 +5,23 @@ const mensajes = {
     'spanish': {
         'respuestaCorrecta': '¡Felicidades! Respuesta correcta.',
         'respuestaIncorrecta': 'Respuesta incorrecta. Fin del juego.',
-        'tiempoAgotado': 'Tiempo agotado. Fin del juego.',
         'seleccionaRespuesta': 'Por favor, selecciona una respuesta.',
         'subirNivel': 'Ahora subirá el nivel de dificultad a ',
-        'juegoTerminado': '¡Has respondido todas las preguntas! Juego terminado.',
-        'palabraInapropiada': '¡IMPOSIBLE! El nombre contiene una palabra inadecuada: '
+        'juegoTerminado': '¡Has respondido todas las preguntas! Juego terminado.'
     },
     'catalan': {
         'respuestaCorrecta': 'Felicitats! Resposta correcta.',
         'respuestaIncorrecta': 'Resposta incorrecta. Fi del joc.',
-        'tiempoAgotado': 'Temps esgotat. Fi del joc.',
         'seleccionaRespuesta': 'Si us plau, seleccioneu una resposta.',
         'subirNivel': 'Ara pujarà el nivell de dificultat a ',
-        'juegoTerminado': 'Has respost totes les preguntes! Joc acabat.',
-        'palabraInapropiada': 'IMPOSSIBLE! El nom conté una paraula inadequada: '
+        'juegoTerminado': 'Has respost totes les preguntes! Joc acabat.'
     },
     'english': {
         'respuestaCorrecta': 'Congratulations! Correct answer.',
         'respuestaIncorrecta': 'Incorrect answer. End of the game.',
-        'tiempoAgotado': 'Time out. End of the game.',
         'seleccionaRespuesta': 'Please select an answer.',
         'subirNivel': 'Now it will increase the difficulty level to ',
-        'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.',
-        'palabraInapropiada': 'IMPOSSIBLE! The name contains an inappropriate word: '
+        'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.'
     }
 };
 function showMessage(message) {
@@ -36,11 +30,11 @@ function showMessage(message) {
     messageElement.style.display = 'block';
     setTimeout(function () {
         hideMessage();
-    }, 3000);
+    }, 4000);
 }
 function hideMessage() {
     const messageElement = document.getElementById('message');
-    messageElement.style.display = 'none';
+    messageElement.style.display = 'none'; // Ocultar el div de mensaje
 }
 
 // CRONÓMETRO.
@@ -53,7 +47,7 @@ function startCountUpChronometer() {
     document.getElementById("timer").textContent = minutes00  + ":" + second00;
     let tiempo = minutes00  + ":" + second00;
     localStorage.setItem("time", time);
-    saveSession('time=' + tiempo,'game.php');
+    saveSession('time=' + tiempo);
 }
 
 let time = parseInt(localStorage.getItem("time")) || 0;
@@ -67,10 +61,6 @@ function resetChronometer() {
       }
 }
 
-function stopCountUpChronometer() {
-    clearInterval(intervalo);
-}
-
 function reanudarChronometer() {
     let time = parseInt(localStorage.getItem("time"));
     startCountUpChronometer()
@@ -82,23 +72,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
 let intervalCountDown;
 function updateCountDownChronometer() {
-    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)");
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
     const timerQuestion = currentQuestion.querySelector('.timerQuestion');
     if (timeLeft > 0) {
         timerQuestion.textContent = timeLeft;
         timeLeft--;
         localStorage.setItem('timeLeft', timeLeft);
-        saveSession('timeLeft=' + timeLeft,'game.php');
+        saveSession('timeLeft=' + timeLeft);
     } else {
-        timerQuestion.textContent = "--:--";
-        if (document.getElementById("spanish")) {
-            var language = "spanish";
-        } else if (document.getElementById("catalan")) {
-            var language = "catalan";
-        } else if (document.getElementById("english")) {
-            var language = "english";
-        }
-        showMessage(mensajes[language]['tiempoAgotado']);
+        timerQuestion.textContent = "Tiempo agotado";
         clearInterval(intervalCountDown);
         pageLose();
     }
@@ -107,10 +89,8 @@ function updateCountDownChronometer() {
 function pageLose(){
     let niveles = document.querySelector(".nivel_actual");
     let nivel = niveles.getAttribute("nivelactual");
-    stopCountUpChronometer();
+    console.log(calculoderespuesta(preguntaActual,nivel));
     calculateTotalPoints(calculoderespuesta(preguntaActual,nivel));
-    playIncorrectSound();
-    setTimeout(function () {
     const form = document.createElement('form');
         form.method = 'POST';
         form.action = 'lose.php';
@@ -121,7 +101,6 @@ function pageLose(){
         form.appendChild(input);
         document.body.appendChild(form);
         form.submit();
-    }, 3000);
 }
 
 function startCountDownChronometer() {
@@ -132,7 +111,7 @@ startCountDownChronometer();
 
 function resetCountDownChronometer() {
     timeLeft = 30;
-    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)");
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
     const timerQuestion = currentQuestion.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
 }
@@ -144,9 +123,9 @@ function stopCountDownChronometerReset() {
 }
 function stopCountDownChronometerContinue() {
     clearInterval(intervalCountDown);
-    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)");
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); // Obtener la pregunta actual que no está bloqueada
     const timerQuestion = currentQuestion.querySelector('.timerQuestion');
-    localStorage.setItem('timeLeft', timeLeft);
+    localStorage.setItem('timeLeft', timeLeft); // Guardar el tiempo restante en el almacenamiento local
 }
 
 //
@@ -176,13 +155,13 @@ function button50() {
     }
     const button50 = document.getElementById('buttonComodin50');
     button50.setAttribute('disabled', '');
-    saveSession('comodin50=' + 'usado','game.php');
+    saveSession('comodin50=' + 'usado');
 }
 
 function buttonTime() {
     const buttonTime = document.getElementById('buttonComodinTime');
     buttonTime.setAttribute('disabled', '');
-    saveSession('comodinTime=' + 'usado','game.php');
+    saveSession('comodinTime=' + 'usado');
     timeLeft += 30;
     const timerQuestion = document.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
@@ -234,7 +213,7 @@ function comodinPublico() {
 
     const botonPublic0 = document.getElementById('boton-publico');
     botonPublic0.setAttribute('disabled', '');
-    saveSession('comodinPublico=' + 'usado','game.php');
+    saveSession('comodinPublico=' + 'usado');
 }
 
 function comodinLlamada() {
@@ -404,7 +383,6 @@ function responderPregunta(preguntaIndex, nivel, language) {
         } else {
             let puntos=calculoderespuesta(preguntaActual,nivel);
             playIncorrectSound();
-            stopCountUpChronometer();
             respuestaSeleccionada.classList.remove('seleccionada');
             respuestaSeleccionada.classList.add('fallada');
             showMessage(mensajes[language]['respuestaIncorrecta']);
@@ -430,11 +408,11 @@ function responderPregunta(preguntaIndex, nivel, language) {
                 form.appendChild(input);
                 document.body.appendChild(form);
                 form.submit();
-            }, 3000);
+            }, 4000);
         }
     } else {
         showMessage(mensajes[language]['seleccionaRespuesta']);
-    }
+    };
 }
 
 function regresarAlInicio() {
@@ -482,10 +460,9 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 next.style.display = "";
                 stopCountDownChronometerReset();
             } else {
-                calculateTotalPoints(18);
-                stopCountUpChronometer();
+                calculateTotalPoints(18)
                 showMessage(mensajes[language]['juegoTerminado']);
-                setTimeout(function() {
+                
                 const form = document.createElement('form');
                 form.method = 'POST';
                 form.action = 'win.php';
@@ -499,7 +476,6 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 document.body.appendChild(form);
 
                 form.submit();
-            }, 3000);
             }
         }
     }
@@ -547,56 +523,7 @@ function calculateTotalPoints(correctAnswer) {
 
     const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
 
-    saveSession('points=' + pointsTotal,'game.php');
-}
-
-function validateName() {
-    if (document.getElementById("spanish")) {
-        var language = "spanish";
-    } else if (document.getElementById("catalan")) {
-        var language = "catalan";
-    } else if (document.getElementById("english")) {
-        var language = "english";
-    }
-    var nombre = document.getElementById("nombre").value;
-    var inappropriateWords = [
-        "retrasado","retrasat","retarded",
-        "maldito","maleït","fucking",
-        "maldita","maleïda","fucking",
-        "puta","puta","whore",
-        "puto","put","whore",
-        "gilipollas","gilipolles","idiot",
-        "tonto","tonto","fool",
-        "golfo","golf","asshole",
-        "pene","penis","penis",
-        "vagina","vagina","vagina",
-        "polla","polla","dick",
-        "coño","cony","pussy",
-        "culo","cul","butt",
-        "gordo","gord","fat",
-        "subnormal","subnormal","abnormal",
-        "anormal","anormal","abnormal",
-        "mierda","merda","shit",
-        "droga","droga","drug",
-        "maricon","maricó","faggot",
-        "soplagaitas","soplagaites","blowjob",
-        "capullo","capull","jerk",
-        "pardillo","pardell","gullible",
-        "lameculos","llepaculs","ass-licker",
-        "pendejo","penso","dumbass",
-        "follar","follar","fuck",
-        "pajas","pajilles","wank",
-        "masturbar","masturbar","masturbate",
-        "suicidar","suïcidar","suicide"
-    ];
-    for (var i = 0; i < inappropriateWords.length; i++) {
-        if (nombre.toLowerCase().includes(inappropriateWords[i].toLowerCase())) {
-            //alert("¡IMPOSIBLE! El nombre contiene una palabra inadecuada: " + inappropriateWords[i]);
-            showMessage(mensajes[language]['palabraInapropiada'] + inappropriateWords[i]);
-            return false;
-        }
-    }
-    return true;
+    saveSession('points=' + pointsTotal);
 }
 
 // FUNCIONS DE SONS/CANÇONS.
@@ -614,7 +541,6 @@ function playIncorrectSound() {
 function publishGame(){
     const mostrarFormulartio = document.getElementById("guardarpartida");
     mostrarFormulartio.style.display = "";
-    saveSession('buttonPublish=' + 'usado','lose.php');
 }
 
 window.onload = function() {
@@ -646,8 +572,8 @@ function changeLanguage(language) {
     });
 }
 
-function saveSession(id,direction) {
-    fetch(direction, {
+function saveSession(id) {
+    fetch('game.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
