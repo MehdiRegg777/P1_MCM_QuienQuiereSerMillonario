@@ -460,9 +460,10 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 next.style.display = "";
                 stopCountDownChronometerReset();
             } else {
-                calculateTotalPoints(18)
+                calculateTotalPoints(18);
+                stopCountUpChronometer();
                 showMessage(mensajes[language]['juegoTerminado']);
-                
+                setTimeout(function() {
                 const form = document.createElement('form');
                 form.method = 'POST';
                 form.action = 'win.php';
@@ -476,6 +477,7 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 document.body.appendChild(form);
 
                 form.submit();
+            }, 3000);
             }
         }
     }
