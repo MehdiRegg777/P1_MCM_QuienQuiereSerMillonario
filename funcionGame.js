@@ -637,12 +637,6 @@ window.onload = function() {
     startAudio.play();
 };
 
-// GUARDAR PARTIDA —————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-function publishGame(){
-    const mostrarFormulartio = document.getElementById("guardarpartida");
-    mostrarFormulartio.style.display = "";
-}
-
 // CAMBIO DE IDIOMA ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 function changeLanguage(language) {
     fetch('index.php', {
