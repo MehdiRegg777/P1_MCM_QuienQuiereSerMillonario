@@ -52,7 +52,7 @@ function startCountUpChronometer() {
     document.getElementById("timer").textContent = minutes00  + ":" + second00;
     let tiempo = minutes00  + ":" + second00;
     localStorage.setItem("time", time);
-    saveSession('time=' + tiempo);
+    saveSession('time=' + tiempo, 'game.php');
 }
 
 let time = parseInt(localStorage.getItem("time")) || 0;
@@ -84,12 +84,30 @@ function updateCountDownChronometer() {
         timerQuestion.textContent = timeLeft;
         timeLeft--;
         localStorage.setItem('timeLeft', timeLeft);
-        saveSession('timeLeft=' + timeLeft);
+        saveSession('timeLeft=' + timeLeft, 'game.php');
     } else {
         timerQuestion.textContent = "Tiempo agotado";
         clearInterval(intervalCountDown);
         pageLose();
-    }}
+    }
+}
+
+function pageLose(){
+    let niveles = document.querySelector(".nivel_actual");
+    let nivel = niveles.getAttribute("nivelactual");
+    console.log(calculoderespuesta(preguntaActual,nivel));
+    calculateTotalPoints(calculoderespuesta(preguntaActual,nivel));
+    const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'lose.php';
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'userpoints';
+        input.value = calculoderespuesta(preguntaActual,nivel);
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+}
 
 /* CRONÓMETRO REGRESIVO: Aquí lo que hacemos es */
 function startCountDownChronometer() {
@@ -142,14 +160,14 @@ function button50() {
     }
     const button50 = document.getElementById('buttonComodin50');
     button50.setAttribute('disabled', '');
-    saveSession('comodin50=' + 'usado');
+    saveSession('comodin50=' + 'usado', 'game.php');
 }
 
 /* COMODÍN DE TIEMPO EXTRA: Aquí lo que hacemos es */
 function buttonTime() {
     const buttonTime = document.getElementById('buttonComodinTime');
     buttonTime.setAttribute('disabled', '');
-    saveSession('comodinTime=' + 'usado');
+    saveSession('comodinTime=' + 'usado', 'game.php');
     timeLeft += 30;
     const timerQuestion = document.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
@@ -160,8 +178,21 @@ function buttonTime() {
 /* COMODÍN DEL PÚBLICO: Aquí lo que hacemos es */
 function comodinPublico() {
     stopCountDownChronometerContinue();
-    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
-    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const answerEnabled = document.querySelector(".respuesta:not(.bloqueada)");
+    const answerCorrect = answerEnabled.getAttribute("data-correcta");
+    const answersEnabled = document.querySelectorAll(".respuesta:not(.bloqueada)");
+    const answerTotal = [];
+    let responseCorrect = null;
+    let responseIncorrect = null;
+    for (let i = 0; i < answersEnabled.length; i++) {
+        const answer = answersEnabled[i];
+        answerTotal[i] = answer.textContent;
+        if (answer.getAttribute("data-respuesta") === answerCorrect) {
+            responseCorrect = answer.getAttribute("data-respuesta");
+        } else{
+            responseIncorrect = answer.getAttribute("data-respuesta");
+        }
+    }
     const modal = document.getElementById('popupModal');
     const imagen = document.getElementById('popupImage');
     const probabilidad = Math.random();
@@ -187,22 +218,25 @@ function comodinPublico() {
             segundaImagen.onload = function() {
                 imagen.src = segundaImagen.src;
             };
-            
-            if (probabilidad <= 0.8) {
-                segundaImagen.src = 'graficoBarras/' + respuestaCorrecta + '.png';
-            } else {
-                let respuestaIncorrecta;
-                do {
-                    respuestaIncorrecta = Math.floor(Math.random() * 4);
-                } while (respuestaIncorrecta == respuestaCorrecta);
-                segundaImagen.src = 'graficoBarras/' + respuestaIncorrecta + '.png';
+            if (answerTotal.length === 4) {
+                if (probabilidad <= 0.8) {
+                    segundaImagen.src = 'graficoBarras/' + answerCorrect + '.png';
+                } else {
+                    segundaImagen.src = 'graficoBarras/' + responseIncorrect + '.png';
+                }
+            } else if (answerTotal.length === 2) {
+                if (probabilidad <= 0.8) {
+                    segundaImagen.src = 'graficoBarras/' + answerCorrect + responseIncorrect + '.png';
+                } else {
+                    segundaImagen.src = 'graficoBarras/' + responseIncorrect + answerCorrect + '.png';
+                }
             }
         }, 1000);
     }, 6000)
 
     const botonPublic0 = document.getElementById('boton-publico');
     botonPublic0.setAttribute('disabled', '');
-    saveSession('comodinPublico=' + 'usado');
+    saveSession('comodinPublico=' + 'usado', 'game.php');
 }
 
 /* COMODÍN DE LA LLAMADA: Lo que hacemos aquí es, primero e importante, PARAR el contador.
@@ -245,7 +279,7 @@ function comodinLlamada() {
     playAudio(repetitions);
     const botonPublic0 = document.getElementById('buttoncomodinLlamada');
     botonPublic0.setAttribute('disabled', '');
-    saveSession('comodinLlamada=' + 'usado');
+    saveSession('comodinLlamada=' + 'usado','game.php');
 }
 
 // COMODÍN DE LA LLAMADA: II ———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -254,36 +288,50 @@ mostrarla al final, ocultamos el formulario y mostramos el "div" con la respuest
 obtener la respuesta introducida por el usuario y ocultamos el formulario, para después mostrar el "div" de la respuesta incorrecta. */
 
 function comodinCantidadSonido() {
+    const audioPopupFail = new Audio('mp3/fallCall.mp3');
+    //El input del mini formulario
     const vecesAudioInput = document.getElementById('vecesAudio');
     const cantidadLlamadaAudio = vecesAudioInput.value;
+
+    //Las veces corectas que se repitio el audio
     const numRepetitions = document.getElementById('tituloLlamada');
     const RepeticionAudioCorrecto = numRepetitions.getAttribute('Repeticiones'); 
+
+    //Respuesta correcta del juego general
     const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
     const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
 
     if (cantidadLlamadaAudio == RepeticionAudioCorrecto) {
-        const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="'+respuestaCorrecta+'"]');
+        //Obtener texto respuesta corecta
+        const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="' + respuestaCorrecta + '"]:not(.bloqueada)');
         const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
+        //Ocultamos el formulario
         const titelcall = document.getElementById('preguntaLlamada');
         titelcall.style.display = 'none';
+        //Mostramos el div de la respuesta correcta
         const titeQuestion = document.getElementById('respuestaLlamada');
         titeQuestion.style.display = 'block';
+        //Imprimimos la respuesta corecta
         const pTexto = document.getElementById("RespuestaTexto");
         pTexto.textContent = textoRespuestaCorrecta;
+
     } else {
-        let respuestaIncorrecta;
-        do {
-            respuestaIncorrecta = Math.floor(Math.random() * 4);
-        } while (respuestaIncorrecta == respuestaCorrecta);
-        const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="'+respuestaIncorrecta+'"]');
-        const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
+        //Ocultamos el formulario
         const titelcall = document.getElementById('preguntaLlamada');
         titelcall.style.display = 'none';
+        //Mostramos el div de la respuesta incorrecta
         const titeQuestion = document.getElementById('respuestaLlamada');
         titeQuestion.style.display = 'block';
-        const pTexto = document.getElementById("RespuestaTexto");
-        pTexto.textContent = textoRespuestaCorrecta;
-    }}
+        //Mostramos el div de la respuesta incorrecta
+        const validQuestion = document.getElementById('respuestaValida');
+        validQuestion.style.display = 'none';
+        const invalidQuestion = document.getElementById('respuestaInvalida');
+        invalidQuestion.style.display = 'block';
+        audioPopupFail.play();
+                
+    }
+
+}
 
 // FUNCIONES PARA CERRAR LOS "POP UPS" —————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 const loginPopUp = document.getElementById("loginPopUp");
@@ -339,7 +387,8 @@ function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
         respuestas.forEach((r) => r.classList.remove('seleccionada'));
         respuestaElement.classList.add('seleccionada');
         document.getElementById('responder-btn-' + preguntaIndex).removeAttribute('disabled');
-    }}
+    }
+}
 
 /* SCROLL DE PREGUNTAS: Aquí simplemente implementamos el "Scroll" cuando el jugador responde a la pregunta, para hacer la experiencia más cómoda. */
 function scrollSiguientePregunta(preguntaIndex) {
@@ -352,9 +401,11 @@ function scrollSiguientePregunta(preguntaIndex) {
 /* RESPONDER PREGUNTA: Aquí */
 function responderPregunta(preguntaIndex, nivel, language) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
+
     if (respuestaSeleccionada) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
+        
         if (respuestaElegida === respuestaCorrecta) {
             playCorrectSound();
             showMessage(mensajes[language]['respuestaCorrecta']);
@@ -376,10 +427,12 @@ function responderPregunta(preguntaIndex, nivel, language) {
             calculateTotalPoints(puntos);
             const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
             bloquearPregunta.classList.add('bloqueada');
+
             for (let bucle = 0; bucle <= 3; bucle++) {
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
+
             setTimeout(function () {
                 const form = document.createElement('form');
                 const input = document.createElement('input');
@@ -392,23 +445,33 @@ function responderPregunta(preguntaIndex, nivel, language) {
                 document.body.appendChild(form);
                 form.submit();
             }, 4000);
-        }} else { showMessage(mensajes[language]['seleccionaRespuesta']); };
+        }
+    } else {
+        showMessage(mensajes[language]['seleccionaRespuesta']);
+    };
 }
 
+
 /* REGRESAR: Aquí simplemente redireccionamos al inicio. */
-function regresarAlInicio() { window.location.href = 'index.php'; }
+function regresarAlInicio() {
+    window.location.href = 'index.php'; // Redirect to the beginning
+}
 
 function nextQuestion(nivel){
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = 'game.php';
+
     const input = document.createElement('input');
     input.type = 'hidden';
     input.name = 'niveles';
     input.value = nivel;
+
     form.appendChild(input);
     document.body.appendChild(form);
+
     form.submit();
+    //window.location.href = 'game.php?niveles=' + nivel;
     resetCountDownChronometer();
 }
 
@@ -429,19 +492,25 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 next.style.display = "";
                 stopCountDownChronometerReset();
             } else {
-                calculateTotalPoints(18)
+                calculateTotalPoints(18);
+                stopCountDownChronometerContinue();
                 showMessage(mensajes[language]['juegoTerminado']);
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'win.php';
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'userpoints';
-                input.value = '18';
-                form.appendChild(input);
-                document.body.appendChild(form);
-                form.submit();
-            }}}
+                setTimeout(function () {
+                    const form = document.createElement('form');
+                    const input = document.createElement('input');
+                    form.method = 'POST';
+                    form.action = 'win.php';
+                    input.type = 'hidden';
+                    input.name = 'userpoints';
+                    input.value = '18';
+                    form.appendChild(input);
+                    document.body.appendChild(form);
+                    form.submit();
+                }, 3000);
+            }
+        }
+    }
+
     const btnResponder = document.getElementById('responder-btn-' + preguntaActual);
     btnResponder.setAttribute('disabled', '');
     const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
@@ -474,26 +543,59 @@ function calculateTotalPoints(correctAnswer) {
         pointsAnswer = correctAnswer * 1300;
     }
     const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
-    saveSession('points=' + pointsTotal);
+
+    saveSession('points=' + pointsTotal,'game.php');
 }
 
-// ???????? ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-function pageLose(){
-    let niveles = document.querySelector(".nivel_actual");
-    let nivel = niveles.getAttribute("nivelactual");
-    console.log(calculoderespuesta(preguntaActual,nivel));
-    calculateTotalPoints(calculoderespuesta(preguntaActual,nivel));
-    const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = 'lose.php';
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = 'userpoints';
-        input.value = calculoderespuesta(preguntaActual,nivel);
-        form.appendChild(input);
-        document.body.appendChild(form);
-        form.submit();
+// FUNCION DE VALIDAR NOMBRE.
+function validateName() {
+    if (document.getElementById("spanish")) {
+        var language = "spanish";
+    } else if (document.getElementById("catalan")) {
+        var language = "catalan";
+    } else if (document.getElementById("english")) {
+        var language = "english";
+    }
+    var nombre = document.getElementById("nombre").value;
+    var inappropriateWords = [
+        "retrasado","retrasat","retarded",
+        "maldito","maleït","fucking",
+        "maldita","maleïda","fucking",
+        "puta","puta","whore",
+        "puto","put","whore",
+        "gilipollas","gilipolles","idiot",
+        "tonto","tonto","fool",
+        "golfo","golf","asshole",
+        "pene","penis","penis",
+        "vagina","vagina","vagina",
+        "polla","polla","dick",
+        "coño","cony","pussy",
+        "culo","cul","butt",
+        "gordo","gord","fat",
+        "subnormal","subnormal","abnormal",
+        "anormal","anormal","abnormal",
+        "mierda","merda","shit",
+        "droga","droga","drug",
+        "maricon","maricó","faggot",
+        "soplagaitas","soplagaites","blowjob",
+        "capullo","capull","jerk",
+        "pardillo","pardell","gullible",
+        "lameculos","llepaculs","ass-licker",
+        "pendejo","penso","dumbass",
+        "follar","follar","fuck",
+        "pajas","pajilles","wank",
+        "masturbar","masturbar","masturbate",
+        "suicidar","suïcidar","suicide"
+    ];
+    for (var i = 0; i < inappropriateWords.length; i++) {
+        if (nombre.toLowerCase().includes(inappropriateWords[i].toLowerCase())) {
+            showMessage(mensajes[language]['palabraInapropiada'] + inappropriateWords[i]);
+            return false;
+        }
+    }
+    return true;
 }
+
 
 // ARCHIVOS ".MP3" ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 /* Aquí solo configuramos los archivos ".mp3" para que suenen en determinados momentos. */
@@ -505,6 +607,20 @@ function playCorrectSound() {
 function playIncorrectSound() {
     var incorrectSound = document.getElementById("incorrectSound");
     incorrectSound.play();
+}
+
+// FUNCIONES DE "PUBLISH".
+function publishGame(){
+    const mostrarFormulartio = document.getElementById("guardarpartida");
+    mostrarFormulartio.style.display = "";
+    saveSession('buttonPublish=' + 'usado','lose.php');
+}
+
+// FUNCIONES DE "PUBLISH".
+function publishGame2(){
+    const mostrarFormulartio = document.getElementById("guardarpartida");
+    mostrarFormulartio.style.display = "";
+    saveSession('buttonPublish=' + 'usado','win.php');
 }
 
 window.onload = function() {
@@ -540,9 +656,8 @@ function changeLanguage(language) {
     });
 }
 
-// SALVAMOS LA SESIÓN ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
-function saveSession(id) {
-    fetch('game.php', {
+function saveSession(id,page) {
+    fetch(page, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

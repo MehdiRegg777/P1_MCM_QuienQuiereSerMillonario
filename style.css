@@ -316,6 +316,20 @@ a{
     border-radius: 0px 0px 50px 50px
 }
 
+.nivelPartida {
+    font-size: 25px;
+    background-color: #FFC15E;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    margin: 0 auto;
+    width: 170px;
+    height: 50px;
+    border-radius: 50px 50px 50px 50px
+}
+
+
 #message {
     position: fixed;
     top: 0;
