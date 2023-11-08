@@ -2,9 +2,6 @@
 session_start();
 isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
 isset($_POST['buttonPublish']) ? $_SESSION['buttonPublish'] = $_POST['buttonPublish'] : 'nousado';
-echo "<pre>";
-echo $_SESSION['buttonPublish'];
-echo "</pre>";
 if (!isset($_POST["userpoints"]) && !isset($_POST["datos"])){
     header('HTTP/1.0 403 Forbidden');
     echo 'No pots accedir a aquesta pàgina.';

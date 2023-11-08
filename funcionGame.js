@@ -47,7 +47,7 @@ function startCountUpChronometer() {
     document.getElementById("timer").textContent = minutes00  + ":" + second00;
     let tiempo = minutes00  + ":" + second00;
     localStorage.setItem("time", time);
-    saveSession('time=' + tiempo, 'game');
+    saveSession('time=' + tiempo, 'game.php');
 }
 
 let time = parseInt(localStorage.getItem("time")) || 0;
@@ -78,7 +78,7 @@ function updateCountDownChronometer() {
         timerQuestion.textContent = timeLeft;
         timeLeft--;
         localStorage.setItem('timeLeft', timeLeft);
-        saveSession('timeLeft=' + timeLeft, 'game');
+        saveSession('timeLeft=' + timeLeft, 'game.php');
     } else {
         timerQuestion.textContent = "Tiempo agotado";
         clearInterval(intervalCountDown);
@@ -155,13 +155,13 @@ function button50() {
     }
     const button50 = document.getElementById('buttonComodin50');
     button50.setAttribute('disabled', '');
-    saveSession('comodin50=' + 'usado', 'game');
+    saveSession('comodin50=' + 'usado', 'game.php');
 }
 
 function buttonTime() {
     const buttonTime = document.getElementById('buttonComodinTime');
     buttonTime.setAttribute('disabled', '');
-    saveSession('comodinTime=' + 'usado', 'game');
+    saveSession('comodinTime=' + 'usado', 'game.php');
     timeLeft += 30;
     const timerQuestion = document.querySelector('.timerQuestion');
     timerQuestion.textContent = timeLeft;
@@ -218,7 +218,7 @@ function comodinPublico() {
 
     const botonPublic0 = document.getElementById('boton-publico');
     botonPublic0.setAttribute('disabled', '');
-    saveSession('comodinPublico=' + 'usado', 'game');
+    saveSession('comodinPublico=' + 'usado', 'game.php');
 }
 
 function comodinLlamada() {
@@ -259,7 +259,7 @@ function comodinLlamada() {
     playAudio(repetitions);
     const botonPublic0 = document.getElementById('buttoncomodinLlamada');
     botonPublic0.setAttribute('disabled', '');
-    saveSession('comodinLlamada=' + 'usado','game');
+    saveSession('comodinLlamada=' + 'usado','game.php');
 }
 
 function comodinCantidadSonido() {
@@ -530,7 +530,7 @@ function calculateTotalPoints(correctAnswer) {
 
     const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
 
-    saveSession('points=' + pointsTotal,'game');
+    saveSession('points=' + pointsTotal,'game.php');
 }
 
 // FUNCION DE VALIDAR NOMBRE.
@@ -597,14 +597,14 @@ function playIncorrectSound() {
 function publishGame(){
     const mostrarFormulartio = document.getElementById("guardarpartida");
     mostrarFormulartio.style.display = "";
-    saveSession('buttonPublish=' + 'usado','lose');
+    saveSession('buttonPublish=' + 'usado','lose.php');
 }
 
 // FUNCIONES DE "PUBLISH".
 function publishGame2(){
     const mostrarFormulartio = document.getElementById("guardarpartida");
     mostrarFormulartio.style.display = "";
-    saveSession('buttonPublish=' + 'usado','win');
+    saveSession('buttonPublish=' + 'usado','win.php');
 }
 
 window.onload = function() {
@@ -637,7 +637,7 @@ function changeLanguage(language) {
 }
 
 function saveSession(id,page) {
-    fetch(page+'.php', {
+    fetch(page, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
