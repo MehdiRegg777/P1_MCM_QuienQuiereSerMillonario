@@ -223,7 +223,7 @@ session_start();
                 if ($file) {
                     fwrite($file, "\n" . $nueva_pregunta);
                     fclose($file);
-                    //echo "<script>alert('Pregunta creada con éxito.');</script>";
+                    echo "<script>alert('Pregunta creada con éxito.');</script>";
                 } else {
                     echo "<script>alert('Error al abrir el archivo.');</script>";
                 }
