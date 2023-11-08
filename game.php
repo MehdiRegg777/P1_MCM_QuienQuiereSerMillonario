@@ -181,7 +181,7 @@ session_start();
 
         $preguntas = $_GET['preguntas'];
         $nivels = $_GET['nivel'];
-        echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Nuvel $nivels</div>";
+        echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Nivel $nivels</div>";
                 foreach ($preguntas as $key => $pregunta) {
                     if ($key >= 3) {
                         break;
