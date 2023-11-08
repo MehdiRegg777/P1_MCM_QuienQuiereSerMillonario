@@ -181,7 +181,14 @@ session_start();
 
         $preguntas = $_GET['preguntas'];
         $nivels = $_GET['nivel'];
-        echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Nivel $nivels</div>";
+        if ($_SESSION['language'] === 'spanish') {
+            echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Nivel $nivels</div>";
+        } elseif ($_SESSION['language'] === 'catalan') {
+            echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Nivell $nivels</div>";
+        } elseif ($_SESSION['language'] === 'english') {
+            echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Level $nivels</div>";
+        }
+        
                 foreach ($preguntas as $key => $pregunta) {
                     if ($key >= 3) {
                         break;
