@@ -292,8 +292,12 @@ function comodinCantidadSonido() {
     //El input del mini formulario
     const vecesAudioInput = document.getElementById('vecesAudio');
     const cantidadLlamadaAudio = vecesAudioInput.value;
+
+    //Las veces corectas que se repitio el audio
     const numRepetitions = document.getElementById('tituloLlamada');
     const RepeticionAudioCorrecto = numRepetitions.getAttribute('Repeticiones'); 
+
+    //Respuesta correcta del juego general
     const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
     const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
 
@@ -301,16 +305,21 @@ function comodinCantidadSonido() {
         //Obtener texto respuesta corecta
         const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="' + respuestaCorrecta + '"]:not(.bloqueada)');
         const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
+        //Ocultamos el formulario
         const titelcall = document.getElementById('preguntaLlamada');
         titelcall.style.display = 'none';
+        //Mostramos el div de la respuesta correcta
         const titeQuestion = document.getElementById('respuestaLlamada');
         titeQuestion.style.display = 'block';
+        //Imprimimos la respuesta corecta
         const pTexto = document.getElementById("RespuestaTexto");
         pTexto.textContent = textoRespuestaCorrecta;
+
     } else {
         //Ocultamos el formulario
         const titelcall = document.getElementById('preguntaLlamada');
         titelcall.style.display = 'none';
+        //Mostramos el div de la respuesta incorrecta
         const titeQuestion = document.getElementById('respuestaLlamada');
         titeQuestion.style.display = 'block';
         //Mostramos el div de la respuesta incorrecta
@@ -321,6 +330,8 @@ function comodinCantidadSonido() {
         audioPopupFail.play();
                 
     }
+
+}
 
 // FUNCIONES PARA CERRAR LOS "POP UPS" —————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 const loginPopUp = document.getElementById("loginPopUp");
@@ -390,9 +401,11 @@ function scrollSiguientePregunta(preguntaIndex) {
 /* RESPONDER PREGUNTA: Aquí */
 function responderPregunta(preguntaIndex, nivel, language) {
     const respuestaSeleccionada = document.querySelector('#pregunta' + preguntaIndex + ' .respuesta.seleccionada');
+
     if (respuestaSeleccionada) {
         const respuestaElegida = respuestaSeleccionada.getAttribute('data-respuesta');
         const respuestaCorrecta = respuestaSeleccionada.getAttribute('data-correcta');
+        
         if (respuestaElegida === respuestaCorrecta) {
             playCorrectSound();
             showMessage(mensajes[language]['respuestaCorrecta']);
@@ -414,10 +427,12 @@ function responderPregunta(preguntaIndex, nivel, language) {
             calculateTotalPoints(puntos);
             const bloquearPregunta = document.getElementById('pregunta' + (preguntaActual));
             bloquearPregunta.classList.add('bloqueada');
+
             for (let bucle = 0; bucle <= 3; bucle++) {
                 const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                 bloquearRespuestas.classList.add('bloqueada');
             }
+
             setTimeout(function () {
                 const form = document.createElement('form');
                 const input = document.createElement('input');
@@ -430,25 +445,35 @@ function responderPregunta(preguntaIndex, nivel, language) {
                 document.body.appendChild(form);
                 form.submit();
             }, 4000);
-        }} else { showMessage(mensajes[language]['seleccionaRespuesta']); };
+        }
+    } else {
+        showMessage(mensajes[language]['seleccionaRespuesta']);
+    };
 }
 
+
 /* REGRESAR: Aquí simplemente redireccionamos al inicio. */
-function regresarAlInicio() { window.location.href = 'index.php'; }
+function regresarAlInicio() {
+    window.location.href = 'index.php'; // Redirect to the beginning
+}
 
 function nextQuestion(nivel){
     const form = document.createElement('form');
     form.method = 'POST';
     form.action = 'game.php';
+
     const input = document.createElement('input');
     input.type = 'hidden';
     input.name = 'niveles';
     input.value = nivel;
+
     form.appendChild(input);
     document.body.appendChild(form);
+
     form.submit();
+    //window.location.href = 'game.php?niveles=' + nivel;
     resetCountDownChronometer();
-}}
+}
 
 function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     preguntaActual2++;
