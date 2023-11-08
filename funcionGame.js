@@ -172,12 +172,20 @@ function buttonTime() {
 function comodinPublico() {
     stopCountDownChronometerContinue();
     const answerEnabled = document.querySelector(".respuesta:not(.bloqueada)");
-    //const answerIndex = answerEnabled.getAttribute("data-respuesta");
     const answerCorrect = answerEnabled.getAttribute("data-correcta");
-    answerEnabled
-    const answerIndex = 
-    console.log(answerEnabled);
-    console.log(answerCorrect);
+    const answersEnabled = document.querySelectorAll(".respuesta:not(.bloqueada)");
+    const answerTotal = [];
+    let responseCorrect = null;
+    let responseIncorrect = null;
+    for (let i = 0; i < answersEnabled.length; i++) {
+        const answer = answersEnabled[i];
+        answerTotal[i] = answer.textContent;
+        if (answer.getAttribute("data-respuesta") === answerCorrect) {
+            responseCorrect = answer.getAttribute("data-respuesta");
+        } else{
+            responseIncorrect = answer.getAttribute("data-respuesta");
+        }
+    }
     const modal = document.getElementById('popupModal');
     const imagen = document.getElementById('popupImage');
     const probabilidad = Math.random();
@@ -203,15 +211,18 @@ function comodinPublico() {
             segundaImagen.onload = function() {
                 imagen.src = segundaImagen.src;
             };
-            
-            if (probabilidad <= 0.8) {
-                segundaImagen.src = 'graficoBarras/' + answerCorrect + '.png';
-            } else {
-                let respuestaIncorrecta;
-                do {
-                    respuestaIncorrecta = Math.floor(Math.random() * 4);
-                } while (respuestaIncorrecta == answerCorrect);
-                segundaImagen.src = 'graficoBarras/' + respuestaIncorrecta + '.png';
+            if (answerTotal.length === 4) {
+                if (probabilidad <= 0.8) {
+                    segundaImagen.src = 'graficoBarras/' + answerCorrect + '.png';
+                } else {
+                    segundaImagen.src = 'graficoBarras/' + responseIncorrect + '.png';
+                }
+            } else if (answerTotal.length === 2) {
+                if (probabilidad <= 0.8) {
+                    segundaImagen.src = 'graficoBarras/' + answerCorrect + responseIncorrect + '.png';
+                } else {
+                    segundaImagen.src = 'graficoBarras/' + responseIncorrect + answerCorrect + '.png';
+                }
             }
         }, 1000);
     }, 6000)
