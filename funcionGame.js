@@ -376,7 +376,8 @@ function seleccionarRespuesta(preguntaIndex, respuestaIndex) {
         respuestas.forEach((r) => r.classList.remove('seleccionada'));
         respuestaElement.classList.add('seleccionada');
         document.getElementById('responder-btn-' + preguntaIndex).removeAttribute('disabled');
-    }}
+    }
+}
 
 /* SCROLL DE PREGUNTAS: Aquí simplemente implementamos el "Scroll" cuando el jugador responde a la pregunta, para hacer la experiencia más cómoda. */
 function scrollSiguientePregunta(preguntaIndex) {
@@ -447,7 +448,7 @@ function nextQuestion(nivel){
     document.body.appendChild(form);
     form.submit();
     resetCountDownChronometer();
-}
+}}
 
 function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     preguntaActual2++;
@@ -569,6 +570,7 @@ function validateName() {
     }
     return true;
 }
+
 
 // ARCHIVOS ".MP3" ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 /* Aquí solo configuramos los archivos ".mp3" para que suenen en determinados momentos. */
