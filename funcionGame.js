@@ -278,7 +278,7 @@ function comodinCantidadSonido() {
 
     if (cantidadLlamadaAudio == RepeticionAudioCorrecto) {
         //Obtener texto respuesta corecta
-        const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="'+respuestaCorrecta+'"]');
+        const respuestaDesenfocadatexto = document.querySelector('div[data-respuesta="' + respuestaCorrecta + '"]:not(.bloqueada)');
         const textoRespuestaCorrecta = respuestaDesenfocadatexto.textContent;
         //Ocultamos el formulario
         const titelcall = document.getElementById('preguntaLlamada');
@@ -466,23 +466,20 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                 stopCountDownChronometerReset();
             } else {
                 calculateTotalPoints(18);
-                stopCountUpChronometer();
+                stopCountDownChronometerContinue();
                 showMessage(mensajes[language]['juegoTerminado']);
-                setTimeout(function() {
-                const form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'win.php';
-
-                const input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = 'userpoints';
-                input.value = '18';
-
-                form.appendChild(input);
-                document.body.appendChild(form);
-
-                form.submit();
-            }, 3000);
+                setTimeout(function () {
+                    const form = document.createElement('form');
+                    const input = document.createElement('input');
+                    form.method = 'POST';
+                    form.action = 'win.php';
+                    input.type = 'hidden';
+                    input.name = 'userpoints';
+                    input.value = '18';
+                    form.appendChild(input);
+                    document.body.appendChild(form);
+                    form.submit();
+                }, 3000);
             }
         }
     }
