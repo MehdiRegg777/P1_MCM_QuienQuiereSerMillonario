@@ -3,3 +3,5 @@ Jon,1,player_4,00:04,2497
 Loser,0,player_5,00:01,0
 mola,2,player_6,00:14,3787
 eafes,1,player_1,00:05,2496
+Vaso,2,player_3,00:21,3780
+DestroyerX,5,player_7,00:24,7677

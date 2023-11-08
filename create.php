@@ -196,7 +196,13 @@ session_start();
                 if ($file) {
                     fwrite($file, "\n".$nueva_pregunta);
                     fclose($file);
-                    //echo "<script>alert('Pregunta creada con éxito.');</script>";
+                    if ($_SESSION['language'] === 'spanish') {
+                        echo "<script>alert('Pregunta creada con éxito.');</script>";
+                    } elseif ($_SESSION['language'] === 'catalan') {
+                        echo "<script>alert(Pregunta creada amb èxit.');</script>";
+                    } elseif ($_SESSION['language'] === 'english') {
+                        echo "<script>alert('Question created successfully.');</script>";
+                    }
                 } else {
                     echo "<script>alert('Error al abrir el archivo.');</script>";
                 }
