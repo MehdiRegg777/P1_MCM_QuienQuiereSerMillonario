@@ -171,8 +171,13 @@ function buttonTime() {
 
 function comodinPublico() {
     stopCountDownChronometerContinue();
-    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
-    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const answerEnabled = document.querySelector(".respuesta:not(.bloqueada)");
+    //const answerIndex = answerEnabled.getAttribute("data-respuesta");
+    const answerCorrect = answerEnabled.getAttribute("data-correcta");
+    answerEnabled
+    const answerIndex = 
+    console.log(answerEnabled);
+    console.log(answerCorrect);
     const modal = document.getElementById('popupModal');
     const imagen = document.getElementById('popupImage');
     const probabilidad = Math.random();
@@ -200,12 +205,12 @@ function comodinPublico() {
             };
             
             if (probabilidad <= 0.8) {
-                segundaImagen.src = 'graficoBarras/' + respuestaCorrecta + '.png';
+                segundaImagen.src = 'graficoBarras/' + answerCorrect + '.png';
             } else {
                 let respuestaIncorrecta;
                 do {
                     respuestaIncorrecta = Math.floor(Math.random() * 4);
-                } while (respuestaIncorrecta == respuestaCorrecta);
+                } while (respuestaIncorrecta == answerCorrect);
                 segundaImagen.src = 'graficoBarras/' + respuestaIncorrecta + '.png';
             }
         }, 1000);
