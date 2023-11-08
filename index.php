@@ -29,24 +29,32 @@
         <link href="style.css" rel="stylesheet">
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
+    
     <body class="indexPage">
+        <!-- ESPAÑOL -->    
         <div id="spanish" <?php echo ($selectedLanguage != 'spanish') ? $hideStyle : $showStyle; ?>>
-        <header>
-            <?php
-                if ($_SESSION['language'] === 'spanish') {
-                    echo "<button onclick id='loginButton'>Inicia sesión</button>";
-                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
-                } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<button onclick id='loginButton'>Inicia sesión</button>";
-                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
-                } elseif ($_SESSION['language'] === 'english') {
-                    echo "<button onclick id='loginButton'>Inicia sesión</button>";
-                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
-                }
-            ?>
-        </header>
-
-            <!-- ESPAÑOL -->
+            <header>
+                <?php
+                    if ($_SESSION['language'] === 'spanish') {
+                        echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                        echo "<button onclick='login()' id='loginButton'>Inicia sesión</button>";
+                    }
+                ?>
+                <div id="loginPopUp" class="loginPopUp">
+                    <div class="contenidoPopUp">
+                        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>    
+                        <h2>Inicia sesión</h2>                    
+                        <p id="error-message" style="color: red;"></p>
+                        <form>
+                            <label for="username">Usuario</label><br />
+                            <input type="text" name="username" id="username" required><br><br>
+                            <label for="password">Contraseña</label><br />
+                            <input type="password" name="password" id="password" required><br><br>
+                            <button type="button" onclick="login()" id="botonSiguiente">Siguiente</button>
+                        </form>
+                    </div>
+                </div>
+            </header>
             <div class="container">                
                 <h2><strong>Bienvenido</strong></h2>
                 <h3><em>Instrucciones del juego</em></h3>
@@ -104,6 +112,7 @@
         <div id="catalan" <?php echo ($selectedLanguage != 'catalan') ? $hideStyle : $showStyle; ?>>
             <header>
                 <h1>Qui vol ser milionari?</h1>
+                <?php echo "<button onclick='login()' id='loginButton'>Inicia sessió</button>"; ?>
             </header>
 
             <div class="container">    
@@ -162,12 +171,13 @@
         <!-- ENGLISH -->
         <div id="english" <?php echo ($selectedLanguage != 'english') ? $hideStyle : $showStyle; ?>>
             <header>
+                <?php echo "<button onclick='login()' id='loginButton'>Log in</button>"; ?>
                 <h1>Who wants to be a millionaire?</h1>
             </header>
 
             <div class="container">
                 <h2><strong>Welcome</strong></h2>
-                <h3><em>Game Instructions</em></h3>
+                <h3><em>Game instructions</em></h3>
 
                 <p>The online game of <em>Who Wants to Be a Millionaire?</em> works just like the successful real-life TV show.
 
@@ -177,7 +187,7 @@
                 so on until the third question. If you pass the first round, the difficulty will increase. The game ALWAYS changes the difficulty automatically after
                 the user answers the third question in the set.<br/><br /></p>
 
-                <h3><em>How to Start Playing?</em></hr>
+                <h3><em>How to start playing?</em></hr>
 
                 <p>First, you have the option to choose the language in which you want the entire page to be displayed below this explanation. Once you have chosen,
                 you have to click the <em>Play</em> button –located below this explanation– to start your game. A user will not be created unless you

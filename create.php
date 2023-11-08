@@ -15,13 +15,10 @@ session_start();
     <header>
             <?php
                 if ($_SESSION['language'] === 'spanish') {
-                    echo "<button onclick id='loginButton'>Cerrar Sesión</button>";
                     echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<button onclick id='loginButton'>Tancar Sessió</button>";
                     echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<button onclick id='loginButton'>Sign Off</button>";
                     echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
@@ -31,7 +28,7 @@ session_start();
             echo "<div id='message' style='display: none;'></div>";
             if ($_SESSION['language'] === 'spanish') {
                 echo '<h2>Crear Nueva Pregunta</h2>';
-                echo '<form action="create.php" method="post" onsubmit="return showMessage(mensajes[\'spanish\'][\'tiempoAgotado\']);">';
+                echo '<form action="create.php" method="post" enctype="multipart/form-data">';
                 echo '    <label for="idioma">Idioma:</label>';
                 echo '    <select name="idioma" required>';
                 echo '        <option value="spanish">Español</option>';
@@ -67,7 +64,10 @@ session_start();
                 echo '    <label for="opcionD">Respuesta Opción D:</label>';
                 echo '    <input type="radio" name="respuesta" value="D" required><br>';
                 echo '    <textarea name="opcionD" rows="4" cols="50" required></textarea>';
-                
+
+                echo '    <label for="imagen">Subir Imagen:</label>'; 
+                echo '    <input type="file" name="imagen" id="imagen" ><br>';
+                echo '    <br>';
                 echo '    <input type="submit" value="Crear Pregunta">';
                 echo '</form>';
    
@@ -109,7 +109,10 @@ session_start();
                 echo '    <label for="opcionD">Resposta Opció D:</label>';
                 echo '    <input type="radio" name="respuesta" value="D" required><br>';
                 echo '    <textarea name="opcionD" rows="4" cols="50" required></textarea>';
-                
+
+                echo '    <label for="imagen">Pujar Imatge:</label>'; 
+                echo '    <input type="file" name="imagen" id="imagen" ><br>';
+                echo '    <br>';
                 echo '    <input type="submit" value="Crear Pregunta">';
                 echo '</form>';
             } elseif ($_SESSION['language'] === 'english') {
@@ -151,15 +154,18 @@ session_start();
                 echo '    <input type="radio" name="respuesta" value="D" required><br>';
                 echo '    <textarea name="opcionD" rows="4" cols="50" required></textarea>';
                 
+                echo '    <label for="imagen">Upload Image:</label>'; 
+                echo '    <input type="file" name="imagen" id="imagen" ><br>';
+                echo '    <br>';
                 echo '    <input type="submit" value="Create Question">';
                 echo '</form>';
             }
             if ($_SESSION['language'] === 'spanish') {
-                echo '<a class="play-button" href="index.php"><em>Volver al inicio</em></a>';
+                echo '<a class="play-button" href="index.php"><em>Cerrar Sesión</em></a>';
             } elseif ($_SESSION['language'] === 'catalan') {
-                echo "<a class='play-button' href='index.php'><em>Tornar a l'inici</em></a>";
+                echo "<a class='play-button' href='index.php'><em>Tancar Sessió</em></a>";
             } elseif ($_SESSION['language'] === 'english') {
-                echo '<a class="play-button" href="index.php"><em>Back to the start</em></a>';             
+                echo '<a class="play-button" href="index.php"><em>Sign Off</em></a>';             
             }
             ?>
         </div>
@@ -175,13 +181,34 @@ session_start();
                 "C" => $_POST["opcionC"],
                 "D" => $_POST["opcionD"]
             ];
-
+        
             if (empty($pregunta) || empty($respuesta) || in_array("", $opciones)) {
                 echo "Por favor, complete todas las opciones y la pregunta.";
             } else {
-                $nueva_pregunta = "# /imagGame/question100.png" . "\n"; 
-                $nueva_pregunta .= "* " . $pregunta . "\n";
 
+                if (isset($_FILES["imagen"]) && $_FILES["imagen"]["error"] == UPLOAD_ERR_OK) {
+
+                    $imagen_info = pathinfo($_FILES["imagen"]["name"]);
+                    $imagen_extension = $imagen_info["extension"];
+
+                    $nombre_imagen = "imagen_" . time() . "." . $imagen_extension;
+        
+                    $ruta_imagen = "/imagGame/" . $nombre_imagen;
+        
+                    if (move_uploaded_file($_FILES["imagen"]["tmp_name"], $_SERVER["DOCUMENT_ROOT"] . $ruta_imagen)) {
+                        $pregunta_con_imagen = "# " . $ruta_imagen . "\n";
+                        $pregunta_con_imagen .= "* " . $pregunta;
+                    } else {
+                        echo "<script>alert('Error al subir la imagen.');</script>";
+                        exit; 
+                    }
+                } else {
+                    $pregunta_con_imagen = "# /imagGame/imagen_No_existe" . "\n";
+                    $pregunta_con_imagen .= "* " . $pregunta;
+                }
+        
+                $nueva_pregunta = $pregunta_con_imagen . "\n";
+        
                 foreach ($opciones as $opcion => $texto) {
                     if ($respuesta == $opcion) {
                         $nueva_pregunta .= "+ " . $texto . "\n";
@@ -189,12 +216,12 @@ session_start();
                         $nueva_pregunta .= "- " . $texto . "\n";
                     }
                 }
-
-                $archivo = "questions/".$idioma . "_" . $nivel . ".txt";
-
+        
+                $archivo = "questions/" . $idioma . "_" . $nivel . ".txt";
+        
                 $file = fopen($archivo, "a");
                 if ($file) {
-                    fwrite($file, "\n".$nueva_pregunta);
+                    fwrite($file, "\n" . $nueva_pregunta);
                     fclose($file);
                     if ($_SESSION['language'] === 'spanish') {
                         echo "<script>alert('Pregunta creada con éxito.');</script>";
@@ -206,9 +233,8 @@ session_start();
                 } else {
                     echo "<script>alert('Error al abrir el archivo.');</script>";
                 }
-                
             }
-        } 
+        }
         ?>
 
         <footer class='footerinfo'>
