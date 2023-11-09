@@ -5,24 +5,31 @@ const mensajes = {
     'spanish': {
         'respuestaCorrecta': '¡Felicidades! Respuesta correcta.',
         'respuestaIncorrecta': 'Respuesta incorrecta. Fin del juego.',
+        'tiempoAgotado': 'Tiempo agotado. Fin del juego.',
         'seleccionaRespuesta': 'Por favor, selecciona una respuesta.',
         'subirNivel': 'Ahora subirá el nivel de dificultad a ',
-        'juegoTerminado': '¡Has respondido todas las preguntas! Juego terminado.'
+        'juegoTerminado': '¡Has respondido todas las preguntas! Juego terminado.',
+        'palabraInapropiada': '¡IMPOSIBLE! El nombre contiene una palabra inadecuada: '
     },
     'catalan': {
         'respuestaCorrecta': 'Felicitats! Resposta correcta.',
         'respuestaIncorrecta': 'Resposta incorrecta. Fi del joc.',
+        'tiempoAgotado': 'Temps esgotat. Fi del joc.',
         'seleccionaRespuesta': 'Si us plau, seleccioneu una resposta.',
         'subirNivel': 'Ara pujarà el nivell de dificultat a ',
-        'juegoTerminado': 'Has respost totes les preguntes! Joc acabat.'
+        'juegoTerminado': 'Has respost totes les preguntes! Joc acabat.',
+        'palabraInapropiada': 'IMPOSSIBLE! El nom conté una paraula inadequada: '
     },
     'english': {
         'respuestaCorrecta': 'Congratulations! Correct answer.',
         'respuestaIncorrecta': 'Incorrect answer. End of the game.',
+        'tiempoAgotado': 'Time out. End of the game.',
         'seleccionaRespuesta': 'Please select an answer.',
         'subirNivel': 'Now it will increase the difficulty level to ',
-        'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.'
-    }};
+        'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.',
+        'palabraInapropiada': 'IMPOSSIBLE! The name contains an inappropriate word: '
+    }
+};
 
 function mostrarComodines() {
     var comodinesDiv = document.getElementById("comodines");
