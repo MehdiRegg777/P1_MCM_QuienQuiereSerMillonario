@@ -75,18 +75,11 @@
 
                     if (count($parts) == 5) {
                         $nombre = $parts[0];
-<<<<<<< HEAD
                         $puntos = (int)$parts[1];
                         $playerID = $parts[2];
                         $tiempo = $parts[3];
                         $puntosTotales = $parts[4];
                         $data[] = array('nombre' => $nombre, 'puntos' => $puntos, 'id' => $playerID, 'tiempo' => $tiempo, 'puntosTotales' => $puntosTotales);
-=======
-                        $puntos = (int)$parts[1]; 
-                        $tiempo = $parts[3];
-                        $puntosTotales = $parts[4];
-                        $data[] = array('nombre' => $nombre, 'puntos' => $puntos, 'tiempo' => $tiempo, 'puntosTotales' => $puntosTotales);
->>>>>>> main
                     }}
 
                 fclose($handle);
@@ -96,7 +89,6 @@
                 });
 
                 foreach ($data as $row) {
-<<<<<<< HEAD
                     if ($_SESSION['playerID'] == $row['id']) {
                         echo "<tr>";
                             echo "<td style='background-color: #a2ca83'>{$row['nombre']}</td>";
@@ -112,14 +104,6 @@
                             echo "<td>{$row['puntosTotales']}</td>";
                         echo "</tr>";
                     }
-=======
-                    echo "<tr>";
-                        echo "<td>{$row['nombre']}</td>";
-                        echo "<td>{$row['puntos']}</td>";
-                        echo "<td>{$row['tiempo']}</td>";
-                        echo "<td>{$row['puntosTotales']}</td>";
-                    echo "</tr>";
->>>>>>> main
                 }
 
                 } else { echo "El archivo no existe."; }

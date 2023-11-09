@@ -1,16 +1,10 @@
 # /imagGame/question10.png
-<<<<<<< HEAD
 * What is the flag of the United Kingdom like?
 - Pink, blue and red
-=======
-* What Is The Uk Flag Like?
-- Pink, Blue, And Red
->>>>>>> main
 + Blue White And Red
 - Blue, Black, Red
 - Yellow Red Blue
 # /imagGame/question11.png
-<<<<<<< HEAD
 * What was the name of the wife of Ulysses, the character in the Odyssey created by Homer?
 - Lysistrata
 - Claudia
@@ -18,21 +12,11 @@
 - Sofia
 # /imagGame/question12.png
 *Who is the president of the United Kingdom?
-=======
-* What Do The Uk Usually Eat?
-- Waffles
-- Soup
-- Bacon
-+ Potatoes And Fish
-# /imagGame/question12.png
-* Who Is The President Of The Uk?
->>>>>>> main
 - Donald Trump
 - Pedro Sánchez
 - Dina Boluarte
 + Boris Johnson
 # /imagGame/question13.png
-<<<<<<< HEAD
 * Approximately how long did the war between Palestine and Israel last?
 - 2 months
 - 7 days
@@ -68,40 +52,3 @@
 - 8 territories
 - 10 territories
 - 12 territories
-=======
-* Approximately How Long Did The War Between Palestine And Israel Last?
-- 2 Months
-- 7 Days
-- 2 Vears
-+ 11 Days
-# /imagGame/question14.png
-* How Many Days Was There War With Violence Between Palestine And Israel?
-- 11 Days
-- 2 Months
-+ 3 Days
-- Every Day Of War
-# /imagGame/question15.png
-* How Many People Died In The War Between Palestine And Israel?
-- 3 People
-- Half The Town
-- 200 People
-+ 44 People
-# /imagGame/question16.png
-* Why Are The Brtish Empires Inportant?
-- For Its Historical
-+ For Their Deads
-- For Their Victories
-- For Their Money
-# /imagGame/question17.png
-* Ideas About Empire In The Uk Have Fluctuaded Over...
-- Victories
-+ Times
-- Monarchy
-- Country
-# /imagGame/question18.png
-* How Many Territories Did The British Empire Conquer?
-+ 5 Territories
-- 8 Territories
-- 10 Territories
-- 12 Territories
->>>>>>> main

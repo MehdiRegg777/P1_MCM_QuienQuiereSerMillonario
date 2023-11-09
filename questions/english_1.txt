@@ -1,5 +1,4 @@
 # /imagGame/question1.png
-<<<<<<< HEAD
 * What did Gandhi do for the world?
 - Discover the cure for malaria
 + Promote non-violence
@@ -26,39 +25,10 @@
 # /imagGame/question5.png
 * Where in the world was football created?
 - Spain
-=======
-* What Did Gandhi Do For The World?
-- Nothing
-+ Peace
-- Revolution
-- Racism
-# /imagGame/question2.png
-* Where Is Gandhi From?
-- Morocco
-- England
-+ India
-- Peru
-# /imagGame/question3.png
-* Ghandi Died For A ...
-- Accident
-- Heart Attack
-- Ilness
-+ Murdered
-# /imagGame/question4.png
-* In What Century Was Soccer Created?
-+ Century Xix
-- Century Xx
-- Century I
-- Now
-# /imagGame/question5.png
-* Where In The World Was Football Created?
-- China
->>>>>>> main
 - Mexico
 - Brazil
 + England
 # /imagGame/question6.png
-<<<<<<< HEAD
 * What is the chemical symbol for iron?
 - Hi
 + Fe
@@ -72,33 +42,13 @@
 - Roncano
 # /imagGame/question8.png
 * In ancient times, humans lived in...
-=======
-* The Ball Used To Be...
-- With Plastic
-+ With Leaves
-- With Boxes
-- With Clothes
-# /imagGame/question7.png
-* Who Were The Ones Who Used The Word "Alborigen"?
-- Arabs
-- Asians
-- Spanish
-+ Italians - Greeks
-# /imagGame/question8.png
-* In Ancient Times, The Humans Used To Lived In...
->>>>>>> main
 + Australia
 - Barcelona
 - Singapore
 - Argentina
 # /imagGame/question9.png
-<<<<<<< HEAD
 * How many years did the aborigines live?
 - 12,000 Years
-=======
-* How Many Years Did The Aborigines Live?
-- 12.000 Years
->>>>>>> main
 + 40,000 Years
 - 25,000 years
 - 60,000 years

@@ -5,7 +5,6 @@
 - Milos Degenek
 - Leo Messi
 # /imagGame/question47.png
-<<<<<<< HEAD
 * Who discovered the penicillin?
 - Joseph Smith
 + Alexander Fleming
@@ -41,40 +40,3 @@
 + 640
 - 641
 - 435
-=======
-* Are the British punctual?
-+ Always
-- Usually
-- Maybe
-- Never
-# /imagGame/question48.png
-* Which of these countries were not colonized by England?
-- Maldiva's Islands
-- Cayman Islands
-- Bermuda
-+ Belarus
-# /imagGame/question49.png
-* In what century the cricket become a national sport?
-+ In the end of 18th century
-- In the beginning of 17th century
-- In the end of 15th century
-- At the beginning of the 19th century
-# /imagGame/question50.png
-* In which English colony do they play cricket the least?
-- India
-+ Australia
-- Pakistán
-- South Africa
-# /imagGame/question51.png
-* Which of these European countries is still a colony of the British Empire?
-+ Gibraltar
-- Cyprus
-- Channel islands
-- England
-# /imagGame/question52.png
-* What is the Rolling Cheese tradition about?
-- Eat round cheese
-+ Throw round cheese off a hille
-- Making a round cheesecake
-- Buy a big round cheese
->>>>>>> main

@@ -1,5 +1,4 @@
 # /imagGame/question53.png
-<<<<<<< HEAD
 * ¿Cómo se llama el hueso más pequeño del cuerpo humano?
 - Ecifiliquédo
 + Estribo
@@ -29,37 +28,6 @@
 - La tensión de las personas
 - Los años luz de una galaxia con otra
 + La radiación
-=======
-* ¿Qué territorio africano fue conquistado en el siglo XIX por Inglaterra?
-+ Uganda
-- Espanya
-- Francia
-- Melilla
-# /imagGame/question54.png
-* ¿Dónde está localizado el Big Ben?
-- París
-+ London
-- Andorra
-- Alemania
-# /imagGame/question55.png
-* "La vida es como montar en bicicleta. Para mantener el balance, debes continuar en movimiento". ¿Quién dijo esta frase?
-+ Albert Einstein
-- Forrest Gump
-- Will Smith
-- Barack Obama
-# /imagGame/question56.png
-* ¿Dónde es típico comer pescado y patatas (fish and chips)?
-+ Reino Unido
-- Escocia
-- Francia
-- Irlanda
-# /imagGame/question57.png
-* ¿En que año tuvo el Museo Britanico más visitantes?
-- 2017
-+ 2015
-- 2020
-- 2026
->>>>>>> main
 # /imagGame/question58.png
 * ¿En qué año Isabel subió al trono?
 - 1959

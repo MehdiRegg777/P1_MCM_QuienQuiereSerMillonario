@@ -58,7 +58,6 @@ a{
 }
 
 /* GENERAL, BOTONES */
-<<<<<<< HEAD
 #loginButton {
     padding: 5px 10px;
     background-color: #FF9F1C;
@@ -95,15 +94,6 @@ a{
 .halloffame-button{ margin-right: 30px; }
 
 .play-button, .halloffame-button, .responder-btn, #savepunt-button, #savepunt-button{
-=======
-.ghof-buttons{ text-align: center; }
-
-.play-button{ margin-right: 30px; }
-
-.halloffame-button{ margin-right: 30px; }
-
-.play-button, .halloffame-button, .responder-btn, #savepunt-button{
->>>>>>> main
     display: inline-block;
     padding: 20px 40px;
     margin-top: 50px;
@@ -133,25 +123,8 @@ a{
     transition-duration: 1s;
 }
 
-<<<<<<< HEAD
 .play-button:hover, .halloffame-button:hover, .responder-btn:hover, #savepunt-button:hover #next-question:hover, #savepunt-button:hover{
     font-size: 18px;
-=======
-#next-question{
-    width: auto;
-    background-color: #FF9F1C;
-    border: 1px solid #FF9F1C;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 24px;
-    color: black;
-    font-family: 'Lora', sans-serif;
-    transition-duration: 1s;
-}
-
-.play-button:hover, .halloffame-button:hover, .responder-btn:hover, #savepunt-button:hover #next-question:hover{
->>>>>>> main
     cursor: pointer;
     font-style: italic;
     transition-duration: 1s;
@@ -159,15 +132,12 @@ a{
     color: white;
 }
 
-<<<<<<< HEAD
 .play-button, #savepunt-button{
     font-style: italic;
     font-size: 18px;
     margin-right: 30px;
 }
 
-=======
->>>>>>> main
 /* COMPROBACIÓ DE JS ACTIVAT */
 .noJSEnabled{
     display: flex;
@@ -180,13 +150,8 @@ a{
 .container{
     background-color: white;
     border-radius: 10px;
-<<<<<<< HEAD
     max-width: 100%;
     margin: 100px;
-=======
-    margin: 80px;
-    max-width: 100%;
->>>>>>> main
 }
 
 .container1{
@@ -195,18 +160,11 @@ a{
     align-items: center;
 }
 
-<<<<<<< HEAD
 .comodinesBotones {
     background-color: #FF9F1C;
     border: 1px solid #FF9F1C;
     min-width: 22%;
     max-width: 90%;
-=======
-.comodinesBotones{
-    background-color: #FF9F1C;
-    border: 1px solid #FF9F1C;
-    width: 300px;
->>>>>>> main
     height: 80px;
     border-radius: 50px;
     color: white;
@@ -220,10 +178,7 @@ a{
     margin-right: 50px;
     margin-bottom: 50px;
     z-index: 9999;
-<<<<<<< HEAD
     transition: max-width 0.5s;
-=======
->>>>>>> main
 }
 
 .comodinesBotones button{
@@ -246,11 +201,7 @@ a{
 }
 
 /* INDEX.PHP */
-<<<<<<< HEAD
 .indexPage a{
-=======
-.indexPage a.no-underline{
->>>>>>> main
     text-decoration: none;
 }
 
@@ -368,7 +319,6 @@ a{
     border-radius: 0px 0px 50px 50px
 }
 
-<<<<<<< HEAD
 .nivelPartida {
     font-size: 25px;
     background-color: #FFC15E;
@@ -383,8 +333,6 @@ a{
 }
 
 
-=======
->>>>>>> main
 #message {
     position: fixed;
     top: 0;
@@ -424,11 +372,6 @@ a{
     border: 1px solid #F5FF90;
     width: 300px;
     height: auto;
-<<<<<<< HEAD
-=======
-    margin-top: 20px;
-    margin-bottom: 20px;
->>>>>>> main
     cursor: pointer;
     font-family: 'Lora', sans-serif;
     text-align: center;
@@ -621,7 +564,6 @@ a{
     }
 }
 
-<<<<<<< HEAD
 /* IMAGEN COMODÍN LLAMADA */
 /* Estilo CSS para la animación de escala */
 .scale-animation-call {
@@ -640,8 +582,6 @@ a{
     }
 }
 
-=======
->>>>>>> main
 .close-button {
     position: absolute;
     top: 10px;
@@ -654,7 +594,6 @@ a{
 }
 
 
-<<<<<<< HEAD
 #enviarBtn{
     display: inline-block;
     margin-top: 10px;
@@ -768,13 +707,12 @@ h2, h3{ font-family: 'Lora', serif !important; }
 
 h3{ font-style: italic !important; }
 
-=======
->>>>>>> main
 /* FOOTER */
 .footerinfo{
     display: flex;
     flex-direction: row;
     align-items: center;
+    
 }
 
 .footerinfo p{
@@ -789,6 +727,7 @@ footer{
     text-align: center;
     padding: 20px;
     bottom: 0;
+    width: 97%;
 }
 
 @media only screen and (max-width: 400px) {
@@ -869,11 +808,12 @@ footer{
     .comodinesBotones.expandido {
         max-width: 100%;
         height: 20%;
+        margin-left: 10px !important;
     }
 
     .forumCreate{
         width: 80%;
     }
 
-    .footerinfo{ width: 100vw; }
+    .footerinfo{ width: 90%; }
 }
