@@ -697,5 +697,5 @@ function login() {
         }, 2000);
     } else {
         errorMessage.style.color = "red";
-        errorMessage.innerHTML = "Credenciales incorrectas. Inténtalo de nuevo.";
+        //errorMessage.innerHTML = "Credenciales incorrectas. Inténtalo de nuevo.";
     }}

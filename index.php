@@ -40,20 +40,6 @@
                         echo "<button onclick='login()' id='loginButton'>Inicia sesión</button>";
                     }
                 ?>
-                <div id="loginPopUp" class="loginPopUp">
-                    <div class="contenidoPopUp">
-                        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>    
-                        <h2>Inicia sesión</h2>                    
-                        <p id="error-message" style="color: red;"></p>
-                        <form>
-                            <label for="username">Usuario</label><br />
-                            <input type="text" name="username" id="username" required><br><br>
-                            <label for="password">Contraseña</label><br />
-                            <input type="password" name="password" id="password" required><br><br>
-                            <button type="button" onclick="login()" id="botonSiguiente">Siguiente</button>
-                        </form>
-                    </div>
-                </div>
             </header>
             <div class="container">                
                 <h2><strong>Bienvenido</strong></h2>
@@ -117,20 +103,6 @@
                         echo "<button onclick='login()' id='loginButton'>Inicia sessió</button>";
                     }
                 ?>
-                <div id="loginPopUp" class="loginPopUp">
-                    <div class="contenidoPopUp">
-                        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>    
-                        <h2>Inicia sessió</h2>                    
-                        <p id="error-message" style="color: red;"></p>
-                        <form>
-                            <label for="username">Usuari</label><br />
-                            <input type="text" name="username" id="username" required><br><br>
-                            <label for="password">Contrasenya</label><br />
-                            <input type="password" name="password" id="password" required><br><br>
-                            <button type="button" onclick="login()" id="botonSiguiente">Següent</button>
-                        </form>
-                    </div>
-                </div>
             </header>
 
             <div class="container">    
@@ -195,20 +167,6 @@
                         echo "<button onclick='login()' id='loginButton'>Log in</button>";
                     }
                 ?>
-                <div id="loginPopUp" class="loginPopUp">
-                    <div class="contenidoPopUp">
-                        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>    
-                        <h2>Inicia sessió</h2>                    
-                        <p id="error-message" style="color: red;"></p>
-                        <form>
-                            <label for="username">User</label><br />
-                            <input type="text" name="username" id="username" required><br><br>
-                            <label for="password">Password</label><br />
-                            <input type="password" name="password" id="password" required><br><br>
-                            <button type="button" onclick="login()" id="botonSiguiente">Next</button>
-                        </form>
-                    </div>
-                </div>
             </header>
 
             <div class="container">
@@ -262,6 +220,54 @@
                 </div>
             </div>
         </div>
+        <?php
+            if ($_SESSION['language'] === 'spanish') {
+                echo '<div id="loginPopUp" class="loginPopUp">';
+                echo '    <div class="contenidoPopUp">';
+                echo '        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>';
+                echo '        <h2>Inicia sesión</h2>';
+                echo '        <p id="error-message" style="color: red;"></p>';
+                echo '        <form>';
+                echo '            <label for="username">Usuario</label><br />';
+                echo '            <input type="text" name="username" id="username" required><br><br>';
+                echo '            <label for="password">Contraseña</label><br />';
+                echo '            <input type="password" name="password" id="password" required><br><br>';
+                echo '            <button type="button" onclick="login()" id="botonSiguiente">Siguiente</button>';
+                echo '        </form>';
+                echo '    </div>';
+                echo '</div>';
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo '<div id="loginPopUp" class="loginPopUp">';
+                echo '    <div class="contenidoPopUp">';
+                echo '        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>';
+                echo '        <h2>Inicia sessió</h2>';
+                echo '        <p id="error-message" style="color: red;"></p>';
+                echo '        <form>';
+                echo '            <label for="username">Usuari</label><br />';
+                echo '            <input type="text" name="username" id="username" required><br><br>';
+                echo '            <label for="password">Contrasenya</label><br />';
+                echo '            <input type="password" name="password" id="password" required><br><br>';
+                echo '            <button type="button" onclick="login()" id="botonSiguiente">Següent</button>';
+                echo '        </form>';
+                echo '    </div>';
+                echo '</div>';
+            } elseif ($_SESSION['language'] === 'english') {
+                echo '<div id="loginPopUp" class="loginPopUp">';
+                echo '    <div class="contenidoPopUp">';
+                echo '        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>';
+                echo '        <h2>Sign in</h2>';
+                echo '        <p id="error-message" style="color: red;"></p>';
+                echo '        <form>';
+                echo '            <label for="username">User</label><br />';
+                echo '            <input type="text" name="username" id="username" required><br><br>';
+                echo '            <label for="password">Password</label><br />';
+                echo '            <input type="password" name="password" id="password" required><br><br>';
+                echo '            <button type="button" onclick="login()" id="botonSiguiente">Next</button>';
+                echo '        </form>';
+                echo '    </div>';
+                echo '</div>';
+            }
+        ?>
         <audio id="start" autoplay>
             <source src="mp3/inicio.mp3" type="audio/mpeg">
         </audio>
