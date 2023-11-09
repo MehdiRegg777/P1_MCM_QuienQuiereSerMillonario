@@ -8,7 +8,10 @@
     $_SESSION['comodin50'] = 'nousado';
     $_SESSION['comodinTime'] = 'nousado';
     $_SESSION['comodinPublico'] = 'nousado';
+    $_SESSION['buttonPublish'] = 'nousado';
+    $_SESSION['comodinLlamada'] = 'nousado';
     unset($_SESSION['nivels']);
+    unset($_SESSION['answer']);
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +21,7 @@
         <title>¿Quién quiere ser millonario?</title>
         <noscript>
             Esta página requiere tener Javascript activado. Por favor, actívalo  para poder jugar.
-            <style>div { background-color: white; display:none; }</style>
+            <style>div { background-color: white; display: none; bottom: 0; }</style>
         </noscript>
         <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
         <meta charset="UTF-8">
@@ -26,21 +29,18 @@
         <link href="style.css" rel="stylesheet">
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
+    
     <body class="indexPage">
+        <!-- ESPAÑOL -->    
         <div id="spanish" <?php echo ($selectedLanguage != 'spanish') ? $hideStyle : $showStyle; ?>>
-        <header>
-            <?php
-                if ($_SESSION['language'] === 'spanish') {
-                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
-                } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
-                } elseif ($_SESSION['language'] === 'english') {
-                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
-                }
-            ?>
-        </header>
-
-            <!-- CATALÀ -->
+            <header>
+                <?php
+                    if ($_SESSION['language'] === 'spanish') {
+                        echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                        echo "<button onclick='login()' id='loginButton'>Inicia sesión</button>";
+                    }
+                ?>
+            </header>
             <div class="container">                
                 <h2><strong>Bienvenido</strong></h2>
                 <h3><em>Instrucciones del juego</em></h3>
@@ -97,7 +97,12 @@
         <!-- CATALÀ -->
         <div id="catalan" <?php echo ($selectedLanguage != 'catalan') ? $hideStyle : $showStyle; ?>>
             <header>
-                <h1>Qui vol ser milionari?</h1>
+                <?php
+                    if ($_SESSION['language'] === 'catalan') {
+                        echo "<a href='/index.php'><h1>Qui vol ser millonari?</h1></a>";
+                        echo "<button onclick='login()' id='loginButton'>Inicia sessió</button>";
+                    }
+                ?>
             </header>
 
             <div class="container">    
@@ -156,12 +161,17 @@
         <!-- ENGLISH -->
         <div id="english" <?php echo ($selectedLanguage != 'english') ? $hideStyle : $showStyle; ?>>
             <header>
-                <h1>Who wants to be a millionaire?</h1>
+                <?php
+                    if ($_SESSION['language'] === 'english') {
+                        echo "<a href='/index.php'><h1>Who wants to be a millionaire?</h1></a>";
+                        echo "<button onclick='login()' id='loginButton'>Log in</button>";
+                    }
+                ?>
             </header>
 
             <div class="container">
                 <h2><strong>Welcome</strong></h2>
-                <h3><em>Game Instructions</em></h3>
+                <h3><em>Game instructions</em></h3>
 
                 <p>The online game of <em>Who Wants to Be a Millionaire?</em> works just like the successful real-life TV show.
 
@@ -171,7 +181,7 @@
                 so on until the third question. If you pass the first round, the difficulty will increase. The game ALWAYS changes the difficulty automatically after
                 the user answers the third question in the set.<br/><br /></p>
 
-                <h3><em>How to Start Playing?</em></hr>
+                <h3><em>How to start playing?</em></hr>
 
                 <p>First, you have the option to choose the language in which you want the entire page to be displayed below this explanation. Once you have chosen,
                 you have to click the <em>Play</em> button –located below this explanation– to start your game. A user will not be created unless you
@@ -210,6 +220,72 @@
                 </div>
             </div>
         </div>
+        <?php
+            if ($_SESSION['language'] === 'spanish') {
+                echo '<div id="loginPopUp" class="loginPopUp">';
+                echo '    <div class="contenidoPopUp">';
+                echo '        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>';
+                echo '        <h2>Inicia sesión</h2>';
+                
+                echo '        <p id="error-message1" style="display: none;">Por favor, ingresa un usuario y una contraseña.</p>';
+                echo '        <p id="error-message2" style="display: none;">Error al cargar el archivo de configuración.</p>';
+                echo '        <p id="error-message3" style="display: none;">¡Contraseña correcta! Iniciando...</p>';
+                echo '        <p id="error-message4" style="display: none;">Credenciales incorrectas. Inténtalo de nuevo.</p>';
+                echo '        <p id="error-message5" style="display: none;">Error en el archivo de configuración.</p>';
+
+                echo '        <form>';
+                echo '            <label for="username">Usuario</label><br />';
+                echo '            <input type="text" name="username" id="username" required><br><br>';
+                echo '            <label for="password">Contraseña</label><br />';
+                echo '            <input type="password" name="password" id="password" required><br><br>';
+                echo '            <button type="button" onclick="login()" id="botonSiguiente">Siguiente</button>';
+                echo '        </form>';
+                echo '    </div>';
+                echo '</div>';
+            } elseif ($_SESSION['language'] === 'catalan') {
+                echo '<div id="loginPopUp" class="loginPopUp">';
+                echo '    <div class="contenidoPopUp">';
+                echo '        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>';
+                echo '        <h2>Inicia sessió</h2>';
+
+                echo '        <p id="error-message1" style="display: none;">Si us plau, introduïu un usuari i una contrasenya.</p>';
+                echo '        <p id="error-message2" style="display: none;">Error en carregar el fitxer de configuració.</p>';
+                echo '        <p id="error-message3" style="display: none;">Contrasenya correcta! Iniciant...</p>';
+                echo '        <p id="error-message4" style="display: none;">Credencials incorrectes. Torneu-ho a provar.</p>';
+                echo '        <p id="error-message5" style="display: none;">Error al fitxer de configuració.</p>';
+
+                echo '        <form>';
+                echo '            <label for="username">Usuari</label><br />';
+                echo '            <input type="text" name="username" id="username" required><br><br>';
+                echo '            <label for="password">Contrasenya</label><br />';
+                echo '            <input type="password" name="password" id="password" required><br><br>';
+                echo '            <button type="button" onclick="login()" id="botonSiguiente">Següent</button>';
+                echo '        </form>';
+                echo '    </div>';
+                echo '</div>';
+            } elseif ($_SESSION['language'] === 'english') {
+                echo '<div id="loginPopUp" class="loginPopUp">';
+                echo '    <div class="contenidoPopUp">';
+                echo '        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>';
+                echo '        <h2>Sign in</h2>';
+
+                echo '        <p id="error-message1" style="display: none;">Please enter a username and password.</p>';
+                echo '        <p id="error-message2" style="display: none;">Error loading configuration file.</p>';
+                echo '        <p id="error-message3" style="display: none;">Password correct! Starting...</p>';
+                echo '        <p id="error-message4" style="display: none;">Incorrect credentials. Try again.</p>';
+                echo '        <p id="error-message5" style="display: none;">Configuration file error.</p>';
+
+                echo '        <form>';
+                echo '            <label for="username">User</label><br />';
+                echo '            <input type="text" name="username" id="username" required><br><br>';
+                echo '            <label for="password">Password</label><br />';
+                echo '            <input type="password" name="password" id="password" required><br><br>';
+                echo '            <button type="button" onclick="login()" id="botonSiguiente">Next</button>';
+                echo '        </form>';
+                echo '    </div>';
+                echo '</div>';
+            }
+        ?>
         <audio id="start" autoplay>
             <source src="mp3/inicio.mp3" type="audio/mpeg">
         </audio>

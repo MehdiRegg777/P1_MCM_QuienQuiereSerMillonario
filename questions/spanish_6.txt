@@ -1,33 +1,33 @@
 # /imagGame/question53.png
-* ¿Qué territorio africano fue conquistado en el siglo XIX por Inglaterra?
-+ Uganda
-- Espanya
-- Francia
-- Melilla
+* ¿Cómo se llama el hueso más pequeño del cuerpo humano?
+- Ecifiliquédo
++ Estribo
+- Peroné
+- Esternocleidomastoideo
 # /imagGame/question54.png
-* ¿Dónde está localizado el Big Ben?
-- París
-+ London
-- Andorra
-- Alemania
+* Cuando se habla de una persona con acrofobia, ¿a qué nos referimos?
+- Miedo a las arañas
++ Miedo a las alturas
+- Miedo a las acrobacias
+- Miedo a la gente
 # /imagGame/question55.png
-* "La vida es como montar en bicicleta. Para mantener el balance, debes continuar en movimiento". ¿Quién dijo esta frase?
-+ Albert Einstein
-- Forrest Gump
-- Will Smith
-- Barack Obama
+* ¿Cuántas válvulas tiene el corazón humano?
++ Cuatro
+- Cinco
+- Seis
+- Tres
 # /imagGame/question56.png
-* ¿Dónde es típico comer pescado y patatas (fish and chips)?
-+ Reino Unido
-- Escocia
-- Francia
-- Irlanda
+* ¿Cuántos elementos hay en la tabla periódica?
++ 118
+- 117
+- 119
+- 120
 # /imagGame/question57.png
-* ¿En que año tuvo el Museo Britanico más visitantes?
-- 2017
-+ 2015
-- 2020
-- 2026
+* ¿Qué mide un contador Geiger?
+- Los litros de agua caídos por metro cuadrado
+- La tensión de las personas
+- Los años luz de una galaxia con otra
++ La radiación
 # /imagGame/question58.png
 * ¿En qué año Isabel subió al trono?
 - 1959

@@ -4,6 +4,7 @@ session_start();
     isset($_POST['comodin50']) ? $_SESSION['comodin50'] = $_POST['comodin50'] : 'nousado';
     isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
     isset($_POST['comodinTime']) ? $_SESSION['comodinTime'] = $_POST['comodinTime'] : 'nousado';
+    isset($_POST['comodinLlamada']) ? $_SESSION['comodinLlamada'] = $_POST['comodinLlamada'] : 'nousado';
     isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
     $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
 ?>
@@ -28,11 +29,11 @@ session_start();
         <header>
             <?php
                 if ($_SESSION['language'] === 'spanish') {
-                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                    echo "<a id='spanish' href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
-                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
+                    echo "<a id='catalan' href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
-                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
+                    echo "<a id='english' href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
                 }
             ?>
         </header>
@@ -45,11 +46,48 @@ session_start();
             <div class="popup-public">
                 <button class="close-button" onclick="cerrarImagen()">X</button>
                 <img id="popupImage" src="" alt="Imagen">
+                <div style="display: none;" id="preguntaLlamada">
+                    <?php
+                     if ($_SESSION['language'] === 'spanish') {
+                        echo '<label style="display:block;" id="tituloLlamada">¿Cuántas veces sonó el audio?</label>';
+                        echo '<input style="display:block;" type="number" id="vecesAudio" name="vecesAudio" min="0" required>';
+                        echo '<button style="display:block;" id="enviarBtn" onclick="comodinCantidadSonido()">Enviar</button>';
+                    } elseif ($_SESSION['language'] === 'catalan') {
+                        echo "<label style='display:block;' id='tituloLlamada'>Quantes vegades va sonar l'àudio?</label>";
+                        echo '<input style="display:block;" type="number" id="vecesAudio" name="vecesAudio" min="0" required>';
+                        echo '<button style="display:block;" id="enviarBtn" onclick="comodinCantidadSonido()">Enviar</button>';
+                    } elseif ($_SESSION['language'] === 'english') {
+                        echo '<label style="display:block;" id="tituloLlamada">How many times did the audio ring?</label>';
+                        echo '<input style="display:block;" type="number" id="vecesAudio" name="vecesAudio" min="0" required>';
+                        echo '<button style="display:block;" id="enviarBtn" onclick="comodinCantidadSonido()">Send</button>';
+                    }
+                    ?>
+                </div>
+                <div style="display: none;" id="respuestaLlamada">
+                <?php
+                     if ($_SESSION['language'] === 'spanish') {
+                        echo '<h4 id="respuestaValida">La respuesta correcta es:</h4>';
+                        echo '<h4 style="display: none;" id="respuestaInvalida">Llamada sin respuesta</h4>';
+                        echo '<p style="text-align: center;" id="RespuestaTexto"></p>';
+                    } elseif ($_SESSION['language'] === 'catalan') {
+                        echo '<h4 id="respuestaValida">La resposta correcta és:</h4>';
+                        echo '<h4 style="display: none;" id="respuestaInvalida">Trucada sense resposta</h4>';
+                        echo '<p style="text-align: center;" id="RespuestaTexto"></p>';
+                    } elseif ($_SESSION['language'] === 'english') {
+                        echo '<h4 id="respuestaValida">The correct answer is:</h4>';
+                        echo '<h4 style="display: none;" id="respuestaInvalida">Unanswered call</h4>';
+                        echo '<p style="text-align: center;" id="RespuestaTexto"></p>';
+                    }
+                    ?>
+                </div>
             </div>
         </div>
 
+
         <div class="container1">
-            <div class="comodinesBotones">
+        <div class="comodinesBotones">
+            <button id="mostrarComodinesButton" onclick="mostrarComodines()">C</button>
+            <div id="comodines" style="display: none;">
                 <?php
                     if ($_SESSION['comodin50'] === 'nousado') {
                         echo '<button id="buttonComodin50" onclick="button50()"><i class="fa-solid fa-5"></i><i class="fa-solid fa-0">%</i></button>';
@@ -70,8 +108,12 @@ session_start();
                     } elseif ($_SESSION['comodinPublico'] === 'usado') {
                         echo '<button id="boton-publico" onclick="comodinPublico()" disabled><i class="fa-solid fa-users"></i></button>';
                     }
+                    if ($_SESSION['comodinLlamada'] === 'nousado') {
+                        echo '<button id="buttoncomodinLlamada" onclick="comodinLlamada()" ><i class="fa-solid fa-phone-volume"></i></button>';
+                    } elseif ($_SESSION['comodinLlamada'] === 'usado') {
+                        echo '<button id="buttoncomodinLlamada" onclick="comodinLlamada()" disabled><i class="fa-solid fa-phone-volume"></i></button>';
+                    }
                 ?>
-                <button style='display: none'><i class="fa-solid fa-phone-volume"></i></button>
             </div>
         </div>
         <?php
@@ -141,7 +183,14 @@ session_start();
 
         $preguntas = $_GET['preguntas'];
         $nivels = $_GET['nivel'];
-                    
+        if ($_SESSION['language'] === 'spanish') {
+            echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Nivel $nivels</div>";
+        } elseif ($_SESSION['language'] === 'catalan') {
+            echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Nivell $nivels</div>";
+        } elseif ($_SESSION['language'] === 'english') {
+            echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Level $nivels</div>";
+        }
+        
                 foreach ($preguntas as $key => $pregunta) {
                     if ($key >= 3) {
                         break;
@@ -199,7 +248,6 @@ session_start();
         <audio id="correctSound" src="mp3/correct.mp3"></audio>
         <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
         <script src="funcionGame.js"></script>
-        <script src="funcionLanguage.js"></script>
         <footer class="footerinfo">
             <p>© MCM S.A.</p>
             <p><a href="gmail.com">Contact us</a></p>

@@ -5,11 +5,11 @@
 - Azul, Negro, Rojo
 - Amarillo Rojo Azul
 # /imagGame/question11.png
-* ¿Qué come habitualmente el Reino Unido?
-- gofres
-- Sopa
-- Tocino
-+ Patatas Y Pescado
+* ¿Cómo se llamaba la esposa de Ulises, el personaje de la Odisea creado por Homero?
+- Lisístrata
+- Claudia
++ Penélope
+- Sofía
 # /imagGame/question12.png
 * ¿Quién es el presidente del Reino Unido?
 - Donald Trump
@@ -23,11 +23,11 @@
 - 2 años
 + 11 Días
 # /imagGame/question14.png
-* ¿Cuántos Días Hubo Guerra Con Violencia Entre Palestina E Israel?
-- 11 días
-- 2 meses
-+ 3 Días
-- Cada día de guerra
+* ¿Qué filósofo alemán escribió sobre la teoría del superhombre?
+- Shinji Ikari
++ Friedrich Nietzche
+- Haruki Murakami
+- Harper Lee
 # /imagGame/question15.png
 * ¿Cuántas personas murieron en la guerra entre Palestina e Israel?
 - 3 personas
@@ -35,20 +35,20 @@
 - 200 personas
 + 44 personas
 # /imagGame/question16.png
-* ¿Por qué son importantes los imperios británicos?
-- Por su histórico
-+ Por sus muertos
-- Por sus victorias
-- Por su dinero
+* ¿Cuántas sílabas forman un haikú?
+- Tres versos carentes de rima de 7, 7 y 5 sílabas.
++ Tres versos carentes de rima de 5, 7 y 5 sílabas.
+- Tres versos carentes de rima de 7, 7 y 5 sílabas.
+- Tres versos carentes de rima de 5, 5 y 7 sílabas.
 # /imagGame/question17.png
-* Las ideas sobre el imperio en el Reino Unido han fluctuado a lo largo...
-- Victorias
-+ Horarios
-- Monarquía
-- País
+* De acuerdo con la leyenda, ¿quiénes fundaron Roma?
++ Rómulo y Remo
+- Caesar y Cicerón
+- Hércules y Creonte
+- Alejandro Magno y su padre
 # /imagGame/question18.png
 * ¿Cuántos territorios conquistó el Imperio Británico?
-+ 5 Territorios
++ 5 territorios
 - 8 territorios
 - 10 territorios
 - 12 territorios
