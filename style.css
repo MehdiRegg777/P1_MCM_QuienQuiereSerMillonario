@@ -160,10 +160,11 @@ a{
     align-items: center;
 }
 
-.comodinesBotones{
+.comodinesBotones {
     background-color: #FF9F1C;
     border: 1px solid #FF9F1C;
-    width: 22%;
+    min-width: 22%;
+    max-width: 90%;
     height: 80px;
     border-radius: 50px;
     color: white;
@@ -177,6 +178,7 @@ a{
     margin-right: 50px;
     margin-bottom: 50px;
     z-index: 9999;
+    transition: max-width 0.5s;
 }
 
 .comodinesBotones button{
@@ -694,6 +696,15 @@ a{
     color: white;
 }
 
+#crearPregunta{
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: bold;
+}
+
+h2, h3{ font-family: 'Lora', serif !important; }
+
+h3{ font-style: italic !important; }
 
 /* FOOTER */
 .footerinfo{
@@ -721,14 +732,23 @@ footer{
         padding: 0;
         margin: 0;
     }
+
+    .container {
+        margin: 0; 
+    }
     
     header{
         padding: 20px;
-        margin-bottom: 100px;
+        margin-bottom: 50px !important;
     }
 
-    h1{ font-size: 30px; }
+    #timer{
+        margin-left: 10px;
+    }
 
+    h1{
+        font-size: 30px;
+    }
     p, ul, li{
         font-size: 15px;
         line-height: 20px;
@@ -744,18 +764,52 @@ footer{
         margin-top: 20px;
         font-size: 18px;
     }
-
-    .languagesimages{
-        width: 20px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;   
+    .languagesimages {
+        flex-direction: column;
+        align-items: center;
     }
 
+    .languagesimages a {
+        max-width: 80px;
+    }
+
+    table#correctqueststable {
+        width: 100%;
+        margin: 0;
+    }
+
+    table#correctqueststable th, table#correctqueststable td {
+        padding: 5px;
+        font-size: 18px;
+        margin: 0;
+    }
+
+    input#username, input#password{
+        margin-top: 10px;
+        border: 1px solid black;
+    }
     a.no-underline img{
         width: 20px;
         height: 10px;
+        margin: 0;
     }
 
-    .footer{ width: 100vw; }
+    #mostrarComodinesButton {
+        display: block;
+    }
+
+    #comodines {
+        display: none;
+    }
+
+    .comodinesBotones.expandido {
+        max-width: 100%;
+        height: 20%;
+    }
+
+    .forumCreate{
+        width: 80%;
+    }
+
+    .footerinfo{ width: 100vw; }
 }
