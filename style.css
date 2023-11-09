@@ -702,6 +702,10 @@ a{
     font-weight: bold;
 }
 
+h2, h3{ font-family: 'Lora', serif !important; }
+
+h3{ font-style: italic !important; }
+
 /* FOOTER */
 .footerinfo{
     display: flex;
