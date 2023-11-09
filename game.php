@@ -85,7 +85,9 @@ session_start();
 
 
         <div class="container1">
-            <div class="comodinesBotones">
+        <div class="comodinesBotones">
+            <button id="mostrarComodinesButton" onclick="mostrarComodines()">C</button>
+            <div id="comodines" style="display: none;">
                 <?php
                     if ($_SESSION['comodin50'] === 'nousado') {
                         echo '<button id="buttonComodin50" onclick="button50()"><i class="fa-solid fa-5"></i><i class="fa-solid fa-0">%</i></button>';

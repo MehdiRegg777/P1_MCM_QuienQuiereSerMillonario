@@ -111,8 +111,26 @@
         <!-- CATALÀ -->
         <div id="catalan" <?php echo ($selectedLanguage != 'catalan') ? $hideStyle : $showStyle; ?>>
             <header>
-                <h1>Qui vol ser milionari?</h1>
-                <?php echo "<button onclick='login()' id='loginButton'>Inicia sessió</button>"; ?>
+                <?php
+                    if ($_SESSION['language'] === 'catalan') {
+                        echo "<a href='/index.php'><h1>Qui vol ser millonari?</h1></a>";
+                        echo "<button onclick='login()' id='loginButton'>Inicia sessió</button>";
+                    }
+                ?>
+                <div id="loginPopUp" class="loginPopUp">
+                    <div class="contenidoPopUp">
+                        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>    
+                        <h2>Inicia sessió</h2>                    
+                        <p id="error-message" style="color: red;"></p>
+                        <form>
+                            <label for="username">Usuari</label><br />
+                            <input type="text" name="username" id="username" required><br><br>
+                            <label for="password">Contrasenya</label><br />
+                            <input type="password" name="password" id="password" required><br><br>
+                            <button type="button" onclick="login()" id="botonSiguiente">Següent</button>
+                        </form>
+                    </div>
+                </div>
             </header>
 
             <div class="container">    
@@ -171,8 +189,26 @@
         <!-- ENGLISH -->
         <div id="english" <?php echo ($selectedLanguage != 'english') ? $hideStyle : $showStyle; ?>>
             <header>
-                <?php echo "<button onclick='login()' id='loginButton'>Log in</button>"; ?>
-                <h1>Who wants to be a millionaire?</h1>
+                <?php
+                    if ($_SESSION['language'] === 'english') {
+                        echo "<a href='/index.php'><h1>Who wants to be a millionaire?</h1></a>";
+                        echo "<button onclick='login()' id='loginButton'>Log in</button>";
+                    }
+                ?>
+                <div id="loginPopUp" class="loginPopUp">
+                    <div class="contenidoPopUp">
+                        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>    
+                        <h2>Inicia sessió</h2>                    
+                        <p id="error-message" style="color: red;"></p>
+                        <form>
+                            <label for="username">User</label><br />
+                            <input type="text" name="username" id="username" required><br><br>
+                            <label for="password">Password</label><br />
+                            <input type="password" name="password" id="password" required><br><br>
+                            <button type="button" onclick="login()" id="botonSiguiente">Next</button>
+                        </form>
+                    </div>
+                </div>
             </header>
 
             <div class="container">

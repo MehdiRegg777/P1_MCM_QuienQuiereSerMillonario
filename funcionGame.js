@@ -24,6 +24,21 @@ const mensajes = {
         'juegoTerminado': 'You have answered all the questions! You\'ve finished the game.'
     }};
 
+function mostrarComodines() {
+    var comodinesDiv = document.getElementById("comodines");
+    var mostrarComodinesButton = document.getElementById("mostrarComodinesButton");
+    var comodinesBotones = document.querySelector(".comodinesBotones");
+
+    if (comodinesDiv.style.display === "none") {
+        comodinesDiv.style.display = "block";
+        mostrarComodinesButton.textContent = "x";
+        comodinesBotones.classList.add("expandido");
+    } else {
+        comodinesDiv.style.display = "none";
+        mostrarComodinesButton.textContent = "C";
+        comodinesBotones.classList.remove("expandido");
+    }}    
+    
 // ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 // CÓDIGOS DE INDEX.PHP
 // ————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

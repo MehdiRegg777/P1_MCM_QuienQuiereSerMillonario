@@ -27,7 +27,7 @@ session_start();
             <?php
             echo "<div id='message' style='display: none;'></div>";
             if ($_SESSION['language'] === 'spanish') {
-                echo '<h2>Crear Nueva Pregunta</h2>';
+                echo '<h2>Crear nueva pregunta</h2>';
                 echo '<form action="create.php" method="post" enctype="multipart/form-data">';
                 echo '    <label for="idioma">Idioma:</label>';
                 echo '    <select name="idioma" required>';
@@ -68,11 +68,11 @@ session_start();
                 echo '    <label for="imagen">Subir Imagen:</label>'; 
                 echo '    <input type="file" name="imagen" id="imagen" ><br>';
                 echo '    <br>';
-                echo '    <input type="submit" value="Crear Pregunta">';
+                echo '    <input type="submit" id="crearPregunta" value="Crear Pregunta">';
                 echo '</form>';
    
             } elseif ($_SESSION['language'] === 'catalan') {
-                echo '<h2>Crear Nova Pregunta</h2>';
+                echo '<h2>Crear nova pregunta</h2>';
                 echo '<form action="create.php" method="post">';
                 echo '    <label for="idioma">Idioma:</label>';
                 echo '    <select name="idioma" required>';
@@ -116,7 +116,7 @@ session_start();
                 echo '    <input type="submit" value="Crear Pregunta">';
                 echo '</form>';
             } elseif ($_SESSION['language'] === 'english') {
-                echo '<h2>Create New Question</h2>';
+                echo '<h2>Create new question</h2>';
                 echo '<form action="create.php" method="post">';
                 echo '    <label for="idioma">Language:</label>';
                 echo '    <select name="idioma" required>';
@@ -242,6 +242,6 @@ session_start();
             <p><a href='gmail.com'>Contact us</a></p>
             <p><a href='instagram.com'>Follow us</a></p>
         </footer>
-        <script src='funcionGame.js'></script>;
+        <script src='funcionGame.js'></script>
     </body>
 </html>
