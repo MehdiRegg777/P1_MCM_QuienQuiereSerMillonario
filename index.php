@@ -226,7 +226,13 @@
                 echo '    <div class="contenidoPopUp">';
                 echo '        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>';
                 echo '        <h2>Inicia sesión</h2>';
-                echo '        <p id="error-message" style="color: red;"></p>';
+                
+                echo '        <p id="error-message1" style="display: none;">Por favor, ingresa un usuario y una contraseña.</p>';
+                echo '        <p id="error-message2" style="display: none;">Error al cargar el archivo de configuración.</p>';
+                echo '        <p id="error-message3" style="display: none;">¡Contraseña correcta! Iniciando...</p>';
+                echo '        <p id="error-message4" style="display: none;">Credenciales incorrectas. Inténtalo de nuevo.</p>';
+                echo '        <p id="error-message5" style="display: none;">Error en el archivo de configuración.</p>';
+
                 echo '        <form>';
                 echo '            <label for="username">Usuario</label><br />';
                 echo '            <input type="text" name="username" id="username" required><br><br>';
@@ -241,7 +247,13 @@
                 echo '    <div class="contenidoPopUp">';
                 echo '        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>';
                 echo '        <h2>Inicia sessió</h2>';
-                echo '        <p id="error-message" style="color: red;"></p>';
+
+                echo '        <p id="error-message1" style="display: none;">Si us plau, introduïu un usuari i una contrasenya.</p>';
+                echo '        <p id="error-message2" style="display: none;">Error en carregar el fitxer de configuració.</p>';
+                echo '        <p id="error-message3" style="display: none;">Contrasenya correcta! Iniciant...</p>';
+                echo '        <p id="error-message4" style="display: none;">Credencials incorrectes. Torneu-ho a provar.</p>';
+                echo '        <p id="error-message5" style="display: none;">Error al fitxer de configuració.</p>';
+
                 echo '        <form>';
                 echo '            <label for="username">Usuari</label><br />';
                 echo '            <input type="text" name="username" id="username" required><br><br>';
@@ -256,7 +268,13 @@
                 echo '    <div class="contenidoPopUp">';
                 echo '        <button class="close-button" id="closeButton" onclick="togglePopUp()">X</button>';
                 echo '        <h2>Sign in</h2>';
-                echo '        <p id="error-message" style="color: red;"></p>';
+
+                echo '        <p id="error-message1" style="display: none;">Please enter a username and password.</p>';
+                echo '        <p id="error-message2" style="display: none;">Error loading configuration file.</p>';
+                echo '        <p id="error-message3" style="display: none;">Password correct! Starting...</p>';
+                echo '        <p id="error-message4" style="display: none;">Incorrect credentials. Try again.</p>';
+                echo '        <p id="error-message5" style="display: none;">Configuration file error.</p>';
+
                 echo '        <form>';
                 echo '            <label for="username">User</label><br />';
                 echo '            <input type="text" name="username" id="username" required><br><br>';

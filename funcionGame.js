@@ -685,7 +685,7 @@ Después, definimos dos variables: "admin_username" y "admin_password", que alma
 usuario con las credenciales de administrador utilizando una declaración "if". :) Si las credenciales ingresadas por el usuario coinciden con las credenciales de administrador, la
 función redirige al usuario a la página "create.php". Esto indica que el usuario ha iniciado sesión correctamente. Si no coinciden, la función muestra un mensaje de error al usuario
 utilizando el elemento HTML de referencia. La función devuelve false para evitar que el formulario se envíe si las credenciales son incorrectas. Esto evita que la página se recargue. */
-function login() {
+/* function login() {
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
     var adminUsername = "ietiadmin";
@@ -698,4 +698,88 @@ function login() {
     } else {
         errorMessage.style.color = "red";
         //errorMessage.innerHTML = "Credenciales incorrectas. Inténtalo de nuevo.";
-    }}
+    }
+} */
+
+function login() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var errorMessage1 = document.getElementById("error-message1");
+    var errorMessage2 = document.getElementById("error-message2");
+    var errorMessage3 = document.getElementById("error-message3");
+    var errorMessage4 = document.getElementById("error-message4");
+    var errorMessage5 = document.getElementById("error-message5");
+
+    // Verificar si se han ingresado valores en los campos de usuario y contraseña
+    if (!username || !password) {
+        errorMessage2.style.display= "none";
+        errorMessage3.style.display= "none";
+        errorMessage4.style.display= "none";
+        errorMessage5.style.display= "none";
+
+        errorMessage1.style.color = "green";
+        errorMessage1.style.display= "block";
+
+        return;
+    }
+
+    // Realizar una solicitud para cargar el archivo de configuración
+    fetch('./configuracio-admin.txt')
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('No se pudo cargar el archivo de configuración');
+            }
+            return response.text();
+        })
+        .then(function(data) {
+            // Dividir el contenido del archivo en líneas
+            var lines = data.split('\n');
+            
+            // Comprobar si hay al menos dos líneas (usuario y contraseña)
+            if (lines.length >= 2) {
+                var adminUsername = lines[0].trim();
+                var adminPassword = lines[1].trim();
+                
+                // Verificar las credenciales
+                if (username === adminUsername && password === adminPassword) {
+                    errorMessage2.style.display= "none";
+                    errorMessage1.style.display= "none";
+                    errorMessage4.style.display= "none";
+                    errorMessage5.style.display= "none";
+
+                    errorMessage3.style.color = "green"; // Cambiar el color del mensaje a verde
+                    errorMessage3.style.display= "block";
+                    setTimeout(function() {
+                        window.location.href = "create.php";
+                    }, 2000);
+                } else {
+                    errorMessage2.style.display= "none";
+                    errorMessage3.style.display= "none";
+                    errorMessage1.style.display= "none";
+                    errorMessage5.style.display= "none";
+
+                    errorMessage4.style.color = "red";
+                    errorMessage4.style.display= "block";
+                }
+            } else {
+                errorMessage2.style.display= "none";
+                errorMessage3.style.display= "none";
+                errorMessage4.style.display= "none";
+                errorMessage1.style.display= "none";
+
+                errorMessage5.style.color = "red";
+                errorMessage5.style.display= "block";
+            }
+        })
+        .catch(function(error) {
+            errorMessage1.style.display= "none";
+            errorMessage3.style.display= "none";
+            errorMessage4.style.display= "none";
+            errorMessage5.style.display= "none";
+
+            errorMessage2.style.color = "red";
+            errorMessage2.style.display= "block";
+        });
+}
+
+    
