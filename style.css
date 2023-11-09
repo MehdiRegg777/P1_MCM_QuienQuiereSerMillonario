@@ -743,7 +743,7 @@ footer{
     }
 
     #timer{
-        margin-left: 10px;
+        margin-right: -10px !important;
     }
 
     h1{
