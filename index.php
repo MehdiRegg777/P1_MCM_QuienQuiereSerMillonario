@@ -8,10 +8,14 @@
     $_SESSION['comodin50'] = 'nousado';
     $_SESSION['comodinTime'] = 'nousado';
     $_SESSION['comodinPublico'] = 'nousado';
+<<<<<<< HEAD
     $_SESSION['buttonPublish'] = 'nousado';
     $_SESSION['comodinLlamada'] = 'nousado';
     unset($_SESSION['nivels']);
     unset($_SESSION['answer']);
+=======
+    unset($_SESSION['nivels']);
+>>>>>>> main
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +25,11 @@
         <title>¿Quién quiere ser millonario?</title>
         <noscript>
             Esta página requiere tener Javascript activado. Por favor, actívalo  para poder jugar.
+<<<<<<< HEAD
             <style>div { background-color: white; display: none; bottom: 0; }</style>
+=======
+            <style>div { background-color: white; display:none; }</style>
+>>>>>>> main
         </noscript>
         <meta author="" content="Claudia, Mehdi i Marcelo (2n DAW)">
         <meta charset="UTF-8">
@@ -29,6 +37,7 @@
         <link href="style.css" rel="stylesheet">
         <link rel="shortcut icon" href="imgs/logo.png" />
     </head>
+<<<<<<< HEAD
     
     <body class="indexPage">
         <!-- ESPAÑOL -->    
@@ -41,6 +50,23 @@
                     }
                 ?>
             </header>
+=======
+    <body class="indexPage">
+        <div id="spanish" <?php echo ($selectedLanguage != 'spanish') ? $hideStyle : $showStyle; ?>>
+        <header>
+            <?php
+                if ($_SESSION['language'] === 'spanish') {
+                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
+                }
+            ?>
+        </header>
+
+            <!-- CATALÀ -->
+>>>>>>> main
             <div class="container">                
                 <h2><strong>Bienvenido</strong></h2>
                 <h3><em>Instrucciones del juego</em></h3>

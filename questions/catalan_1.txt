@@ -1,5 +1,6 @@
 # /imagGame/question1.png
 * Què va fer Gandhi pel món?
+<<<<<<< HEAD
 - Descobrir la cura de la malària
 + Promoure la no violència
 - L'extensió del cristianisme per Àsia Central
@@ -16,6 +17,24 @@
 - Cristian Castro
 - Alejandra Guzmán
 - Pes Ploma
+=======
+- Res
++ Pau
+- Revolució
+- El racisme
+# /imagGame/question2.png
+* D'on és Gandhi?
+- El Marroc
+- Anglaterra
++ Índia
+- Perú
+# /imagGame/question3.png
+* Ghandi va morir per un...
+- Accident
+- Atac de cor
+- Malaltia
++ Assassinat
+>>>>>>> main
 # /imagGame/question4.png
 * En quin segle es va crear el futbol?
 + Segle XIX
@@ -23,12 +42,18 @@
 - Segle I
 - Ara
 # /imagGame/question5.png
+<<<<<<< HEAD
 * A quina part del món es va crear el futbol?
 - Espanya
+=======
+* On del món es va crear el futbol?
+- Xina
+>>>>>>> main
 - Mèxic
 - Brasil
 + Anglaterra
 # /imagGame/question6.png
+<<<<<<< HEAD
 * Quin és el símbol químic del ferro?
 - Hi
 + Fe
@@ -42,6 +67,21 @@
 - Roncano
 # /imagGame/question8.png
 * A l'antiguitat, els humans vivien en...
+=======
+* La pilota solia ser...
+- Amb plàstic
++ Amb Fulles
+- Amb caixes
+- Amb roba
+# /imagGame/question7.png
+* Qui van ser els que van utilitzar la paraula "alborigen"?
+- Àrabs
+- Asiàtics
+- Castellà
++ italians - grecs
+# /imagGame/question8.png
+* En l'antiguitat, els humans solien viure a...
+>>>>>>> main
 + Austràlia
 - Barcelona
 - Singapur

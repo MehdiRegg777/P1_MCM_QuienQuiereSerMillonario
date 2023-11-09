@@ -189,6 +189,219 @@ function buttonTime() {
     clearInterval(intervalCountDown);
     intervalCountDown = setInterval(updateCountDownChronometer, 1000);
 };
+function showMessage(message) {
+    const messageElement = document.getElementById('message');
+    messageElement.textContent = message;
+    messageElement.style.display = 'block';
+    setTimeout(function () {
+        hideMessage();
+    }, 4000);
+}
+function hideMessage() {
+    const messageElement = document.getElementById('message');
+    messageElement.style.display = 'none'; // Ocultar el div de mensaje
+}
+
+// CRONÓMETRO.
+function startCountUpChronometer() {
+    time++;
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    const minutes00 = minutes < 10 ? "0" + minutes : minutes; // Es un if para mostrar 00:00 y no 0:0
+    const second00 = seconds < 10 ? "0" + seconds : seconds;
+    document.getElementById("timer").textContent = minutes00  + ":" + second00;
+    let tiempo = minutes00  + ":" + second00;
+    localStorage.setItem("time", time);
+    saveSession('time=' + tiempo);
+}
+
+let time = parseInt(localStorage.getItem("time")) || 0;
+const intervalo = setInterval(startCountUpChronometer, 1000);
+
+function resetChronometer() {
+    const currentPage = window.location.pathname;
+    if (currentPage === '/index.php' || currentPage === '/') {
+        localStorage.removeItem('time');
+        localStorage.removeItem('timeLeft');
+      }
+}
+
+function reanudarChronometer() {
+    let time = parseInt(localStorage.getItem("time"));
+    startCountUpChronometer()
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    resetChronometer();
+});  
+
+let intervalCountDown;
+function updateCountDownChronometer() {
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
+    if (timeLeft > 0) {
+        timerQuestion.textContent = timeLeft;
+        timeLeft--;
+        localStorage.setItem('timeLeft', timeLeft);
+        saveSession('timeLeft=' + timeLeft);
+    } else {
+        timerQuestion.textContent = "Tiempo agotado";
+        clearInterval(intervalCountDown);
+        pageLose();
+    }
+}
+
+function pageLose(){
+    let niveles = document.querySelector(".nivel_actual");
+    let nivel = niveles.getAttribute("nivelactual");
+    console.log(calculoderespuesta(preguntaActual,nivel));
+    calculateTotalPoints(calculoderespuesta(preguntaActual,nivel));
+    const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'lose.php';
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'userpoints';
+        input.value = calculoderespuesta(preguntaActual,nivel);
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+}
+
+function startCountDownChronometer() {
+    timeLeft = parseInt(localStorage.getItem("timeLeft")) || 30;
+    intervalCountDown = setInterval(updateCountDownChronometer, 1000);
+}
+startCountDownChronometer();
+
+function resetCountDownChronometer() {
+    timeLeft = 30;
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); //aqui obtengo la classe que tiene 'pregunta'
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
+    timerQuestion.textContent = timeLeft;
+}
+
+function stopCountDownChronometerReset() {
+    clearInterval(intervalCountDown);
+    const timerQuestion = 30;
+    localStorage.setItem('timeLeft', timerQuestion);
+}
+function stopCountDownChronometerContinue() {
+    clearInterval(intervalCountDown);
+    const currentQuestion = document.querySelector(".pregunta:not(.bloqueada)"); // Obtener la pregunta actual que no está bloqueada
+    const timerQuestion = currentQuestion.querySelector('.timerQuestion');
+    localStorage.setItem('timeLeft', timeLeft); // Guardar el tiempo restante en el almacenamiento local
+}
+
+//
+// COMODINES.
+//
+// COMODÍN 50%.
+function button50() {
+    
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const respuestaNivel = respuestaDesenfocada.getAttribute("data-pregunta");
+    const respuestasParaBloquear = [];
+
+    // Genera un arreglo con dos respuestas incorrectas aleatorias
+    while (respuestasParaBloquear.length < 2) {
+        const numeroAleatorio = Math.floor(Math.random() * 4); // Suponiendo que hay 4 respuestas
+        if (numeroAleatorio != respuestaCorrecta && !respuestasParaBloquear.includes(numeroAleatorio)) {
+        respuestasParaBloquear.push(numeroAleatorio);
+        }
+    }
+
+    for (let bucle = 0; bucle <= 3; bucle++) {
+        const bloquearRespuestas = document.getElementById('respuesta-' + respuestaNivel + '-' + bucle);
+        if (respuestasParaBloquear.includes(bucle)) {
+          bloquearRespuestas.classList.add('bloqueada');
+        }
+    }
+    const button50 = document.getElementById('buttonComodin50');
+    button50.setAttribute('disabled', '');
+    saveSession('comodin50=' + 'usado');
+}
+
+function buttonTime() {
+    const buttonTime = document.getElementById('buttonComodinTime');
+    buttonTime.setAttribute('disabled', '');
+    saveSession('comodinTime=' + 'usado');
+    timeLeft += 30;
+    const timerQuestion = document.querySelector('.timerQuestion');
+    timerQuestion.textContent = timeLeft;
+    clearInterval(intervalCountDown);
+    intervalCountDown = setInterval(updateCountDownChronometer, 1000);
+};
+
+function comodinPublico() {
+    stopCountDownChronometerContinue();
+    const respuestaDesenfocada = document.querySelector(".respuesta:not(.bloqueada)");
+    const respuestaCorrecta = respuestaDesenfocada.getAttribute("data-correcta");
+    const modal = document.getElementById('popupModal');
+    const imagen = document.getElementById('popupImage');
+    const probabilidad = Math.random();
+    const imagenSrcPublico = 'imgs/publico.jpeg';
+    const closeButton = document.querySelector('.close-button');
+    const audioPopup = new Audio('mp3/epic.mp3');
+    modal.style.display = "block";
+    imagen.src = imagenSrcPublico;
+    audioPopup.play();
+
+    closeButton.addEventListener('click', function() {
+        audioPopup.pause();
+        audioPopup.currentTime = 0;
+        modal.style.display = "none";
+    });
+
+    imagen.classList.add('scale-animation');
+
+    setTimeout(function() {
+        imagen.classList.remove('scale-animation');
+        setTimeout(function() {
+            const segundaImagen = new Image();
+            segundaImagen.onload = function() {
+                imagen.src = segundaImagen.src;
+            };
+            
+            if (probabilidad <= 0.8) {
+                segundaImagen.src = 'graficoBarras/' + respuestaCorrecta + '.png';
+            } else {
+                let respuestaIncorrecta;
+                do {
+                    respuestaIncorrecta = Math.floor(Math.random() * 4);
+                } while (respuestaIncorrecta == respuestaCorrecta);
+                segundaImagen.src = 'graficoBarras/' + respuestaIncorrecta + '.png';
+            }
+        }, 1000);
+    }, 6000)
+
+    const botonPublic0 = document.getElementById('boton-publico');
+    botonPublic0.setAttribute('disabled', '');
+    saveSession('comodinPublico=' + 'usado');
+}
+
+function cerrarImagen() {
+    startCountDownChronometer();
+    const modal = document.getElementById('popupModal');
+    modal.style.display = "none";
+}
+
+function calculoderespuesta(preguntaActual,nivel){
+    let calculo;
+    if (nivel == 1){
+        return preguntaActual
+        
+    } if ((preguntaActual)== 3){
+        return nivel*3
+    } else {
+        calculo = (nivel-1)*3
+        calculo+=preguntaActual
+        return calculo
+    }
+}
+
+// FIN COMODINES.
 
 /* COMODÍN DEL PÚBLICO: Aquí lo que hacemos es */
 function comodinPublico() {
@@ -411,7 +624,12 @@ function scrollSiguientePregunta(preguntaIndex) {
     const preguntaElement = document.getElementById(preguntaId);
     if (preguntaElement) {
         preguntaElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+<<<<<<< HEAD
     }}
+=======
+    }
+}
+>>>>>>> main
 
 /* RESPONDER PREGUNTA: Aquí */
 function responderPregunta(preguntaIndex, nivel, language) {
@@ -465,7 +683,10 @@ function responderPregunta(preguntaIndex, nivel, language) {
         showMessage(mensajes[language]['seleccionaRespuesta']);
     };
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 
 /* REGRESAR: Aquí simplemente redireccionamos al inicio. */
 function regresarAlInicio() {
@@ -502,11 +723,18 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                     const bloquearRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
                     bloquearRespuestas.classList.add('bloqueada');
                 }
+<<<<<<< HEAD
                 showMessage(mensajes[language]['subirNivel'] + nivel + '.');
+=======
+
+                showMessage(mensajes[language]['subirNivel'] + nivel + '.');
+                
+>>>>>>> main
                 const next = document.getElementById("next-question");
                 next.style.display = "";
                 stopCountDownChronometerReset();
             } else {
+<<<<<<< HEAD
                 calculateTotalPoints(18);
                 stopCountDownChronometerContinue();
                 showMessage(mensajes[language]['juegoTerminado']);
@@ -522,6 +750,24 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
                     document.body.appendChild(form);
                     form.submit();
                 }, 3000);
+=======
+                calculateTotalPoints(18)
+                showMessage(mensajes[language]['juegoTerminado']);
+                
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'win.php';
+
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'userpoints';
+                input.value = '18';
+
+                form.appendChild(input);
+                document.body.appendChild(form);
+
+                form.submit();
+>>>>>>> main
             }
         }
     }
@@ -540,6 +786,10 @@ function mostrarSiguientePregunta(preguntaIndex, nivel, language) {
     preguntaIndex++;
     for (let bucle = 0; bucle <= 3; bucle++) {
         const desenfoqueSeguientesRespuestas = document.getElementById('respuesta-' + preguntaIndex + '-' + bucle);
+<<<<<<< HEAD
+=======
+        //console.log(desenfoqueSeguientesRespuestas);
+>>>>>>> main
         desenfoqueSeguientesRespuestas.classList.remove('bloqueada');
     }}
 
@@ -562,6 +812,7 @@ function calculateTotalPoints(correctAnswer) {
     saveSession('points=' + pointsTotal,'game.php');
 }
 
+<<<<<<< HEAD
 // FUNCION DE VALIDAR NOMBRE.
 function validateName() {
     if (document.getElementById("spanish")) {
@@ -614,6 +865,29 @@ function validateName() {
 
 // ARCHIVOS ".MP3" ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 /* Aquí solo configuramos los archivos ".mp3" para que suenen en determinados momentos. */
+=======
+function calculateTotalPoints(correctAnswer) {
+    const tiempo = parseInt(localStorage.getItem("time")) || 0;
+
+    let pointsTime = 0;
+    if (tiempo >= 1 && tiempo <= 1200) {
+        pointsTime = 1200 - tiempo + 1;
+    } else{
+        pointsTime = 0;
+    }
+
+    let pointsAnswer = 0;
+    if (correctAnswer >= 1 && correctAnswer <= 18) {
+        pointsAnswer = correctAnswer * 1300;
+    }
+
+    const pointsTotal = (correctAnswer === 0) ? 0 : pointsTime + pointsAnswer;
+
+    saveSession('points=' + pointsTotal);
+}
+
+// FUNCIONS DE SONS/CANÇONS.
+>>>>>>> main
 function playCorrectSound() {
     var correctSound = document.getElementById("correctSound");
     correctSound.play();
@@ -660,23 +934,41 @@ function changeLanguage(language) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
+<<<<<<< HEAD
         }, body: 'language=' + language, })
+=======
+        },
+        body: 'language=' + language,
+    })
+>>>>>>> main
     .then(response => response.text())
     .then(data => {
         window.location.reload();
     });
 }
 
+<<<<<<< HEAD
 function saveSession(id,page) {
     fetch(page, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         }, body: id, })
+=======
+function saveSession(id) {
+    fetch('game.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: id,
+    })
+>>>>>>> main
     .then(response => response.text())
     .then(data => {
         //console.log(data);
     });
+<<<<<<< HEAD
 };
 
 /* "LOG IN": La función "login()" se activa cuando el usuario envía el formulario. Primero, recopilamos los valores ingresados por el usuario en los campos de nombre de usuario y
@@ -761,3 +1053,6 @@ function login() {
             errorMessage2.style.display= "block";
         });
 }
+=======
+};
+>>>>>>> main

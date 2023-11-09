@@ -4,7 +4,10 @@ session_start();
     isset($_POST['comodin50']) ? $_SESSION['comodin50'] = $_POST['comodin50'] : 'nousado';
     isset($_POST['comodinPublico']) ? $_SESSION['comodinPublico'] = $_POST['comodinPublico'] : 'nousado';
     isset($_POST['comodinTime']) ? $_SESSION['comodinTime'] = $_POST['comodinTime'] : 'nousado';
+<<<<<<< HEAD
     isset($_POST['comodinLlamada']) ? $_SESSION['comodinLlamada'] = $_POST['comodinLlamada'] : 'nousado';
+=======
+>>>>>>> main
     isset($_POST['points']) ? $_SESSION['points'] = $_POST['points'] : null;
     $_SESSION['nivels'] = isset($_SESSION['nivels']) ? $_SESSION['nivels'] : 1;
 ?>
@@ -29,11 +32,19 @@ session_start();
         <header>
             <?php
                 if ($_SESSION['language'] === 'spanish') {
+<<<<<<< HEAD
                     echo "<a id='spanish' href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
                 } elseif ($_SESSION['language'] === 'catalan') {
                     echo "<a id='catalan' href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
                 } elseif ($_SESSION['language'] === 'english') {
                     echo "<a id='english' href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
+=======
+                    echo "<a href='/index.php'><h1>¿Quién quiere ser millonario?</h1></a>";
+                } elseif ($_SESSION['language'] === 'catalan') {
+                    echo "<a href='/index.php'><h1>Qui vol ser milionari?</h1></a>";
+                } elseif ($_SESSION['language'] === 'english') {
+                    echo "<a href='/index.php'><h1>Who wants to be a millonarie?</h1></a>";
+>>>>>>> main
                 }
             ?>
         </header>
@@ -46,6 +57,7 @@ session_start();
             <div class="popup-public">
                 <button class="close-button" onclick="cerrarImagen()">X</button>
                 <img id="popupImage" src="" alt="Imagen">
+<<<<<<< HEAD
                 <div style="display: none;" id="preguntaLlamada">
                     <?php
                      if ($_SESSION['language'] === 'spanish') {
@@ -88,6 +100,13 @@ session_start();
         <div class="comodinesBotones">
             <button id="mostrarComodinesButton" onclick="mostrarComodines()">C</button>
             <div id="comodines" style="display: none;">
+=======
+            </div>
+        </div>
+
+        <div class="container1">
+            <div class="comodinesBotones">
+>>>>>>> main
                 <?php
                     if ($_SESSION['comodin50'] === 'nousado') {
                         echo '<button id="buttonComodin50" onclick="button50()"><i class="fa-solid fa-5"></i><i class="fa-solid fa-0">%</i></button>';
@@ -108,12 +127,17 @@ session_start();
                     } elseif ($_SESSION['comodinPublico'] === 'usado') {
                         echo '<button id="boton-publico" onclick="comodinPublico()" disabled><i class="fa-solid fa-users"></i></button>';
                     }
+<<<<<<< HEAD
                     if ($_SESSION['comodinLlamada'] === 'nousado') {
                         echo '<button id="buttoncomodinLlamada" onclick="comodinLlamada()" ><i class="fa-solid fa-phone-volume"></i></button>';
                     } elseif ($_SESSION['comodinLlamada'] === 'usado') {
                         echo '<button id="buttoncomodinLlamada" onclick="comodinLlamada()" disabled><i class="fa-solid fa-phone-volume"></i></button>';
                     }
                 ?>
+=======
+                ?>
+                <button style='display: none'><i class="fa-solid fa-phone-volume"></i></button>
+>>>>>>> main
             </div>
         </div>
         <?php
@@ -183,6 +207,7 @@ session_start();
 
         $preguntas = $_GET['preguntas'];
         $nivels = $_GET['nivel'];
+<<<<<<< HEAD
         if ($_SESSION['language'] === 'spanish') {
             echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Nivel $nivels</div>";
         } elseif ($_SESSION['language'] === 'catalan') {
@@ -191,6 +216,9 @@ session_start();
             echo "<div class='nivelPartida' id='nivel' style='display: flex;'>Level $nivels</div>";
         }
         
+=======
+                    
+>>>>>>> main
                 foreach ($preguntas as $key => $pregunta) {
                     if ($key >= 3) {
                         break;
@@ -248,6 +276,10 @@ session_start();
         <audio id="correctSound" src="mp3/correct.mp3"></audio>
         <audio id="incorrectSound" src="mp3/fail.mp3"></audio>
         <script src="funcionGame.js"></script>
+<<<<<<< HEAD
+=======
+        <script src="funcionLanguage.js"></script>
+>>>>>>> main
         <footer class="footerinfo">
             <p>© MCM S.A.</p>
             <p><a href="gmail.com">Contact us</a></p>
