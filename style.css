@@ -712,6 +712,7 @@ h3{ font-style: italic !important; }
     display: flex;
     flex-direction: row;
     align-items: center;
+    
 }
 
 .footerinfo p{
@@ -726,6 +727,7 @@ footer{
     text-align: center;
     padding: 20px;
     bottom: 0;
+    width: 97%;
 }
 
 @media only screen and (max-width: 400px) {
@@ -813,5 +815,5 @@ footer{
         width: 80%;
     }
 
-    .footerinfo{ width: 100vw; }
+    .footerinfo{ width: 90%; }
 }
