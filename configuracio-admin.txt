@@ -1,5 +1,2 @@
-L'usuari ha de possar les següents dade per a poder entrar com a administrador a afegir preguntes:
-Usuari: ietiadmin
-Contrasenya: es7ev3T#rrad_S
-
-Si les credencials no són correctes, la pàgina tornarà a preguntar les credencials. Si son correctes, es regidireix a l'usuai a la pàgina de "create.php".
+ietiadmin
+es7ev3T#rrad_S
