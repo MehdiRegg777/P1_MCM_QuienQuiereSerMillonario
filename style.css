@@ -806,6 +806,7 @@ footer{
     .comodinesBotones.expandido {
         max-width: 100%;
         height: 20%;
+        margin-left: 10px !important;
     }
 
     .forumCreate{
